@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://crwq0q70uqekt"]
+
+[ext_resource type="Script" path="res://scenes/world/world.gd" id="1_rw8ns"]
+[ext_resource type="PackedScene" uid="uid://er7eshf68qa8" path="res://objects/player/player.tscn" id="2_2t7oi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_glkmg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xopwe"]
+size = Vector3(1, 0.544434, 1)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_mhu0c"]
+
+[sub_resource type="Sky" id="Sky_s1unc"]
+sky_material = SubResource("PhysicalSkyMaterial_mhu0c")
+
+[sub_resource type="Environment" id="Environment_cwr1r"]
+background_mode = 2
+sky = SubResource("Sky_s1unc")
+ambient_light_energy = 16.0
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_rw8ns")
+player_scene = ExtResource("2_2t7oi")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Host" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 185.0
+offset_right = 105.0
+offset_bottom = 216.0
+text = "Host"
+
+[node name="Join" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 244.0
+offset_right = 99.0
+offset_bottom = 275.0
+text = "Join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://objects/player/player.tscn")
+spawn_path = NodePath("..")
+
+[node name="MeshInstance3D" type="StaticBody3D" parent="."]
+transform = Transform3D(4.73857, 0, 0, 0, 1, 0, 0, 0, 5.60865, 0, -2.32256, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_glkmg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
+transform = Transform3D(2.31856, 0, 0, 0, 0.999996, 0, 0, 0, 2.10727, 0, -0.227783, 0)
+shape = SubResource("BoxShape3D_xopwe")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.28411)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cwr1r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.414058, 0.910251, 0, -0.910251, 0.414058, 0, 0, 0)
+light_energy = 3.0
+shadow_enabled = true
+
+[connection signal="pressed" from="Control/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Control/Join" to="." method="_on_join_pressed"]

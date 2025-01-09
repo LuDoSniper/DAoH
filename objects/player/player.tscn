@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://er7eshf68qa8"]
+
+[ext_resource type="Script" path="res://objects/player/player.gd" id="1_rtus5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lpxpg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iv28b"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2t3ah"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_rtus5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_lpxpg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_iv28b")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_2t3ah")
