@@ -3,9 +3,13 @@ extends Node3D
 # Skins
 @onready var knight_skin = $Knight
 @onready var barbarian_skin = $Barbarian
+@onready var mage_skin = $Mage
+@onready var rogue_skin = $Rogue
 # Animation trees
 @onready var knight_tree = $Knight/AnimationTree
 @onready var barbarian_tree = $Barbarian/AnimationTree
+@onready var mage_tree = $Mage/AnimationTree
+@onready var rogue_tree = $Rogue/AnimationTree
 
 # A DEFINIR
 var animation_tree
@@ -13,9 +17,11 @@ var move_state_machine
 
 enum skins {
 	Knight,
-	Barbarian
+	Barbarian,
+	Mage,
+	Rogue
 }
-@export var skin := skins.Knight
+@export var skin := skins.Rogue
 
 func _ready() -> void:
 	knight_skin.hide()
@@ -26,6 +32,12 @@ func _ready() -> void:
 	elif skin == skins.Barbarian:
 		barbarian_skin.show()
 		animation_tree = barbarian_tree
+	elif skin == skins.Mage:
+		mage_skin.show()
+		animation_tree = mage_tree
+	elif skin == skins.Rogue:
+		rogue_skin.show()
+		animation_tree = rogue_tree
 	
 	move_state_machine = animation_tree.get("parameters/MoveStateMachine/playback")
 	get_move_state_current_node()
