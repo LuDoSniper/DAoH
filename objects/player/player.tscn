@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2vjrseu1cmso"]
+[gd_scene load_steps=6 format=3 uid="uid://b2vjrseu1cmso"]
 
 [ext_resource type="Script" uid="uid://cbp4jm85jed4y" path="res://objects/player/player.gd" id="1_cqmt1"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5lq1w"]
+[ext_resource type="PackedScene" uid="uid://e5qkoxyv6art" path="res://objects/player/camera/camera_controller.tscn" id="2_g7ett"]
+[ext_resource type="PackedScene" uid="uid://dwai72sk4pm4a" path="res://objects/player/skin/skin.tscn" id="3_ssrue"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5lq1w"]
 
@@ -16,16 +16,15 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_cqmt1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_5lq1w")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_5lq1w")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 4)
+[node name="CameraController" parent="." instance=ExtResource("2_g7ett")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+spring_length = 6.0
+
+[node name="Skin" parent="." instance=ExtResource("3_ssrue")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_cqmt1")

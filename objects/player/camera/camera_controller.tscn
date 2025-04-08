@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://e5qkoxyv6art"]
+
+[ext_resource type="Script" uid="uid://difcsu1wuu1lq" path="res://objects/player/camera/camera_controller.gd" id="1_ud8f4"]
+
+[node name="CameraController" type="SpringArm3D"]
+script = ExtResource("1_ud8f4")
+
+[node name="Camera3D" type="Camera3D" parent="."]

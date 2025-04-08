@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwai72sk4pm4a"]
+
+[ext_resource type="PackedScene" uid="uid://b03jyr0by50pr" path="res://objects/player/skin/knight/knight.tscn" id="2_a7m4h"]
+[ext_resource type="Script" uid="uid://co686pdpknh7b" path="res://objects/player/skin/skin.gd" id="2_eurn5"]
+[ext_resource type="PackedScene" uid="uid://bg8odegocndgc" path="res://objects/player/skin/barbarian/barbarian.tscn" id="3_k7qxw"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a7m4h"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Skin" type="Node3D"]
+script = ExtResource("2_eurn5")
+
+[node name="Knight" parent="." instance=ExtResource("2_a7m4h")]
+visible = false
+
+[node name="Barbarian" parent="." instance=ExtResource("3_k7qxw")]
+visible = false
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_a7m4h")
