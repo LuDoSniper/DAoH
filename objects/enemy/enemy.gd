@@ -25,8 +25,10 @@ var move_state_machine
 var base_speed := 4.0
 var run_speed := 5.0
 var spot_radius := 10.0
+var security_distance := 5.0
 
 var players
+var targeted_player
 
 var is_combat := false
 
@@ -86,17 +88,32 @@ func select_target() -> void:
 		if spoted_players != []:
 			# Select a random player and go toward
 			is_combat = true
-			var targeted_player = spoted_players[randi_range(0, len(spoted_players) - 1)]
-			navigation_agent.set_target_position(targeted_player.global_position)
+			
+			# Keep the targeted player until he's unreachable
+			targeted_player = spoted_players[randi_range(0, len(spoted_players) - 1)] if targeted_player == null else targeted_player
+			
+			# Mages will maintain security distance while others no
+			var target: Vector3
+			if variant != variants.Mage:
+				target = targeted_player.global_position
+			else:
+				var direction = (targeted_player.global_position - global_position).normalized()
+				target = targeted_player.global_position - direction * security_distance
+			navigation_agent.set_target_position(target)
+			
 			# The enemy will go to the last known point of the player if he get out of his vision during the track
 			random_path_timer.start()
+		
 		elif random_path_timer.time_left == 0:
-			# Select a ranodom position nearby
+			# Select a random position nearby
 			is_combat = false
+			targeted_player = null
+			
 			var target = Vector3.ZERO
 			target.x = randf_range(-5.0, 5.0)
 			target.z = randf_range(-5.0, 5.0)
 			navigation_agent.set_target_position(target)
+			
 			rpc("remote_get_target", target)
 			random_path_timer.start()
 
@@ -106,38 +123,52 @@ func remote_get_target(target: Vector3) -> void:
 		navigation_agent.set_target_position(target)
 
 func move_logic(delta: float) -> void:
-	# Get the direction with the navigation agent
-	var destination = navigation_agent.get_next_path_position()
-	var local_destination = destination - global_position
-	var direction = local_destination.normalized()
-	
-	var rounded_current_position = Vector2(
-		round(global_position.x),
-		round(global_position.z)
-	)
-	var rounded_final_position = Vector2(
-		round(navigation_agent.get_final_position().x),
-		round(navigation_agent.get_final_position().z)
-	)
-	if direction and rounded_current_position != rounded_final_position:
-		# Rotate slowly to the desired vector (direction)
-		var target_angle = -Vector2(direction.x, direction.z).angle() + PI/2
-		rotation.y = rotate_toward(rotation.y, target_angle, 6.0 * delta)
+	if multiplayer.is_server():
+		# Get the direction with the navigation agent
+		var destination = navigation_agent.get_next_path_position()
+		var local_destination = destination - global_position
+		var direction = local_destination.normalized()
 		
-		# Apply correct speed (run or sprint)
-		var speed = run_speed if is_combat else base_speed
+		var rounded_current_position = Vector2(
+			round(global_position.x),
+			round(global_position.z)
+		)
+		var rounded_final_position = Vector2(
+			round(navigation_agent.get_final_position().x),
+			round(navigation_agent.get_final_position().z)
+		)
+		if direction and rounded_current_position != rounded_final_position:
+			# Rotate slowly to the desired vector (direction)
+			var target_angle = -Vector2(direction.x, direction.z).angle() + PI/2
+			rotation.y = rotate_toward(rotation.y, target_angle, 6.0 * delta)
+			
+			# Apply correct speed (run or sprint)
+			var speed = run_speed if is_combat else base_speed
+			
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+			
+			move_state_machine.travel('Run' if not is_combat else "Run_Combat")
+			rpc("sync_animation_movement", name.to_int(), 'Run' if not is_combat else "Run_Combat")
+		else:
+			# Rotate if in combat
+			if is_combat:
+				direction = (targeted_player.global_position - global_position).normalized()
+				var target_angle = -Vector2(direction.x, direction.z).angle() + PI/2
+				rotation.y = rotate_toward(rotation.y, target_angle, 6.0 * delta)
+			
+			# Stop slowly
+			velocity.x = move_toward(velocity.x, 0, base_speed)
+			velocity.z = move_toward(velocity.z, 0, base_speed)
+			move_state_machine.travel('Idle')
+			rpc("sync_animation_movement", name.to_int(), 'Idle')
 		
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-		
-		move_state_machine.travel('Run' if not is_combat else "Run_Combat")
-	else:
-		# Stop slowly
-		velocity.x = move_toward(velocity.x, 0, base_speed)
-		velocity.z = move_toward(velocity.z, 0, base_speed)
-		move_state_machine.travel('Idle')
-	
-	move_and_slide()
+		move_and_slide()
+
+@rpc("any_peer")
+func sync_animation_movement(id: int, animation: String) -> void:
+	if name.to_int() == id:
+		move_state_machine.travel(animation)
 
 func _on_random_path_timer_timeout() -> void:
 	random_path_timer.wait_time = randf_range(2.5, 4.0)
