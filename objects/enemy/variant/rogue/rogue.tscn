@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwttsh124y31m"]
+
+[ext_resource type="PackedScene" uid="uid://bd14eel7cgkws" path="res://addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Rogue.glb" id="1_hv1y7"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cf7bx6ai0isbq" path="res://objects/enemy/variant/variant_blend_node.tres" id="2_kkfme"]
+
+[node name="Rogue" instance=ExtResource("1_hv1y7")]
+
+[node name="Skeleton_Rogue_Hood" parent="Rig/Skeleton3D" index="0"]
+transform = Transform3D(1, -1.42109e-14, 1.42109e-14, 1.42109e-14, 1, 6.17863e-15, -1.42109e-14, -6.17863e-15, 1, 1.90735e-06, 1.21587, -1.37836e-07)
+
+[node name="Skeleton_Rogue_Cape" parent="Rig/Skeleton3D" index="1"]
+transform = Transform3D(1, 1.25214e-21, 0, -1.25214e-21, 1, 0, 0, 0, 1, -1.90735e-06, 1.21587, -1.3411e-07)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = ExtResource("2_kkfme")
+anim_player = NodePath("../AnimationPlayer")

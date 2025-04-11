@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhdnji60mgrmb"]
+
+[ext_resource type="Script" uid="uid://cfsqm3xdpr45e" path="res://objects/enemy/enemy.gd" id="1_c38me"]
+[ext_resource type="PackedScene" uid="uid://c4i7cfvcn2k1p" path="res://objects/enemy/variant/mage/mage.tscn" id="1_esv4w"]
+[ext_resource type="PackedScene" uid="uid://dmb3awgiqvw4i" path="res://objects/enemy/variant/minion/minion.tscn" id="2_c38me"]
+[ext_resource type="PackedScene" uid="uid://dwttsh124y31m" path="res://objects/enemy/variant/rogue/rogue.tscn" id="3_gnbxk"]
+[ext_resource type="PackedScene" uid="uid://bmphaovpa0rwt" path="res://objects/enemy/variant/warrior/warrior.tscn" id="4_ecd4o"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ghy8"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_esv4w"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_c38me")
+
+[node name="Mage" parent="." instance=ExtResource("1_esv4w")]
+visible = false
+
+[node name="Minion" parent="." instance=ExtResource("2_c38me")]
+
+[node name="Rogue" parent="." instance=ExtResource("3_gnbxk")]
+visible = false
+
+[node name="Warrior" parent="." instance=ExtResource("4_ecd4o")]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_2ghy8")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_esv4w")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="Raycasts" type="Node" parent="."]
+
+[node name="Vision" type="RayCast3D" parent="Raycasts"]
+collision_mask = 3
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="RandomPathTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timers/RandomPathTimer" to="." method="_on_random_path_timer_timeout"]
