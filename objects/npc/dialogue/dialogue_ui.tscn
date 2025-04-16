@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://ose27of4xvue"]
+
+[ext_resource type="Script" uid="uid://jvyhuiocgyub" path="res://objects/npc/dialogue/dialogue_ui.gd" id="1_b8u5h"]
+
+[node name="DialogueUi" type="CanvasLayer"]
+script = ExtResource("1_b8u5h")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelName" type="Label" parent="PanelContainer"]
+layout_mode = 2
+text = "Test"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
+layout_mode = 2

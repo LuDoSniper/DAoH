@@ -25,6 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 spring_length = 6.0
 
 [node name="Skin" parent="." instance=ExtResource("3_ssrue")]
+skin = 0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_cqmt1")

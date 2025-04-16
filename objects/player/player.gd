@@ -27,6 +27,7 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
 func _ready() -> void:
+	add_to_group("players")
 	if is_multiplayer_authority():
 		camera.current = true
 

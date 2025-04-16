@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dsdkk3ck5o2nj"]
+[gd_scene load_steps=15 format=3 uid="uid://dsdkk3ck5o2nj"]
 
 [ext_resource type="Script" uid="uid://bu0ajfske4uuh" path="res://scenes/world/world.gd" id="1_dphjl"]
 [ext_resource type="PackedScene" uid="uid://b2vjrseu1cmso" path="res://objects/player/player.tscn" id="2_sl2e5"]
 [ext_resource type="PackedScene" uid="uid://dhdnji60mgrmb" path="res://objects/enemy/enemy.tscn" id="3_1fp7r"]
+[ext_resource type="PackedScene" uid="uid://drseardeob18k" path="res://objects/npc/npc.tscn" id="4_6m72w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhad"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -110,6 +111,10 @@ shape = SubResource("BoxShape3D_sl2e5")
 
 [node name="Enemy" parent="Entities" instance=ExtResource("3_1fp7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52816, 0, 3.72392)
+variant = 2
+
+[node name="Npc" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.955538, 8.75823)
 
 [connection signal="pressed" from="CanvasLayer/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/join" to="." method="_on_join_pressed"]
