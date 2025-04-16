@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://drseardeob18k"]
+
+[ext_resource type="Script" uid="uid://ndjohqicf6b2" path="res://objects/npc/npc.gd" id="1_nxjfv"]
+[ext_resource type="PackedScene" uid="uid://dhel5y0ymt48r" path="res://objects/npc/skin/skin.tscn" id="2_15dke"]
+[ext_resource type="Script" uid="uid://bdm6dul4k6s6r" path="res://objects/npc/skin/skin.gd" id="3_ha4nv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ha4nv"]
+
+[node name="Npc" type="CharacterBody3D"]
+script = ExtResource("1_nxjfv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ha4nv")
+
+[node name="Skin" parent="." instance=ExtResource("2_15dke")]
+script = ExtResource("3_ha4nv")
+skin = 0

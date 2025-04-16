@@ -62,10 +62,10 @@ states/Run/position = Vector2(560, 231)
 states/Sprint/node = SubResource("AnimationNodeAnimation_k7qxw")
 states/Sprint/position = Vector2(560, -36)
 transitions = ["Idle", "Sprint", SubResource("AnimationNodeStateMachineTransition_a7m4h"), "Sprint", "Idle", SubResource("AnimationNodeStateMachineTransition_k7qxw"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_goud1"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_2ljhi"), "Run", "Sprint", SubResource("AnimationNodeStateMachineTransition_sf5fb"), "Sprint", "Run", SubResource("AnimationNodeStateMachineTransition_kd1ir"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tf6k7"), "Sprint", "Fall", SubResource("AnimationNodeStateMachineTransition_i668i"), "Fall", "Sprint", SubResource("AnimationNodeStateMachineTransition_tlsgn"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_gqhsl"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_3d2ec"), "Fall", "Run", SubResource("AnimationNodeStateMachineTransition_uyy84"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_cxyot")]
-graph_offset = Vector2(-284, -118)
+graph_offset = Vector2(-117, -58)
 
 [resource]
-graph_offset = Vector2(-530, 43)
+graph_offset = Vector2(-300.54, -2.1506)
 nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_2ljhi")
 nodes/MoveStateMachine/position = Vector2(-100, 140)
 node_connections = [&"output", 0, &"MoveStateMachine"]

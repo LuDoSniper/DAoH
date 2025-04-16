@@ -110,7 +110,6 @@ shape = SubResource("BoxShape3D_sl2e5")
 
 [node name="Enemy" parent="Entities" instance=ExtResource("3_1fp7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52816, 0, 3.72392)
-variant = 2
 
 [connection signal="pressed" from="CanvasLayer/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/join" to="." method="_on_join_pressed"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhel5y0ymt48r"]
+
+[ext_resource type="Script" uid="uid://co686pdpknh7b" path="res://objects/player/skin/skin.gd" id="1_5wsek"]
+[ext_resource type="PackedScene" uid="uid://t7k0glgrp2t8" path="res://objects/player/skin/rogue/rogue.tscn" id="5_m0w4w"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a7m4h"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Skin" type="Node3D"]
+script = ExtResource("1_5wsek")
+
+[node name="Rogue" parent="." instance=ExtResource("5_m0w4w")]
+visible = false
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_a7m4h")
