@@ -102,6 +102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 7)
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/NavigationRegion3D/Obstacle2"]
+visible = false
 mesh = SubResource("BoxMesh_sl2e5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/NavigationRegion3D/Obstacle2"]
@@ -114,7 +115,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52816, 0, 3.72392)
 variant = 2
 
 [node name="Npc" parent="Entities" instance=ExtResource("4_6m72w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.955538, 8.75823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 8.75823)
 
 [connection signal="pressed" from="CanvasLayer/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/join" to="." method="_on_join_pressed"]

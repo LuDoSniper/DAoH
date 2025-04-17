@@ -22,7 +22,7 @@ var paused: bool = false:
 		else:
 			unpause.emit()
 var is_running := false
-
+var player_is_lock = false
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
@@ -42,7 +42,7 @@ func move_logic(delta: float) -> void:
 		is_running = Input.is_action_pressed("run") and input_dir != Vector2.ZERO
 		
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		if direction and not paused:
+		if direction and not paused and not player_is_lock:
 			# Rotate slowly to the desired vector (direction)
 			var target_angle = -input_dir.angle() + PI/2
 			skin.rotation.y = rotate_toward(skin.rotation.y, target_angle, 6.0 * delta)
@@ -95,3 +95,35 @@ func _input(event: InputEvent) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+#DIALOGUE - INTERACT
+var current_npc: Node = null
+var current_line = 0
+var dialogue_active = false
+var dialogue_lines: Array[String] = []
+
+func _unhandled_input(event):
+	if current_npc and event.is_action_pressed("interact") and is_multiplayer_authority():
+		if not player_is_lock:
+			player_is_lock = true
+		if not dialogue_active:
+			dialogue_lines = current_npc.get_dialogue_lines()
+			DIALOGUEUI.show_dialogue(current_npc.npc_name, dialogue_lines)
+			dialogue_active = true
+			current_line = 1
+		else:
+			DIALOGUEUI._show_next_line()
+			show_next_dialogue()
+
+func show_next_dialogue():
+	if current_line < dialogue_lines.size():
+		current_line += 1
+	else:
+		dialogue_active = false
+		current_line = 0
+		player_is_lock = false
+		current_npc = null
+		
+func set_current_npc(npc):
+	current_npc = npc

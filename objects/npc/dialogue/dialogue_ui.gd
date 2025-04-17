@@ -23,7 +23,3 @@ func _show_next_line() -> void:
 		current_index += 1
 	elif panel:
 		panel.visible = false
-
-func _unhandled_input(event):
-	if panel and panel.visible and event.is_action_pressed("interact"):
-		_show_next_line()

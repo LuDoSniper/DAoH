@@ -11,33 +11,21 @@ var dialogue_lines: Array[String] = [
 	"Bonne chance pour ta quête !"
 ]
 
-var player_in_range := false
-var current_line := 0
-
 func _ready():
-	print("READY")
 	label.text = npc_name
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body):
-	if body.is_in_group("players"):
-		player_in_range = true
-		print("Le joueur peut interagir avec", npc_name)
+	if body.is_in_group("players") and body.is_multiplayer_authority():
+		label.visible = true
+		body.set_current_npc(self)
 
 func _on_body_exited(body):
-	if body.is_in_group("players"):
-		player_in_range = false
-		current_line = 0
+	if body.is_in_group("players") and body.is_multiplayer_authority():
+		label.visible = false
+		body.set_current_npc(null)
 
-func _unhandled_input(event):
-	if player_in_range and event.is_action_pressed("interact"):
-		DIALOGUEUI.show_dialogue(npc_name, dialogue_lines)
 
-func show_next_dialogue():
-	if current_line < dialogue_lines.size():
-		print(npc_name + ": " + dialogue_lines[current_line])
-		current_line += 1
-	else:
-		print(npc_name + ": Fin de la discussion.")
-		current_line = 0
+func get_dialogue_lines():
+	return dialogue_lines
