@@ -1,0 +1,384 @@
+[gd_scene load_steps=21 format=3 uid="uid://bo11voxn7kjnh"]
+
+[ext_resource type="Script" uid="uid://cqweqwrktltpt" path="res://scenes/menu/settings/settings.gd" id="1_j2hhu"]
+[ext_resource type="Texture2D" uid="uid://b0l250speial6" path="res://addons/menu/backgorund.png" id="1_q0jny"]
+[ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="2_j2hhu"]
+[ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="3_raitm"]
+[ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="4_wxqhd"]
+[ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="5_27xop"]
+[ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="6_0bjim"]
+[ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="7_k1bdj"]
+[ext_resource type="Texture2D" uid="uid://dkyahl08epuid" path="res://addons/menu/panel_brown_arrows_dark_detail.png" id="8_wxqhd"]
+[ext_resource type="Texture2D" uid="uid://bf1v8nxq8uafa" path="res://addons/menu/panel_brown_damaged_dark.png" id="9_27xop"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tk68u"]
+texture = ExtResource("1_q0jny")
+modulate_color = Color(0.886262, 0.886262, 0.886261, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7xv20"]
+texture = ExtResource("2_j2hhu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t40bu"]
+texture = ExtResource("3_raitm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rdo6b"]
+texture = ExtResource("6_0bjim")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0bjim"]
+texture = ExtResource("8_wxqhd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k1bdj"]
+texture = ExtResource("9_27xop")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hdkr8"]
+texture = ExtResource("7_k1bdj")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkj13"]
+texture = ExtResource("7_k1bdj")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7kjfy"]
+texture = ExtResource("7_k1bdj")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j5tnx"]
+texture = ExtResource("7_k1bdj")
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j2hhu")
+
+[node name="Game" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tk68u")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -638.5
+offset_right = -297.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -679.0
+offset_top = -240.5
+offset_right = -256.0
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7xv20")
+
+[node name="Bandeau" type="Panel" parent="MenuBG"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = -21.5
+offset_right = 127.0
+offset_bottom = 42.5
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_t40bu")
+
+[node name="Label" type="Label" parent="MenuBG/Bandeau"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -55.5
+offset_right = 133.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("4_wxqhd")
+theme_override_font_sizes/font_size = 24
+text = "DAoH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Box" type="Control" parent="MenuBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.5
+offset_top = -74.0
+offset_right = 120.5
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Credits" type="Label" parent="MenuBG/Box"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = -141.0
+offset_right = 101.0
+offset_bottom = -64.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_fonts/font = ExtResource("5_27xop")
+theme_override_font_sizes/font_size = 48
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coupure3" type="Panel" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.5
+offset_top = -130.0
+offset_right = 160.5
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rdo6b")
+
+[node name="Coupure" type="Panel" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = -26.0
+offset_right = 159.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rdo6b")
+
+[node name="TypeMenu" type="HBoxContainer" parent="MenuBG/Box"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_top = -34.0
+offset_right = 63.5
+offset_bottom = 30.0
+grow_horizontal = 2
+
+[node name="Video" type="Button" parent="MenuBG/Box/TypeMenu"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_0bjim")
+
+[node name="Audio" type="Button" parent="MenuBG/Box/TypeMenu"]
+custom_minimum_size = Vector2(58, 58)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_k1bdj")
+
+[node name="Video" type="HBoxContainer" parent="MenuBG/Box"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.5
+offset_right = 148.5
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Labels" type="VBoxContainer" parent="MenuBG/Box/Video"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Fullscreen" type="Label" parent="MenuBG/Box/Video/Labels"]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 7
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_font_sizes/font_size = 24
+text = "Fullscreen"
+
+[node name="Borderless" type="Label" parent="MenuBG/Box/Video/Labels"]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 7
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_font_sizes/font_size = 24
+text = "Borderless"
+
+[node name="VSync" type="Label" parent="MenuBG/Box/Video/Labels"]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 7
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_font_sizes/font_size = 24
+text = "VSync"
+
+[node name="Checks" type="VBoxContainer" parent="MenuBG/Box/Video"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Fullscreen" type="CheckBox" parent="MenuBG/Box/Video/Checks"]
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 7
+
+[node name="Borderless" type="CheckBox" parent="MenuBG/Box/Video/Checks"]
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 7
+
+[node name="VSync" type="CheckBox" parent="MenuBG/Box/Video/Checks"]
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 7
+
+[node name="Audio" type="HBoxContainer" parent="MenuBG/Box"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.5
+offset_right = 148.5
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Labels" type="VBoxContainer" parent="MenuBG/Box/Audio"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Master" type="Label" parent="MenuBG/Box/Audio/Labels"]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 7
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_font_sizes/font_size = 24
+text = "Principal"
+
+[node name="Music" type="Label" parent="MenuBG/Box/Audio/Labels"]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 7
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_font_sizes/font_size = 24
+text = "Musique"
+
+[node name="Son FX" type="Label" parent="MenuBG/Box/Audio/Labels"]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 7
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_font_sizes/font_size = 24
+text = "Son FX"
+
+[node name="Sliders" type="VBoxContainer" parent="MenuBG/Box/Audio"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider3" type="HSlider" parent="MenuBG/Box/Audio/Sliders"]
+layout_mode = 2
+size_flags_vertical = 7
+
+[node name="HSlider" type="HSlider" parent="MenuBG/Box/Audio/Sliders"]
+layout_mode = 2
+size_flags_vertical = 7
+
+[node name="HSlider2" type="HSlider" parent="MenuBG/Box/Audio/Sliders"]
+layout_mode = 2
+size_flags_vertical = 7
+
+[node name="Coupure2" type="Panel" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = 125.0
+offset_right = 159.5
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rdo6b")
+
+[node name="quitter" type="Button" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 155.0
+offset_right = 159.0
+offset_bottom = 219.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("5_27xop")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_hdkr8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wkj13")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7kjfy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_j5tnx")
+text = "Retour"
+
+[connection signal="pressed" from="MenuBG/Box/TypeMenu/Video" to="." method="_on_video_pressed"]
+[connection signal="pressed" from="MenuBG/Box/TypeMenu/Audio" to="." method="_on_audio_pressed"]
+[connection signal="toggled" from="MenuBG/Box/Video/Checks/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="MenuBG/Box/Video/Checks/Borderless" to="." method="_on_borderless_toggled"]
+[connection signal="toggled" from="MenuBG/Box/Video/Checks/VSync" to="." method="_on_v_sync_toggled"]
+[connection signal="pressed" from="MenuBG/Box/quitter" to="." method="_on_quitter_pressed"]
