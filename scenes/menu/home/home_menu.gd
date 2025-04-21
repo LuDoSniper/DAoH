@@ -19,7 +19,7 @@ func _on_settings_pressed() -> void:
 	print("Settings")
 
 func _on_credits_pressed() -> void:
-	print("Credits")
+	get_tree().change_scene_to_file("res://scenes/menu/credits/credits.tscn")
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
