@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://b2brpirnjxwjx"]
 
 [ext_resource type="Texture2D" uid="uid://b0l250speial6" path="res://addons/menu/backgorund.png" id="1_060io"]
-[ext_resource type="Script" uid="uid://bri2cctb3a08q" path="res://scenes/menu/home_menu.gd" id="1_hbheq"]
+[ext_resource type="Script" uid="uid://bri2cctb3a08q" path="res://scenes/menu/home/home_menu.gd" id="1_hbheq"]
 [ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="3_bir1u"]
 [ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="4_mvfnd"]
 [ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="5_vstcn"]

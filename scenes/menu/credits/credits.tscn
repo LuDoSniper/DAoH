@@ -1,0 +1,245 @@
+[gd_scene load_steps=17 format=3 uid="uid://7fg0g1ab15w0"]
+
+[ext_resource type="Texture2D" uid="uid://b0l250speial6" path="res://addons/menu/backgorund.png" id="1_teh0u"]
+[ext_resource type="Script" uid="uid://cb4cbi4xc88aj" path="res://scenes/menu/credits/credits.gd" id="1_wto2m"]
+[ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="2_wto2m"]
+[ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="3_3083c"]
+[ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="4_ld5vf"]
+[ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="5_s352n"]
+[ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="6_4ipjf"]
+[ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="7_yq7tt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iok5b"]
+texture = ExtResource("1_teh0u")
+modulate_color = Color(0.886262, 0.886262, 0.886261, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6gv81"]
+texture = ExtResource("2_wto2m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3hdp"]
+texture = ExtResource("3_3083c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f0ptx"]
+texture = ExtResource("7_yq7tt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_11kw0"]
+texture = ExtResource("6_4ipjf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qlxyq"]
+texture = ExtResource("6_4ipjf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_40wib"]
+texture = ExtResource("6_4ipjf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bpq2o"]
+texture = ExtResource("6_4ipjf")
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wto2m")
+
+[node name="Game" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_iok5b")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -638.5
+offset_right = -297.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="MenuBG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -679.0
+offset_top = -240.5
+offset_right = -256.0
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6gv81")
+
+[node name="Bandeau" type="Panel" parent="MenuBG"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = -21.5
+offset_right = 127.0
+offset_bottom = 42.5
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m3hdp")
+
+[node name="Label" type="Label" parent="MenuBG/Bandeau"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -55.5
+offset_right = 133.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("4_ld5vf")
+theme_override_font_sizes/font_size = 24
+text = "DAoH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Box" type="Control" parent="MenuBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.5
+offset_top = -74.0
+offset_right = 120.5
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Credits" type="Label" parent="MenuBG/Box"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = -119.0
+offset_right = 101.0
+offset_bottom = -42.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_fonts/font = ExtResource("5_s352n")
+theme_override_font_sizes/font_size = 48
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coupure" type="Panel" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -108.0
+offset_right = 159.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_f0ptx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBG/Box"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_right = 75.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+
+[node name="Credits4" type="Label" parent="MenuBG/Box/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_fonts/font = ExtResource("5_s352n")
+theme_override_font_sizes/font_size = 32
+text = "Maceo JSP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits3" type="Label" parent="MenuBG/Box/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_fonts/font = ExtResource("5_s352n")
+theme_override_font_sizes/font_size = 32
+text = "Lucien DONNARIEIX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits2" type="Label" parent="MenuBG/Box/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_fonts/font = ExtResource("5_s352n")
+theme_override_font_sizes/font_size = 32
+text = "Mathys DA CUNHA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coupure2" type="Panel" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 102.0
+offset_right = 159.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_f0ptx")
+
+[node name="quitter" type="Button" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 136.0
+offset_right = 159.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("5_s352n")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_11kw0")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qlxyq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_40wib")
+theme_override_styles/normal = SubResource("StyleBoxTexture_bpq2o")
+text = "Retour"
+
+[connection signal="pressed" from="MenuBG/Box/quitter" to="." method="_on_quitter_pressed"]
