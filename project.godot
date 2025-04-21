@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="MajorB2"
-run/main_scene="uid://dsdkk3ck5o2nj"
+run/main_scene="uid://b2brpirnjxwjx"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+run/size/viewport_width=648
 
 [autoload]
 
@@ -22,7 +23,9 @@ DIALOGUEUI="*res://objects/npc/dialogue/dialogue_ui.tscn"
 
 [display]
 
-window/size/viewport_width=648
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
 
 [input]
 
