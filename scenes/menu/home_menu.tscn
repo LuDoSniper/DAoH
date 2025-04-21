@@ -1,0 +1,305 @@
+[gd_scene load_steps=26 format=3 uid="uid://b2brpirnjxwjx"]
+
+[ext_resource type="Texture2D" uid="uid://b0l250speial6" path="res://addons/menu/backgorund.png" id="1_060io"]
+[ext_resource type="Script" uid="uid://bri2cctb3a08q" path="res://scenes/menu/home_menu.gd" id="1_hbheq"]
+[ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="3_bir1u"]
+[ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="4_mvfnd"]
+[ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="5_vstcn"]
+[ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="5_w8rs4"]
+[ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="6_wln8m"]
+[ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="8_vstcn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hbheq"]
+texture = ExtResource("1_060io")
+modulate_color = Color(0.886262, 0.886262, 0.886261, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vstcn"]
+texture = ExtResource("3_bir1u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wln8m"]
+texture = ExtResource("4_mvfnd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mp753"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lor2g"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.762403, 0.762404, 0.762403, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6wues"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rhgb8"]
+texture = ExtResource("5_w8rs4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qcilr"]
+texture = ExtResource("8_vstcn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfy5k"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b6n7x"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7pri"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfiqp"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2hph6"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ip6q6"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6qn0c"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvtmr"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3ax2"]
+texture = ExtResource("5_w8rs4")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[node name="HomeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hbheq")
+
+[node name="Game" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hbheq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -638.5
+offset_right = -297.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="MenuBG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -679.0
+offset_top = -240.5
+offset_right = -256.0
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vstcn")
+metadata/_edit_group_ = true
+
+[node name="Bandeau" type="Panel" parent="MenuBG"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = -21.5
+offset_right = 127.0
+offset_bottom = 42.5
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wln8m")
+
+[node name="Label" type="Label" parent="MenuBG/Bandeau"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -55.5
+offset_right = 133.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("5_vstcn")
+theme_override_font_sizes/font_size = 24
+text = "DAoH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Box" type="Control" parent="MenuBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.5
+offset_top = -74.0
+offset_right = 120.5
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="jouer" type="Button" parent="MenuBG/Box"]
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -159.0
+offset_right = 159.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_wln8m")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_mp753")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lor2g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6wues")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rhgb8")
+text = "Jouer"
+
+[node name="Coupure" type="Panel" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -69.0
+offset_right = 159.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qcilr")
+
+[node name="options" type="Button" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -40.0
+offset_right = 159.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_wln8m")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_wfy5k")
+theme_override_styles/hover = SubResource("StyleBoxTexture_b6n7x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_i7pri")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rhgb8")
+text = "Options"
+
+[node name="credits" type="Button" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 41.0
+offset_right = 159.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_wln8m")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_wfiqp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2hph6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ip6q6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rhgb8")
+text = "Credits
+"
+
+[node name="Coupure2" type="Panel" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 124.0
+offset_right = 159.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qcilr")
+
+[node name="quitter" type="Button" parent="MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 145.0
+offset_right = 159.0
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_wln8m")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_6qn0c")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hvtmr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v3ax2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rhgb8")
+text = "Quitter"
+
+[connection signal="pressed" from="MenuBG/Box/jouer" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MenuBG/Box/options" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MenuBG/Box/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MenuBG/Box/quitter" to="." method="_on_exit_pressed"]
