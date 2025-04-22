@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bo11voxn7kjnh"]
+[gd_scene load_steps=28 format=3 uid="uid://bo11voxn7kjnh"]
 
 [ext_resource type="Script" uid="uid://cqweqwrktltpt" path="res://scenes/menu/settings/settings.gd" id="1_j2hhu"]
 [ext_resource type="Texture2D" uid="uid://b0l250speial6" path="res://addons/menu/backgorund.png" id="1_q0jny"]
@@ -10,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="7_k1bdj"]
 [ext_resource type="Texture2D" uid="uid://dkyahl08epuid" path="res://addons/menu/panel_brown_arrows_dark_detail.png" id="8_wxqhd"]
 [ext_resource type="Texture2D" uid="uid://bf1v8nxq8uafa" path="res://addons/menu/panel_brown_damaged_dark.png" id="9_27xop"]
+[ext_resource type="Texture2D" uid="uid://tqccuyt4dl4i" path="res://addons/menu/video.png" id="9_tk68u"]
+[ext_resource type="Texture2D" uid="uid://dl5hjo8svhhg8" path="res://addons/menu/checkbox_brown_empty.png" id="10_27xop"]
+[ext_resource type="Texture2D" uid="uid://bkmys4jwphovp" path="res://addons/menu/checkbox_brown_checked.png" id="11_0bjim"]
+[ext_resource type="Texture2D" uid="uid://b8i2srs3p2keq" path="res://addons/menu/audio.png" id="11_7xv20"]
+[ext_resource type="Texture2D" uid="uid://ck60jc8fi1irl" path="res://addons/menu/scrollbar_brown_small.png" id="14_7xv20"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tk68u"]
 texture = ExtResource("1_q0jny")
@@ -24,8 +29,14 @@ texture = ExtResource("3_raitm")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rdo6b"]
 texture = ExtResource("6_0bjim")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_og4gl"]
+texture = ExtResource("8_wxqhd")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0bjim"]
 texture = ExtResource("8_wxqhd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y6hk0"]
+texture = ExtResource("9_27xop")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k1bdj"]
 texture = ExtResource("9_27xop")
@@ -203,14 +214,20 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_og4gl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_0bjim")
+icon = ExtResource("9_tk68u")
+expand_icon = true
 
 [node name="Audio" type="Button" parent="MenuBG/Box/TypeMenu"]
 custom_minimum_size = Vector2(58, 58)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxTexture_y6hk0")
 theme_override_styles/normal = SubResource("StyleBoxTexture_k1bdj")
+icon = ExtResource("11_7xv20")
+expand_icon = true
 
 [node name="Video" type="HBoxContainer" parent="MenuBG/Box"]
 layout_mode = 1
@@ -260,19 +277,31 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Fullscreen" type="CheckBox" parent="MenuBG/Box/Video/Checks"]
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
 layout_direction = 3
 layout_mode = 2
-size_flags_vertical = 7
+size_flags_vertical = 6
+theme_override_icons/checked = ExtResource("11_0bjim")
+theme_override_icons/unchecked = ExtResource("10_27xop")
 
 [node name="Borderless" type="CheckBox" parent="MenuBG/Box/Video/Checks"]
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
 layout_direction = 3
 layout_mode = 2
-size_flags_vertical = 7
+size_flags_vertical = 6
+theme_override_icons/checked = ExtResource("11_0bjim")
+theme_override_icons/unchecked = ExtResource("10_27xop")
 
 [node name="VSync" type="CheckBox" parent="MenuBG/Box/Video/Checks"]
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
 layout_direction = 3
 layout_mode = 2
-size_flags_vertical = 7
+size_flags_vertical = 6
+theme_override_icons/checked = ExtResource("11_0bjim")
+theme_override_icons/unchecked = ExtResource("10_27xop")
 
 [node name="Audio" type="HBoxContainer" parent="MenuBG/Box"]
 visible = false
@@ -325,14 +354,23 @@ size_flags_horizontal = 3
 [node name="HSlider3" type="HSlider" parent="MenuBG/Box/Audio/Sliders"]
 layout_mode = 2
 size_flags_vertical = 7
+theme_override_icons/grabber = ExtResource("14_7xv20")
+theme_override_icons/grabber_highlight = ExtResource("14_7xv20")
+theme_override_icons/grabber_disabled = ExtResource("14_7xv20")
 
 [node name="HSlider" type="HSlider" parent="MenuBG/Box/Audio/Sliders"]
 layout_mode = 2
 size_flags_vertical = 7
+theme_override_icons/grabber = ExtResource("14_7xv20")
+theme_override_icons/grabber_highlight = ExtResource("14_7xv20")
+theme_override_icons/grabber_disabled = ExtResource("14_7xv20")
 
 [node name="HSlider2" type="HSlider" parent="MenuBG/Box/Audio/Sliders"]
 layout_mode = 2
 size_flags_vertical = 7
+theme_override_icons/grabber = ExtResource("14_7xv20")
+theme_override_icons/grabber_highlight = ExtResource("14_7xv20")
+theme_override_icons/grabber_disabled = ExtResource("14_7xv20")
 
 [node name="Coupure2" type="Panel" parent="MenuBG/Box"]
 clip_contents = true

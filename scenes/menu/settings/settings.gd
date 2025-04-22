@@ -37,9 +37,15 @@ func _update_button_styles() -> void:
 	if state == "video":
 		video_type_button.add_theme_stylebox_override("normal", selected_stylebox)
 		audio_type_button.add_theme_stylebox_override("normal", default_stylebox)
+		
+		video_type_button.add_theme_stylebox_override("hover", selected_stylebox)
+		audio_type_button.add_theme_stylebox_override("hover", default_stylebox)
 	else:
 		audio_type_button.add_theme_stylebox_override("normal", selected_stylebox)
 		video_type_button.add_theme_stylebox_override("normal", default_stylebox)
+		
+		audio_type_button.add_theme_stylebox_override("hover", selected_stylebox)
+		video_type_button.add_theme_stylebox_override("hover", default_stylebox)
 
 func _on_quitter_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")
