@@ -67,3 +67,15 @@ func _on_v_sync_toggled(toggled_on: bool) -> void:
 	DisplayServer.window_set_vsync_mode(
 		DisplayServer.VSYNC_ENABLED if toggled_on else DisplayServer.VSYNC_DISABLED
 	)
+	
+func _on_master_value_changed(value: float) -> void:
+	volume(0, value)
+
+func _on_music_value_changed(value: float) -> void:
+	volume(1, value)
+
+func _on_sound_fx_value_changed(value: float) -> void:
+	volume(2, value)
+
+func volume(bus_index, value):
+	AudioServer.set_bus_volume_db(bus_index, value)
