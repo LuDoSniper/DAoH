@@ -7,13 +7,13 @@ extends Node3D
 
 var players: Array
 
-func _on_host_pressed() -> void:
-	MULTIPLAYER.create_server(init)
-	canvas_layer.hide()
-
-func _on_join_pressed() -> void:
-	MULTIPLAYER.join_server()
-	canvas_layer.hide()
+func _ready():
+	if has_meta("is_hosting"):
+		var hosting = get_meta("is_hosting")
+		if hosting:
+			MULTIPLAYER.create_server(init)
+		else:
+			MULTIPLAYER.join_server()
 
 func _add_player(id: int = 1) -> void:
 	var player = player_scene.instantiate()

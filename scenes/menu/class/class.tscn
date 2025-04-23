@@ -1,0 +1,330 @@
+[gd_scene load_steps=44 format=3 uid="uid://db7t4xm8oi8sc"]
+
+[ext_resource type="PackedScene" uid="uid://b03jyr0by50pr" path="res://objects/player/skin/knight/knight.tscn" id="1_2kjl7"]
+[ext_resource type="Script" uid="uid://d1tehihwxp0bc" path="res://scenes/menu/class/class.gd" id="1_iaoii"]
+[ext_resource type="PackedScene" uid="uid://bg8odegocndgc" path="res://objects/player/skin/barbarian/barbarian.tscn" id="2_iaoii"]
+[ext_resource type="PackedScene" uid="uid://c6sr0ggiv15rg" path="res://objects/player/skin/mage/mage.tscn" id="3_5dd07"]
+[ext_resource type="PackedScene" uid="uid://t7k0glgrp2t8" path="res://objects/player/skin/rogue/rogue.tscn" id="4_21fyq"]
+[ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="6_1g6ns"]
+[ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="6_1wl32"]
+[ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="6_21fyq"]
+[ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="7_ei0uf"]
+[ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="7_p0jyt"]
+[ext_resource type="Texture2D" uid="uid://b4agyflfkdbha" path="res://addons/menu/round_damaged_brown.png" id="10_p0jyt"]
+[ext_resource type="Texture2D" uid="uid://eba0l2e0kns0" path="res://addons/menu/round_damaged_brown_dark.png" id="11_alcrm"]
+[ext_resource type="Texture2D" uid="uid://hjgjb0igicrj" path="res://addons/menu/button_brown_close.png" id="12_7ie36"]
+[ext_resource type="PackedScene" uid="uid://bh0s4fvw0womg" path="res://addons/map/map.glb" id="13_15rqi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_15rqi"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_1g6ns"]
+sky_material = SubResource("ProceduralSkyMaterial_15rqi")
+
+[sub_resource type="Environment" id="Environment_uk084"]
+background_mode = 2
+sky = SubResource("Sky_1g6ns")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yyk04"]
+texture = ExtResource("6_1g6ns")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_alcrm"]
+texture = ExtResource("6_1wl32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_21fyq"]
+texture = ExtResource("7_ei0uf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ei0uf"]
+texture = ExtResource("7_ei0uf")
+modulate_color = Color(0.762403, 0.762404, 0.762403, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wl32"]
+texture = ExtResource("7_ei0uf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0jyt"]
+texture = ExtResource("7_ei0uf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ie36"]
+texture = ExtResource("10_p0jyt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_15rqi"]
+texture = ExtResource("10_p0jyt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1g6ns"]
+texture = ExtResource("10_p0jyt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uk084"]
+texture = ExtResource("10_p0jyt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7aj07"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kun51"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_esb7i"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pduc0"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_85w2q"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dtnac"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_424qy"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fccs7"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xijhn"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7oai"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mp6v7"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_36ln5"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sxbqk"]
+texture = ExtResource("12_7ie36")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l601k"]
+texture = ExtResource("12_7ie36")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x1qsj"]
+texture = ExtResource("12_7ie36")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kjcs7"]
+texture = ExtResource("12_7ie36")
+
+[node name="Class" type="Node3D"]
+script = ExtResource("1_iaoii")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uk084")
+
+[node name="Skins" type="Node3D" parent="."]
+transform = Transform3D(-0.966112, -0.00116184, 0.258121, -0.00132158, 0.999999, -0.000445366, -0.25812, -0.000771388, -0.966112, -24.1604, -2.45303, -150.944)
+
+[node name="Knight" parent="Skins" instance=ExtResource("1_2kjl7")]
+transform = Transform3D(1, -4.36557e-11, -1.49012e-08, 1.16415e-10, 1, -5.82077e-11, -1.49012e-08, 0, 1, 0, 0, 0)
+
+[node name="Barbarian" parent="Skins" instance=ExtResource("2_iaoii")]
+visible = false
+
+[node name="Mage" parent="Skins" instance=ExtResource("3_5dd07")]
+visible = false
+
+[node name="Rogue" parent="Skins" instance=ExtResource("4_21fyq")]
+visible = false
+
+[node name="ClassMenu" type="CanvasLayer" parent="."]
+
+[node name="MenuBG" type="Panel" parent="ClassMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -723.0
+offset_top = -131.0
+offset_right = -300.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_yyk04")
+metadata/_edit_group_ = true
+
+[node name="Panel" type="VBoxContainer" parent="ClassMenu"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 300.0
+offset_top = -286.5
+offset_right = 600.0
+offset_bottom = 286.5
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 5
+
+[node name="Bandeau" type="Panel" parent="ClassMenu/Panel"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_styles/panel = SubResource("StyleBoxTexture_alcrm")
+
+[node name="Label" type="Label" parent="ClassMenu/Panel/Bandeau"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -55.5
+offset_right = 133.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_p0jyt")
+theme_override_font_sizes/font_size = 24
+text = "Chevalier"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ClassMenu/Panel"]
+clip_contents = false
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Noble guerrier en armure lourde, le Chevalier incarne l'honneur et la défense. Il manie l’épée et le bouclier avec brio, protégeant ses alliés et tenant la ligne face à l’ennemi. Grâce à sa robustesse et ses compétences défensives, il est le pilier de toute escouade."
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ClassMenu/Panel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="Host" type="Button" parent="ClassMenu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_21fyq")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_21fyq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ei0uf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1wl32")
+theme_override_styles/normal = SubResource("StyleBoxTexture_p0jyt")
+text = "Host"
+
+[node name="Rejoindre" type="Button" parent="ClassMenu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_21fyq")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_21fyq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ei0uf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1wl32")
+theme_override_styles/normal = SubResource("StyleBoxTexture_p0jyt")
+text = "Rejoindre"
+
+[node name="Classes" type="HBoxContainer" parent="ClassMenu"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -143.0
+offset_right = -280.0
+offset_bottom = 143.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 5
+theme_override_constants/separation = 32
+
+[node name="left" type="VBoxContainer" parent="ClassMenu/Classes"]
+layout_mode = 2
+
+[node name="Chevalier" type="Button" parent="ClassMenu/Classes/left"]
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_7ie36")
+theme_override_styles/hover = SubResource("StyleBoxTexture_15rqi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1g6ns")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uk084")
+
+[node name="Barbare" type="Button" parent="ClassMenu/Classes/left"]
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+theme_override_styles/focus = SubResource("StyleBoxTexture_7aj07")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kun51")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_esb7i")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pduc0")
+
+[node name="right" type="VBoxContainer" parent="ClassMenu/Classes"]
+layout_mode = 2
+
+[node name="Voleur" type="Button" parent="ClassMenu/Classes/right"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/focus = SubResource("StyleBoxTexture_85w2q")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dtnac")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_424qy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fccs7")
+
+[node name="Mage" type="Button" parent="ClassMenu/Classes/right"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/focus = SubResource("StyleBoxTexture_xijhn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_i7oai")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mp6v7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_36ln5")
+
+[node name="Back" type="Button" parent="ClassMenu"]
+custom_minimum_size = Vector2(48, 24)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 621.0
+offset_top = -815.0
+offset_right = 669.0
+offset_bottom = -791.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxTexture_sxbqk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_l601k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_x1qsj")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kjcs7")
+
+[node name="ENV" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ENV"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="ENV"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -23.8597, -0.741135, -154.409)
+
+[node name="map" parent="." instance=ExtResource("13_15rqi")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[connection signal="pressed" from="ClassMenu/Panel/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="ClassMenu/Panel/VBoxContainer/Rejoindre" to="." method="_on_rejoindre_pressed"]
+[connection signal="pressed" from="ClassMenu/Classes/left/Chevalier" to="." method="_on_knight_pressed"]
+[connection signal="pressed" from="ClassMenu/Classes/left/Barbare" to="." method="_on_barbarian_pressed"]
+[connection signal="pressed" from="ClassMenu/Classes/right/Voleur" to="." method="_on_rogue_pressed"]
+[connection signal="pressed" from="ClassMenu/Classes/right/Mage" to="." method="_on_mage_pressed"]
+[connection signal="pressed" from="ClassMenu/Back" to="." method="_on_back_pressed"]

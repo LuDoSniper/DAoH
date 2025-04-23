@@ -127,6 +127,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Game" type="Panel" parent="CanvasLayer"]
 anchors_preset = 15
@@ -358,6 +359,7 @@ _spawnable_scenes = PackedStringArray("uid://b2vjrseu1cmso")
 spawn_path = NodePath("..")
 
 [node name="Environment" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67303, 0, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
 navigation_mesh = SubResource("NavigationMesh_1fp7r")
