@@ -1,9 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://dsdkk3ck5o2nj"]
+[gd_scene load_steps=39 format=3 uid="uid://dsdkk3ck5o2nj"]
 
 [ext_resource type="Script" uid="uid://bu0ajfske4uuh" path="res://scenes/world/world.gd" id="1_dphjl"]
 [ext_resource type="PackedScene" uid="uid://b2vjrseu1cmso" path="res://objects/player/player.tscn" id="2_sl2e5"]
 [ext_resource type="PackedScene" uid="uid://dhdnji60mgrmb" path="res://objects/enemy/enemy.tscn" id="3_1fp7r"]
+[ext_resource type="Texture2D" uid="uid://b0l250speial6" path="res://addons/menu/backgorund.png" id="3_5qq27"]
 [ext_resource type="PackedScene" uid="uid://drseardeob18k" path="res://objects/npc/npc.tscn" id="4_6m72w"]
+[ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="4_dlabj"]
+[ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="5_srmg5"]
+[ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="6_umvgx"]
+[ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="7_mxkvs"]
+[ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="8_m114p"]
+[ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="9_71ii3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhad"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -17,6 +24,70 @@ background_mode = 2
 sky = SubResource("Sky_dphjl")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bt7bg"]
+texture = ExtResource("3_5qq27")
+modulate_color = Color(0.886262, 0.886262, 0.886261, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wbwoo"]
+texture = ExtResource("4_dlabj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tytul"]
+texture = ExtResource("5_srmg5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t634p"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6hctx"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.762403, 0.762404, 0.762403, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ues17"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xq18t"]
+texture = ExtResource("8_m114p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x0nq1"]
+texture = ExtResource("9_71ii3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rwifv"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ckok1"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2x71e"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wnndm"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26xou"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyr8v"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5o5dd"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0ajt"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fymcc"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1fp7r"]
 vertices = PackedVector3Array(-14, 0.75, -3, -9, 0.75, -3, -9, 0.75, -5, -5, 0.75, -9, -3, 0.75, -9, -3, 0.75, -14, -8, 0.75, -6.75, -14, 0.75, -14, -1, 0.75, -9, 0.75, 0.75, -8, 3, 0.75, -4.75, 14, 0.75, -4.75, 14, 0.75, -14, -7, 2, -1.5, -6.5, 2, -0.5, -4.5, 2, 1, -1.5, 2, 1, -0.5, 2, 0.5, 1, 2, -1.5, 1, 2, -4.5, -0.5, 2, -6.5, -1.5, 2, -7, -4.5, 2, -7, -6.5, 2, -5.5, -7, 2, -4.5, 8.25, 0.75, 5.75, 8.25, 0.75, 7, 14, 0.75, 7, 3, 0.75, -1, 1, 0.75, 1.75, 4.5, 0.75, 5.25, 7.5, 0.75, 5, -9, 0.75, -1, -8, 0.75, 0.75, -5, 0.75, 3, -14, 0.75, 14, -3, 0.75, 14, -3, 0.75, 3, 6, 0.75, 14, 6, 0.75, 9.25, 4.75, 0.75, 9.25, 4, 0.75, 5.75, -1, 0.75, 3, 4, 0.75, 8.5, 7.25, 0.75, 9.25, 8.25, 0.75, 8.25, 14, 0.75, 14)
@@ -57,16 +128,218 @@ shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="host" type="Button" parent="CanvasLayer"]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="Game" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bt7bg")
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -638.5
+offset_right = -297.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="MenuBG" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -679.0
+offset_top = -240.5
+offset_right = -256.0
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wbwoo")
+metadata/_edit_group_ = true
+
+[node name="Bandeau" type="Panel" parent="CanvasLayer/MenuBG"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = -21.5
+offset_right = 127.0
+offset_bottom = 42.5
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tytul")
+
+[node name="Label" type="Label" parent="CanvasLayer/MenuBG/Bandeau"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -55.5
+offset_right = 133.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_umvgx")
+theme_override_font_sizes/font_size = 24
+text = "DAoH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Box" type="Control" parent="CanvasLayer/MenuBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.5
+offset_top = -74.0
+offset_right = 120.5
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="host" type="Button" parent="CanvasLayer/MenuBG/Box"]
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -159.0
+offset_right = 159.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_mxkvs")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_t634p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6hctx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ues17")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xq18t")
 text = "Host"
 
-[node name="join" type="Button" parent="CanvasLayer"]
-offset_top = 37.0
-offset_right = 38.0
-offset_bottom = 68.0
-text = "Join"
+[node name="Coupure" type="Panel" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -69.0
+offset_right = 159.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_x0nq1")
+
+[node name="join" type="Button" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -40.0
+offset_right = 159.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_mxkvs")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_rwifv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ckok1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2x71e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xq18t")
+text = "Rejoindre"
+
+[node name="retour" type="Button" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 41.0
+offset_right = 159.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_mxkvs")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_wnndm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_26xou")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jyr8v")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xq18t")
+text = "Retour"
+
+[node name="Coupure2" type="Panel" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 124.0
+offset_right = 159.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_x0nq1")
+
+[node name="quitter" type="Button" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 145.0
+offset_right = 159.0
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_mxkvs")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_5o5dd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_d0ajt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fymcc")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xq18t")
+text = "Quitter"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://b2vjrseu1cmso")
@@ -117,5 +390,7 @@ variant = 2
 [node name="Npc" parent="Entities" instance=ExtResource("4_6m72w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 8.75823)
 
-[connection signal="pressed" from="CanvasLayer/host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="CanvasLayer/join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuBG/Box/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuBG/Box/join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuBG/Box/retour" to="." method="_on_retour_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuBG/Box/quitter" to="." method="_on_quitter_pressed"]
