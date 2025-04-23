@@ -10,8 +10,20 @@ signal pause
 @warning_ignore("unused_signal")
 signal unpause
 
+@onready var video_type_button: Button = $PauseMenu/MenuBG/Options/TypeMenu/Video
+@onready var audio_type_button: Button = $PauseMenu/MenuBG/Options/TypeMenu/Audio
+@onready var video: HBoxContainer = $PauseMenu/MenuBG/Options/Video
+@onready var audio: HBoxContainer = $PauseMenu/MenuBG/Options/Audio
+
+@onready var pause_menu_content: Control = $PauseMenu/MenuBG/Pause
+@onready var options_menu_content: Control = $PauseMenu/MenuBG/Options
+@onready var pause_menu: CanvasLayer = $PauseMenu
 @onready var camera = $CameraController/Camera3D
 @onready var skin = $Skin
+
+var state = "video"
+var panel_selected = preload("res://addons/menu/panel_brown_arrows_dark_detail.png")
+var panel = preload("res://addons/menu/panel_brown_damaged_dark.png")
 
 var paused: bool = false:
 	set(value):
@@ -88,6 +100,7 @@ func pause_logic() -> void:
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("pause"):
 			paused = not paused
+			pause_menu.visible = not pause_menu.visible
 
 func _input(event: InputEvent) -> void:
 	if not paused and event.is_action_pressed("toggle_mouse"):
@@ -127,3 +140,88 @@ func show_next_dialogue():
 		
 func set_current_npc(npc):
 	current_npc = npc
+
+
+func _on_reprendre_pressed() -> void:
+	paused = not paused
+	pause_menu.visible = not pause_menu.visible
+
+
+func _on_options_pressed() -> void:
+	pause_menu_content.visible = false
+	options_menu_content.visible = true
+
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")
+
+
+func _on_quitter_pressed() -> void:
+	get_tree().quit()
+
+func _on_fullscreen_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _on_borderless_toggled(toggled_on: bool) -> void:
+	# Ne s'applique que si on est en mode fenêtré
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, toggled_on)
+
+func _on_v_sync_toggled(toggled_on: bool) -> void:
+	# Active ou désactive la V-Sync
+	DisplayServer.window_set_vsync_mode(
+		DisplayServer.VSYNC_ENABLED if toggled_on else DisplayServer.VSYNC_DISABLED
+	)
+
+func _on_master_value_changed(value: float) -> void:
+	volume(0, value)
+
+func _on_music_value_changed(value: float) -> void:
+	volume(1, value)
+
+func _on_sound_fx_value_changed(value: float) -> void:
+	volume(2, value)
+
+func volume(bus_index, value):
+	AudioServer.set_bus_volume_db(bus_index, value)
+
+func _on_back_settings_pressed() -> void:
+	pause_menu_content.visible = true
+	options_menu_content.visible = false
+
+func _on_video_pressed() -> void:
+	if state != "video":
+		state = "video"
+		video.visible = true
+		audio.visible = false
+		_update_button_styles()
+
+func _on_audio_pressed() -> void:
+	if state != "audio":
+		state = "audio"
+		video.visible = false
+		audio.visible = true
+		_update_button_styles()
+
+func _update_button_styles() -> void:
+	var selected_stylebox = StyleBoxTexture.new()
+	selected_stylebox.texture = panel_selected
+
+	var default_stylebox = StyleBoxTexture.new()
+	default_stylebox.texture = panel
+
+	if state == "video":
+		video_type_button.add_theme_stylebox_override("normal", selected_stylebox)
+		audio_type_button.add_theme_stylebox_override("normal", default_stylebox)
+		
+		video_type_button.add_theme_stylebox_override("hover", selected_stylebox)
+		audio_type_button.add_theme_stylebox_override("hover", default_stylebox)
+	else:
+		audio_type_button.add_theme_stylebox_override("normal", selected_stylebox)
+		video_type_button.add_theme_stylebox_override("normal", default_stylebox)
+		
+		audio_type_button.add_theme_stylebox_override("hover", selected_stylebox)
+		video_type_button.add_theme_stylebox_override("hover", default_stylebox)
