@@ -31,6 +31,9 @@ func init(id: int = 1) -> void:
 	# Pour le moment init ne fait qu'ajouter les joueurs mais c'est dans cette fonction qu'on initialisera tout ce dont on aura besoin
 	_add_player(id)
 
+func get_enemies() -> Array[Node]:
+	return get_node("Entities").get_children()
+
 
 func _on_retour_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")
