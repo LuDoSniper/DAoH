@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var base_speed := 4.0
 @export var run_speed := 6.0
 @export var jump_velocity := 4.5
+@export var max_lock_distance := 25.0
+@export var lock_angle_threshold := 0.5
 
 # A utiliser lorsque les mouvements et les mouvements de la caméra doivent être bloqués
 @warning_ignore("unused_signal")
@@ -18,12 +20,19 @@ signal unpause
 @onready var pause_menu_content: Control = $PauseMenu/MenuBG/Pause
 @onready var options_menu_content: Control = $PauseMenu/MenuBG/Options
 @onready var pause_menu: CanvasLayer = $PauseMenu
+@onready var camera_controller = $CameraController
 @onready var camera = $CameraController/Camera3D
 @onready var skin = $Skin
 
 var state = "video"
 var panel_selected = preload("res://addons/menu/panel_brown_arrows_dark_detail.png")
 var panel = preload("res://addons/menu/panel_brown_damaged_dark.png")
+
+var focusing := false:
+	set(value):
+		focusing = value
+		camera_controller.focusing = focusing
+var target = null
 
 var paused: bool = false:
 	set(value):
@@ -54,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	move_logic(delta)
 	jump_logic(delta)
 	pause_logic()
+	focus_logic(delta)
 
 func move_logic(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -108,6 +118,59 @@ func pause_logic() -> void:
 		if Input.is_action_just_pressed("pause"):
 			paused = not paused
 			pause_menu.visible = not pause_menu.visible
+
+func focus_logic(delta) -> void:
+	if is_multiplayer_authority():
+		# Toggle focusing
+		if Input.is_action_just_pressed("focus"):
+			focusing = not focusing
+		
+		# Correct focusing if necessary
+		if focusing and not target:
+			focusing = select_focus_target()
+		
+		# Update camera if focusing
+		if focusing:
+			#camera_controller.look_at(target.global_position)
+			var current_basis = global_transform.basis
+			var look_target = target.global_position
+			
+			var to_target = (look_target - global_transform.origin).normalized()
+			var target_basis = Basis().looking_at(to_target, Vector3.UP)
+			
+			# Interpolation douce entre la rotation actuelle et la cible
+			global_transform.basis = current_basis.slerp(target_basis, 6.0 * delta)
+
+func select_focus_target() -> bool:
+	var enemies = get_parent().get_enemies()
+	var best_candidate = null
+	var best_score = -1.0
+
+	for enemy in enemies:
+		if not is_instance_valid(enemy): continue
+		var to_enemy = enemy.global_transform.origin - global_transform.origin
+		var distance = to_enemy.length()
+
+		if distance > max_lock_distance:
+			continue
+
+		# Convert direction en vue caméra
+		var dir_to_enemy = (enemy.global_transform.origin - camera.global_transform.origin).normalized()
+		var camera_forward = -camera.global_transform.basis.z.normalized()
+
+		# Dot product pour savoir à quel point l’ennemi est centré
+		var alignment = dir_to_enemy.dot(camera_forward)
+		
+		if alignment > lock_angle_threshold and alignment > best_score:
+			best_score = alignment
+			best_candidate = enemy
+
+	if best_candidate:
+		target = best_candidate
+	else:
+		target = null
+	
+	return target != null
 
 func _input(event: InputEvent) -> void:
 	if not paused and event.is_action_pressed("toggle_mouse"):
