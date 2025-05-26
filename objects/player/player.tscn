@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b2vjrseu1cmso"]
+[gd_scene load_steps=59 format=3 uid="uid://b2vjrseu1cmso"]
 
 [ext_resource type="Script" uid="uid://cbp4jm85jed4y" path="res://objects/player/player.gd" id="1_cqmt1"]
 [ext_resource type="PackedScene" uid="uid://e5qkoxyv6art" path="res://objects/player/camera/camera_controller.tscn" id="2_g7ett"]
@@ -16,6 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://bkmys4jwphovp" path="res://addons/menu/checkbox_brown_checked.png" id="14_28utn"]
 [ext_resource type="Texture2D" uid="uid://dl5hjo8svhhg8" path="res://addons/menu/checkbox_brown_empty.png" id="15_yyeqs"]
 [ext_resource type="Texture2D" uid="uid://ck60jc8fi1irl" path="res://addons/menu/scrollbar_brown_small.png" id="16_u8bnf"]
+[ext_resource type="Texture2D" uid="uid://74fej7on2eol" path="res://addons/hud/minimap_ring_grey_detail.png" id="17_dthqj"]
+[ext_resource type="Texture2D" uid="uid://bcipv5p652mp4" path="res://addons/hud/minimap_arrow_a.png" id="18_l55sg"]
+[ext_resource type="Texture2D" uid="uid://co2fyex8ee3l6" path="res://addons/hud/minimap_compass_future_n.png" id="19_28utn"]
+[ext_resource type="Texture2D" uid="uid://58lukmdn6u5g" path="res://addons/hud/round_grey.png" id="20_28utn"]
+[ext_resource type="Texture2D" uid="uid://5vvibyd5go2a" path="res://addons/hud/round_grey_dark.png" id="21_yyeqs"]
+[ext_resource type="Texture2D" uid="uid://ctut5l5vmc3ub" path="res://addons/hud/round_grey_detailed_green.png" id="22_u8bnf"]
+[ext_resource type="Texture2D" uid="uid://b24w0sj6e5e4n" path="res://addons/hud/round_grey_detailed_red.png" id="23_lc6id"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5lq1w"]
 
@@ -116,6 +123,27 @@ modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ur8bd"]
 texture = ExtResource("8_c34wb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p8q04"]
+texture = ExtResource("17_dthqj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_si0m7"]
+texture = ExtResource("19_28utn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bvvlm"]
+texture = ExtResource("18_l55sg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_okkr6"]
+texture = ExtResource("20_28utn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5nhc"]
+texture = ExtResource("21_yyeqs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b8ou8"]
+texture = ExtResource("22_u8bnf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jb05b"]
+texture = ExtResource("23_lc6id")
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -646,6 +674,93 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_h08is")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_rgkrx")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ur8bd")
 text = "Retour"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Boussole" type="Panel" parent="HUD"]
+custom_minimum_size = Vector2(128, 128)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 56.0
+offset_right = -72.0
+offset_bottom = 184.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p8q04")
+
+[node name="N" type="Panel" parent="HUD/Boussole"]
+custom_minimum_size = Vector2(10, 11)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_top = -7.0
+offset_right = 10.0
+offset_bottom = 13.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_si0m7")
+
+[node name="Cursor" type="Panel" parent="HUD/Boussole"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bvvlm")
+
+[node name="Attaques" type="HBoxContainer" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -308.0
+offset_top = -96.0
+offset_right = -40.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="HUD/Attaques"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_okkr6")
+
+[node name="Button2" type="Button" parent="HUD/Attaques"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_i5nhc")
+
+[node name="Button3" type="Button" parent="HUD/Attaques"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_b8ou8")
+
+[node name="Button4" type="Button" parent="HUD/Attaques"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_jb05b")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PV" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+text = "12,223 / 12,223"
+
+[node name="Money" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+text = "CP 49,609"
 
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Reprendre" to="." method="_on_reprendre_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Options" to="." method="_on_options_pressed"]
