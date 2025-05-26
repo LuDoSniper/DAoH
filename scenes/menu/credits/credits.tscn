@@ -1,7 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://7fg0g1ab15w0"]
+[gd_scene load_steps=14 format=3 uid="uid://7fg0g1ab15w0"]
 
-[ext_resource type="Texture2D" uid="uid://b0l250speial6" path="res://addons/menu/backgorund.png" id="1_teh0u"]
-[ext_resource type="Script" uid="uid://cb4cbi4xc88aj" path="res://scenes/menu/credits/credits.gd" id="1_wto2m"]
 [ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="2_wto2m"]
 [ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="3_3083c"]
 [ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="4_ld5vf"]
@@ -9,32 +7,28 @@
 [ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="6_4ipjf"]
 [ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="7_yq7tt"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iok5b"]
-texture = ExtResource("1_teh0u")
-modulate_color = Color(0.886262, 0.886262, 0.886261, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6gv81"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_teh0u"]
 texture = ExtResource("2_wto2m")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m3hdp"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wto2m"]
 texture = ExtResource("3_3083c")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f0ptx"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3083c"]
 texture = ExtResource("7_yq7tt")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_11kw0"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ld5vf"]
 texture = ExtResource("6_4ipjf")
 modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qlxyq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s352n"]
 texture = ExtResource("6_4ipjf")
 modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_40wib"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ipjf"]
 texture = ExtResource("6_4ipjf")
 modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bpq2o"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yq7tt"]
 texture = ExtResource("6_4ipjf")
 
 [node name="Credits" type="Control"]
@@ -44,57 +38,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wto2m")
 
-[node name="Game" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="."]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.1
+anchor_right = 0.1
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 320.0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_iok5b")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -638.5
-offset_right = -297.5
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_group_ = true
-
-[node name="MenuBG" type="Panel" parent="."]
+[node name="MenuBG" type="Panel" parent="Panel2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -679.0
+offset_left = -211.5
 offset_top = -240.5
-offset_right = -256.0
+offset_right = 211.5
 offset_bottom = 240.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_6gv81")
+theme_override_styles/panel = SubResource("StyleBoxTexture_teh0u")
 
-[node name="Bandeau" type="Panel" parent="MenuBG"]
+[node name="Bandeau" type="Panel" parent="Panel2/MenuBG"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -127.0
-offset_top = -21.5
+offset_top = -27.805
 offset_right = 127.0
-offset_bottom = 42.5
+offset_bottom = 36.195
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_m3hdp")
+theme_override_styles/panel = SubResource("StyleBoxTexture_wto2m")
 
-[node name="Label" type="Label" parent="MenuBG/Bandeau"]
+[node name="Label" type="Label" parent="Panel2/MenuBG/Bandeau"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -114,40 +96,7 @@ text = "DAoH"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Box" type="Control" parent="MenuBG"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.5
-offset_top = -74.0
-offset_right = 120.5
-offset_bottom = 74.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Credits" type="Label" parent="MenuBG/Box"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -101.0
-offset_top = -119.0
-offset_right = 101.0
-offset_bottom = -42.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
-theme_override_fonts/font = ExtResource("5_s352n")
-theme_override_font_sizes/font_size = 48
-text = "Credits"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Coupure" type="Panel" parent="MenuBG/Box"]
-clip_contents = true
-custom_minimum_size = Vector2(318, 4)
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/MenuBG"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -155,34 +104,45 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -159.0
-offset_top = -108.0
+offset_top = -174.0
 offset_right = 159.0
-offset_bottom = -104.0
+offset_bottom = 174.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_f0ptx")
+theme_override_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuBG/Box"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -75.0
-offset_right = 75.0
-offset_bottom = 40.0
-grow_horizontal = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/MenuBG/VBoxContainer"]
+layout_mode = 2
+
+[node name="Credits" type="Label" parent="Panel2/MenuBG/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_fonts/font = ExtResource("5_s352n")
+theme_override_font_sizes/font_size = 48
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coupure" type="Panel" parent="Panel2/MenuBG/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3083c")
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Panel2/MenuBG/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Credits4" type="Label" parent="MenuBG/Box/VBoxContainer"]
+[node name="Credits4" type="Label" parent="Panel2/MenuBG/VBoxContainer/VBoxContainer4"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_fonts/font = ExtResource("5_s352n")
 theme_override_font_sizes/font_size = 32
-text = "Maceo JSP"
+text = "Maceo FAUCHIER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Credits3" type="Label" parent="MenuBG/Box/VBoxContainer"]
+[node name="Credits3" type="Label" parent="Panel2/MenuBG/VBoxContainer/VBoxContainer4"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_fonts/font = ExtResource("5_s352n")
@@ -191,7 +151,7 @@ text = "Lucien DONNARIEIX"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Credits2" type="Label" parent="MenuBG/Box/VBoxContainer"]
+[node name="Credits2" type="Label" parent="Panel2/MenuBG/VBoxContainer/VBoxContainer4"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_fonts/font = ExtResource("5_s352n")
@@ -200,46 +160,27 @@ text = "Mathys DA CUNHA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Coupure2" type="Panel" parent="MenuBG/Box"]
+[node name="Coupure2" type="Panel" parent="Panel2/MenuBG/VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(318, 4)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -159.0
-offset_top = 102.0
-offset_right = 159.0
-offset_bottom = 106.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_f0ptx")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3083c")
 
-[node name="quitter" type="Button" parent="MenuBG/Box"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel2/MenuBG/VBoxContainer"]
+layout_mode = 2
+
+[node name="retour" type="Button" parent="Panel2/MenuBG/VBoxContainer/VBoxContainer3"]
 clip_contents = true
 custom_minimum_size = Vector2(296, 64)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -159.0
-offset_top = 136.0
-offset_right = 159.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
 theme_override_fonts/font = ExtResource("5_s352n")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxTexture_11kw0")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qlxyq")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_40wib")
-theme_override_styles/normal = SubResource("StyleBoxTexture_bpq2o")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ld5vf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s352n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4ipjf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_yq7tt")
 text = "Retour"
 
-[connection signal="pressed" from="MenuBG/Box/quitter" to="." method="_on_quitter_pressed"]
+[connection signal="pressed" from="Panel2/MenuBG/VBoxContainer/VBoxContainer3/retour" to="." method="_on_quitter_pressed"]

@@ -1,9 +1,9 @@
 extends Control
 
-@onready var video_type_button: Button = $MenuBG/Box/TypeMenu/Video
-@onready var audio_type_button: Button = $MenuBG/Box/TypeMenu/Audio
-@onready var video: HBoxContainer = $MenuBG/Box/Video
-@onready var audio: HBoxContainer = $MenuBG/Box/Audio
+@onready var video_type_button: Button = $Panel/MenuBG/VBoxContainer/VBoxContainer2/TypeMenu/Video
+@onready var audio_type_button: Button = $Panel/MenuBG/VBoxContainer/VBoxContainer2/TypeMenu/Audio
+@onready var video: HBoxContainer = $Panel/MenuBG/VBoxContainer/VBoxContainer4/Video
+@onready var audio: HBoxContainer = $Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio
 
 var state = "video"
 
@@ -46,10 +46,6 @@ func _update_button_styles() -> void:
 		
 		audio_type_button.add_theme_stylebox_override("hover", selected_stylebox)
 		video_type_button.add_theme_stylebox_override("hover", default_stylebox)
-
-func _on_quitter_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")
-
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:
 	if toggled_on:
