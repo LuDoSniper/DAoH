@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dsdkk3ck5o2nj"]
+[gd_scene load_steps=40 format=3 uid="uid://dsdkk3ck5o2nj"]
 
 [ext_resource type="Script" uid="uid://bu0ajfske4uuh" path="res://scenes/world/world.gd" id="1_dphjl"]
 [ext_resource type="PackedScene" uid="uid://b2vjrseu1cmso" path="res://objects/player/player.tscn" id="2_sl2e5"]
@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="7_mxkvs"]
 [ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="8_m114p"]
 [ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="9_71ii3"]
+[ext_resource type="Script" uid="uid://bam7cn7fox0sl" path="res://scripts/chat_ui.gd" id="12_dlabj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhad"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -404,7 +405,75 @@ variant = 2
 [node name="Npc" parent="Entities" instance=ExtResource("4_6m72w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 8.75823)
 
+[node name="ChatUi" type="CanvasLayer" parent="."]
+script = ExtResource("12_dlabj")
+
+[node name="FermetureAutomatique" type="Timer" parent="ChatUi"]
+wait_time = 5.0
+one_shot = true
+
+[node name="ChatPanel" type="Panel" parent="ChatUi"]
+offset_right = 400.0
+offset_bottom = 150.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChatUi/ChatPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Container" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+
+[node name="ContainerTitle" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer/Container"]
+layout_mode = 2
+
+[node name="ChatLabel" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ContainerTitle"]
+layout_mode = 2
+text = "Tchat général"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChatUi/ChatPanel/VBoxContainer/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MessageContainer" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label2" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label3" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label4" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label5" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label6" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="ContainerInput" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MessageInput" type="LineEdit" parent="ChatUi/ChatPanel/VBoxContainer/ContainerInput"]
+layout_mode = 2
+
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/retour" to="." method="_on_retour_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/quitter" to="." method="_on_quitter_pressed"]
+[connection signal="timeout" from="ChatUi/FermetureAutomatique" to="ChatUi" method="_on_fermeture_automatique_timeout"]
+[connection signal="text_submitted" from="ChatUi/ChatPanel/VBoxContainer/ContainerInput/MessageInput" to="ChatUi" method="_on_message_input_text_submitted"]
