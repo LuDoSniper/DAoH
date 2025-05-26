@@ -1,16 +1,16 @@
-extends Node3D
+extends Control
 
-@onready var knight: Node3D = $Skins/Knight
-@onready var barbarian: Node3D = $Skins/Barbarian
-@onready var mage: Node3D = $Skins/Mage
-@onready var rogue: Node3D = $Skins/Rogue
-@onready var label: Label = $ClassMenu/Panel/Bandeau/Label
-@onready var rich_text_label: RichTextLabel = $ClassMenu/Panel/RichTextLabel
+#@onready var knight: Node3D = $Skins/Knight
+#@onready var barbarian: Node3D = $Skins/Barbarian
+#@onready var mage: Node3D = $Skins/Mage
+#@onready var rogue: Node3D = $Skins/Rogue
+@onready var label: Label = $Panel/MenuBG/Bandeau/Label
+@onready var rich_text_label: RichTextLabel = $Panel/MenuBG/VBoxContainer/VBoxContainer/RichTextLabel
 
-@onready var chevalier_button: Button = $ClassMenu/Classes/left/Chevalier
-@onready var barbare_button: Button = $ClassMenu/Classes/left/Barbare
-@onready var voleur_button: Button = $ClassMenu/Classes/right/Voleur
-@onready var mage_button: Button = $ClassMenu/Classes/right/Mage
+@onready var chevalier_button: Button = $HBoxContainer/VBoxContainer2/Chevalier
+@onready var barbare_button: Button = $HBoxContainer/VBoxContainer2/VBoxContainer/Barbare
+@onready var voleur_button: Button = $HBoxContainer/VBoxContainer/Voleur
+@onready var mage_button: Button = $HBoxContainer/VBoxContainer/Mage
 
 var panel_selected = preload("res://addons/menu/round_damaged_brown.png")
 var panel = preload("res://addons/menu/round_damaged_brown_dark.png")
@@ -19,6 +19,8 @@ var selected_stylebox = StyleBoxTexture.new()
 var default_stylebox = StyleBoxTexture.new()
 
 var is_hosting: bool = false
+
+signal class_selected(classes_name: String)
 
 var description = {
 	"Chevalier": "Noble guerrier en armure lourde, le Chevalier incarne l'honneur et la défense. Il manie l’épée et le bouclier avec brio, protégeant ses alliés et tenant la ligne face à l’ennemi. Grâce à sa robustesse et ses compétences défensives, il est le pilier de toute escouade.",
@@ -34,24 +36,28 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_knight_pressed() -> void:
+	emit_signal("class_selected", "knight")
 	_update_skin("knight")
 
 func _on_barbarian_pressed() -> void:
+	emit_signal("class_selected", "barbarian")
 	_update_skin("barbarian")
 
 func _on_rogue_pressed() -> void:
+	emit_signal("class_selected", "rogue")
 	_update_skin("rogue")
 
 func _on_mage_pressed() -> void:
+	emit_signal("class_selected", "mage")
 	_update_skin("mage")
 
 func _update_skin(skin):
 	selected_stylebox.texture = panel_selected
 	default_stylebox.texture = panel
-	knight.visible = false
-	barbarian.visible = false
-	mage.visible = false
-	rogue.visible = false
+	#knight.visible = false
+	#barbarian.visible = false
+	#mage.visible = false
+	#rogue.visible = false
 	
 	update_theme(chevalier_button, default_stylebox)
 	update_theme(barbare_button, default_stylebox)
@@ -59,19 +65,19 @@ func _update_skin(skin):
 	update_theme(mage_button, default_stylebox)
 	
 	if skin == "knight":
-		knight.visible = true
+		#knight.visible = true
 		label.text = "Chevalier"
 		update_theme(chevalier_button, selected_stylebox)
 	elif skin == "barbarian":
-		barbarian.visible = true
+		#barbarian.visible = true
 		label.text = "Barbare"
 		update_theme(barbare_button, selected_stylebox)
 	elif skin == "mage":
-		mage.visible = true
+		#mage.visible = true
 		label.text = "Mage"
 		update_theme(mage_button, selected_stylebox)
 	elif skin == "rogue":
-		rogue.visible = true
+		#rogue.visible = true
 		label.text = "Voleur"
 		update_theme(voleur_button, selected_stylebox)
 	rich_text_label.text = description[label.text]
@@ -103,3 +109,7 @@ func update_theme(button, texture):
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")
+
+
+func _on_button_pressed() -> void:
+	print("Test")

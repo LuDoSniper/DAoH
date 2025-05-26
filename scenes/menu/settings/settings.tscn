@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://bo11voxn7kjnh"]
+[gd_scene load_steps=26 format=3 uid="uid://bo11voxn7kjnh"]
 
 [ext_resource type="Script" uid="uid://cqweqwrktltpt" path="res://scenes/menu/settings/settings.gd" id="1_j2hhu"]
-[ext_resource type="Texture2D" uid="uid://b0l250speial6" path="res://addons/menu/backgorund.png" id="1_q0jny"]
 [ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="2_j2hhu"]
 [ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="3_raitm"]
 [ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="4_wxqhd"]
@@ -17,16 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://ck60jc8fi1irl" path="res://addons/menu/scrollbar_brown_small.png" id="14_7xv20"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tk68u"]
-texture = ExtResource("1_q0jny")
-modulate_color = Color(0.886262, 0.886262, 0.886261, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7xv20"]
 texture = ExtResource("2_j2hhu")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t40bu"]
 texture = ExtResource("3_raitm")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rdo6b"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_srxgy"]
 texture = ExtResource("6_0bjim")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_og4gl"]
@@ -41,19 +36,19 @@ texture = ExtResource("9_27xop")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k1bdj"]
 texture = ExtResource("9_27xop")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hdkr8"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ugbdi"]
 texture = ExtResource("7_k1bdj")
 modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkj13"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dlejj"]
 texture = ExtResource("7_k1bdj")
 modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7kjfy"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3rxc"]
 texture = ExtResource("7_k1bdj")
 modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j5tnx"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t4dyf"]
 texture = ExtResource("7_k1bdj")
 
 [node name="Settings" type="Control"]
@@ -65,54 +60,44 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j2hhu")
 
-[node name="Game" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_tk68u")
-
 [node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = -1
+anchor_left = 0.1
+anchor_right = 0.1
 anchor_bottom = 1.0
-offset_left = -638.5
-offset_right = -297.5
-grow_horizontal = 2
+offset_right = 320.0
 grow_vertical = 2
 
-[node name="MenuBG" type="Panel" parent="."]
+[node name="MenuBG" type="Panel" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -679.0
+offset_left = -211.5
 offset_top = -240.5
-offset_right = -256.0
+offset_right = 211.5
 offset_bottom = 240.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_7xv20")
+theme_override_styles/panel = SubResource("StyleBoxTexture_tk68u")
 
-[node name="Bandeau" type="Panel" parent="MenuBG"]
+[node name="Bandeau" type="Panel" parent="Panel/MenuBG"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -127.0
-offset_top = -21.5
+offset_top = -27.805
 offset_right = 127.0
-offset_bottom = 42.5
+offset_bottom = 36.195
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_t40bu")
 
-[node name="Label" type="Label" parent="MenuBG/Bandeau"]
+[node name="Label" type="Label" parent="Panel/MenuBG/Bandeau"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -132,30 +117,26 @@ text = "DAoH"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Box" type="Control" parent="MenuBG"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -120.5
-offset_top = -74.0
-offset_right = 120.5
-offset_bottom = 74.0
+offset_left = -159.0
+offset_top = -174.0
+offset_right = 159.0
+offset_bottom = 174.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
-[node name="Options" type="Label" parent="MenuBG/Box"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -101.0
-offset_top = -141.0
-offset_right = 101.0
-offset_bottom = -64.0
-grow_horizontal = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer"]
+layout_mode = 2
+
+[node name="Options" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_fonts/font = ExtResource("5_27xop")
 theme_override_font_sizes/font_size = 48
@@ -163,52 +144,20 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Coupure3" type="Panel" parent="MenuBG/Box"]
+[node name="Coupure" type="Panel" parent="Panel/MenuBG/VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(318, 4)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -157.5
-offset_top = -130.0
-offset_right = 160.5
-offset_bottom = -126.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_rdo6b")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_srxgy")
 
-[node name="Coupure" type="Panel" parent="MenuBG/Box"]
-clip_contents = true
-custom_minimum_size = Vector2(318, 4)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -158.5
-offset_top = -26.0
-offset_right = 159.5
-offset_bottom = -22.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_rdo6b")
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="TypeMenu" type="HBoxContainer" parent="MenuBG/Box"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -62.5
-offset_top = -34.0
-offset_right = 63.5
-offset_bottom = 30.0
-grow_horizontal = 2
+[node name="TypeMenu" type="HBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
 
-[node name="Video" type="Button" parent="MenuBG/Box/TypeMenu"]
+[node name="Video" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/TypeMenu"]
 clip_contents = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -219,7 +168,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_0bjim")
 icon = ExtResource("9_tk68u")
 expand_icon = true
 
-[node name="Audio" type="Button" parent="MenuBG/Box/TypeMenu"]
+[node name="Audio" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/TypeMenu"]
 custom_minimum_size = Vector2(58, 58)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -229,25 +178,24 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_k1bdj")
 icon = ExtResource("11_7xv20")
 expand_icon = true
 
-[node name="Video" type="HBoxContainer" parent="MenuBG/Box"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -147.5
-offset_right = 148.5
-offset_bottom = 110.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Coupure2" type="Panel" parent="Panel/MenuBG/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_srxgy")
 
-[node name="Labels" type="VBoxContainer" parent="MenuBG/Box/Video"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer"]
+layout_mode = 2
+
+[node name="Video" type="HBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Fullscreen" type="Label" parent="MenuBG/Box/Video/Labels"]
+[node name="Fullscreen" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video/Labels"]
 layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 7
@@ -255,7 +203,7 @@ theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_font_sizes/font_size = 24
 text = "Fullscreen"
 
-[node name="Borderless" type="Label" parent="MenuBG/Box/Video/Labels"]
+[node name="Borderless" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video/Labels"]
 layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 7
@@ -263,7 +211,7 @@ theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_font_sizes/font_size = 24
 text = "Borderless"
 
-[node name="VSync" type="Label" parent="MenuBG/Box/Video/Labels"]
+[node name="VSync" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video/Labels"]
 layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 7
@@ -271,12 +219,12 @@ theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_font_sizes/font_size = 24
 text = "VSync"
 
-[node name="Checks" type="VBoxContainer" parent="MenuBG/Box/Video"]
+[node name="Checks" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Fullscreen" type="CheckBox" parent="MenuBG/Box/Video/Checks"]
+[node name="Fullscreen" type="CheckBox" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video/Checks"]
 clip_contents = true
 custom_minimum_size = Vector2(24, 24)
 layout_direction = 3
@@ -285,7 +233,7 @@ size_flags_vertical = 6
 theme_override_icons/checked = ExtResource("11_0bjim")
 theme_override_icons/unchecked = ExtResource("10_27xop")
 
-[node name="Borderless" type="CheckBox" parent="MenuBG/Box/Video/Checks"]
+[node name="Borderless" type="CheckBox" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video/Checks"]
 clip_contents = true
 custom_minimum_size = Vector2(24, 24)
 layout_direction = 3
@@ -294,7 +242,7 @@ size_flags_vertical = 6
 theme_override_icons/checked = ExtResource("11_0bjim")
 theme_override_icons/unchecked = ExtResource("10_27xop")
 
-[node name="VSync" type="CheckBox" parent="MenuBG/Box/Video/Checks"]
+[node name="VSync" type="CheckBox" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video/Checks"]
 clip_contents = true
 custom_minimum_size = Vector2(24, 24)
 layout_direction = 3
@@ -303,26 +251,16 @@ size_flags_vertical = 6
 theme_override_icons/checked = ExtResource("11_0bjim")
 theme_override_icons/unchecked = ExtResource("10_27xop")
 
-[node name="Audio" type="HBoxContainer" parent="MenuBG/Box"]
+[node name="Audio" type="HBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4"]
 visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -147.5
-offset_right = 148.5
-offset_bottom = 110.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
-[node name="Labels" type="VBoxContainer" parent="MenuBG/Box/Audio"]
+[node name="Labels" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio"]
 layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 
-[node name="Master" type="Label" parent="MenuBG/Box/Audio/Labels"]
+[node name="Master" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Labels"]
 layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 7
@@ -330,7 +268,7 @@ theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_font_sizes/font_size = 24
 text = "Principal"
 
-[node name="Music" type="Label" parent="MenuBG/Box/Audio/Labels"]
+[node name="Music" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Labels"]
 layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 7
@@ -338,7 +276,7 @@ theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_font_sizes/font_size = 24
 text = "Musique"
 
-[node name="Son FX" type="Label" parent="MenuBG/Box/Audio/Labels"]
+[node name="Son FX" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Labels"]
 layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 7
@@ -346,80 +284,60 @@ theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_font_sizes/font_size = 24
 text = "Son FX"
 
-[node name="Sliders" type="VBoxContainer" parent="MenuBG/Box/Audio"]
+[node name="Sliders" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Master" type="HSlider" parent="MenuBG/Box/Audio/Sliders"]
+[node name="Master" type="HSlider" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders"]
 layout_mode = 2
 size_flags_vertical = 7
 theme_override_icons/grabber = ExtResource("14_7xv20")
 theme_override_icons/grabber_highlight = ExtResource("14_7xv20")
 theme_override_icons/grabber_disabled = ExtResource("14_7xv20")
 
-[node name="Music" type="HSlider" parent="MenuBG/Box/Audio/Sliders"]
+[node name="Music" type="HSlider" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders"]
 layout_mode = 2
 size_flags_vertical = 7
 theme_override_icons/grabber = ExtResource("14_7xv20")
 theme_override_icons/grabber_highlight = ExtResource("14_7xv20")
 theme_override_icons/grabber_disabled = ExtResource("14_7xv20")
 
-[node name="Sound" type="HSlider" parent="MenuBG/Box/Audio/Sliders"]
+[node name="Sound" type="HSlider" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders"]
 layout_mode = 2
 size_flags_vertical = 7
 theme_override_icons/grabber = ExtResource("14_7xv20")
 theme_override_icons/grabber_highlight = ExtResource("14_7xv20")
 theme_override_icons/grabber_disabled = ExtResource("14_7xv20")
 
-[node name="Coupure2" type="Panel" parent="MenuBG/Box"]
+[node name="Coupure3" type="Panel" parent="Panel/MenuBG/VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(318, 4)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -158.5
-offset_top = 125.0
-offset_right = 159.5
-offset_bottom = 129.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_rdo6b")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_srxgy")
 
-[node name="quitter" type="Button" parent="MenuBG/Box"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer"]
+layout_mode = 2
+
+[node name="quitter" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer3"]
 clip_contents = true
 custom_minimum_size = Vector2(296, 64)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -159.0
-offset_top = 155.0
-offset_right = 159.0
-offset_bottom = 219.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
 theme_override_fonts/font = ExtResource("5_27xop")
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxTexture_hdkr8")
-theme_override_styles/hover = SubResource("StyleBoxTexture_wkj13")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_7kjfy")
-theme_override_styles/normal = SubResource("StyleBoxTexture_j5tnx")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ugbdi")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dlejj")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v3rxc")
+theme_override_styles/normal = SubResource("StyleBoxTexture_t4dyf")
 text = "Retour"
 
-[connection signal="pressed" from="MenuBG/Box/TypeMenu/Video" to="." method="_on_video_pressed"]
-[connection signal="pressed" from="MenuBG/Box/TypeMenu/Audio" to="." method="_on_audio_pressed"]
-[connection signal="toggled" from="MenuBG/Box/Video/Checks/Fullscreen" to="." method="_on_fullscreen_toggled"]
-[connection signal="toggled" from="MenuBG/Box/Video/Checks/Borderless" to="." method="_on_borderless_toggled"]
-[connection signal="toggled" from="MenuBG/Box/Video/Checks/VSync" to="." method="_on_v_sync_toggled"]
-[connection signal="value_changed" from="MenuBG/Box/Audio/Sliders/Master" to="." method="_on_master_value_changed"]
-[connection signal="value_changed" from="MenuBG/Box/Audio/Sliders/Music" to="." method="_on_music_value_changed"]
-[connection signal="value_changed" from="MenuBG/Box/Audio/Sliders/Sound" to="." method="_on_sound_fx_value_changed"]
-[connection signal="pressed" from="MenuBG/Box/quitter" to="." method="_on_quitter_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/TypeMenu/Video" to="." method="_on_video_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/TypeMenu/Audio" to="." method="_on_audio_pressed"]
+[connection signal="toggled" from="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video/Checks/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video/Checks/Borderless" to="." method="_on_borderless_toggled"]
+[connection signal="toggled" from="Panel/MenuBG/VBoxContainer/VBoxContainer4/Video/Checks/VSync" to="." method="_on_v_sync_toggled"]
+[connection signal="value_changed" from="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Master" to="." method="_on_master_value_changed"]
+[connection signal="value_changed" from="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Sound" to="." method="_on_sound_fx_value_changed"]
