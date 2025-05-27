@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://x2pnfjcatbmw"]
+[gd_scene load_steps=0 format=3 uid="uid://x2pnfjcatbmw"]
 
 [node name="Tyerst" type="Control"]
 layout_mode = 3
