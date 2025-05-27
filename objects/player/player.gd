@@ -47,6 +47,9 @@ func _physics_process(delta: float) -> void:
 	# si en gestion de tchat -> on desactive les mouvements joueur
 	if GameState.chat_active:
 		return
+	if GameState.ignore_pause:
+		GameState.ignore_pause = false 
+		return  
 
 	move_logic(delta)
 	jump_logic(delta)
@@ -103,8 +106,6 @@ func sync_animation_movement(id: int, animation: String) -> void:
 func pause_logic() -> void:
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("pause"):
-			print("pauselogic()")
-			print(GameState.chat_active)
 			paused = not paused
 			pause_menu.visible = not pause_menu.visible
 
