@@ -253,7 +253,7 @@ script = ExtResource("1_a8run")
 [node name="3D" type="Node3D" parent="."]
 
 [node name="Skins" type="Node3D" parent="3D"]
-transform = Transform3D(-0.966112, -0.00116184, 0.258121, -0.00132158, 0.999999, -0.000445366, -0.25812, -0.000771388, -0.966112, -24.1604, -2.45303, -150.944)
+transform = Transform3D(0.48552, 0.00103099, 0.874225, -0.00132158, 0.999999, -0.000445366, -0.874225, -0.000939131, 0.485521, 30.1638, 9.95043, 35.4299)
 
 [node name="Knight" parent="3D/Skins" instance=ExtResource("1_6q06x")]
 transform = Transform3D(1, -4.36557e-11, -1.49012e-08, 1.16415e-10, 1, -5.82077e-11, -1.49012e-08, 0, 1, 0, 0, 0)
@@ -281,18 +281,18 @@ shadow_enabled = true
 [node name="Cameras" type="Node3D" parent="3D"]
 
 [node name="Home" type="Camera3D" parent="3D/Cameras"]
-transform = Transform3D(0.773021, 0, 0.63438, 0, 1, 0, -0.63438, 0, 0.773021, 7.21551, 9.81881, -36.4697)
+transform = Transform3D(-0.0980341, 0, -0.995183, 0, 1, 0, 0.995183, 0, -0.0980341, -10.8271, 7.34201, -5.35178)
 
 [node name="Classes" type="Camera3D" parent="3D/Cameras"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -23.8597, -0.741135, -154.409)
+transform = Transform3D(0.365283, 0, 0.930897, 0, 1, 0, -0.930897, 0, 0.365283, 32.2316, 11.4454, 36.4709)
 visible = false
 
 [node name="Options" type="Camera3D" parent="3D/Cameras"]
-transform = Transform3D(0.999544, 0, 0.0302071, -0.0136352, 0.892326, 0.451186, -0.0269546, -0.451392, 0.891919, 12.1154, 11.901, -7.87143)
+transform = Transform3D(-0.836674, -0.257266, 0.483519, -0.0136352, 0.892326, 0.451186, -0.547531, 0.370903, -0.750094, 66.232, 27.3478, -50.639)
 visible = false
 
 [node name="Credits" type="Camera3D" parent="3D/Cameras"]
-transform = Transform3D(-0.73038, -0.25, 0.635646, -0.00623602, 0.933013, 0.359789, -0.683013, 0.258819, -0.683013, 39.3987, 11.7112, -83.4865)
+transform = Transform3D(-0.769412, -0.234291, 0.594233, -0.00623605, 0.933013, 0.359789, -0.638723, 0.27312, -0.719332, 102.987, 35.1229, -12.6299)
 visible = false
 
 [node name="GUI" type="Control" parent="."]
