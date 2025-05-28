@@ -24,17 +24,22 @@
 [ext_resource type="Texture2D" uid="uid://b4agyflfkdbha" path="res://addons/menu/round_damaged_brown.png" id="22_37hlw"]
 [ext_resource type="Texture2D" uid="uid://eba0l2e0kns0" path="res://addons/menu/round_damaged_brown_dark.png" id="23_6llfj"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a8run"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p8abn"]
+sky_top_color = Color(0.216094, 0.470615, 0.665468, 1)
+sky_horizon_color = Color(1.18233, 1.23835, 1.26658, 1)
+ground_bottom_color = Color(0.733397, 0.70293, 0.62102, 1)
+ground_horizon_color = Color(1.18233, 1.23835, 1.26658, 1)
+energy_multiplier = 0.5
 
-[sub_resource type="Sky" id="Sky_1g6ns"]
-sky_material = SubResource("ProceduralSkyMaterial_a8run")
+[sub_resource type="Sky" id="Sky_s17dp"]
+sky_material = SubResource("ProceduralSkyMaterial_p8abn")
 
-[sub_resource type="Environment" id="Environment_ouso4"]
+[sub_resource type="Environment" id="Environment_37hlw"]
 background_mode = 2
-sky = SubResource("Sky_1g6ns")
+sky = SubResource("Sky_s17dp")
 tonemap_mode = 2
+ssao_enabled = true
+sdfgi_enabled = true
 glow_enabled = true
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vstcn"]
@@ -250,6 +255,13 @@ texture = ExtResource("23_6llfj")
 [node name="Main" type="Node3D"]
 script = ExtResource("1_a8run")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_37hlw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.295708, 0.955278, 4.17565e-08, 0, -4.37114e-08, 1, 0.955278, 0.295708, 1.29258e-08, 0, 0, 0)
+shadow_enabled = true
+
 [node name="3D" type="Node3D" parent="."]
 
 [node name="Skins" type="Node3D" parent="3D"]
@@ -268,13 +280,6 @@ visible = false
 visible = false
 
 [node name="Map" type="Node3D" parent="3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="3D/Map"]
-environment = SubResource("Environment_ouso4")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D/Map"]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Map" parent="3D/Map" instance=ExtResource("7_s17dp")]
 
