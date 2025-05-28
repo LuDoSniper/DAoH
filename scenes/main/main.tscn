@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bg8odegocndgc" path="res://objects/player/skin/barbarian/barbarian.tscn" id="2_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://c6sr0ggiv15rg" path="res://objects/player/skin/mage/mage.tscn" id="3_hujxm"]
 [ext_resource type="PackedScene" uid="uid://t7k0glgrp2t8" path="res://objects/player/skin/rogue/rogue.tscn" id="4_yyfjg"]
-[ext_resource type="PackedScene" uid="uid://bh0s4fvw0womg" path="res://addons/map/map.glb" id="5_b1x3f"]
 [ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="7_raeie"]
+[ext_resource type="PackedScene" uid="uid://d1wsknh043pmt" path="res://objects/map/map.tscn" id="7_s17dp"]
 [ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="8_hxu8e"]
 [ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="9_nvumn"]
 [ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="10_ou6is"]
@@ -276,8 +276,7 @@ environment = SubResource("Environment_ouso4")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="map" parent="3D/Map" instance=ExtResource("5_b1x3f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+[node name="Map" parent="3D/Map" instance=ExtResource("7_s17dp")]
 
 [node name="Cameras" type="Node3D" parent="3D"]
 
