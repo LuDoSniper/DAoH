@@ -116,6 +116,7 @@ size = Vector3(2, 2, 2)
 size = Vector3(2, 2, 2)
 
 [node name="World" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.1589, 0)
 script = ExtResource("1_dphjl")
 player_scene = ExtResource("2_sl2e5")
 
