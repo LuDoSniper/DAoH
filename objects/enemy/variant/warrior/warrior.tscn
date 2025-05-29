@@ -1,74 +1,157 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmphaovpa0rwt"]
+[gd_scene load_steps=17 format=3 uid="uid://bmphaovpa0rwt"]
 
 [ext_resource type="PackedScene" uid="uid://dcqqqpk7cy7um" path="res://addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Warrior.glb" id="1_s5cf3"]
+[ext_resource type="Shader" uid="uid://cupt7sdyrksju" path="res://objects/enemy/invincibility.gdshader" id="2_2sdea"]
+[ext_resource type="Script" uid="uid://d2sh1sb5dmyri" path="res://objects/enemy/variant/warrior/warrior.gd" id="2_tsv0y"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cf7bx6ai0isbq" path="res://objects/enemy/variant/variant_blend_node.tres" id="2_x8unk"]
+[ext_resource type="Texture2D" uid="uid://dhn641morf0a1" path="res://addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Warrior_skeleton_texture.png" id="3_tsv0y"]
+[ext_resource type="PackedScene" uid="uid://chikaocpe63ii" path="res://objects/weapons/shields/skeleton_shield/skeleton_shield.tscn" id="5_1n8sn"]
+[ext_resource type="PackedScene" uid="uid://dunoa2h4y1bph" path="res://objects/weapons/1H/skeleton_axe/skeleton_axe.tscn" id="5_fbgu3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1n8sn"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_2sdea")
+shader_parameter/base_texture = ExtResource("3_tsv0y")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2sdea"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_2sdea")
+shader_parameter/base_texture = ExtResource("3_tsv0y")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tsv0y"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_2sdea")
+shader_parameter/base_texture = ExtResource("3_tsv0y")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fbgu3"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_2sdea")
+shader_parameter/base_texture = ExtResource("3_tsv0y")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7acx"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_2sdea")
+shader_parameter/base_texture = ExtResource("3_tsv0y")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sbqrb"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_2sdea")
+shader_parameter/base_texture = ExtResource("3_tsv0y")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qute8"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_2sdea")
+shader_parameter/base_texture = ExtResource("3_tsv0y")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2lwm"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_2sdea")
+shader_parameter/base_texture = ExtResource("3_tsv0y")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xnty"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_2sdea")
+shader_parameter/base_texture = ExtResource("3_tsv0y")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
 
 [node name="Warrior" instance=ExtResource("1_s5cf3")]
+script = ExtResource("2_tsv0y")
 
 [node name="Skeleton3D" parent="Rig" index="0"]
-bones/1/position = Vector3(0, 0.392064, 0)
+bones/1/position = Vector3(-1.66316e-09, 0.336257, 0.0069758)
 bones/1/rotation = Quaternion(-1.11123e-10, 0.0431578, 2.57241e-09, 0.999068)
-bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(-6.93889e-18, 7.10543e-15, 4.93038e-32, 1)
-bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(8.27181e-25, 3.72529e-09, -2.75506e-40, 1)
+bones/3/rotation = Quaternion(0.124963, 9.01689e-09, 0.0108165, 0.992103)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/position = Vector3(0.212007, 0.134132, 7.92996e-08)
-bones/4/rotation = Quaternion(-0.559906, -0.0608803, -0.643974, 0.517779)
+bones/4/rotation = Quaternion(-0.608889, -0.144561, -0.636585, 0.450685)
 bones/4/scale = Vector3(0.999999, 0.999999, 1)
-bones/5/rotation = Quaternion(3.65498e-08, -4.88301e-08, -0.494719, 0.869053)
-bones/5/scale = Vector3(1, 0.999999, 1)
-bones/6/rotation = Quaternion(1.44633e-08, 1.26672e-08, 0.0266581, 0.999645)
+bones/5/rotation = Quaternion(4.464e-08, -4.48443e-08, -0.522909, 0.852388)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-1.22206e-10, 6.32551e-10, 0.0266581, 0.999645)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.321065, -0.325319, 0.145726, 0.87741)
+bones/7/rotation = Quaternion(-0.248389, -0.269819, -0.0676906, 0.927857)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/position = Vector3(8.34843e-10, 0.0961252, -0.0575)
-bones/8/rotation = Quaternion(-3.6586e-09, 6.87811e-09, -0.707107, 0.707107)
+bones/8/position = Vector3(8.34829e-10, 0.0961251, -0.0575001)
+bones/8/rotation = Quaternion(-0.0252592, -0.000613541, -0.500762, 0.865216)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/position = Vector3(-0.212007, 0.134132, 8.6814e-08)
-bones/9/rotation = Quaternion(-0.618244, 0.0807287, 0.618012, 0.478873)
+bones/9/position = Vector3(-0.212007, 0.134132, 7.65863e-08)
+bones/9/rotation = Quaternion(-0.664912, 0.0613742, 0.575929, 0.471626)
 bones/9/scale = Vector3(0.999999, 0.999999, 1)
-bones/10/rotation = Quaternion(2.09853e-08, 5.12855e-08, 0.517939, 0.855417)
+bones/10/rotation = Quaternion(1.60183e-08, 4.85528e-08, 0.52666, 0.850076)
 bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-4.94615e-10, -1.45974e-08, -0.0266581, 0.999645)
+bones/11/rotation = Quaternion(-3.00939e-08, -6.58777e-09, -0.0266581, 0.999645)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.319291, 0.300524, -0.22735, 0.869512)
+bones/12/rotation = Quaternion(-0.189264, 0.24383, -0.13972, 0.940853)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/position = Vector3(-1.5736e-08, 0.0961251, -0.0575)
-bones/13/rotation = Quaternion(-1.02444e-09, -4.24391e-09, 0.707107, 0.707107)
+bones/13/position = Vector3(-8.34822e-10, 0.0961251, -0.0575)
+bones/13/rotation = Quaternion(-6.95172e-10, -3.91464e-09, 0.707107, 0.707107)
 bones/13/scale = Vector3(1, 1, 1)
-bones/14/rotation = Quaternion(-5.80608e-11, -0.0313417, -1.88012e-09, 0.999509)
-bones/14/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(-0.0773183, -0.0375276, 0.0404503, 0.995479)
 bones/16/position = Vector3(0.170945, 0.113587, 1.59941e-08)
-bones/16/rotation = Quaternion(0.996185, 0.0479136, 0.0566427, -0.045939)
+bones/16/rotation = Quaternion(0.983471, 0.0893213, 0.0816368, 0.134691)
 bones/16/scale = Vector3(1, 1, 1)
-bones/17/rotation = Quaternion(0.165014, 6.49414e-08, -1.11407e-07, 0.986291)
+bones/17/rotation = Quaternion(0.553253, 5.58125e-08, -3.74307e-07, 0.833013)
 bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(-0.533729, -0.260895, -1.72985e-05, 0.804405)
+bones/18/rotation = Quaternion(-0.714043, -0.186014, 0.11142, 0.665678)
 bones/18/scale = Vector3(1, 1, 0.999999)
-bones/19/rotation = Quaternion(0.000263472, 0.920216, -0.391412, -5.96391e-05)
-bones/19/scale = Vector3(1, 0.999997, 1)
+bones/19/rotation = Quaternion(-1.39849e-05, 0.920145, -0.391578, 3.19768e-06)
+bones/19/scale = Vector3(1, 0.999998, 1)
 bones/20/position = Vector3(-0.170945, 0.113587, 1.55755e-08)
-bones/20/rotation = Quaternion(0.997322, -0.0294574, 0.0315293, 0.0590483)
+bones/20/rotation = Quaternion(0.984681, -0.0378428, 0.0284758, 0.167811)
 bones/20/scale = Vector3(1, 1, 1)
-bones/21/rotation = Quaternion(0.274008, -6.38135e-08, 1.92761e-07, 0.961727)
+bones/21/rotation = Quaternion(0.586849, -5.34826e-08, 4.10538e-07, 0.809697)
 bones/21/scale = Vector3(1, 1, 1)
-bones/22/rotation = Quaternion(-0.559039, 0.114513, -0.00862763, 0.82115)
+bones/22/rotation = Quaternion(-0.737524, 0.107654, -0.0403698, 0.665461)
 bones/22/scale = Vector3(1, 1, 0.999999)
-bones/23/rotation = Quaternion(-8.93489e-05, 0.920222, -0.391398, 2.0291e-05)
+bones/23/rotation = Quaternion(4.41809e-06, 0.920046, -0.391811, -2.79868e-07)
 bones/23/scale = Vector3(1, 0.999998, 1)
 bones/24/rotation = Quaternion(0.707107, -2.29302e-07, -4.60552e-08, 0.707107)
-bones/25/position = Vector3(0.213918, 0.0259903, 0.173866)
-bones/25/rotation = Quaternion(-0.705092, 0.0533355, 0.0533355, 0.705092)
+bones/25/position = Vector3(0.202182, 0.0259903, 0.205181)
+bones/25/rotation = Quaternion(-0.707107, -7.05285e-08, -7.05285e-08, 0.707107)
 bones/26/rotation = Quaternion(9.65792e-09, 1.77955e-09, 0.985719, -0.168398)
-bones/27/position = Vector3(-1.11482e-08, 0.213436, -5.36347e-09)
-bones/27/rotation = Quaternion(-1.10961e-07, 0.391084, 0.920355, -2.67919e-08)
+bones/27/position = Vector3(-2.60494e-08, 0.213436, -5.1715e-09)
+bones/27/rotation = Quaternion(-1.01273e-07, 0.391084, 0.920355, -3.35091e-08)
 bones/27/scale = Vector3(1, 1, 1)
-bones/28/position = Vector3(-6.31128e-09, 0.16565, -7.10267e-09)
+bones/28/position = Vector3(8.58988e-09, 0.16565, -2.40963e-09)
 bones/28/scale = Vector3(1, 1, 1)
-bones/29/rotation = Quaternion(1, -8.27364e-11, 1.94627e-07, -7.45058e-09)
+bones/29/rotation = Quaternion(1, -2.33136e-09, 1.99777e-07, -1.34211e-15)
 bones/29/scale = Vector3(1, 1, 1)
-bones/30/rotation = Quaternion(5.55113e-17, -6.74098e-17, -1.94669e-08, 1)
+bones/30/rotation = Quaternion(4.16335e-17, -6.74098e-17, -1.94669e-08, 1)
 bones/31/rotation = Quaternion(0.707107, -3.82385e-08, 1.45009e-07, 0.707107)
 bones/32/rotation = Quaternion(-0.707107, -7.05285e-08, -7.05285e-08, 0.707107)
 bones/33/rotation = Quaternion(-5.83589e-09, 6.43837e-10, 0.994809, 0.101756)
@@ -83,16 +166,78 @@ bones/36/scale = Vector3(1, 1, 1)
 bones/37/rotation = Quaternion(1.00614e-16, -6.74098e-17, -1.57416e-08, 1)
 bones/37/scale = Vector3(1, 1, 1)
 bones/38/rotation = Quaternion(-0.707107, -7.27951e-08, -7.27951e-08, 0.707107)
-bones/39/position = Vector3(0.520841, 0.788312, -0.0576373)
-bones/39/rotation = Quaternion(0.794627, -1.11759e-07, 0.607098, -5.96046e-08)
+bones/39/position = Vector3(0.520841, 0.743098, 0.000826244)
+bones/39/rotation = Quaternion(0.670981, 0.177359, 0.709838, 0.120244)
+bones/39/scale = Vector3(1, 1, 1)
 bones/40/rotation = Quaternion(-0.707107, -7.27951e-08, -7.27951e-08, 0.707107)
-bones/41/position = Vector3(-0.510844, 0.788312, 0.0597369)
-bones/41/rotation = Quaternion(-0.758253, -1.52737e-07, 0.651961, -1.11759e-08)
-bones/41/scale = Vector3(1, 1, 1)
+bones/41/position = Vector3(-0.510844, 0.730134, 0.000655676)
+bones/41/rotation = Quaternion(-0.732806, 0.0963088, 0.666041, 0.100542)
 
 [node name="Skeleton_Warrior_Helmet" parent="Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.99972, -1.40143e-09, 0.0236466, 1.39341e-09, 1, 3.55686e-10, -0.0236466, -3.22637e-10, 0.99972, -7.48334e-09, 1.20227, -1.35927e-07)
+transform = Transform3D(0.996112, -0.0879899, 0.00429218, 0.0879778, 0.991103, -0.099874, 0.00453391, 0.0998633, 0.994991, 0.00224837, 1.13824, 0.0713218)
+
+[node name="Skeleton_Warrior_Helmet" parent="Rig/Skeleton3D/Skeleton_Warrior_Helmet" index="0"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_1n8sn")
+
+[node name="Skeleton_Warrior_ArmLeft" parent="Rig/Skeleton3D" index="1"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_2sdea")
+
+[node name="Skeleton_Warrior_ArmRight" parent="Rig/Skeleton3D" index="2"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_tsv0y")
+
+[node name="Skeleton_Warrior_Body" parent="Rig/Skeleton3D" index="3"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_fbgu3")
+
+[node name="Skeleton_Warrior_Cloak" parent="Rig/Skeleton3D" index="4"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_v7acx")
+
+[node name="Skeleton_Warrior_Eyes" parent="Rig/Skeleton3D" index="5"]
+layers = 4
+
+[node name="Skeleton_Warrior_Head" parent="Rig/Skeleton3D" index="6"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_sbqrb")
+
+[node name="Skeleton_Warrior_Jaw" parent="Rig/Skeleton3D" index="7"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_qute8")
+
+[node name="Skeleton_Warrior_LegLeft" parent="Rig/Skeleton3D" index="8"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_h2lwm")
+
+[node name="Skeleton_Warrior_LegRight" parent="Rig/Skeleton3D" index="9"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_3xnty")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Rig/Skeleton3D" index="10"]
+transform = Transform3D(0.0942315, -0.275078, -0.956793, -0.00722319, -0.961232, 0.275644, -0.995523, -0.0190639, -0.0925654, -0.551725, 0.673067, 0.0235388)
+bone_name = "hand.r"
+bone_idx = 12
+
+[node name="Skeleton_Axe" parent="Rig/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("5_fbgu3")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Rig/Skeleton3D" index="11"]
+transform = Transform3D(-0.0706466, 0.0672997, 0.995228, 0.408718, -0.908169, 0.0904261, 0.909922, 0.413156, 0.0366522, 0.561673, 0.688497, 0.0291956)
+bone_name = "hand.l"
+bone_idx = 7
+
+[node name="Skeleton_Shield" parent="Rig/Skeleton3D/BoneAttachment3D2" index="0" instance=ExtResource("5_1n8sn")]
+transform = Transform3D(-4.37114e-08, 1, 0, -0.965926, -4.2222e-08, 0.258819, 0.258819, 1.13134e-08, 0.965926, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = ExtResource("2_x8unk")
 anim_player = NodePath("../AnimationPlayer")
+parameters/AttackOneShot/active = false
+parameters/AttackOneShot/internal_active = false
+parameters/AttackOneShot/request = 0
+parameters/BlockBlend2/blend_amount = 0.0
+parameters/HitOneShot/active = false
+parameters/HitOneShot/internal_active = 0.0
+parameters/HitOneShot/request = 0

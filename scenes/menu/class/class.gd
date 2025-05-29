@@ -18,7 +18,7 @@ var panel = preload("res://addons/menu/round_damaged_brown_dark.png")
 var selected_stylebox = StyleBoxTexture.new()
 var default_stylebox = StyleBoxTexture.new()
 
-var is_hosting: bool = false
+var selected_skin := "Knight"
 
 var description = {
 	"Chevalier": "Noble guerrier en armure lourde, le Chevalier incarne l'honneur et la défense. Il manie l’épée et le bouclier avec brio, protégeant ses alliés et tenant la ligne face à l’ennemi. Grâce à sa robustesse et ses compétences défensives, il est le pilier de toute escouade.",
@@ -27,70 +27,54 @@ var description = {
 	"Barbare": "Furie incarnée, le Barbare est une brute sauvage qui charge dans la mêlée sans crainte. Armé de haches ou de massues, il utilise sa rage pour infliger des dégâts colossaux. Plus il est blessé, plus il devient dangereux. Il est la tempête dans le chaos du champ de bataille."
 }
 
-func _ready() -> void:
-	pass
-
-func _process(delta: float) -> void:
-	pass
-
 func _on_knight_pressed() -> void:
-	_update_skin("knight")
+	_update_skin("Knight")
 
 func _on_barbarian_pressed() -> void:
-	_update_skin("barbarian")
+	_update_skin("Barbarian")
 
 func _on_rogue_pressed() -> void:
-	_update_skin("rogue")
+	_update_skin("Rogue")
 
 func _on_mage_pressed() -> void:
-	_update_skin("mage")
+	_update_skin("Mage")
 
 func _update_skin(skin):
+	selected_skin = skin
 	selected_stylebox.texture = panel_selected
 	default_stylebox.texture = panel
-	knight.visible = false
-	barbarian.visible = false
-	mage.visible = false
-	rogue.visible = false
+	knight.hide()
+	barbarian.hide()
+	mage.hide()
+	rogue.hide()
 	
 	update_theme(chevalier_button, default_stylebox)
 	update_theme(barbare_button, default_stylebox)
 	update_theme(voleur_button, default_stylebox)
 	update_theme(mage_button, default_stylebox)
 	
-	if skin == "knight":
-		knight.visible = true
+	if skin == "Knight":
+		knight.show()
 		label.text = "Chevalier"
 		update_theme(chevalier_button, selected_stylebox)
-	elif skin == "barbarian":
-		barbarian.visible = true
+	elif skin == "Barbarian":
+		barbarian.show()
 		label.text = "Barbare"
 		update_theme(barbare_button, selected_stylebox)
-	elif skin == "mage":
-		mage.visible = true
+	elif skin == "Mage":
+		mage.show()
 		label.text = "Mage"
 		update_theme(mage_button, selected_stylebox)
-	elif skin == "rogue":
-		rogue.visible = true
+	elif skin == "Rogue":
+		rogue.show()
 		label.text = "Voleur"
 		update_theme(voleur_button, selected_stylebox)
 	rich_text_label.text = description[label.text]
 
-
-func _on_host_pressed() -> void:
-	is_hosting = true
-	_start_game()
-
-
 func _on_rejoindre_pressed() -> void:
-	is_hosting = false
-	_start_game()
-
-
-func _start_game():
 	var world_scene = preload("res://scenes/world/world.tscn")
 	var world = world_scene.instantiate()
-	world.set_meta("is_hosting", is_hosting)
+	world.set_meta("selected_skin", selected_skin)
 	get_tree().root.add_child(world)
 	queue_free()
 
@@ -99,7 +83,6 @@ func update_theme(button, texture):
 	button.add_theme_stylebox_override("hover", texture)
 	button.add_theme_stylebox_override("pressed", texture)
 	button.add_theme_stylebox_override("focus", texture)
-
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")

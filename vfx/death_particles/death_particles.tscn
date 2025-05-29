@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7u2we0l3wfof"]
+
+[ext_resource type="Material" uid="uid://lh6y088drchh" path="res://vfx/death_particles/death_particles.tres" id="1_cfvh0"]
+[ext_resource type="ArrayMesh" uid="uid://8utnb3ujet1f" path="res://assets/clouds/cloud1.obj" id="1_lejcx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lejcx"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_lejcx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cfvh0"]
+curve = SubResource("Curve_lejcx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ypqly"]
+resource_local_to_scene = true
+emission_shape_offset = Vector3(0, 1, 0)
+emission_shape = 2
+emission_sphere_radius = 1.0
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.13
+scale_max = 0.25
+alpha_curve = SubResource("CurveTexture_cfvh0")
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+layers = 16
+material_override = SubResource("StandardMaterial3D_lejcx")
+material_overlay = ExtResource("1_cfvh0")
+explosiveness = 1.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_ypqly")
+draw_pass_1 = ExtResource("1_lejcx")

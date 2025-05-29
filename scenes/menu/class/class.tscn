@@ -201,20 +201,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 
-[node name="Host" type="Button" parent="ClassMenu/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(296, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
-theme_override_fonts/font = ExtResource("6_21fyq")
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxTexture_21fyq")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ei0uf")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_1wl32")
-theme_override_styles/normal = SubResource("StyleBoxTexture_p0jyt")
-text = "Host"
-
 [node name="Rejoindre" type="Button" parent="ClassMenu/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
@@ -321,7 +307,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -23.85
 [node name="map" parent="." instance=ExtResource("13_15rqi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[connection signal="pressed" from="ClassMenu/Panel/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="ClassMenu/Panel/VBoxContainer/Rejoindre" to="." method="_on_rejoindre_pressed"]
 [connection signal="pressed" from="ClassMenu/Classes/left/Chevalier" to="." method="_on_knight_pressed"]
 [connection signal="pressed" from="ClassMenu/Classes/left/Barbare" to="." method="_on_barbarian_pressed"]

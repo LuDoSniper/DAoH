@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://t36cj8jyq6ao"]
+
+[ext_resource type="PackedScene" uid="uid://cjglo4ueh73ce" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/axe_1handed.gltf" id="1_k5xu7"]
+[ext_resource type="Script" uid="uid://3l5jsf37gotg" path="res://objects/weapons/1H/axe/axe_1h.gd" id="2_100km"]
+
+[node name="Axe_1H" instance=ExtResource("1_k5xu7")]
+script = ExtResource("2_100km")
+
+[node name="axe_1handed" parent="." index="0"]
+layers = 32
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205716, -0.163591, 0)
+target_position = Vector3(0, 1.15, 0)
+collision_mask = 15
