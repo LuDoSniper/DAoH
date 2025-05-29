@@ -82,7 +82,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 agent_radius = 1.0
 
 [node name="World" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 149.236, 80.7503, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76401, 5.16019, -5)
 script = ExtResource("1_dphjl")
 player_scene = ExtResource("2_sl2e5")
 
