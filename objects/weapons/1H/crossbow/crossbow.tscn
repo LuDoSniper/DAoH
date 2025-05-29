@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://hp6q3ey7vlcb"]
+
+[ext_resource type="PackedScene" uid="uid://bqv5teihhkgpq" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/crossbow_1handed.gltf" id="1_en2cq"]
+[ext_resource type="Script" uid="uid://wvu0jk2rmq6d" path="res://objects/weapons/1H/crossbow/crossbow.gd" id="2_w1n1b"]
+
+[node name="Crossbow" instance=ExtResource("1_en2cq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("2_w1n1b")
+
+[node name="crossbow_1handed" parent="." index="0"]
+layers = 32
+
+[node name="Marker3D" type="Marker3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.185518, 0.563688)
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="2"]
+target_position = Vector3(0, 0, 1)

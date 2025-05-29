@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="7_mxkvs"]
 [ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="8_m114p"]
 [ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="9_71ii3"]
+[ext_resource type="PackedScene" uid="uid://bq8537ipdg2dt" path="res://objects/zones/heal_zone/heal_zone.tscn" id="12_dlabj"]
 [ext_resource type="Script" uid="uid://bam7cn7fox0sl" path="res://scripts/chat_ui.gd" id="12_dlabj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhad"]
@@ -390,7 +391,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 7)
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/NavigationRegion3D/Obstacle2"]
-visible = false
 mesh = SubResource("BoxMesh_sl2e5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/NavigationRegion3D/Obstacle2"]
@@ -400,10 +400,13 @@ shape = SubResource("BoxShape3D_sl2e5")
 
 [node name="Enemy" parent="Entities" instance=ExtResource("3_1fp7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52816, 0, 3.72392)
-variant = 2
+variant = 3
 
 [node name="Npc" parent="Entities" instance=ExtResource("4_6m72w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 8.75823)
+
+[node name="HealZone" parent="Entities" instance=ExtResource("12_dlabj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228257, -9.53674e-07, 1.16058)
 
 [node name="ChatUi" type="CanvasLayer" parent="."]
 script = ExtResource("12_dlabj")

@@ -205,27 +205,7 @@ size_flags_horizontal = 5
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxTexture_akwdn")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 6
-
-[node name="host" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2"]
-clip_contents = true
-custom_minimum_size = Vector2(296, 64)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
-theme_override_fonts/font = ExtResource("6_21fyq")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxTexture_yphbi")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1h1n5")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_88xk7")
-theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
-text = "Host"
-
-[node name="retour" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2"]
-clip_contents = true
+[node name="Rejoindre" type="Button" parent="ClassMenu/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
 size_flags_vertical = 3
@@ -301,3 +281,22 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_uk084")
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/VBoxContainer/Barbare" to="." method="_on_barbarian_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Mage" to="." method="_on_mage_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Voleur" to="." method="_on_rogue_pressed"]
+
+[node name="ENV" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ENV"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="ENV"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -23.8597, -0.741135, -154.409)
+
+[node name="map" parent="." instance=ExtResource("13_15rqi")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[connection signal="pressed" from="ClassMenu/Panel/VBoxContainer/Rejoindre" to="." method="_on_rejoindre_pressed"]
+[connection signal="pressed" from="ClassMenu/Classes/left/Chevalier" to="." method="_on_knight_pressed"]
+[connection signal="pressed" from="ClassMenu/Classes/left/Barbare" to="." method="_on_barbarian_pressed"]
+[connection signal="pressed" from="ClassMenu/Classes/right/Voleur" to="." method="_on_rogue_pressed"]
+[connection signal="pressed" from="ClassMenu/Classes/right/Mage" to="." method="_on_mage_pressed"]
+[connection signal="pressed" from="ClassMenu/Back" to="." method="_on_back_pressed"]

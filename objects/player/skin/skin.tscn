@@ -21,7 +21,6 @@ visible = false
 visible = false
 
 [node name="Mage" parent="." instance=ExtResource("4_goud1")]
-visible = false
 
 [node name="Rogue" parent="." instance=ExtResource("5_2ljhi")]
 visible = false

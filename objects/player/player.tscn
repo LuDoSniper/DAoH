@@ -1,7 +1,9 @@
-[gd_scene load_steps=45 format=3 uid="uid://b2vjrseu1cmso"]
+[gd_scene load_steps=48 format=3 uid="uid://b2vjrseu1cmso"]
 
 [ext_resource type="Script" uid="uid://cbp4jm85jed4y" path="res://objects/player/player.gd" id="1_cqmt1"]
+[ext_resource type="PackedScene" uid="uid://djb4h3inwodxm" path="res://objects/projectiles/fireball/fireball.tscn" id="2_dthqj"]
 [ext_resource type="PackedScene" uid="uid://e5qkoxyv6art" path="res://objects/player/camera/camera_controller.tscn" id="2_g7ett"]
+[ext_resource type="PackedScene" uid="uid://deqg624ilqcv2" path="res://objects/projectiles/arrow/arrow.tscn" id="3_l55sg"]
 [ext_resource type="PackedScene" uid="uid://dwai72sk4pm4a" path="res://objects/player/skin/skin.tscn" id="3_ssrue"]
 [ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="4_xgwla"]
 [ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="5_bi5m7"]
@@ -16,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bkmys4jwphovp" path="res://addons/menu/checkbox_brown_checked.png" id="14_28utn"]
 [ext_resource type="Texture2D" uid="uid://dl5hjo8svhhg8" path="res://addons/menu/checkbox_brown_empty.png" id="15_yyeqs"]
 [ext_resource type="Texture2D" uid="uid://ck60jc8fi1irl" path="res://addons/menu/scrollbar_brown_small.png" id="16_u8bnf"]
+[ext_resource type="PackedScene" uid="uid://bq8537ipdg2dt" path="res://objects/zones/heal_zone/heal_zone.tscn" id="18_xlkbi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5lq1w"]
 
@@ -119,8 +122,10 @@ texture = ExtResource("8_c34wb")
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_cqmt1")
+fireball_scene = ExtResource("2_dthqj")
+arrow_scene = ExtResource("3_l55sg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -132,6 +137,9 @@ spring_length = 6.0
 
 [node name="Skin" parent="." instance=ExtResource("3_ssrue")]
 skin = 0
+
+[node name="HealZone" parent="." instance=ExtResource("18_xlkbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_cqmt1")
@@ -647,6 +655,16 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_rgkrx")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ur8bd")
 text = "Retour"
 
+[node name="Timers" type="Node" parent="."]
+
+[node name="InvincibilityTimer" type="Timer" parent="Timers"]
+wait_time = 1.5
+one_shot = true
+
+[node name="HealZoneTimer" type="Timer" parent="Timers"]
+wait_time = 15.0
+one_shot = true
+
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Reprendre" to="." method="_on_reprendre_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Menu" to="." method="_on_menu_pressed"]
@@ -660,3 +678,5 @@ text = "Retour"
 [connection signal="value_changed" from="PauseMenu/MenuBG/Options/Audio/Sliders/Music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="PauseMenu/MenuBG/Options/Audio/Sliders/Sound" to="." method="_on_sound_fx_value_changed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Options/quitter" to="." method="_on_back_settings_pressed"]
+[connection signal="timeout" from="Timers/InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="Timers/HealZoneTimer" to="." method="_on_heal_zone_timer_timeout"]

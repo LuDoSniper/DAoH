@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8642iudcge5m"]
+
+[ext_resource type="PackedScene" uid="uid://1lx0ryrd3s2h" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/staff.gltf" id="1_ufqlc"]
+[ext_resource type="Texture2D" uid="uid://b2xxjm6ugsofu" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/mage_texture.png" id="2_prmya"]
+[ext_resource type="Script" uid="uid://bwnu56hrye7le" path="res://objects/weapons/1H/staff/staff.gd" id="2_qe38b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qe38b"]
+albedo_texture = ExtResource("2_prmya")
+
+[node name="staff" instance=ExtResource("1_ufqlc")]
+script = ExtResource("2_qe38b")
+
+[node name="staff" parent="." index="0"]
+layers = 32
+surface_material_override/0 = SubResource("StandardMaterial3D_qe38b")
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="1"]
+target_position = Vector3(0, 1.3, 0)
