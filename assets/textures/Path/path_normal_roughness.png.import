@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpb1mu51cqg8x"
+uid="uid://ddm8bksqwmjfo"
 path.s3tc="res://.godot/imported/path_normal_roughness.png-2ffb93e03fb40c010e976fbe32c9aa57.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
