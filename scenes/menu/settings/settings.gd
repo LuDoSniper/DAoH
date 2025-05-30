@@ -16,15 +16,15 @@ func _ready() -> void:
 func _on_video_pressed() -> void:
 	if state != "video":
 		state = "video"
-		video.visible = true
-		audio.visible = false
+		video.show()
+		audio.hide()
 		_update_button_styles()
 
 func _on_audio_pressed() -> void:
 	if state != "audio":
 		state = "audio"
-		video.visible = false
-		audio.visible = true
+		video.hide()
+		audio.show()
 		_update_button_styles()
 
 func _update_button_styles() -> void:

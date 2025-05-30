@@ -13,7 +13,7 @@ func show_dialogue(npc_name: String, dialogue: Array[String]) -> void:
 	if label_name:
 		label_name.text = npc_name + ":"
 	if panel:
-		panel.visible = true
+		panel.show()
 	_show_next_line()
 
 func _show_next_line() -> void:
@@ -22,4 +22,4 @@ func _show_next_line() -> void:
 			rich_text_label.text = lines[current_index]
 		current_index += 1
 	elif panel:
-		panel.visible = false
+		panel.hide()

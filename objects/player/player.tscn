@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://b2vjrseu1cmso"]
+[gd_scene load_steps=47 format=3 uid="uid://b2vjrseu1cmso"]
 
 [ext_resource type="Script" uid="uid://cbp4jm85jed4y" path="res://objects/player/player.gd" id="1_cqmt1"]
 [ext_resource type="PackedScene" uid="uid://djb4h3inwodxm" path="res://objects/projectiles/fireball/fireball.tscn" id="2_dthqj"]
@@ -21,11 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://bq8537ipdg2dt" path="res://objects/zones/heal_zone/heal_zone.tscn" id="18_xlkbi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5lq1w"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cqmt1"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylcck"]
 bg_color = Color(0, 0, 0, 0.164706)
@@ -120,7 +115,7 @@ modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ur8bd"]
 texture = ExtResource("8_c34wb")
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_cqmt1")
@@ -139,10 +134,6 @@ spring_length = 6.0
 skin = 0
 
 [node name="HealZone" parent="." instance=ExtResource("18_xlkbi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_cqmt1")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 visible = false
@@ -369,7 +360,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_1g4tr")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ja0yg")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_3nl4h")
 theme_override_styles/normal = SubResource("StyleBoxTexture_yyeqs")
-text = "Quitter"
+text = "Se déconnecter"
 metadata/_edit_use_anchors_ = true
 
 [node name="Options" type="Control" parent="PauseMenu/MenuBG"]

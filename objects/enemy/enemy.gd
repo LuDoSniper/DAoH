@@ -97,7 +97,7 @@ var rogue_attack_distance := 2.0
 var max_health := 2.0
 var health := max_health
 
-var players
+#var players
 var targeted_player
 
 var is_combat := false
@@ -178,10 +178,9 @@ func select_target() -> void:
 	if multiplayer.is_server():
 		var spoted_players = []
 		# Listing all players nearby (spot_radius)
-		if players:
-			for player in players:
-				if global_position.distance_to(player.global_position) <= spot_radius:
-					spoted_players.append(player)
+		for player in get_tree().root.get_node("World").get_players():
+			if global_position.distance_to(player.global_position) <= spot_radius:
+				spoted_players.append(player)
 		# Verifying that spoted players are reachable by 'vision' (checking if the enemy can see the players)
 		if spoted_players != []:
 			for player in spoted_players:
@@ -236,6 +235,10 @@ func remote_get_target(target: Vector3) -> void:
 
 func move_logic(delta: float) -> void:
 	if multiplayer.is_server():
+		# Add the gravity.
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		
 		# Get the direction with the navigation agent
 		var destination = navigation_agent.get_next_path_position()
 		var local_destination = destination - global_position
@@ -283,32 +286,52 @@ func sync_animation_movement(id: int, animation: String) -> void:
 		move_state_machine.travel(animation)
 
 func attack_logic() -> void:
-	if can_attack:
-		if attack_timer.is_stopped():
-			match variant:
-				variants.Minion:
-					attack_state_machine.travel("Slice")
-				variants.Warrior:
-					attack_state_machine.travel("Slice")
-				variants.Mage:
-					attack_state_machine.travel("Shoot")
-					shoot_fireball()
-				variants.Rogue:
-					var player_distance = global_position.distance_to(targeted_player.global_position)
-					if rogue_attack_distance < player_distance and player_distance < rogue_shoot_distance:
-						attack_state_machine.travel("Crossbow_Shoot")
-						rogue_skin.show_crossbow()
-					else:
-						attack_state_machine.travel("Slice")
-						rogue_skin.show_dagger()
+	if multiplayer.is_server():
+		if can_attack:
+			if attack_timer.is_stopped():
+				var animation_name = ""
+				var rogue_instruction = "nothing"
+				
+				match variant:
+					variants.Minion:
+						animation_name = "Slice"
+					variants.Warrior:
+						animation_name = "Slice"
+					variants.Mage:
+						animation_name = "Shoot"
+						shoot_fireball()
+					variants.Rogue:
+						var player_distance = global_position.distance_to(targeted_player.global_position)
+						if rogue_attack_distance < player_distance and player_distance < rogue_shoot_distance:
+							animation_name = "Crossbow_Shoot"
+							rogue_skin.show_crossbow()
+							rogue_instruction = "crossbow"
+						else:
+							animation_name = "Slice"
+							rogue_skin.show_dagger()
+							rogue_instruction = "dagger"
+				
+				attack_state_machine.travel(animation_name)
+				animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+				attack_timer.start()
+				rpc("_remote_attack", name.to_int(), animation_name, rogue_instruction)
+				
+				blocking = false
 			
-			animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			attack_timer.start()
-			
-			blocking = false
+			elif not attacking and variant == variants.Warrior and not blocking:
+				blocking = true
+
+@rpc("any_peer")
+func _remote_attack(id: int, animation: String, rogue_instruction: String) -> void:
+	if name.to_int() == id:
+		match rogue_instruction:
+			"crossbow":
+				rogue_skin.show_crossbow()
+			"dagger":
+				rogue_skin.show_dagger()
 		
-		elif not attacking and variant == variants.Warrior and not blocking:
-			blocking = true
+		attack_state_machine.travel(animation)
+		animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func block() -> void:
 	var tween = create_tween()
@@ -320,23 +343,76 @@ func unblock() -> void:
 
 func blend(value: float) -> void:
 	animation_tree.set("parameters/BlockBlend2/blend_amount", value)
+	if multiplayer.is_server():
+		rpc("_sync_block", name.to_int(), value)
+
+@rpc("any_peer")
+func _sync_block(id: int, value: float) -> void:
+	if name.to_int() == id:
+		animation_tree.set("parameters/BlockBlend2/blend_amount", value)
 
 func shoot_fireball() -> void:
+	if multiplayer.is_server():
+		var fireball = fireball_scene.instantiate()
+		get_parent().add_child(fireball)
+		fireball.global_position = projectiles_spawn.global_position
+		fireball.scale = Vector3.ONE * 0.5
+		fireball.rotation.y = rotation.y
+		
+		rpc("_remote_shoot_fireball", projectiles_spawn.global_position, rotation.y)
+
+@rpc("any_peer")
+func _remote_shoot_fireball(pos: Vector3, fireball_rotation: float) -> void:
 	var fireball = fireball_scene.instantiate()
 	get_parent().add_child(fireball)
-	fireball.global_position = projectiles_spawn.global_position
+	fireball.global_position = pos
 	fireball.scale = Vector3.ONE * 0.5
-	fireball.rotation.y = rotation.y
+	fireball.rotation.y = fireball_rotation
 
 func shoot_arrow() -> void:
+	if multiplayer.is_server():
+		var arrow = arrow_scene.instantiate()
+		get_parent().add_child(arrow)
+		arrow.global_position = arrow_spawn.global_position
+		arrow.rotation.y = rotation.y
+	
+	rpc("_remote_shoot_arrow", arrow_spawn.global_position, rotation.y)
+
+@rpc("any_peer")
+func _remote_shoot_arrow(pos: Vector3, arrow_rotation: float) -> void:
 	var arrow = arrow_scene.instantiate()
 	get_parent().add_child(arrow)
-	arrow.global_position = arrow_spawn.global_position
-	arrow.rotation.y = rotation.y
+	arrow.global_position = pos
+	arrow.rotation.y = arrow_rotation
 
 func hit(damage: float) -> void:
-	if not invincible:
-		health -= damage
+	if multiplayer.is_server():
+		if not invincible:
+			health -= damage
+			if health <= 0:
+				minion_skin.hide()
+				warrior_skin.hide()
+				mage_skin.hide()
+				rogue_skin.hide()
+				death_particles.emitting = true
+			
+			var animations = [
+				"Hit_A",
+				"Hit_B"
+			]
+			var animation = animations[randi_range(0, len(animations) - 1)]
+			hit_state_machine.travel(animation)
+			animation_tree.set("parameters/HitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			invincible = true
+			invincibility_timer.start()
+			
+			rpc("_remote_hit", name.to_int(), health, animation)
+
+@rpc("any_peer")
+func _remote_hit(id: int, new_health: float, animation: String) -> void:
+	if name.to_int() == id:
+		health = new_health
+		
 		if health <= 0:
 			minion_skin.hide()
 			warrior_skin.hide()
@@ -344,11 +420,7 @@ func hit(damage: float) -> void:
 			rogue_skin.hide()
 			death_particles.emitting = true
 		
-		var animations = [
-			"Hit_A",
-			"Hit_B"
-		]
-		hit_state_machine.travel(animations[randi_range(0, len(animations) - 1)])
+		hit_state_machine.travel(animation)
 		animation_tree.set("parameters/HitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		invincible = true
 		invincibility_timer.start()

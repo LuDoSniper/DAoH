@@ -11,10 +11,17 @@ func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.has_method("hit"):
-		body.hit(damage)
+	if multiplayer.is_server():
+		if body.has_method("hit"):
+			body.hit(damage)
 	
-	queue_free()
+		rpc("_remote_queue_free", name.to_int())
+		queue_free()
+
+@rpc("any_peer")
+func _remote_queue_free(id: int) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		queue_free()
 
 func _on_timer_timeout() -> void:
 	queue_free()

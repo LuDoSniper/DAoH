@@ -89,6 +89,8 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
 func _ready() -> void:
+	UTILS.print_local(self, "Je viens d'apparraitre sout le nom de " + str(name.to_int()))
+	
 	# Initialize classes
 	var knight_class = ClassData.new("Knight")
 	knight_class.add_attack("base")
@@ -139,20 +141,29 @@ func _ready() -> void:
 	weapon_meshes["Dagger"] = $Skin/Rogue/Rig/Skeleton3D/Knife/Dagger
 	weapon_meshes["Crossbow"] = $Skin/Rogue/Rig/Skeleton3D/Knife/Crossbow
 	
+	#if not multiplayer.is_server():
+		#rpc_id(1, "_request_initialize_class", name.to_int())
+	
 	add_to_group("players")
 	if is_multiplayer_authority():
 		camera.current = true
 
+#@rpc("any_peer")
+#func _request_initialize_class(id: int) -> void:
+	#if multiplayer.is_server() and name.to_int() == id:
+		#rpc("_remote_initialize_class", id, selected_class.name)
+#
+#@rpc("any_peer")
+#func _remote_initialize_class(id: int, var_class_name: String) -> void:
+	#if not multiplayer.is_server() and name.to_int() == id:
+		#initialize_class(var_class_name)
+		#initialize_inventory()
+
 func initialize_class(var_class_name: String) -> void:
-	if is_multiplayer_authority():
-		UTILS.print_local(self, "[DEBUG] - var_class_name:" + var_class_name)
-		for custom_class in classes:
-			if custom_class.name == var_class_name:
-				selected_class = custom_class
-				UTILS.print_local(self, "[DEBUG] - selected_class:" + selected_class.name)
-		skin.select_class(selected_class)
-	else:
-		UTILS.print_local(self, "[DEBUG] - Server:" + str(multiplayer.is_server()))
+	for custom_class in classes:
+		if custom_class.name == var_class_name:
+			selected_class = custom_class
+	skin.select_class(selected_class)
 	
 	if selected_class.name == "Rogue":
 		base_speed += 2.0
@@ -216,6 +227,13 @@ func move_logic(delta: float) -> void:
 			rpc("sync_animation_movement", name.to_int(), 'Idle')
 		
 		move_and_slide()
+		rpc("sync_movement", name.to_int(), global_position, skin.rotation.y)
+
+@rpc("any_peer")
+func sync_movement(id: int, var_global_position: Vector3, skin_rotation: float) -> void:
+	if name.to_int() == id:
+		global_position = var_global_position
+		skin.rotation.y = skin_rotation
 
 func jump_logic(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -234,7 +252,7 @@ func jump_logic(delta: float) -> void:
 
 @rpc("any_peer")
 func sync_animation_movement(id: int, animation: String) -> void:
-	if name.to_int() == id:
+	if not multiplayer.is_server() and name.to_int() == id:
 		skin.set_move_state(animation)
 
 func pause_logic() -> void:
@@ -242,59 +260,6 @@ func pause_logic() -> void:
 		if Input.is_action_just_pressed("pause"):
 			paused = not paused
 			pause_menu.visible = not pause_menu.visible
-
-#func focus_logic(delta) -> void:
-	#if is_multiplayer_authority():
-		## Toggle focusing
-		#if Input.is_action_just_pressed("focus"):
-			#focusing = not focusing
-		#
-		## Correct focusing if necessary
-		#if focusing and not target:
-			#focusing = select_focus_target()
-		#
-		## Update camera if focusing
-		#if focusing:
-			##camera_controller.look_at(target.global_position)
-			#var current_basis = global_transform.basis
-			#var look_target = target.global_position
-			#
-			#var to_target = (look_target - global_transform.origin).normalized()
-			#var target_basis = Basis().looking_at(to_target, Vector3.UP)
-			#
-			## Interpolation douce entre la rotation actuelle et la cible
-			#global_transform.basis = current_basis.slerp(target_basis, 6.0 * delta)
-#
-#func select_focus_target() -> bool:
-	#var enemies = get_parent().get_enemies()
-	#var best_candidate = null
-	#var best_score = -1.0
-#
-	#for enemy in enemies:
-		#if not is_instance_valid(enemy): continue
-		#var to_enemy = enemy.global_transform.origin - global_transform.origin
-		#var distance = to_enemy.length()
-#
-		#if distance > max_lock_distance:
-			#continue
-#
-		## Convert direction en vue caméra
-		#var dir_to_enemy = (enemy.global_transform.origin - camera.global_transform.origin).normalized()
-		#var camera_forward = -camera.global_transform.basis.z.normalized()
-#
-		## Dot product pour savoir à quel point l’ennemi est centré
-		#var alignment = dir_to_enemy.dot(camera_forward)
-		#
-		#if alignment > lock_angle_threshold and alignment > best_score:
-			#best_score = alignment
-			#best_candidate = enemy
-#
-	#if best_candidate:
-		#target = best_candidate
-	#else:
-		#target = null
-	#
-	#return target != null
 
 func array_has(array: Array, items: Array) -> bool:
 	for e in array:
@@ -332,18 +297,49 @@ func attack_logic() -> void:
 			elif selected_class.name == "Mage" and not healing:
 				healing = Input.is_action_just_pressed("special") and inventory.right_hand is WeaponData and inventory.right_hand.name == "Staff"
 
+@rpc("any_peer")
+func _request_shoot_fireball(pos: Vector3, fireball_rotation: float) -> void:
+	if multiplayer.is_server():
+		var fireball = fireball_scene.instantiate()
+		get_parent().add_child(fireball)
+		fireball.global_position = pos
+		fireball.scale = Vector3.ONE * 0.5
+		fireball.rotation.y = fireball_rotation
+		
+		rpc("_remote_shoot_fireball", pos, fireball_rotation)
+
+@rpc("any_peer")
+func _remote_shoot_fireball(pos: Vector3, fireball_rotation: float) -> void:
+	if not multiplayer.is_server():
+		var fireball = fireball_scene.instantiate()
+		get_parent().add_child(fireball)
+		fireball.global_position = pos
+		fireball.scale = Vector3.ONE * 0.5
+		fireball.rotation.y = fireball_rotation
+
 func shoot_fireball() -> void:
-	var fireball = fireball_scene.instantiate()
-	get_parent().add_child(fireball)
-	fireball.global_position = fireball_spawn.global_position
-	fireball.scale = Vector3.ONE * 0.5
-	fireball.rotation.y = skin.rotation.y
+	rpc_id(1, "_request_shoot_fireball", fireball_spawn.global_position, skin.rotation.y)
+
+@rpc("any_peer")
+func _request_shoot_arrow(pos: Vector3, arrow_rotation: float) -> void:
+	if multiplayer.is_server():
+		var arrow = arrow_scene.instantiate()
+		get_parent().add_child(arrow)
+		arrow.global_position = pos
+		arrow.rotation.y = arrow_rotation
+		
+		rpc("_remote_shoot_arrow", pos, arrow_rotation)
+
+@rpc("any_peer")
+func _remote_shoot_arrow(pos: Vector3, arrow_rotation: float) -> void:
+	if not multiplayer.is_server():
+		var arrow = arrow_scene.instantiate()
+		get_parent().add_child(arrow)
+		arrow.global_position = pos
+		arrow.rotation.y = arrow_rotation
 
 func shoot_arrow() -> void:
-	var arrow = arrow_scene.instantiate()
-	get_parent().add_child(arrow)
-	arrow.global_position = arrow_spawn.global_position
-	arrow.rotation.y = skin.rotation.y
+	rpc_id(1, "_request_shoot_arrow", arrow_spawn.global_position, skin.rotation.y)
 
 func _input(event: InputEvent) -> void:
 	if not paused and event.is_action_pressed("toggle_mouse"):
@@ -383,23 +379,51 @@ func show_next_dialogue():
 func set_current_npc(npc):
 	current_npc = npc
 
-
 func _on_reprendre_pressed() -> void:
 	paused = not paused
 	pause_menu.visible = not pause_menu.visible
 
-
 func _on_options_pressed() -> void:
-	pause_menu_content.visible = false
-	options_menu_content.visible = true
-
+	pause_menu_content.hide()
+	options_menu_content.show()
 
 func _on_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")
 
-
 func _on_quitter_pressed() -> void:
-	get_tree().quit()
+	#get_tree().quit()
+	UTILS.print_local(self, "I WANT TO LEAVE")
+	rpc_id(1, "_request_disconnect", name.to_int())
+
+@rpc("any_peer")
+func _request_disconnect(id: int) -> void:
+	if multiplayer.is_server() and name.to_int() == id:
+		UTILS.print_local(self, "AUTHORIZING " + str(id) + " TO LEAVE")
+		get_tree().root.get_node("World").send_message("[" + str(id) + "] hast left the game", id, false)
+		rpc_id(id, "_remote_can_disconnect", id)
+		rpc("_remote_player_disconnected", id)
+		
+		for enemy in get_tree().root.get_node("World").get_enemies():
+			if enemy.targeted_player.name == name:
+				enemy.targeted_player = null
+				enemy.is_combat = false
+				enemy.can_attack = false
+		
+		queue_free()
+
+@rpc("any_peer")
+func _remote_can_disconnect(id: int) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		UTILS.print_local(self, "I'M LEAVING'")
+		multiplayer.multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
+		get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+
+@rpc("any_peer")
+func _remote_player_disconnected(id: int) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		UTILS.print_local(self, "RECIEVING THAT " + str(id) + " HAS LEFT")
+		queue_free()
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:
 	if toggled_on:
@@ -431,21 +455,21 @@ func volume(bus_index, value):
 	AudioServer.set_bus_volume_db(bus_index, value)
 
 func _on_back_settings_pressed() -> void:
-	pause_menu_content.visible = true
-	options_menu_content.visible = false
+	pause_menu_content.show()
+	options_menu_content.hide()
 
 func _on_video_pressed() -> void:
 	if state != "video":
 		state = "video"
-		video.visible = true
-		audio.visible = false
+		video.show()
+		audio.hide()
 		_update_button_styles()
 
 func _on_audio_pressed() -> void:
 	if state != "audio":
 		state = "audio"
-		video.visible = false
-		audio.visible = true
+		video.hide()
+		audio.show()
 		_update_button_styles()
 
 func _update_button_styles() -> void:

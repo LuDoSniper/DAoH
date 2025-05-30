@@ -18,12 +18,12 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group("players") and body.is_multiplayer_authority():
-		label.visible = true
+		label.show()
 		body.set_current_npc(self)
 
 func _on_body_exited(body):
 	if body.is_in_group("players") and body.is_multiplayer_authority():
-		label.visible = false
+		label.hide()
 		body.set_current_npc(null)
 
 

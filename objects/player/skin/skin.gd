@@ -75,32 +75,41 @@ func get_move_state_current_node() -> StringName:
 	return move_state_machine.get_current_node()
 
 func attack(attack_name: String) -> void:
+	var animation_name = null
 	match skin:
 		skins.Knight:
 			match attack_name:
 				"base":
-					attack_state_machine.travel("Slice_Horizontal")
+					animation_name = "Slice_Horizontal"
 				"base_2H":
-					attack_state_machine.travel("2H_Slice")
+					animation_name = "2H_Slice"
 		skins.Barbarian:
 			match attack_name:
 				"base":
-					attack_state_machine.travel("Slice_Horizontal")
+					animation_name = "Slice_Horizontal"
 				"base_2H":
-					attack_state_machine.travel("2H_Slice")
+					animation_name = "2H_Slice"
 		skins.Mage:
 			match attack_name:
 				"base":
-					attack_state_machine.travel("Spellcast_Shoot")
+					animation_name = "Spellcast_Shoot"
 				"special":
-					attack_state_machine.travel("Spellcast_Raise")
+					animation_name = "Spellcast_Raise"
 		skins.Rogue:
 			match attack_name:
 				"base":
-					attack_state_machine.travel("Slice_Horizontal")
+					animation_name = "Slice_Horizontal"
 				"shoot":
-					attack_state_machine.travel("Shoot")
+					animation_name = "Shoot"
+	attack_state_machine.travel(animation_name)
 	animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	rpc("_sync_attack", name.to_int(), animation_name)
+
+@rpc("any_peer")
+func _sync_attack(id: int, animation_name: String) -> void:
+	if name.to_int() == id:
+		attack_state_machine.travel(animation_name)
+		animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func block() -> void:
 	var tween = create_tween()
@@ -114,18 +123,37 @@ func unblock() -> void:
 
 func _tween_block(value: float) -> void:
 	animation_tree.set("parameters/SpecialBlockBlend2/blend_amount", value)
+	rpc("_sync_block", name.to_int(), value)
+
+@rpc("any_peer")
+func _sync_block(id: int, value: float) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		animation_tree.set("parameters/SpecialBlockBlend2/blend_amount", value)
 
 func hit() -> void:
-	var animations = [
-		"Hit_A",
-		"Hit_B"
-	]
-	hit_state_machine.travel(animations[randi_range(0, len(animations) - 1)])
-	animation_tree.set("parameters/HitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	attacking = false
+	if multiplayer.is_server():
+		var animations = [
+			"Hit_A",
+			"Hit_B"
+		]
+		var animation_name = animations[randi_range(0, len(animations) - 1)]
+		
+		hit_state_machine.travel(animation_name)
+		animation_tree.set("parameters/HitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		attacking = false
+		
+		rpc("_sync_hit", name.to_int(), animation_name)
+
+@rpc("any_peer")
+func _sync_hit(id: int, animation_name: String) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		hit_state_machine.travel(animation_name)
+		animation_tree.set("parameters/HitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		attacking = false
 
 func shoot_fireball() -> void:
-	get_parent().shoot_fireball()
+	if not multiplayer.is_server() and get_parent().is_multiplayer_authority():
+		get_parent().shoot_fireball()
 
 func get_inventory() -> InventoryData:
 	return get_parent().inventory

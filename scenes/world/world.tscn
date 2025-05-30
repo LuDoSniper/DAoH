@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dsdkk3ck5o2nj"]
+[gd_scene load_steps=41 format=3 uid="uid://dsdkk3ck5o2nj"]
 
 [ext_resource type="Script" uid="uid://bu0ajfske4uuh" path="res://scenes/world/world.gd" id="1_dphjl"]
 [ext_resource type="PackedScene" uid="uid://b2vjrseu1cmso" path="res://objects/player/player.tscn" id="2_sl2e5"]
@@ -11,8 +11,8 @@
 [ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="7_mxkvs"]
 [ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="8_m114p"]
 [ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="9_71ii3"]
-[ext_resource type="PackedScene" uid="uid://bq8537ipdg2dt" path="res://objects/zones/heal_zone/heal_zone.tscn" id="12_dlabj"]
 [ext_resource type="Script" uid="uid://bam7cn7fox0sl" path="res://scripts/chat_ui.gd" id="12_dlabj"]
+[ext_resource type="PackedScene" uid="uid://cf0ugeybvhml7" path="res://objects/spawner/spawner.tscn" id="12_srmg5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhad"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -356,10 +356,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_xq18t")
 text = "Quitter"
 metadata/_edit_use_anchors_ = true
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://b2vjrseu1cmso")
-spawn_path = NodePath("..")
-
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67303, 0, 0)
 
@@ -398,15 +394,20 @@ shape = SubResource("BoxShape3D_sl2e5")
 
 [node name="Entities" type="Node3D" parent="."]
 
-[node name="Enemy" parent="Entities" instance=ExtResource("3_1fp7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52816, 0, 3.72392)
-variant = 3
-
 [node name="Npc" parent="Entities" instance=ExtResource("4_6m72w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 8.75823)
 
-[node name="HealZone" parent="Entities" instance=ExtResource("12_dlabj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228257, -9.53674e-07, 1.16058)
+[node name="Enemy" parent="Entities" instance=ExtResource("3_1fp7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6715, 0.597841, -9.64738)
+variant = 3
+
+[node name="Spawners" type="Node3D" parent="."]
+
+[node name="Spawner1" parent="Spawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45309, 0.25, -5.99381)
+
+[node name="Spawner2" parent="Spawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7488, 0.25, 8.04773)
 
 [node name="ChatUi" type="CanvasLayer" parent="."]
 script = ExtResource("12_dlabj")

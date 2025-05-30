@@ -18,9 +18,8 @@ var panel = preload("res://addons/menu/round_damaged_brown_dark.png")
 var selected_stylebox = StyleBoxTexture.new()
 var default_stylebox = StyleBoxTexture.new()
 
-var selected_skin := "Knight"
-
 signal class_selected(classes_name: String)
+var selected_skin: String
 
 var description = {
 	"Chevalier": "Noble guerrier en armure lourde, le Chevalier incarne l'honneur et la défense. Il manie l’épée et le bouclier avec brio, protégeant ses alliés et tenant la ligne face à l’ennemi. Grâce à sa robustesse et ses compétences défensives, il est le pilier de toute escouade.",
@@ -29,26 +28,37 @@ var description = {
 	"Barbare": "Furie incarnée, le Barbare est une brute sauvage qui charge dans la mêlée sans crainte. Armé de haches ou de massues, il utilise sa rage pour infliger des dégâts colossaux. Plus il est blessé, plus il devient dangereux. Il est la tempête dans le chaos du champ de bataille."
 }
 
+func _ready() -> void:
+	# Skin par défaut : Knight
+	_on_knight_pressed()
+
 func _on_knight_pressed() -> void:
-	_update_skin("Knight")
+	selected_skin = "Knight"
+	emit_signal("class_selected", selected_skin)
+	_update_skin(selected_skin)
 
 func _on_barbarian_pressed() -> void:
-	_update_skin("Barbarian")
+	selected_skin = "Barbarian"
+	emit_signal("class_selected", selected_skin)
+	_update_skin(selected_skin)
 
 func _on_rogue_pressed() -> void:
-	_update_skin("Rogue")
+	selected_skin = "Rogue"
+	emit_signal("class_selected", selected_skin)
+	_update_skin(selected_skin)
 
 func _on_mage_pressed() -> void:
-	_update_skin("Mage")
+	selected_skin = "Mage"
+	emit_signal("class_selected", selected_skin)
+	_update_skin(selected_skin)
 
 func _update_skin(skin):
-	selected_skin = skin
 	selected_stylebox.texture = panel_selected
 	default_stylebox.texture = panel
-	knight.hide()
-	barbarian.hide()
-	mage.hide()
-	rogue.hide()
+	#knight.hide()
+	#barbarian.hide()
+	#mage.hide()
+	#rogue.hide()
 	
 	update_theme(chevalier_button, default_stylebox)
 	update_theme(barbare_button, default_stylebox)
@@ -56,29 +66,32 @@ func _update_skin(skin):
 	update_theme(mage_button, default_stylebox)
 	
 	if skin == "Knight":
-		knight.show()
+		#knight.show()
 		label.text = "Chevalier"
 		update_theme(chevalier_button, selected_stylebox)
 	elif skin == "Barbarian":
-		barbarian.show()
+		#barbarian.show()
 		label.text = "Barbare"
 		update_theme(barbare_button, selected_stylebox)
 	elif skin == "Mage":
-		mage.show()
+		#mage.show()
 		label.text = "Mage"
 		update_theme(mage_button, selected_stylebox)
 	elif skin == "Rogue":
-		rogue.show()
+		#rogue.show()
 		label.text = "Voleur"
 		update_theme(voleur_button, selected_stylebox)
 	rich_text_label.text = description[label.text]
 
-func _on_rejoindre_pressed() -> void:
+func _on_join_pressed() -> void:
 	var world_scene = preload("res://scenes/world/world.tscn")
 	var world = world_scene.instantiate()
+	world.set_meta("server", false)
 	world.set_meta("selected_skin", selected_skin)
+	
 	get_tree().root.add_child(world)
-	queue_free()
+	get_tree().set_current_scene(world)
+	get_tree().root.get_node("Main").queue_free()
 
 func update_theme(button, texture):
 	button.add_theme_stylebox_override("normal", texture)
@@ -88,7 +101,6 @@ func update_theme(button, texture):
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")
-
 
 func _on_button_pressed() -> void:
 	print("Test")

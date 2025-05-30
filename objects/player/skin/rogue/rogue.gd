@@ -15,4 +15,5 @@ func set_can_damage(value: bool) -> void:
 			weapon.can_damage = value
 
 func shoot() -> void:
-	parent.get_parent().shoot_arrow()
+	if not multiplayer.is_server() and get_parent().is_multiplayer_authority():
+		parent.get_parent().shoot_arrow()
