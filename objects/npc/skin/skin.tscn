@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhel5y0ymt48r"]
+[gd_scene load_steps=4 format=3 uid="uid://cypcetb0sod1q"]
 
 [ext_resource type="Script" uid="uid://bdm6dul4k6s6r" path="res://objects/npc/skin/skin.gd" id="1_rsalb"]
 [ext_resource type="PackedScene" uid="uid://bdcuvekq1b1mw" path="res://objects/npc/skin/rogue/rogue.tscn" id="2_rsalb"]

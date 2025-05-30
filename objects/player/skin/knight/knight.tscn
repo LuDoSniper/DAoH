@@ -1,9 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://b03jyr0by50pr"]
+[gd_scene load_steps=32 format=3 uid="uid://b03jyr0by50pr"]
 
 [ext_resource type="PackedScene" uid="uid://d20krfiralvcg" path="res://addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb" id="1_re4xp"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cp7rkeprui6t2" path="res://objects/player/skin/skin_blend_node.tres" id="2_42dv7"]
+[ext_resource type="Script" uid="uid://b7appwy7aer08" path="res://objects/player/skin/knight/knight.gd" id="2_pgefg"]
+[ext_resource type="PackedScene" uid="uid://x42ihbgns4ik" path="res://objects/weapons/1H/sword/sword_1h.tscn" id="3_6qlty"]
+[ext_resource type="Texture2D" uid="uid://vguceftir66p" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/knight_texture.png" id="3_yskf0"]
+[ext_resource type="PackedScene" uid="uid://clmfivajap0yl" path="res://objects/weapons/shields/shield_badge/shield_badge.tscn" id="4_3j2an"]
+[ext_resource type="PackedScene" uid="uid://cyw5mwjw38i0j" path="res://objects/weapons/shields/shield_badge_colored/shield_badge_colored.tscn" id="5_q1av6"]
+[ext_resource type="PackedScene" uid="uid://7utocdcypkke" path="res://objects/weapons/shields/shield_round/shield_round.tscn" id="6_cvg6e"]
+[ext_resource type="PackedScene" uid="uid://cg0wcttclwfjc" path="res://objects/weapons/shields/shield_round_colored/shield_round_colored.tscn" id="7_6xq7n"]
+[ext_resource type="PackedScene" uid="uid://cfad7vgwr3avc" path="res://objects/weapons/shields/shield_round_barbarian/shield_round_barbarian.tscn" id="8_55s7d"]
+[ext_resource type="PackedScene" uid="uid://bhny1g2vgqdmk" path="res://objects/weapons/shields/shield_spikes/shield_spikes.tscn" id="9_e77ob"]
+[ext_resource type="PackedScene" uid="uid://cw71utrcq0xa5" path="res://objects/weapons/shields/shield_spikes_colored/shield_spikes_colored.tscn" id="10_pf4jo"]
+[ext_resource type="PackedScene" uid="uid://bo5bpuexefa4o" path="res://objects/weapons/shields/shield_square/shield_square.tscn" id="11_b8mbk"]
+[ext_resource type="PackedScene" uid="uid://by45efgdl5gwg" path="res://objects/weapons/shields/shield_square_colored/shield_square_colored.tscn" id="12_23h5y"]
+[ext_resource type="PackedScene" uid="uid://cdwqvt71axdi8" path="res://objects/weapons/2H/sword/sword_2h.tscn" id="14_cvg6e"]
+[ext_resource type="PackedScene" uid="uid://8lwkcmlsqne7" path="res://objects/weapons/2H/sword_colored/sword_2h_colored.tscn" id="15_6xq7n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3j2an"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fh6bo"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0r1gd"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62g3h"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebaot"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uflfd"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gm3v2"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkg8k"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1av6"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvg6e"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xq7n"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55s7d"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e77ob"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pf4jo"]
+albedo_texture = ExtResource("3_yskf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8mbk"]
+albedo_texture = ExtResource("3_yskf0")
 
 [node name="Knight" instance=ExtResource("1_re4xp")]
+script = ExtResource("2_pgefg")
 
 [node name="Skeleton3D" parent="Rig" index="0"]
 bones/1/position = Vector3(0, 0.392064, 0)
@@ -60,49 +120,128 @@ transform = Transform3D(3.52814e-07, 0.262863, 0.964832, 0.999999, -3.84622e-07,
 
 [node name="1H_Sword_Offhand" parent="Rig/Skeleton3D/1H_Sword_Offhand" index="0"]
 visible = false
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_3j2an")
 
 [node name="Badge_Shield" parent="Rig/Skeleton3D" index="1"]
 transform = Transform3D(3.75229e-07, 0.262863, 0.964833, 0.999999, -2.9198e-06, 6.39644e-07, 3.12392e-06, 0.964833, -0.262863, 0.662643, 0.636705, -0.0430841)
 
 [node name="Badge_Shield" parent="Rig/Skeleton3D/Badge_Shield" index="0"]
 visible = false
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_fh6bo")
+
+[node name="ShieldBadge" parent="Rig/Skeleton3D/Badge_Shield" index="1" instance=ExtResource("4_3j2an")]
+
+[node name="ShieldBadgeColored" parent="Rig/Skeleton3D/Badge_Shield" index="2" instance=ExtResource("5_q1av6")]
+
+[node name="ShieldRound" parent="Rig/Skeleton3D/Badge_Shield" index="3" instance=ExtResource("6_cvg6e")]
+
+[node name="ShieldRoundColored" parent="Rig/Skeleton3D/Badge_Shield" index="4" instance=ExtResource("7_6xq7n")]
+
+[node name="ShieldRoundBarbarian" parent="Rig/Skeleton3D/Badge_Shield" index="5" instance=ExtResource("8_55s7d")]
+
+[node name="ShieldSpikes" parent="Rig/Skeleton3D/Badge_Shield" index="6" instance=ExtResource("9_e77ob")]
+
+[node name="ShieldSpikesColored" parent="Rig/Skeleton3D/Badge_Shield" index="7" instance=ExtResource("10_pf4jo")]
+
+[node name="ShieldSquare" parent="Rig/Skeleton3D/Badge_Shield" index="8" instance=ExtResource("11_b8mbk")]
+
+[node name="ShieldSquareColored" parent="Rig/Skeleton3D/Badge_Shield" index="9" instance=ExtResource("12_23h5y")]
 
 [node name="Rectangle_Shield" parent="Rig/Skeleton3D" index="2"]
 transform = Transform3D(3.75229e-07, 0.262863, 0.964833, 0.999999, -2.9198e-06, 6.39644e-07, 3.12392e-06, 0.964833, -0.262863, 0.662643, 0.636705, -0.0430841)
 
 [node name="Rectangle_Shield" parent="Rig/Skeleton3D/Rectangle_Shield" index="0"]
 visible = false
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_0r1gd")
 
 [node name="Round_Shield" parent="Rig/Skeleton3D" index="3"]
 transform = Transform3D(3.75229e-07, 0.262863, 0.964833, 0.999999, -2.9198e-06, 6.39644e-07, 3.12392e-06, 0.964833, -0.262863, 0.662643, 0.636705, -0.0430841)
 
 [node name="Round_Shield" parent="Rig/Skeleton3D/Round_Shield" index="0"]
 visible = false
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_62g3h")
 
 [node name="Spike_Shield" parent="Rig/Skeleton3D" index="4"]
 transform = Transform3D(3.75229e-07, 0.262863, 0.964833, 0.999999, -2.9198e-06, 6.39644e-07, 3.12392e-06, 0.964833, -0.262863, 0.662643, 0.636705, -0.0430841)
 
 [node name="Spike_Shield" parent="Rig/Skeleton3D/Spike_Shield" index="0"]
 visible = false
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_ebaot")
 
 [node name="1H_Sword" parent="Rig/Skeleton3D" index="5"]
 transform = Transform3D(-4.09345e-07, -0.149894, 0.988701, 0.999999, -1.16402e-07, 8.9407e-08, 4.87279e-07, 0.988701, 0.149894, -0.496054, 0.64103, 0.139528)
 
 [node name="1H_Sword" parent="Rig/Skeleton3D/1H_Sword" index="0"]
 visible = false
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_uflfd")
+
+[node name="Sword_1H" parent="Rig/Skeleton3D/1H_Sword" index="1" instance=ExtResource("3_6qlty")]
 
 [node name="2H_Sword" parent="Rig/Skeleton3D" index="6"]
 transform = Transform3D(-4.25085e-07, -0.149894, 0.988701, 0.999999, -1.31135e-07, 1.03093e-07, 4.99794e-07, 0.988701, 0.149894, -0.496054, 0.64103, 0.139528)
 
 [node name="2H_Sword" parent="Rig/Skeleton3D/2H_Sword" index="0"]
 visible = false
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_gm3v2")
+
+[node name="Sword_2H" parent="Rig/Skeleton3D/2H_Sword" index="1" instance=ExtResource("14_cvg6e")]
+transform = Transform3D(1, 1.45519e-08, -1.36788e-08, -1.46683e-08, 1, 0, 1.36497e-08, 1.49012e-08, 1, 0, 0, 0)
+
+[node name="Sword_2H_Colored" parent="Rig/Skeleton3D/2H_Sword" index="2" instance=ExtResource("15_6xq7n")]
+transform = Transform3D(1, 1.45519e-08, -1.36788e-08, -1.46683e-08, 1, 0, 1.36497e-08, 1.49012e-08, 1, 0, 0, 0)
 
 [node name="Knight_Helmet" parent="Rig/Skeleton3D" index="7"]
 transform = Transform3D(0.99972, -1.40143e-09, 0.0236466, 1.39341e-09, 1, 3.55686e-10, -0.0236466, -3.22637e-10, 0.99972, 4.69869e-07, 1.20229, -1.19779e-07)
 
+[node name="Knight_Helmet" parent="Rig/Skeleton3D/Knight_Helmet" index="0"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_kkg8k")
+
 [node name="Knight_Cape" parent="Rig/Skeleton3D" index="8"]
 transform = Transform3D(0.996275, -5.14962e-09, 0.0862353, 5.13043e-09, 1, 4.44077e-10, -0.0862353, 1.88007e-15, 0.996275, -1.63023e-08, 1.20229, -1.40136e-07)
+
+[node name="Knight_Cape" parent="Rig/Skeleton3D/Knight_Cape" index="0"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_q1av6")
+
+[node name="Knight_ArmLeft" parent="Rig/Skeleton3D" index="9"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_cvg6e")
+
+[node name="Knight_ArmRight" parent="Rig/Skeleton3D" index="10"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_6xq7n")
+
+[node name="Knight_Body" parent="Rig/Skeleton3D" index="11"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_55s7d")
+
+[node name="Knight_Head" parent="Rig/Skeleton3D" index="12"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_e77ob")
+
+[node name="Knight_LegLeft" parent="Rig/Skeleton3D" index="13"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_pf4jo")
+
+[node name="Knight_LegRight" parent="Rig/Skeleton3D" index="14"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_b8mbk")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = ExtResource("2_42dv7")
 anim_player = NodePath("../AnimationPlayer")
+parameters/AttackOneShot/active = false
+parameters/AttackOneShot/internal_active = false
+parameters/AttackOneShot/request = 0
+parameters/HitOneShot/active = false
+parameters/HitOneShot/internal_active = false
+parameters/HitOneShot/request = 0
+parameters/SpecialBlockBlend2/blend_amount = 0

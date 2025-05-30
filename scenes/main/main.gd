@@ -20,16 +20,11 @@ extends Node3D
 func _ready() -> void:
 	class_selector.connect("class_selected", Callable(self, "_on_class_selected"))
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func hide_menu():
-	home_menu.visible = false
-	credits.visible = false
-	settings.visible = false
-	classes.visible = false
+	home_menu.hide()
+	credits.hide()
+	settings.hide()
+	classes.hide()
 	
 	home_camera.current = false
 	classes_camera.current = false
@@ -38,18 +33,17 @@ func hide_menu():
 
 func _on_start_pressed() -> void:
 	hide_menu()
-	classes.visible = true
+	classes.show()
 	classes_camera.current = true
-
 
 func _on_settings_pressed() -> void:
 	hide_menu()
-	settings.visible = true
+	settings.show()
 	options_camera.current = true
 
 func _on_credits_pressed() -> void:
 	hide_menu()
-	credits.visible = true
+	credits.show()
 	credits_camera.current = true
 
 func _on_exit_pressed() -> void:
@@ -57,20 +51,20 @@ func _on_exit_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	hide_menu()
-	home_menu.visible = true
+	home_menu.show()
 	home_camera.current = true
 
 func _on_class_selected(classes_name) -> void:
-	knight.visible = false
-	barbarian.visible = false
-	mage.visible = false
-	rogue.visible = false
+	knight.hide()
+	barbarian.hide()
+	mage.hide()
+	rogue.hide()
 	match classes_name:
-		"knight":
-			knight.visible = true
-		"barbarian":
-			barbarian.visible = true
-		"mage":
-			mage.visible = true
-		"rogue":
-			rogue.visible = true
+		"Knight":
+			knight.show()
+		"Barbarian":
+			barbarian.show()
+		"Mage":
+			mage.show()
+		"Rogue":
+			rogue.show()

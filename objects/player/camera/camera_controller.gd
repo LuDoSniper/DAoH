@@ -6,6 +6,7 @@ extends SpringArm3D
 @export var vertical_acceleration := 2.0
 
 var paused := false
+var focusing := false
 
 func _ready():
 	get_parent().pause.connect(pause)
@@ -18,14 +19,14 @@ func unpause() -> void:
 	paused = false
 
 func _physics_process(delta):
-	if not paused:
+	if not paused and not focusing:
 		# Prise en charge de la manette
 		var joy_direction = Input.get_vector("pan_left", "pan_right", "pan_up", "pan_down")
 		rotation.y -= joy_direction.x * horizontal_acceleration * delta
 		rotation.x -= joy_direction.y * vertical_acceleration * delta
 
 func _input(event):
-	if not paused and event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if not paused and not focusing and event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotation.y -= event.relative.x * 0.005
 		rotation.x -= event.relative.y * 0.005
 		rotation.x = clamp(rotation.x, camera_min_height, camera_max_height)

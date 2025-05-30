@@ -1008,7 +1008,7 @@ layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 
-[node name="host" type="Button" parent="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2"]
+[node name="join" type="Button" parent="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2"]
 clip_contents = true
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
@@ -1020,7 +1020,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_yphbi")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1h1n5")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_88xk7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
-text = "Host"
+text = "Rejoindre"
 
 [node name="retour" type="Button" parent="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2"]
 clip_contents = true
@@ -1108,7 +1108,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_uk084")
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Music" to="GUI/Settings" method="_on_music_value_changed"]
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Sound" to="GUI/Settings" method="_on_sound_fx_value_changed"]
 [connection signal="pressed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3/quitter" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/host" to="GUI/Classes" method="_on_host_pressed"]
+[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/join" to="GUI/Classes" method="_on_join_pressed"]
 [connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/retour" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/Chevalier" to="GUI/Classes" method="_on_knight_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/VBoxContainer/Barbare" to="GUI/Classes" method="_on_barbarian_pressed"]

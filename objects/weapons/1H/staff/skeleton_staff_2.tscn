@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://2811ewu80oja"]
+
+[ext_resource type="PackedScene" uid="uid://dd824eej2lcjp" path="res://addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Staff.gltf" id="1_l2b5n"]
+
+[node name="Skeleton_Staff2" instance=ExtResource("1_l2b5n")]
+
+[node name="Skeleton_Staff" parent="." index="0"]
+layers = 32

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://drseardeob18k"]
 
 [ext_resource type="Script" uid="uid://ndjohqicf6b2" path="res://objects/npc/npc.gd" id="1_nxjfv"]
-[ext_resource type="PackedScene" uid="uid://dhel5y0ymt48r" path="res://objects/npc/skin/skin.tscn" id="2_15dke"]
+[ext_resource type="PackedScene" uid="uid://cypcetb0sod1q" path="res://objects/npc/skin/skin.tscn" id="2_15dke"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ha4nv"]
 
@@ -21,6 +21,7 @@ shape = SubResource("CapsuleShape3D_ha4nv")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.43595, 0)
+layers = 64
 text = "Test"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

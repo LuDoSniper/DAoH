@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bau4mfsu2jvhl"]
+
+[ext_resource type="PackedScene" uid="uid://ltviy3km5udy" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/wand.gltf" id="1_bcqwf"]
+
+[node name="wand" instance=ExtResource("1_bcqwf")]
+
+[node name="wand" parent="." index="0"]
+layers = 32
+
+[node name="SpawnFireball" type="Marker3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0349644, 0.683553, 0)

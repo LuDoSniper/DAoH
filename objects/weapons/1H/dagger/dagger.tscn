@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://deb2dqdwyb4mh"]
+
+[ext_resource type="PackedScene" uid="uid://d31ky6ieojrxl" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/dagger.gltf" id="1_twqvm"]
+[ext_resource type="Script" uid="uid://bnm4ma4kevaff" path="res://objects/weapons/1H/dagger/dagger.gd" id="2_2puvj"]
+
+[node name="Dagger" instance=ExtResource("1_twqvm")]
+script = ExtResource("2_2puvj")
+
+[node name="dagger" parent="." index="0"]
+layers = 32
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="1"]
+target_position = Vector3(0, 1.15, 0)
+collision_mask = 15

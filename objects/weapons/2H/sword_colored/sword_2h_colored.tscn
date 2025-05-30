@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://8lwkcmlsqne7"]
+
+[ext_resource type="PackedScene" uid="uid://dixue2mn1o256" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/sword_2handed_color.gltf" id="1_hcyjs"]
+[ext_resource type="Script" uid="uid://d3ualx8s8sbo0" path="res://objects/weapons/2H/sword_colored/sword_2h_colored.gd" id="2_d4vhb"]
+
+[node name="Sword_2H_Colored" instance=ExtResource("1_hcyjs")]
+script = ExtResource("2_d4vhb")
+
+[node name="sword_2handed_color" parent="." index="0"]
+layers = 32
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="1"]
+target_position = Vector3(0, 2, 0)
+collision_mask = 15

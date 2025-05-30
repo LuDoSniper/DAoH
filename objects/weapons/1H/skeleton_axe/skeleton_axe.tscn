@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dunoa2h4y1bph"]
+
+[ext_resource type="PackedScene" uid="uid://wu7sdnpjdpcd" path="res://addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Axe.gltf" id="1_cq0bx"]
+[ext_resource type="Script" uid="uid://dxr8nmrknvcgk" path="res://objects/weapons/1H/skeleton_axe/skeleton_axe.gd" id="2_r33wa"]
+
+[node name="Skeleton_Axe" instance=ExtResource("1_cq0bx")]
+script = ExtResource("2_r33wa")
+
+[node name="Skeleton_Axe" parent="." index="0"]
+layers = 32
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="1"]
+target_position = Vector3(0, 1.25, 0)
+collision_mask = 7
