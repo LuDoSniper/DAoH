@@ -257,7 +257,9 @@ environment = SubResource("Environment_37hlw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.295708, 0.955278, 4.17565e-08, 0, -4.37114e-08, 1, 0.955278, 0.295708, 1.29258e-08, 0, 0, 0)
+light_energy = 0.1
 shadow_enabled = true
+sky_mode = 1
 
 [node name="3D" type="Node3D" parent="."]
 
