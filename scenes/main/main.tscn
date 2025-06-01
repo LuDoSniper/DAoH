@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cklxpfboxkd2c"]
+[gd_scene load_steps=88 format=3 uid="uid://cklxpfboxkd2c"]
 
 [ext_resource type="PackedScene" uid="uid://b03jyr0by50pr" path="res://objects/player/skin/knight/knight.tscn" id="1_6q06x"]
 [ext_resource type="Script" uid="uid://b6fjswd7w63m0" path="res://scenes/main/main.gd" id="1_a8run"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://d1tehihwxp0bc" path="res://scenes/menu/class/class.gd" id="21_s17dp"]
 [ext_resource type="Texture2D" uid="uid://b4agyflfkdbha" path="res://addons/menu/round_damaged_brown.png" id="22_37hlw"]
 [ext_resource type="Texture2D" uid="uid://eba0l2e0kns0" path="res://addons/menu/round_damaged_brown_dark.png" id="23_6llfj"]
+[ext_resource type="PackedScene" uid="uid://dh21volx761c1" path="res://scenes/menu/authentication/authentication.tscn" id="24_s17dp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a8run"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -1093,6 +1094,9 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_424qy")
 theme_override_styles/hover = SubResource("StyleBoxTexture_dtnac")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_85w2q")
 theme_override_styles/normal = SubResource("StyleBoxTexture_uk084")
+
+[node name="Authentication" parent="GUI" instance=ExtResource("24_s17dp")]
+layout_mode = 1
 
 [connection signal="pressed" from="GUI/HomeMenu/Panel/MenuBG/VBoxContainer/VBoxContainer/jouer" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="GUI/HomeMenu/Panel/MenuBG/VBoxContainer/VBoxContainer2/options" to="." method="_on_settings_pressed"]

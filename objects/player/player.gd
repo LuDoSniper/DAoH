@@ -404,7 +404,7 @@ func _request_disconnect(id: int) -> void:
 		rpc("_remote_player_disconnected", id)
 		
 		for enemy in get_tree().root.get_node("World").get_enemies():
-			if enemy.targeted_player.name == name:
+			if enemy.targeted_player and enemy.targeted_player.name == name:
 				enemy.targeted_player = null
 				enemy.is_combat = false
 				enemy.can_attack = false

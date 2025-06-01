@@ -1,7 +1,12 @@
 extends Node
 
-const LISTEN_PORT := 3642
 const DEFAULT_ADDRESS := "localhost"
+
+# Par défaut il est à 3642 pour le debug local
+# Attention, cela veux donc dire qu'en local on ne peux se connecter qu'à Europe.
+# Le problème sera réglé lorsque tout les serveur dédiés seront déployés
+var LISTEN_PORT := 3642
+var token := ""
 
 var peer := WebSocketMultiplayerPeer.new()
 

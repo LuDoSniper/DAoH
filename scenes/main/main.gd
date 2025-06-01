@@ -4,6 +4,7 @@ extends Node3D
 @onready var credits: Control = $GUI/Credits
 @onready var settings: Control = $GUI/Settings
 @onready var classes: Control = $GUI/Classes
+@onready var authentication: Control = $GUI/Authentication
 
 @onready var home_camera: Camera3D = $"3D/Cameras/Home"
 @onready var classes_camera: Camera3D = $"3D/Cameras/Classes"
@@ -18,13 +19,19 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	authentication.authentication_successfull.connect(_on_authentication_successfull)
 	class_selector.connect("class_selected", Callable(self, "_on_class_selected"))
+	hide_menu()
+	
+	home_menu.show()
+	home_camera.current = true
 
 func hide_menu():
 	home_menu.hide()
 	credits.hide()
 	settings.hide()
 	classes.hide()
+	authentication.hide()
 	
 	home_camera.current = false
 	classes_camera.current = false
@@ -32,9 +39,12 @@ func hide_menu():
 	credits_camera.current = false
 
 func _on_start_pressed() -> void:
+	#hide_menu()
+	#classes.show()
+	#classes_camera.current = true
+	
 	hide_menu()
-	classes.show()
-	classes_camera.current = true
+	authentication.show()
 
 func _on_settings_pressed() -> void:
 	hide_menu()
@@ -68,3 +78,8 @@ func _on_class_selected(classes_name) -> void:
 			mage.show()
 		"Rogue":
 			rogue.show()
+
+func _on_authentication_successfull() -> void:
+	hide_menu()
+	classes.show()
+	classes_camera.current = true

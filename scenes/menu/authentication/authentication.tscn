@@ -1,0 +1,130 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh21volx761c1"]
+
+[ext_resource type="Script" uid="uid://cg6hrckstay21" path="res://scenes/menu/authentication/authentication.gd" id="1_hnxl3"]
+
+[node name="Authentication" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hnxl3")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Choix du serveur"
+horizontal_alignment = 1
+
+[node name="ServerSelectionMarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ServerSelectionMarginContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ServerSelectionMarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Europe"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "North-America"
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "South-America"
+
+[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Asia"
+
+[node name="Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConnectionMarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ServerName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Connexion à FIXME"
+horizontal_alignment = 1
+
+[node name="ErrorLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="UsernameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Nom d'utilisateur :"
+
+[node name="UsernameInput" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Nom d'utilisateur"
+
+[node name="PasswordLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Mot de passe :"
+
+[node name="PasswordInput" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Mot de passe"
+
+[node name="ConnectButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Se connecter"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
