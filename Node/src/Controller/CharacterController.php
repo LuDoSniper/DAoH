@@ -41,6 +41,13 @@ class CharacterController extends AbstractController
         $name = $data['name'];
         $saved_data = $data['saved_data'];
 
+        $characters = $this->entityManager->getRepository(Character::class)->findAll();
+        foreach ($characters as $character) {
+            if ($character->getName() === $name) {
+                return new JsonResponse(['message' => 'Character name already exists'], Response::HTTP_BAD_REQUEST);
+            }
+        }
+
         $character = new Character();
         $character->setUser($user);
         $character->setName($name);
@@ -66,7 +73,16 @@ class CharacterController extends AbstractController
         }
 
         if (isset($data['name'])) {
-            $character->setName($data['name']);
+            $name = $data['name'];
+
+            $characters = $this->entityManager->getRepository(Character::class)->findAll();
+            foreach ($characters as $var_character) {
+                if ($var_character->getName() === $name) {
+                    return new JsonResponse(['message' => 'Character name already exists'], Response::HTTP_BAD_REQUEST);
+                }
+            }
+
+            $character->setName($name);
         }
         if (isset($data['saved_data'])) {
             $character->setSavedData($data['saved_data']);
