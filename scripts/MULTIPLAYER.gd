@@ -6,7 +6,12 @@ const DEFAULT_ADDRESS := "localhost"
 # Attention, cela veux donc dire qu'en local on ne peux se connecter qu'à Europe.
 # Le problème sera réglé lorsque tout les serveur dédiés seront déployés
 var LISTEN_PORT := 3642
+var MAX_CHARACTER_COUNT := 4
 var token := ""
+var current_server := 0
+var servers: Array = []
+var username := ""
+var password := ""
 
 var peer := WebSocketMultiplayerPeer.new()
 
@@ -19,3 +24,10 @@ func create_server(peer_connected: Callable) -> void:
 func join_server() -> void:
 	peer.create_client("ws://" + DEFAULT_ADDRESS + ":" + str(LISTEN_PORT))
 	multiplayer.multiplayer_peer = peer
+
+func get_server_by_id(id: int) -> Dictionary:
+	for server in servers:
+		if server["id"] == id:
+			return server
+	
+	return {}

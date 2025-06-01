@@ -306,6 +306,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HomeMenu" type="Control" parent="GUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -899,7 +900,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_t4dyf")
 text = "Retour"
 
 [node name="Classes" type="Control" parent="GUI"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1095,7 +1095,81 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_dtnac")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_85w2q")
 theme_override_styles/normal = SubResource("StyleBoxTexture_uk084")
 
+[node name="CharacterSelectionPanelContainer" type="PanelContainer" parent="GUI/Classes"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Classes/CharacterSelectionPanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GUI/Classes/CharacterSelectionPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Choix du personnage"
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/Classes/CharacterSelectionPanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Classes/CharacterSelectionPanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Classes/CharacterSelectionPanelContainer/VBoxContainer/PanelContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="GUI/Classes/CharacterSelectionPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Perso 1
+(mettre une image)"
+
+[node name="Create" type="Button" parent="GUI/Classes/CharacterSelectionPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer" groups=["create_button"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "+"
+
+[node name="Button" type="Button" parent="GUI/Classes/CharacterSelectionPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Rejoindre"
+
+[node name="NewCharacterPanelContainer" type="PanelContainer" parent="GUI/Classes/CharacterSelectionPanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Classes/CharacterSelectionPanelContainer/NewCharacterPanelContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GUI/Classes/CharacterSelectionPanelContainer/NewCharacterPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Créer un personnage"
+
+[node name="CharacterNameLabel" type="Label" parent="GUI/Classes/CharacterSelectionPanelContainer/NewCharacterPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Nom du personnage :"
+
+[node name="CharacterNameInput" type="LineEdit" parent="GUI/Classes/CharacterSelectionPanelContainer/NewCharacterPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Nom du personnage"
+
+[node name="Create" type="Button" parent="GUI/Classes/CharacterSelectionPanelContainer/NewCharacterPanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Créer"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="GUI/Classes/CharacterSelectionPanelContainer"]
+
 [node name="Authentication" parent="GUI" instance=ExtResource("24_s17dp")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="GUI/HomeMenu/Panel/MenuBG/VBoxContainer/VBoxContainer/jouer" to="." method="_on_start_pressed"]
@@ -1118,3 +1192,5 @@ layout_mode = 1
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/VBoxContainer/Barbare" to="GUI/Classes" method="_on_barbarian_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer/Mage" to="GUI/Classes" method="_on_mage_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer/Voleur" to="GUI/Classes" method="_on_rogue_pressed"]
+[connection signal="pressed" from="GUI/Classes/CharacterSelectionPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer/Create" to="GUI/Classes" method="_on_create_pressed"]
+[connection signal="pressed" from="GUI/Classes/CharacterSelectionPanelContainer/NewCharacterPanelContainer/VBoxContainer/Create" to="GUI/Classes" method="_on_create_character_pressed"]

@@ -12,6 +12,15 @@ extends Control
 @onready var voleur_button: Button = $HBoxContainer/VBoxContainer/Voleur
 @onready var mage_button: Button = $HBoxContainer/VBoxContainer/Mage
 
+###> Gestion des personnages ###
+@onready var http: HTTPRequest = $CharacterSelectionPanelContainer/HTTPRequest
+@onready var new_character_panel_container: PanelContainer = $CharacterSelectionPanelContainer/NewCharacterPanelContainer
+@onready var character_container: HBoxContainer = $CharacterSelectionPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer
+@onready var character_name_input: LineEdit = $CharacterSelectionPanelContainer/NewCharacterPanelContainer/VBoxContainer/CharacterNameInput
+
+var _relogin_callback: Callable = Callable()
+###< Gestion des personnages ###
+
 var panel_selected = preload("res://addons/menu/round_damaged_brown.png")
 var panel = preload("res://addons/menu/round_damaged_brown_dark.png")
 
@@ -31,6 +40,10 @@ var description = {
 func _ready() -> void:
 	# Skin par défaut : Knight
 	_on_knight_pressed()
+	
+	###> Gestion des personnages ###
+	new_character_panel_container.hide()
+	###< Gestion des personnages ###
 
 func _on_knight_pressed() -> void:
 	selected_skin = "Knight"
@@ -104,3 +117,120 @@ func _on_back_pressed() -> void:
 
 func _on_button_pressed() -> void:
 	print("Test")
+
+###> Gestion des personnages ###
+func get_characters() -> void:
+	reset_http_signal()
+	http.connect("request_completed", Callable(self, "_on_characters_receive"))
+	
+	var err = http.request(
+		"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/api/character/list",
+		[
+			"Content-Type: application/json",
+			"Authorization: Bearer " + MULTIPLAYER.token
+		],
+		HTTPClient.METHOD_POST
+	)
+	
+	if err != OK:
+		print("Erreur lors de l'envoi de la requête :", err)
+
+func _on_characters_receive(_result, response_code, _headers, body) -> void:
+	if response_code == 200:
+		# Supprimer les bouttons de test
+		for child in character_container.get_children():
+			if not child.is_in_group("create_button"):
+				child.queue_free()
+		
+		var data = JSON.parse_string(body.get_string_from_utf8())
+		for character in data:
+			var button = Button.new()
+			character_container.add_child(button)
+			button.text = character["name"]
+			# Là je ne sais pas comment mais faut ajouter l'image de la classe
+			button.text += "\n(mettre une image)"
+	elif response_code == 401:
+		# JWT expired, get new token
+		_relogin_callback = Callable(self, "get_characters")
+		relogin()
+	else:
+		print("Erreur inconnue: ", response_code)
+
+func _on_create_pressed() -> void:
+	new_character_panel_container.show()
+
+func _on_create_character_pressed() -> void:
+	reset_http_signal()
+	http.connect("request_completed", Callable(self, "_on_create_character_receive"))
+	
+	var err = http.request(
+		"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/api/character/create",
+		[
+			"Content-Type: application/json",
+			"Authorization: Bearer " + MULTIPLAYER.token
+		],
+		HTTPClient.METHOD_POST,
+		JSON.stringify({
+			"name": character_name_input.text,
+			"saved_data": {
+				"class": selected_skin
+			}
+		})
+	)
+	
+	if err != OK:
+		print("Erreur lors de l'envoi de la requête :", err)
+
+func _on_create_character_receive(_result, response_code, _headers, _body) -> void:
+	if response_code == 201:
+		get_characters()
+		character_name_input.text = ""
+		new_character_panel_container.hide()
+	elif response_code == 401:
+		# JWT expired, get new token
+		_relogin_callback = Callable(self, "get_characters")
+		relogin()
+	else:
+		print("Erreur inconnue: ", response_code)
+
+func relogin() -> void:
+	reset_http_signal()
+	http.connect("request_completed", Callable(self, "_on_relogin_receive"))
+	
+	var err = http.request(
+		"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/login",
+		[
+			"Content-Type: application/json",
+		],
+		HTTPClient.METHOD_POST,
+		JSON.stringify({
+			"username": MULTIPLAYER.username,
+			"password": MULTIPLAYER.password
+		})
+	)
+	
+	if err != OK:
+		print("Erreur lors de l'envoi de la requête :", err)
+
+func _on_relogin_receive(_result, response_code, _headers, body) -> void:
+	if response_code == 200:
+		var data = JSON.parse_string(body.get_string_from_utf8())
+		MULTIPLAYER.token = data["token"]
+		
+		if _relogin_callback.is_valid():
+			_relogin_callback.call()
+			_relogin_callback = Callable()
+	elif response_code == 401:
+		print("Mauvais identifiants")
+	else:
+		print("Erreur inconnue: ", response_code)
+
+func reset_http_signal():
+	for callback in [
+		Callable(self, "_on_characters_receive"),
+		Callable(self, "_on_relogin_receive"),
+		Callable(self, "_on_create_character_receive"),
+	]:
+		if http.is_connected("request_completed", callback):
+			http.disconnect("request_completed", callback)
+###< Gestion des personnages ###

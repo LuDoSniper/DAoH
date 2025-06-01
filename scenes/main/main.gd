@@ -83,3 +83,4 @@ func _on_authentication_successfull() -> void:
 	hide_menu()
 	classes.show()
 	classes_camera.current = true
+	classes.get_characters()

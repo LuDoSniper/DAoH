@@ -12,8 +12,6 @@ signal authentication_successfull
 
 @onready var error_label = $PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer/ErrorLabel
 
-var servers: Array = []
-
 func _ready() -> void:
 	# Virer tout les serveurs de test
 	for child in server_container.get_children():
@@ -45,7 +43,7 @@ func _on_server_received(_result, response_code, _headers, body) -> void:
 			return
 		
 		for server in data:
-			servers.append({
+			MULTIPLAYER.servers.append({
 				"id": server["id"],
 				"name": server["name"],
 				"address": server["address"]
@@ -58,33 +56,28 @@ func _on_server_received(_result, response_code, _headers, body) -> void:
 			button.pressed.connect(func(): _on_server_pressed(server["id"]))
 		
 		# Par défaut sélectionner le premier
-		_on_server_pressed(servers[0]["id"])
+		_on_server_pressed(MULTIPLAYER.servers[0]["id"])
 	else:
 		print("Erreur inconnue :", response_code)
 
 func _on_server_pressed(id: int) -> void:
-	var server = get_server_by_id(id)
+	var server = MULTIPLAYER.get_server_by_id(id)
 	if server == {}:
 		print("Erreur lors de la récupération du serveur")
 		return
 	
 	server_name.text = "Connexion à " + server["name"]
-	server_name.set_meta("id", server["id"])
+	MULTIPLAYER.current_server = server["id"]
 	
 	_empty_error_label()
 
-func get_server_by_id(id: int) -> Dictionary:
-	for server in servers:
-		if server["id"] == id:
-			return server
-	
-	return {}
-
 func _on_connect_button_pressed() -> void:
-	if not server_name.has_meta("id"):
+	if MULTIPLAYER.current_server == 0:
 		print("Aucun serveur selectionné")
 		return
-	var server = get_server_by_id(server_name.get_meta("id"))
+	var server = MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)
+	MULTIPLAYER.username = username_input.text
+	MULTIPLAYER.password = password_input.text
 	
 	reset_http_signal()
 	http.connect("request_completed", Callable(self, "_on_connection_attempted"))
@@ -96,8 +89,8 @@ func _on_connect_button_pressed() -> void:
 		["Content-Type: application/json"],
 		HTTPClient.METHOD_POST,
 		JSON.stringify({
-			"username": username_input.text,
-			"password": password_input.text
+			"username": MULTIPLAYER.username,
+			"password": MULTIPLAYER.password
 		})
 	)
 	
@@ -114,10 +107,10 @@ func _on_connection_attempted(_result, response_code, _headers, body) -> void:
 		print("Erreur inconnue :", response_code)
 
 func get_port() -> void:
-	if not server_name.has_meta("id"):
+	if MULTIPLAYER.current_server == 0:
 		print("Aucun serveur selectionné")
 		return
-	var server = get_server_by_id(server_name.get_meta("id"))
+	var server = MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)
 	
 	reset_http_signal()
 	http.connect("request_completed", Callable(self, "_on_port_received"))
@@ -135,6 +128,7 @@ func _on_port_received(_result, response_code, _headers, body) -> void:
 	if response_code == 200:
 		var data = JSON.parse_string(body.get_string_from_utf8())
 		MULTIPLAYER.LISTEN_PORT = data["port"]
+		MULTIPLAYER.MAX_CHARACTER_COUNT = data["max_character_count"]
 		
 		authentication_successfull.emit()
 	elif response_code == 401:
@@ -150,10 +144,10 @@ func _on_port_received(_result, response_code, _headers, body) -> void:
 		print("Erreur inconnue :", response_code)
 
 func _on_register_button_pressed() -> void:
-	if not server_name.has_meta("id"):
+	if MULTIPLAYER.current_server == 0:
 		print("Aucun serveur selectionné")
 		return
-	var server = get_server_by_id(server_name.get_meta("id"))
+	var server = MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)
 	
 	reset_http_signal()
 	http.connect("request_completed", Callable(self, "_on_register_attempted"))
