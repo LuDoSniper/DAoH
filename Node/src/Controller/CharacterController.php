@@ -34,15 +34,17 @@ class CharacterController extends AbstractController
         }
 
         $data = json_decode($request->getContent(), true);
-        $name = $data['name'];
-
-        if (empty($name)) {
-            return new JsonResponse(['message' => 'Name cannot be empty'], Response::HTTP_BAD_REQUEST);
+        if (!isset($data['name']) || !isset($data['saved_data'])) {
+            return new JsonResponse(['message' => 'Name and saved_data cannot be empty'], Response::HTTP_BAD_REQUEST);
         }
+
+        $name = $data['name'];
+        $saved_data = $data['saved_data'];
 
         $character = new Character();
         $character->setUser($user);
         $character->setName($name);
+        $character->setSavedData($saved_data);
 
         $user->addCharacter($character);
 
