@@ -31,6 +31,13 @@ class AuthenticationController extends AbstractController
             return $this->json(['error' => 'Nom d\'utilisateur et mot de passe requis'], Response::HTTP_BAD_REQUEST);
         }
 
+        $users = $this->entityManager->getRepository(User::class)->findAll();
+        foreach ($users as $var_user) {
+            if ($var_user->getUsername() === $username) {
+                return new JsonResponse(['message' => 'Username already exists'], Response::HTTP_BAD_REQUEST);
+            }
+        }
+
         $user = new User();
         $user->setUsername($username);
 
