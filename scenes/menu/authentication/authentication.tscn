@@ -119,12 +119,19 @@ text = "Mot de passe :"
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Mot de passe"
+secret = true
 
 [node name="ConnectButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Se connecter"
 
+[node name="RegisterButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "S'inscrire"
+
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Panel/ConnectionMarginContainer/VBoxContainer/RegisterButton" to="." method="_on_register_button_pressed"]

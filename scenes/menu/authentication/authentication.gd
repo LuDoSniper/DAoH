@@ -149,11 +149,42 @@ func _on_port_received(_result, response_code, _headers, body) -> void:
 	else:
 		print("Erreur inconnue :", response_code)
 
+func _on_register_button_pressed() -> void:
+	if not server_name.has_meta("id"):
+		print("Aucun serveur selectionné")
+		return
+	var server = get_server_by_id(server_name.get_meta("id"))
+	
+	reset_http_signal()
+	http.connect("request_completed", Callable(self, "_on_register_attempted"))
+	
+	var url = "https://" + server["address"] + "/register"
+	
+	var err = http.request(
+		url,
+		["Content-Type: application/json"],
+		HTTPClient.METHOD_POST,
+		JSON.stringify({
+			"username": username_input.text,
+			"password": password_input.text
+		})
+	)
+	
+	if err != OK:
+		print("Erreur lors de l'envoi de la requête :", err)
+
+func _on_register_attempted(_result, response_code, _headers, _body) -> void:
+	if response_code == 201:
+		error_label.text = "Inscription réussie"
+	else:
+		print("Erreur inconnue :", response_code)
+
 func reset_http_signal():
 	for callback in [
 		Callable(self, "_on_server_received"),
 		Callable(self, "_on_connection_attempted"),
-		Callable(self, "_on_port_received")
+		Callable(self, "_on_port_received"),
+		Callable(self, "_on_register_attempted")
 	]:
 		if http.is_connected("request_completed", callback):
 			http.disconnect("request_completed", callback)
