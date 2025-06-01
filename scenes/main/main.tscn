@@ -1,8 +1,9 @@
-[gd_scene load_steps=87 format=3 uid="uid://cklxpfboxkd2c"]
+[gd_scene load_steps=88 format=3 uid="uid://cklxpfboxkd2c"]
 
 [ext_resource type="PackedScene" uid="uid://b03jyr0by50pr" path="res://objects/player/skin/knight/knight.tscn" id="1_6q06x"]
 [ext_resource type="Script" uid="uid://b6fjswd7w63m0" path="res://scenes/main/main.gd" id="1_a8run"]
 [ext_resource type="PackedScene" uid="uid://bg8odegocndgc" path="res://objects/player/skin/barbarian/barbarian.tscn" id="2_ow5a4"]
+[ext_resource type="Texture2D" uid="uid://ci70rvxgdqqu2" path="res://assets/hdri/sunflowers_puresky_4k.exr" id="2_s17dp"]
 [ext_resource type="PackedScene" uid="uid://c6sr0ggiv15rg" path="res://objects/player/skin/mage/mage.tscn" id="3_hujxm"]
 [ext_resource type="PackedScene" uid="uid://t7k0glgrp2t8" path="res://objects/player/skin/rogue/rogue.tscn" id="4_yyfjg"]
 [ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="7_raeie"]
@@ -24,15 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://b4agyflfkdbha" path="res://addons/menu/round_damaged_brown.png" id="22_37hlw"]
 [ext_resource type="Texture2D" uid="uid://eba0l2e0kns0" path="res://addons/menu/round_damaged_brown_dark.png" id="23_6llfj"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p8abn"]
-sky_top_color = Color(0.216094, 0.470615, 0.665468, 1)
-sky_horizon_color = Color(1.18233, 1.23835, 1.26658, 1)
-ground_bottom_color = Color(0.733397, 0.70293, 0.62102, 1)
-ground_horizon_color = Color(1.18233, 1.23835, 1.26658, 1)
-energy_multiplier = 0.5
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_37hlw"]
+panorama = ExtResource("2_s17dp")
 
 [sub_resource type="Sky" id="Sky_s17dp"]
-sky_material = SubResource("ProceduralSkyMaterial_p8abn")
+sky_material = SubResource("PanoramaSkyMaterial_37hlw")
 
 [sub_resource type="Environment" id="Environment_37hlw"]
 background_mode = 2
