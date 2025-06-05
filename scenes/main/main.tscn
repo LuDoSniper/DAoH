@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bg8odegocndgc" path="res://objects/player/skin/barbarian/barbarian.tscn" id="2_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://c6sr0ggiv15rg" path="res://objects/player/skin/mage/mage.tscn" id="3_hujxm"]
 [ext_resource type="PackedScene" uid="uid://t7k0glgrp2t8" path="res://objects/player/skin/rogue/rogue.tscn" id="4_yyfjg"]
-[ext_resource type="PackedScene" uid="uid://bh0s4fvw0womg" path="res://addons/map/map.glb" id="5_b1x3f"]
+[ext_resource type="PackedScene" uid="uid://d1wsknh043pmt" path="res://objects/map/map.tscn" id="6_p8abn"]
 [ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="7_raeie"]
 [ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="8_hxu8e"]
 [ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="9_nvumn"]
@@ -24,16 +24,16 @@
 [ext_resource type="Texture2D" uid="uid://b4agyflfkdbha" path="res://addons/menu/round_damaged_brown.png" id="22_37hlw"]
 [ext_resource type="Texture2D" uid="uid://eba0l2e0kns0" path="res://addons/menu/round_damaged_brown_dark.png" id="23_6llfj"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a8run"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s17dp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_1g6ns"]
-sky_material = SubResource("ProceduralSkyMaterial_a8run")
+[sub_resource type="Sky" id="Sky_37hlw"]
+sky_material = SubResource("ProceduralSkyMaterial_s17dp")
 
-[sub_resource type="Environment" id="Environment_ouso4"]
+[sub_resource type="Environment" id="Environment_6llfj"]
 background_mode = 2
-sky = SubResource("Sky_1g6ns")
+sky = SubResource("Sky_37hlw")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -253,7 +253,7 @@ script = ExtResource("1_a8run")
 [node name="3D" type="Node3D" parent="."]
 
 [node name="Skins" type="Node3D" parent="3D"]
-transform = Transform3D(-0.966112, -0.00116184, 0.258121, -0.00132158, 0.999999, -0.000445366, -0.25812, -0.000771388, -0.966112, -24.1604, -2.45303, -150.944)
+transform = Transform3D(-0.614285, 0, -0.789084, 0, 1, 0, 0.789084, 0, -0.614285, 2.3432, 2.25572, -9.86827)
 
 [node name="Knight" parent="3D/Skins" instance=ExtResource("1_6q06x")]
 transform = Transform3D(1, -4.36557e-11, -1.49012e-08, 1.16415e-10, 1, -5.82077e-11, -1.49012e-08, 0, 1, 0, 0, 0)
@@ -267,34 +267,32 @@ visible = false
 [node name="Rogue" parent="3D/Skins" instance=ExtResource("4_yyfjg")]
 visible = false
 
-[node name="Map" type="Node3D" parent="3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="3D/Map"]
-environment = SubResource("Environment_ouso4")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D/Map"]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
-
-[node name="map" parent="3D/Map" instance=ExtResource("5_b1x3f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-
 [node name="Cameras" type="Node3D" parent="3D"]
 
 [node name="Home" type="Camera3D" parent="3D/Cameras"]
-transform = Transform3D(0.773021, 0, 0.63438, 0, 1, 0, -0.63438, 0, 0.773021, 7.21551, 9.81881, -36.4697)
+transform = Transform3D(0.909686, 0, 0.415297, 0, 1, 0, -0.415297, 0, 0.909686, 2.57049, 8.00396, -49.4998)
 
 [node name="Classes" type="Camera3D" parent="3D/Cameras"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -23.8597, -0.741135, -154.409)
+transform = Transform3D(-4.33437e-08, 0.129436, -0.991588, 5.65783e-09, 0.991588, 0.129436, 1, 0, -4.37114e-08, -1.86951, 3.76984, -11.4125)
 visible = false
 
 [node name="Options" type="Camera3D" parent="3D/Cameras"]
-transform = Transform3D(0.999544, 0, 0.0302071, -0.0136352, 0.892326, 0.451186, -0.0269546, -0.451392, 0.891919, 12.1154, 11.901, -7.87143)
-visible = false
+transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, 60.673, 19.796, -56.879)
 
 [node name="Credits" type="Camera3D" parent="3D/Cameras"]
-transform = Transform3D(-0.73038, -0.25, 0.635646, -0.00623602, 0.933013, 0.359789, -0.683013, 0.258819, -0.683013, 39.3987, 11.7112, -83.4865)
+transform = Transform3D(-0.528568, -0.308501, 0.79085, -0.00623604, 0.933013, 0.359789, -0.848868, 0.185241, -0.495084, -37.7565, 3.02177, 19.34)
 visible = false
+
+[node name="Map" type="Node3D" parent="3D"]
+
+[node name="Map" parent="3D/Map" instance=ExtResource("6_p8abn")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="3D/Map"]
+environment = SubResource("Environment_6llfj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D/Map"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3

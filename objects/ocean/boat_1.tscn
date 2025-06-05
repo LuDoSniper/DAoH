@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdsm6xcwm3ubw"]
+
+[ext_resource type="PackedScene" uid="uid://b7hp706dy4abt" path="res://assets/models/ocean/gltf/pirate_ship.glb" id="1_ijjd0"]
+
+[node name="Boat1" type="Node3D"]
+
+[node name="pirate_ship" parent="." instance=ExtResource("1_ijjd0")]
