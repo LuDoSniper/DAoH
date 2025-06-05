@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dsdkk3ck5o2nj"]
+[gd_scene load_steps=43 format=3 uid="uid://dsdkk3ck5o2nj"]
 
 [ext_resource type="Script" uid="uid://bu0ajfske4uuh" path="res://scenes/world/world.gd" id="1_dphjl"]
 [ext_resource type="PackedScene" uid="uid://b2vjrseu1cmso" path="res://objects/player/player.tscn" id="2_sl2e5"]
@@ -13,19 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="9_71ii3"]
 [ext_resource type="Script" uid="uid://bam7cn7fox0sl" path="res://scripts/chat_ui.gd" id="12_dlabj"]
 [ext_resource type="PackedScene" uid="uid://cf0ugeybvhml7" path="res://objects/spawner/spawner.tscn" id="12_srmg5"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhad"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_dphjl"]
-sky_material = SubResource("ProceduralSkyMaterial_4rhad")
-
-[sub_resource type="Environment" id="Environment_sl2e5"]
-background_mode = 2
-sky = SubResource("Sky_dphjl")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="PackedScene" uid="uid://d1wsknh043pmt" path="res://objects/map/map.tscn" id="14_mxkvs"]
+[ext_resource type="Texture2D" uid="uid://ci70rvxgdqqu2" path="res://assets/hdri/sunflowers_puresky_4k.exr" id="15_m114p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bt7bg"]
 texture = ExtResource("3_5qq27")
@@ -117,16 +106,23 @@ size = Vector3(2, 2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_sl2e5"]
 size = Vector3(2, 2, 2)
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_71ii3"]
+panorama = ExtResource("15_m114p")
+
+[sub_resource type="Sky" id="Sky_37hlw"]
+sky_material = SubResource("PanoramaSkyMaterial_71ii3")
+
+[sub_resource type="Environment" id="Environment_bt7bg"]
+background_mode = 2
+sky = SubResource("Sky_37hlw")
+ambient_light_sky_contribution = 0.5
+reflected_light_source = 1
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_dphjl")
 player_scene = ExtResource("2_sl2e5")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_sl2e5")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -360,6 +356,7 @@ metadata/_edit_use_anchors_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67303, 0, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -178.18, -0.0145845, -158.601)
 navigation_mesh = SubResource("NavigationMesh_1fp7r")
 
 [node name="Floor" type="StaticBody3D" parent="Environment/NavigationRegion3D"]
@@ -395,19 +392,19 @@ shape = SubResource("BoxShape3D_sl2e5")
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="Npc" parent="Entities" instance=ExtResource("4_6m72w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 8.75823)
+transform = Transform3D(-0.964373, 0, -0.264546, 0, 1, 0, 0.264546, 0, -0.964373, 0, 2.35371, 8.75823)
 
 [node name="Enemy" parent="Entities" instance=ExtResource("3_1fp7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6715, 0.597841, -9.64738)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -172.619, 0.56148, -159.843)
 variant = 3
 
 [node name="Spawners" type="Node3D" parent="."]
 
 [node name="Spawner1" parent="Spawners" instance=ExtResource("12_srmg5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45309, 0.25, -5.99381)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45309, 4.22264, -5.99381)
 
 [node name="Spawner2" parent="Spawners" instance=ExtResource("12_srmg5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7488, 0.25, 8.04773)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7488, 2.81635, 8.04773)
 
 [node name="ChatUi" type="CanvasLayer" parent="."]
 script = ExtResource("12_dlabj")
@@ -474,6 +471,19 @@ layout_mode = 2
 
 [node name="MessageInput" type="LineEdit" parent="ChatUi/ChatPanel/VBoxContainer/ContainerInput"]
 layout_mode = 2
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Map" parent="Map" instance=ExtResource("14_mxkvs")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
+environment = SubResource("Environment_bt7bg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="Map"]
 
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/join" to="." method="_on_join_pressed"]
