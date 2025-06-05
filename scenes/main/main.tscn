@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cklxpfboxkd2c"]
+[gd_scene load_steps=88 format=3 uid="uid://cklxpfboxkd2c"]
 
 [ext_resource type="PackedScene" uid="uid://b03jyr0by50pr" path="res://objects/player/skin/knight/knight.tscn" id="1_6q06x"]
 [ext_resource type="Script" uid="uid://b6fjswd7w63m0" path="res://scenes/main/main.gd" id="1_a8run"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://t7k0glgrp2t8" path="res://objects/player/skin/rogue/rogue.tscn" id="4_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://d1wsknh043pmt" path="res://objects/map/map.tscn" id="6_p8abn"]
 [ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="7_raeie"]
+[ext_resource type="Texture2D" uid="uid://ci70rvxgdqqu2" path="res://assets/hdri/sunflowers_puresky_4k.exr" id="7_s17dp"]
 [ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="8_hxu8e"]
 [ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="9_nvumn"]
 [ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="10_ou6is"]
@@ -24,16 +25,17 @@
 [ext_resource type="Texture2D" uid="uid://b4agyflfkdbha" path="res://addons/menu/round_damaged_brown.png" id="22_37hlw"]
 [ext_resource type="Texture2D" uid="uid://eba0l2e0kns0" path="res://addons/menu/round_damaged_brown_dark.png" id="23_6llfj"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s17dp"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_37hlw"]
+panorama = ExtResource("7_s17dp")
 
 [sub_resource type="Sky" id="Sky_37hlw"]
-sky_material = SubResource("ProceduralSkyMaterial_s17dp")
+sky_material = SubResource("PanoramaSkyMaterial_37hlw")
 
 [sub_resource type="Environment" id="Environment_6llfj"]
 background_mode = 2
 sky = SubResource("Sky_37hlw")
+ambient_light_sky_contribution = 0.5
+reflected_light_source = 1
 tonemap_mode = 2
 glow_enabled = true
 
@@ -278,9 +280,10 @@ visible = false
 
 [node name="Options" type="Camera3D" parent="3D/Cameras"]
 transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, 60.673, 19.796, -56.879)
+visible = false
 
 [node name="Credits" type="Camera3D" parent="3D/Cameras"]
-transform = Transform3D(-0.528568, -0.308501, 0.79085, -0.00623604, 0.933013, 0.359789, -0.848868, 0.185241, -0.495084, -37.7565, 3.02177, 19.34)
+transform = Transform3D(0.605262, -0.282882, 0.744067, -0.00623604, 0.933013, 0.359789, -0.796002, -0.222407, 0.562953, 33.2771, 14.6456, 38.8446)
 visible = false
 
 [node name="Map" type="Node3D" parent="3D"]
