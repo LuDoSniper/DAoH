@@ -17,8 +17,6 @@ script = ExtResource("1_nxjfv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ha4nv")
 
-[node name="Skin" parent="." instance=ExtResource("2_15dke")]
-
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.43595, 0)
 layers = 64
@@ -35,3 +33,7 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_15dke")
+
+[node name="Skins" type="Node3D" parent="."]
+
+[node name="Rogue" parent="Skins" instance=ExtResource("2_15dke")]

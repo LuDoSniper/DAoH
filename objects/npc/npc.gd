@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var npc_name: String = "CACA"
 
 # Dialogue de test
-var dialogue_lines: Array[String] = [
+@export var dialogue_lines: Array[String] = [
 	"Salut, aventurier !",
 	"Bienvenue dans le monde de Godoria.",
 	"Bonne chance pour ta quête !"
