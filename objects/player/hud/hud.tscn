@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://8u41jd12rde2"]
+
+[ext_resource type="Script" uid="uid://kjpnnbk0ho64" path="res://objects/player/hud/hud.gd" id="1_3sr8u"]
+
+[sub_resource type="Gradient" id="Gradient_5ivor"]
+colors = PackedColorArray(0, 0.648447, 1.34766e-06, 1, 1.2514e-06, 0.793429, 4.62055e-06, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0cuoo"]
+gradient = SubResource("Gradient_5ivor")
+width = 250
+height = 20
+use_hdr = true
+
+[sub_resource type="Gradient" id="Gradient_abbbs"]
+colors = PackedColorArray(0.0375218, 0.275378, 1, 1, 0.295564, 0.464942, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rsrug"]
+gradient = SubResource("Gradient_abbbs")
+width = 250
+height = 10
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_3sr8u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 250.0
+offset_bottom = 115.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_0cuoo")
+
+[node name="XPBar" type="TextureProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture_under = SubResource("GradientTexture2D_rsrug")
+
+[node name="MoneyLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "0"

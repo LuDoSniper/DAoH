@@ -9,6 +9,13 @@ extends CharacterBody3D
 @export var max_lock_distance := 25.0
 @export var lock_angle_threshold := 0.5
 
+@export var max_health: int = 100
+@export var health: int = 100
+@export var gold: int = 0
+@export var level: int = 1
+@export var current_xp: int = 0
+@export var xp_to_next_level: int = 100
+
 # A utiliser lorsque les mouvements et les mouvements de la caméra doivent être bloqués
 @warning_ignore("unused_signal")
 signal pause
@@ -34,6 +41,10 @@ signal unpause
 @onready var arrow_spawn: Marker3D = $Skin/Rogue/Rig/Skeleton3D/Knife/Crossbow/Marker3D
 
 @onready var healzone = $HealZone
+
+@onready var hud: CanvasLayer = $Hud/Hud
+@onready var camera_compass: Camera3D = $Hud/SubViewport/CameraCompass
+
 
 var weapon_meshes: Dictionary = {}
 
@@ -90,7 +101,6 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	UTILS.print_local(self, "Je viens d'apparraitre sout le nom de " + str(name.to_int()))
-
 	# Initialize classes
 	var knight_class = ClassData.new("Knight")
 	knight_class.add_attack("base")
@@ -271,9 +281,11 @@ func move_logic(delta: float) -> void:
 			skin.set_move_state('Idle')
 			rpc("sync_animation_movement", name.to_int(), 'Idle')
 		
+		camera_compass.global_transform.origin.x = self.global_transform.origin.x
+		camera_compass.global_transform.origin.z = self.global_transform.origin.z
 		move_and_slide()
 		rpc("sync_movement", name.to_int(), global_position, skin.rotation.y)
-
+			
 @rpc("any_peer")
 func sync_movement(id: int, var_global_position: Vector3, skin_rotation: float) -> void:
 	if name.to_int() == id:
@@ -545,3 +557,43 @@ func _on_invincibility_timer_timeout() -> void:
 
 func _on_heal_zone_timer_timeout() -> void:
 	healing = false
+
+
+func take_damage(amount: int) -> void:
+	if invincibility_timer.is_stopped():
+		health = max(0, health - amount)
+		hud.update_health(max_health, health)
+		if health == 0:
+			_die()
+
+func heal(amount: int) -> void:
+	health = min(max_health, health + amount)
+	hud.update_health(max_health, health)
+
+func _die() -> void:
+	print("💀 Le joueur est mort")
+
+func add_gold(amount: int) -> void:
+	gold += amount
+	hud.update_money(gold)
+
+func remove_gold(amount: int) -> void:
+	gold = max(0, gold - amount)
+	hud.update_money(gold)
+
+func add_xp(amount: int) -> void:
+	current_xp += amount
+	while current_xp >= xp_to_next_level:
+		current_xp -= xp_to_next_level
+		level += 1
+		_on_level_up()
+
+func _on_level_up() -> void:
+	xp_to_next_level = int(xp_to_next_level * 1.25)
+	max_health += 10
+	health = max_health
+	hud.update_xp(xp_to_next_level,current_xp)
+
+func _on_enemy_killed():
+	add_xp(20)
+	add_gold(10)

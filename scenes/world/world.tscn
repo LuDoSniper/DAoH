@@ -414,17 +414,22 @@ wait_time = 5.0
 one_shot = true
 
 [node name="ChatPanel" type="Panel" parent="ChatUi"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -185.0
 offset_right = 400.0
-offset_bottom = 150.0
+grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ChatUi/ChatPanel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 400.0
+offset_bottom = 185.0
 
 [node name="Container" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer"]
 custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="ContainerTitle" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer/Container"]
 layout_mode = 2
@@ -468,6 +473,7 @@ text = "test"
 
 [node name="ContainerInput" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="MessageInput" type="LineEdit" parent="ChatUi/ChatPanel/VBoxContainer/ContainerInput"]
 layout_mode = 2
