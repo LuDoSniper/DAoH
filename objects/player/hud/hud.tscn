@@ -1,43 +1,72 @@
-[gd_scene load_steps=6 format=3 uid="uid://8u41jd12rde2"]
+[gd_scene load_steps=10 format=3 uid="uid://8u41jd12rde2"]
 
 [ext_resource type="Script" uid="uid://kjpnnbk0ho64" path="res://objects/player/hud/hud.gd" id="1_3sr8u"]
-
-[sub_resource type="Gradient" id="Gradient_5ivor"]
-colors = PackedColorArray(0, 0.648447, 1.34766e-06, 1, 1.2514e-06, 0.793429, 4.62055e-06, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0cuoo"]
-gradient = SubResource("Gradient_5ivor")
-width = 250
-height = 20
-use_hdr = true
-
-[sub_resource type="Gradient" id="Gradient_abbbs"]
-colors = PackedColorArray(0.0375218, 0.275378, 1, 1, 0.295564, 0.464942, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rsrug"]
-gradient = SubResource("Gradient_abbbs")
-width = 250
-height = 10
+[ext_resource type="Texture2D" uid="uid://qgqe51oa3k3h" path="res://assets/hud/under_hp.png" id="2_vqwai"]
+[ext_resource type="Texture2D" uid="uid://dmrmngnengy3b" path="res://assets/hud/over_hp.png" id="3_lcolw"]
+[ext_resource type="Texture2D" uid="uid://dqjgvrlv8vjht" path="res://assets/hud/progress_hp.png" id="4_aik3s"]
+[ext_resource type="Texture2D" uid="uid://qxugufgrf5go" path="res://assets/hud/under_xp.png" id="5_hi5tm"]
+[ext_resource type="Texture2D" uid="uid://dv741n26gfy24" path="res://assets/hud/over_xp.png" id="6_rmaf7"]
+[ext_resource type="Texture2D" uid="uid://bgn7bneffnyq3" path="res://assets/hud/progress_xp.png" id="7_boxpq"]
+[ext_resource type="Texture2D" uid="uid://dtmw5pxrip7l8" path="res://assets/hud/coin.png" id="8_lcolw"]
+[ext_resource type="Texture2D" uid="uid://br38blnherpor" path="res://assets/hud/icon.png" id="9_aik3s"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_3sr8u")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 250.0
-offset_bottom = 115.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
 
-[node name="HealthBar" type="TextureProgressBar" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 value = 100.0
-texture_progress = SubResource("GradientTexture2D_0cuoo")
+texture_under = ExtResource("2_vqwai")
+texture_over = ExtResource("3_lcolw")
+texture_progress = ExtResource("4_aik3s")
 
-[node name="XPBar" type="TextureProgressBar" parent="VBoxContainer"]
+[node name="XPBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-texture_under = SubResource("GradientTexture2D_rsrug")
+size_flags_horizontal = 0
+texture_under = ExtResource("5_hi5tm")
+texture_over = ExtResource("6_rmaf7")
+texture_progress = ExtResource("7_boxpq")
 
-[node name="MoneyLabel" type="Label" parent="VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 1
-text = "0"
+size_flags_horizontal = 0
+texture = ExtResource("8_lcolw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -13.0
+offset_right = 46.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("9_aik3s")
+expand_mode = 1
+
+[node name="Gold" type="Label" parent="MarginContainer/VBoxContainer/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "43"

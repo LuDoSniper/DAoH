@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b2vjrseu1cmso"]
+[gd_scene load_steps=50 format=3 uid="uid://b2vjrseu1cmso"]
 
 [ext_resource type="Script" uid="uid://cbp4jm85jed4y" path="res://objects/player/player.gd" id="1_cqmt1"]
 [ext_resource type="PackedScene" uid="uid://djb4h3inwodxm" path="res://objects/projectiles/fireball/fireball.tscn" id="2_dthqj"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ck60jc8fi1irl" path="res://addons/menu/scrollbar_brown_small.png" id="16_u8bnf"]
 [ext_resource type="PackedScene" uid="uid://bq8537ipdg2dt" path="res://objects/zones/heal_zone/heal_zone.tscn" id="18_xlkbi"]
 [ext_resource type="PackedScene" uid="uid://8u41jd12rde2" path="res://objects/player/hud/hud.tscn" id="20_28utn"]
+[ext_resource type="Texture2D" uid="uid://bx40q7hikw3b8" path="res://assets/hud/minimap_ring_brown_detail.png" id="21_yyeqs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5lq1w"]
 
@@ -665,22 +666,31 @@ one_shot = true
 
 [node name="Hud" type="Node" parent="."]
 
+[node name="SubViewport" type="SubViewport" parent="Hud"]
+size = Vector2i(192, 192)
+
+[node name="CameraCompass" type="Camera3D" parent="Hud/SubViewport"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 28.5659, 0)
+
 [node name="Hud" parent="Hud" instance=ExtResource("20_28utn")]
 
-[node name="Compass" type="TextureRect" parent="Hud"]
+[node name="MarginCompass" type="MarginContainer" parent="Hud"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -256.0
-offset_bottom = 256.0
+offset_left = -144.0
+offset_bottom = 144.0
 grow_horizontal = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+
+[node name="Compass" type="TextureRect" parent="Hud/MarginCompass"]
+layout_mode = 2
 texture = SubResource("ViewportTexture_28utn")
 
-[node name="SubViewport" type="SubViewport" parent="Hud"]
-size = Vector2i(256, 256)
-
-[node name="CameraCompass" type="Camera3D" parent="Hud/SubViewport"]
-transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 11.8172, 0)
+[node name="CompassBackground" type="TextureRect" parent="Hud/MarginCompass"]
+layout_mode = 2
+texture = ExtResource("21_yyeqs")
 
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Reprendre" to="." method="_on_reprendre_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Options" to="." method="_on_options_pressed"]

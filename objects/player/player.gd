@@ -161,6 +161,10 @@ func _ready() -> void:
 	var world_node = root.get_node("World")
 	var terrain = world_node.find_child("Terrain3D", true, false)
 	terrain.set_camera(camera)
+	
+	hud.update_health(max_health, health)
+	hud.update_xp(xp_to_next_level, current_xp)
+	hud.update_money(gold)
 
 func _assign_camera():
 		await get_tree().process_frame
