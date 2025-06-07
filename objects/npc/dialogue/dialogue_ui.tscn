@@ -7,12 +7,14 @@ script = ExtResource("1_b8u5h")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 visible = false
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -99.0
-offset_right = 500.0
-offset_bottom = 1.0
+offset_left = -383.0
+offset_top = -100.0
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="LabelName" type="Label" parent="PanelContainer"]
@@ -22,7 +24,7 @@ size_flags_vertical = 0
 text = "Test"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
-custom_minimum_size = Vector2(475, 75)
+custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8

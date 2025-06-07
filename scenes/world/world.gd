@@ -33,7 +33,7 @@ func _request_add_player(peer_id: int, selected_skin: String) -> void:
 		player.global_position = get_first_spawner_pos_available(player)
 		player.initialize_class(selected_skin)
 		player.initialize_inventory()
-		
+
 		# Update list of players for the entities who depends on it
 		#if multiplayer.is_server():
 			#players.append(player)

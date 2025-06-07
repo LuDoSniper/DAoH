@@ -1,10 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://b2vjrseu1cmso"]
+[gd_scene load_steps=50 format=3 uid="uid://b2vjrseu1cmso"]
 
 [ext_resource type="Script" uid="uid://cbp4jm85jed4y" path="res://objects/player/player.gd" id="1_cqmt1"]
 [ext_resource type="PackedScene" uid="uid://djb4h3inwodxm" path="res://objects/projectiles/fireball/fireball.tscn" id="2_dthqj"]
-[ext_resource type="PackedScene" uid="uid://e5qkoxyv6art" path="res://objects/player/camera/camera_controller.tscn" id="2_g7ett"]
 [ext_resource type="PackedScene" uid="uid://deqg624ilqcv2" path="res://objects/projectiles/arrow/arrow.tscn" id="3_l55sg"]
 [ext_resource type="PackedScene" uid="uid://dwai72sk4pm4a" path="res://objects/player/skin/skin.tscn" id="3_ssrue"]
+[ext_resource type="Script" uid="uid://difcsu1wuu1lq" path="res://objects/player/camera/camera_controller.gd" id="4_28utn"]
 [ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="4_xgwla"]
 [ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="5_bi5m7"]
 [ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="6_psowp"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://dl5hjo8svhhg8" path="res://addons/menu/checkbox_brown_empty.png" id="15_yyeqs"]
 [ext_resource type="Texture2D" uid="uid://ck60jc8fi1irl" path="res://addons/menu/scrollbar_brown_small.png" id="16_u8bnf"]
 [ext_resource type="PackedScene" uid="uid://bq8537ipdg2dt" path="res://objects/zones/heal_zone/heal_zone.tscn" id="18_xlkbi"]
+[ext_resource type="PackedScene" uid="uid://8u41jd12rde2" path="res://objects/player/hud/hud.tscn" id="20_28utn"]
+[ext_resource type="Texture2D" uid="uid://bx40q7hikw3b8" path="res://assets/hud/minimap_ring_brown_detail.png" id="21_yyeqs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5lq1w"]
 
@@ -115,6 +117,9 @@ modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ur8bd"]
 texture = ExtResource("8_c34wb")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_28utn"]
+viewport_path = NodePath("Hud/SubViewport")
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 2
 collision_mask = 11
@@ -126,9 +131,12 @@ arrow_scene = ExtResource("3_l55sg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_5lq1w")
 
-[node name="CameraController" parent="." instance=ExtResource("2_g7ett")]
+[node name="CameraController" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 spring_length = 6.0
+script = ExtResource("4_28utn")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
 
 [node name="Skin" parent="." instance=ExtResource("3_ssrue")]
 skin = 0
@@ -655,6 +663,34 @@ one_shot = true
 [node name="HealZoneTimer" type="Timer" parent="Timers"]
 wait_time = 15.0
 one_shot = true
+
+[node name="Hud" type="Node" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Hud"]
+size = Vector2i(192, 192)
+
+[node name="CameraCompass" type="Camera3D" parent="Hud/SubViewport"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 28.5659, 0)
+
+[node name="Hud" parent="Hud" instance=ExtResource("20_28utn")]
+
+[node name="MarginCompass" type="MarginContainer" parent="Hud"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_bottom = 144.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+
+[node name="Compass" type="TextureRect" parent="Hud/MarginCompass"]
+layout_mode = 2
+texture = SubResource("ViewportTexture_28utn")
+
+[node name="CompassBackground" type="TextureRect" parent="Hud/MarginCompass"]
+layout_mode = 2
+texture = ExtResource("21_yyeqs")
 
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Reprendre" to="." method="_on_reprendre_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Options" to="." method="_on_options_pressed"]
