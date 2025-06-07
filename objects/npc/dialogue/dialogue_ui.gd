@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 @onready var panel = $PanelContainer
-@onready var label_name: Label = $PanelContainer/LabelName
-@onready var rich_text_label: RichTextLabel = $PanelContainer/RichTextLabel
+@onready var label_name: Label = $PanelContainer/VBoxContainer/LabelName
+@onready var rich_text_label: RichTextLabel = $PanelContainer/VBoxContainer/RichTextLabel
 
 var lines: Array[String] = []
 var current_index := 0
