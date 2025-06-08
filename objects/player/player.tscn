@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b2vjrseu1cmso"]
+[gd_scene load_steps=53 format=3 uid="uid://b2vjrseu1cmso"]
 
 [ext_resource type="Script" uid="uid://cbp4jm85jed4y" path="res://objects/player/player.gd" id="1_cqmt1"]
 [ext_resource type="PackedScene" uid="uid://djb4h3inwodxm" path="res://objects/projectiles/fireball/fireball.tscn" id="2_dthqj"]
@@ -20,7 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://ck60jc8fi1irl" path="res://addons/menu/scrollbar_brown_small.png" id="16_u8bnf"]
 [ext_resource type="PackedScene" uid="uid://bq8537ipdg2dt" path="res://objects/zones/heal_zone/heal_zone.tscn" id="18_xlkbi"]
 [ext_resource type="PackedScene" uid="uid://8u41jd12rde2" path="res://objects/player/hud/hud.tscn" id="20_28utn"]
+[ext_resource type="Shader" uid="uid://cn6hgldmcywns" path="res://objects/player/mask.gdshader" id="21_u8bnf"]
 [ext_resource type="Texture2D" uid="uid://bx40q7hikw3b8" path="res://assets/hud/minimap_ring_brown_detail.png" id="21_yyeqs"]
+[ext_resource type="Texture2D" uid="uid://ck0arvnl361xp" path="res://assets/hud/mask_compass.png" id="22_lc6id"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5lq1w"]
 
@@ -116,6 +118,10 @@ modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ur8bd"]
 texture = ExtResource("8_c34wb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lc6id"]
+shader = ExtResource("21_u8bnf")
+shader_parameter/mask = ExtResource("22_lc6id")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_28utn"]
 viewport_path = NodePath("Hud/SubViewport")
@@ -685,6 +691,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 
 [node name="Compass" type="TextureRect" parent="Hud/MarginCompass"]
+material = SubResource("ShaderMaterial_lc6id")
 layout_mode = 2
 texture = SubResource("ViewportTexture_28utn")
 
