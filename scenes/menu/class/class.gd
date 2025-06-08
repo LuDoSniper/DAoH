@@ -12,11 +12,15 @@ extends Control
 @onready var voleur_button: Button = $HBoxContainer/VBoxContainer/Voleur
 @onready var mage_button: Button = $HBoxContainer/VBoxContainer/Mage
 
+@onready var players_picker_margin: MarginContainer = $PlayersPickerMargin
+@onready var class_desc: Panel = $Panel
+@onready var class_picker: HBoxContainer = $HBoxContainer
+
 ###> Gestion des personnages ###
-@onready var http: HTTPRequest = $CharacterSelectionPanelContainer/HTTPRequest
-@onready var new_character_panel_container: PanelContainer = $CharacterSelectionPanelContainer/NewCharacterPanelContainer
-@onready var character_container: HBoxContainer = $CharacterSelectionPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/HBoxContainer
-@onready var character_name_input: LineEdit = $CharacterSelectionPanelContainer/NewCharacterPanelContainer/VBoxContainer/CharacterNameInput
+@onready var http: HTTPRequest = $HTTPRequest
+@onready var new_character_panel_container: TextureRect = $NewPlayer
+@onready var character_container: HBoxContainer = $PlayersPickerMargin/VBoxContainer/HBoxContainer/PlayerPickers
+@onready var character_name_input: LineEdit = $NewPlayer/MarginContainer/VBoxContainer/CharacterNameInput
 
 var _relogin_callback: Callable = Callable()
 ###< Gestion des personnages ###
@@ -42,6 +46,7 @@ func _ready() -> void:
 	_on_knight_pressed()
 	
 	###> Gestion des personnages ###
+	players_picker_margin.show()
 	new_character_panel_container.hide()
 	###< Gestion des personnages ###
 
@@ -137,7 +142,7 @@ func get_characters() -> void:
 
 func _on_characters_receive(_result, response_code, _headers, body) -> void:
 	if response_code == 200:
-		# Supprimer les bouttons de test
+		# Supprimer les boutons de test
 		for child in character_container.get_children():
 			if not child.is_in_group("create_button"):
 				child.queue_free()
@@ -145,18 +150,23 @@ func _on_characters_receive(_result, response_code, _headers, body) -> void:
 		var data = JSON.parse_string(body.get_string_from_utf8())
 		for character in data:
 			var button = Button.new()
-			character_container.add_child(button)
 			button.text = character["name"]
-			# Là je ne sais pas comment mais faut ajouter l'image de la classe
-			button.text += "\n(mettre une image)"
+			
+			# Configuration du remplissage horizontal et vertical
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			button.size_flags_vertical = Control.SIZE_EXPAND_FILL
+			
+			character_container.add_child(button)
 	elif response_code == 401:
-		# JWT expired, get new token
+		# JWT expiré, récupération d'un nouveau token
 		_relogin_callback = Callable(self, "get_characters")
 		relogin()
 	else:
 		print("Erreur inconnue: ", response_code)
 
+
 func _on_create_pressed() -> void:
+	players_picker_margin.hide()
 	new_character_panel_container.show()
 
 func _on_create_character_pressed() -> void:
@@ -185,6 +195,7 @@ func _on_create_character_receive(_result, response_code, _headers, _body) -> vo
 	if response_code == 201:
 		get_characters()
 		character_name_input.text = ""
+		players_picker_margin.show()
 		new_character_panel_container.hide()
 	elif response_code == 401:
 		# JWT expired, get new token
@@ -234,3 +245,13 @@ func reset_http_signal():
 		if http.is_connected("request_completed", callback):
 			http.disconnect("request_completed", callback)
 ###< Gestion des personnages ###
+
+func _on_close_pressed():
+	players_picker_margin.visible = true
+	new_character_panel_container.visible = false
+
+
+func _on_choisir_pressed() -> void:
+	class_desc.visible = true
+	class_picker.visible = true
+	players_picker_margin.visible = false
