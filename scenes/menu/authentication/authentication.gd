@@ -261,11 +261,11 @@ func _update_button_styles() -> void:
 		login_type_button.add_theme_stylebox_override("hover", selected_stylebox)
 		register_type_button.add_theme_stylebox_override("hover", default_stylebox)
 	else:
-		login_type_button.add_theme_stylebox_override("normal", selected_stylebox)
-		register_type_button.add_theme_stylebox_override("normal", default_stylebox)
+		login_type_button.add_theme_stylebox_override("normal", default_stylebox)
+		register_type_button.add_theme_stylebox_override("normal", selected_stylebox)
 		
-		login_type_button.add_theme_stylebox_override("hover", selected_stylebox)
-		register_type_button.add_theme_stylebox_override("hover", default_stylebox)
+		login_type_button.add_theme_stylebox_override("hover", default_stylebox)
+		register_type_button.add_theme_stylebox_override("hover", selected_stylebox)
 
 
 func _on_continuer_pressed() -> void:
