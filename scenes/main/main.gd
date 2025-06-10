@@ -60,9 +60,10 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_back_pressed() -> void:
-	hide_menu()
-	home_menu.show()
-	home_camera.current = true
+	#hide_menu()
+	#home_menu.show()
+	#home_camera.current = true
+	classes.create_back_pressed()
 
 func _on_class_selected(classes_name) -> void:
 	knight.hide()
@@ -84,3 +85,8 @@ func _on_authentication_successfull() -> void:
 	classes.show()
 	classes_camera.current = true
 	classes.get_characters()
+
+func _on_back_to_main_pressed() -> void:
+	hide_menu()
+	home_menu.show()
+	home_camera.current = true

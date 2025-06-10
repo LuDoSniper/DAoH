@@ -1554,7 +1554,7 @@ layout_mode = 1
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer/Mage" to="GUI/Classes" method="_on_mage_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer/Voleur" to="GUI/Classes" method="_on_rogue_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer/CreateButton/Create" to="GUI/Classes" method="_on_create_pressed"]
-[connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Retour" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Retour" to="." method="_on_back_to_main_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Choisir" to="GUI/Classes" method="_on_choisir_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Supprimer" to="GUI/Classes" method="show_popup"]
 [connection signal="pressed" from="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer/Next" to="GUI/Classes" method="_on_next_pressed"]

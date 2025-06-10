@@ -364,3 +364,8 @@ func _on_next_pressed() -> void:
 	class_picker.show()
 	new_character_panel_container.hide()
 	players_picker_margin.hide()
+
+func create_back_pressed() -> void:
+	class_desc.hide()
+	class_picker.hide()
+	players_picker_margin.show()
