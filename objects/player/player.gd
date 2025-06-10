@@ -159,9 +159,11 @@ func _ready() -> void:
 	#if not multiplayer.is_server():
 		#rpc_id(1, "_request_initialize_class", name.to_int())
 	
+	username_label.show()
 	add_to_group("players")
 	if is_multiplayer_authority():
 		camera.current = true
+		username_label.hide()
 	
 	hud.update_health(max_health, health)
 	hud.update_xp(xp_to_next_level, current_xp)

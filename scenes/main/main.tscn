@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://cklxpfboxkd2c"]
+[gd_scene load_steps=105 format=3 uid="uid://cklxpfboxkd2c"]
 
 [ext_resource type="PackedScene" uid="uid://b03jyr0by50pr" path="res://objects/player/skin/knight/knight.tscn" id="1_6q06x"]
 [ext_resource type="Script" uid="uid://b6fjswd7w63m0" path="res://scenes/main/main.gd" id="1_a8run"]
