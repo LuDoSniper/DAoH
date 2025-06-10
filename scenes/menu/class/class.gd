@@ -48,6 +48,7 @@ func _ready() -> void:
 	_on_knight_pressed()
 	
 	confirmation_popup.hide()
+	class_desc.hide()
 	
 	###> Gestion des personnages ###
 	players_picker_margin.show()
@@ -111,6 +112,7 @@ func _on_join_pressed() -> void:
 	var world = world_scene.instantiate()
 	world.set_meta("server", false)
 	world.set_meta("selected_skin", selected_skin)
+	world.set_meta("username", MULTIPLAYER.get_character_by_id(MULTIPLAYER.current_character)["name"])
 	
 	get_tree().root.add_child(world)
 	get_tree().set_current_scene(world)
@@ -211,6 +213,8 @@ func _on_create_character_receive(_result, response_code, _headers, _body) -> vo
 		character_name_input.text = ""
 		players_picker_margin.show()
 		new_character_panel_container.hide()
+		class_desc.hide()
+		class_picker.hide()
 	elif response_code == 401:
 		# JWT expired, get new token
 		_relogin_callback = Callable(self, "get_characters")
@@ -289,6 +293,7 @@ func _on_character_pressed(id: int) -> void:
 	for character in character_container.get_children():
 		if character.has_meta("id") and character.get_meta("id") == id:
 			character.grab_focus()
+			selected_skin = MULTIPLAYER.get_character_by_id(MULTIPLAYER.current_character)["saved_data"]["class"]
 
 func relogin() -> void:
 	reset_http_signal()
@@ -335,13 +340,14 @@ func reset_http_signal():
 ###< Gestion des personnages ###
 
 func _on_close_pressed():
-	players_picker_margin.visible = true
-	new_character_panel_container.visible = false
+	players_picker_margin.show()
+	new_character_panel_container.hide()
 
 func _on_choisir_pressed() -> void:
-	class_desc.visible = true
-	class_picker.visible = true
-	players_picker_margin.visible = false
+	#class_desc.show()
+	#class_picker.show()
+	#players_picker_margin.hide()
+	_on_join_pressed()
 
 func show_popup() -> void:
 	confirmation_popup.show()
@@ -352,3 +358,9 @@ func _on_confirm_pressed() -> void:
 
 func _on_cancel_pressed() -> void:
 	confirmation_popup.hide()
+
+func _on_next_pressed() -> void:
+	class_desc.show()
+	class_picker.show()
+	new_character_panel_container.hide()
+	players_picker_margin.hide()

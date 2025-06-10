@@ -20,7 +20,7 @@ func _ready():
 # >>> ADD PLAYER
 # request et remote sont quasiment identiques mais restent dans deux fonctions séparées pour la lisibilité du code
 @rpc("any_peer")
-func _request_add_player(peer_id: int, selected_skin: String) -> void:
+func _request_add_player(peer_id: int, selected_skin: String, username: String) -> void:
 	if multiplayer.is_server():
 		UTILS.print_local(self, "Request \"add_player\" recieved")
 		var player = player_scene.instantiate()
@@ -32,6 +32,7 @@ func _request_add_player(peer_id: int, selected_skin: String) -> void:
 		
 		player.global_position = get_first_spawner_pos_available(player)
 		player.initialize_class(selected_skin)
+		player.set_username(username)
 		player.initialize_inventory()
 		
 		# Update list of players for the entities who depends on it
@@ -43,12 +44,12 @@ func _request_add_player(peer_id: int, selected_skin: String) -> void:
 		
 		for var_player in get_players():
 			if var_player.name.to_int() == peer_id:
-				rpc("_remote_add_player", var_player.name.to_int(), var_player.selected_class.name, var_player.global_position)
+				rpc("_remote_add_player", var_player.name.to_int(), var_player.selected_class.name, var_player.global_position, var_player.username)
 			else:
-				rpc_id(peer_id, "_remote_add_player", var_player.name.to_int(), var_player.selected_class.name, var_player.global_position)
+				rpc_id(peer_id, "_remote_add_player", var_player.name.to_int(), var_player.selected_class.name, var_player.global_position, var_player.username)
 
 @rpc("any_peer")
-func _remote_add_player(id: int, selected_skin: String, pos: Vector3) -> void:
+func _remote_add_player(id: int, selected_skin: String, pos: Vector3, username: String) -> void:
 	if not multiplayer.is_server():
 		UTILS.print_local(self, "Remote \"add_player\" recieved")
 		var player = player_scene.instantiate()
@@ -59,6 +60,7 @@ func _remote_add_player(id: int, selected_skin: String, pos: Vector3) -> void:
 		
 		player.global_position = pos
 		player.initialize_class(selected_skin)
+		player.set_username(username)
 		player.initialize_inventory()
 # <<< ADD PLAYER
 
@@ -74,7 +76,7 @@ func init(peer_id: int) -> void:
 func _remote_init_player(id: int) -> void:
 	if not multiplayer.is_server():
 		UTILS.print_local(self, "Sending \"add_player\" request")
-		rpc("_request_add_player", id, get_meta("selected_skin"))
+		rpc("_request_add_player", id, get_meta("selected_skin"), get_meta("username"))
 
 func get_enemies() -> Array:
 	var enemies = []

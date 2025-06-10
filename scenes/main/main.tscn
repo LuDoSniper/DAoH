@@ -1004,7 +1004,6 @@ script = ExtResource("21_s17dp")
 [node name="HTTPRequest" type="HTTPRequest" parent="GUI/Classes"]
 
 [node name="Panel" type="Panel" parent="GUI/Classes"]
-visible = false
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -1105,7 +1104,7 @@ layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 
-[node name="join" type="Button" parent="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2"]
+[node name="Create" type="Button" parent="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2"]
 clip_contents = true
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
@@ -1117,7 +1116,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_yphbi")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1h1n5")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_88xk7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
-text = "Rejoindre"
+text = "Créer"
 
 [node name="retour" type="Button" parent="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2"]
 clip_contents = true
@@ -1319,7 +1318,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
 text = "Supprimer"
 
 [node name="NewPlayer" type="TextureRect" parent="GUI/Classes"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1394,7 +1392,7 @@ theme_override_styles/read_only = SubResource("StyleBoxFlat_i7in8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bhws")
 placeholder_text = "Nom du personnage"
 
-[node name="Create" type="Button" parent="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer"]
+[node name="Next" type="Button" parent="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
@@ -1407,7 +1405,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
 theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
 theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
-text = "Créer"
+text = "Suivant"
 
 [node name="Close" type="Button" parent="GUI/Classes/NewPlayer"]
 custom_minimum_size = Vector2(48, 24)
@@ -1549,7 +1547,7 @@ layout_mode = 1
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Music" to="GUI/Settings" method="_on_music_value_changed"]
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Sound" to="GUI/Settings" method="_on_sound_fx_value_changed"]
 [connection signal="pressed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3/quitter" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/join" to="GUI/Classes" method="_on_join_pressed"]
+[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/Create" to="GUI/Classes" method="_on_create_character_pressed"]
 [connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/retour" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/Chevalier" to="GUI/Classes" method="_on_knight_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/VBoxContainer/Barbare" to="GUI/Classes" method="_on_barbarian_pressed"]
@@ -1559,7 +1557,7 @@ layout_mode = 1
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Retour" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Choisir" to="GUI/Classes" method="_on_choisir_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Supprimer" to="GUI/Classes" method="show_popup"]
-[connection signal="pressed" from="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer/Create" to="GUI/Classes" method="_on_create_character_pressed"]
+[connection signal="pressed" from="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer/Next" to="GUI/Classes" method="_on_next_pressed"]
 [connection signal="pressed" from="GUI/Classes/NewPlayer/Close" to="GUI/Classes" method="_on_close_pressed"]
 [connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="GUI/Classes" method="_on_cancel_pressed"]
 [connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="GUI/Classes" method="_on_confirm_pressed"]

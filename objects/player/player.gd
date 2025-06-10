@@ -35,12 +35,19 @@ signal unpause
 
 @onready var healzone = $HealZone
 
+@onready var username_label: Label3D = $UsernameLabel
+
 var weapon_meshes: Dictionary = {}
 
 # Setup in ready
 var classes: Array[ClassData]
 var selected_class: ClassData
 var inventory: InventoryData = InventoryData.new()
+var username: String:
+	set(value):
+		username_label.text = value
+		
+		username = value
 
 var state = "video"
 var panel_selected = preload("res://addons/menu/panel_brown_arrows_dark_detail.png")
@@ -500,3 +507,6 @@ func _on_invincibility_timer_timeout() -> void:
 
 func _on_heal_zone_timer_timeout() -> void:
 	healing = false
+
+func set_username(var_username: String) -> void:
+	username = var_username
