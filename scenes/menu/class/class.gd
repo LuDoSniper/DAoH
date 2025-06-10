@@ -156,7 +156,8 @@ func _on_characters_receive(_result, response_code, _headers, body) -> void:
 				child.queue_free()
 		
 		var data = JSON.parse_string(body.get_string_from_utf8())
-		for character in data:
+		MULTIPLAYER.owner_id = data["owner_id"]
+		for character in data["characters"]:
 			var button = Button.new()
 			button.text = character["name"]
 			
@@ -333,7 +334,7 @@ func reset_http_signal():
 		Callable(self, "_on_characters_receive"),
 		Callable(self, "_on_relogin_receive"),
 		Callable(self, "_on_create_character_receive"),
-		#Callable(self, "_on_edit_received"),
+		Callable(self, "_on_join_request_reponse"),
 		Callable(self, "_on_remove_received"),
 	]:
 		if http.is_connected("request_completed", callback):

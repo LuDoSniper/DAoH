@@ -1534,6 +1534,99 @@ vertical_alignment = 1
 visible = false
 layout_mode = 1
 
+[node name="JoinAttemptFail" type="Control" parent="GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationPopupContainer" type="PanelContainer" parent="GUI/JoinAttemptFail"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -333.0
+offset_top = -94.5
+offset_right = 333.0
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0bhws")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/JoinAttemptFail/ConfirmationPopupContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/JoinAttemptFail/ConfirmationPopupContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Message" type="Label" parent="GUI/JoinAttemptFail/ConfirmationPopupContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+text = "Echec de la connexion.
+Peut être causée par une double connexion"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/JoinAttemptFail/ConfirmationPopupContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OK" type="Button" parent="GUI/JoinAttemptFail/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "OK"
+
+[node name="TitleContainer" type="PanelContainer" parent="GUI/JoinAttemptFail"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -159.86
+offset_right = 150.0
+offset_bottom = -84.86
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i7in8")
+
+[node name="Title" type="Label" parent="GUI/JoinAttemptFail/TitleContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 20
+text = "Echec de la connexion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="GUI/HomeMenu/Panel/MenuBG/VBoxContainer/VBoxContainer/jouer" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="GUI/HomeMenu/Panel/MenuBG/VBoxContainer/VBoxContainer2/options" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="GUI/HomeMenu/Panel/MenuBG/VBoxContainer/VBoxContainer2/credits" to="." method="_on_credits_pressed"]
@@ -1562,3 +1655,4 @@ layout_mode = 1
 [connection signal="pressed" from="GUI/Classes/NewPlayer/Close" to="GUI/Classes" method="_on_close_pressed"]
 [connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="GUI/Classes" method="_on_cancel_pressed"]
 [connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="GUI/Classes" method="_on_confirm_pressed"]
+[connection signal="pressed" from="GUI/JoinAttemptFail/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_ok_pressed"]

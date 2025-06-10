@@ -5,6 +5,7 @@ extends Node3D
 @onready var settings: Control = $GUI/Settings
 @onready var classes: Control = $GUI/Classes
 @onready var authentication: Control = $GUI/Authentication
+@onready var join_attempt_fail: Control = $GUI/JoinAttemptFail
 
 @onready var home_camera: Camera3D = $"3D/Cameras/Home"
 @onready var classes_camera: Camera3D = $"3D/Cameras/Classes"
@@ -19,6 +20,11 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if MULTIPLAYER.last_connection == "failure":
+		join_attempt_fail.show()
+	else:
+		join_attempt_fail.hide()
+	
 	authentication.authentication_successfull.connect(_on_authentication_successfull)
 	class_selector.connect("class_selected", Callable(self, "_on_class_selected"))
 	hide_menu()
@@ -95,3 +101,6 @@ func authentication_back_pressed() -> void:
 	authentication.hide()
 	home_menu.show()
 	home_camera.current = true
+
+func _on_ok_pressed() -> void:
+	join_attempt_fail.hide()
