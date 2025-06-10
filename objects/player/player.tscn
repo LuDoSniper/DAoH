@@ -149,6 +149,10 @@ skin = 0
 
 [node name="HealZone" parent="." instance=ExtResource("18_xlkbi")]
 
+[node name="UsernameLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+text = "FIXME"
+
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 visible = false
 

@@ -44,6 +44,7 @@ signal unpause
 
 @onready var hud: CanvasLayer = $Hud/Hud
 @onready var camera_compass: Camera3D = $Hud/SubViewport/CameraCompass
+@onready var username_label: Label3D = $UsernameLabel
 
 var weapon_meshes: Dictionary = {}
 
@@ -51,6 +52,11 @@ var weapon_meshes: Dictionary = {}
 var classes: Array[ClassData]
 var selected_class: ClassData
 var inventory: InventoryData = InventoryData.new()
+var username: String:
+	set(value):
+		username_label.text = value
+		
+		username = value
 
 var state = "video"
 var panel_selected = preload("res://addons/menu/panel_brown_arrows_dark_detail.png")
@@ -420,7 +426,7 @@ func _request_disconnect(id: int) -> void:
 		rpc("_remote_player_disconnected", id)
 		
 		for enemy in get_tree().root.get_node("World").get_enemies():
-			if enemy.targeted_player.name == name:
+			if enemy.targeted_player and enemy.targeted_player.name == name:
 				enemy.targeted_player = null
 				enemy.is_combat = false
 				enemy.can_attack = false
@@ -556,3 +562,6 @@ func _on_level_up() -> void:
 func _on_enemy_killed():
 	add_xp(20)
 	add_gold(10)
+
+func set_username(var_username: String) -> void:
+	username = var_username

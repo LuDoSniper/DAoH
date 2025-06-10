@@ -24,6 +24,9 @@
 [ext_resource type="Script" uid="uid://d1tehihwxp0bc" path="res://scenes/menu/class/class.gd" id="21_s17dp"]
 [ext_resource type="Texture2D" uid="uid://b4agyflfkdbha" path="res://addons/menu/round_damaged_brown.png" id="22_37hlw"]
 [ext_resource type="Texture2D" uid="uid://eba0l2e0kns0" path="res://addons/menu/round_damaged_brown_dark.png" id="23_6llfj"]
+[ext_resource type="Texture2D" uid="uid://dtvxs0m8whqka" path="res://addons/menu/panel.png" id="24_37hlw"]
+[ext_resource type="PackedScene" uid="uid://dh21volx761c1" path="res://scenes/menu/authentication/authentication.tscn" id="24_s17dp"]
+[ext_resource type="Texture2D" uid="uid://hjgjb0igicrj" path="res://addons/menu/button_brown_close.png" id="25_6llfj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_37hlw"]
 panorama = ExtResource("7_s17dp")
@@ -249,6 +252,97 @@ texture = ExtResource("23_6llfj")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uk084"]
 texture = ExtResource("23_6llfj")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s17dp"]
+bg_color = Color(0.463546, 0.310958, 0.147915, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37hlw"]
+bg_color = Color(0.545277, 0.369904, 0.183115, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6llfj"]
+bg_color = Color(0.639216, 0.439216, 0.227451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62atk"]
+bg_color = Color(0.639216, 0.439216, 0.227451, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.427451, 0.294118, 0.152941, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7in8"]
+bg_color = Color(0.639216, 0.439216, 0.227451, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.639216, 0.439216, 0.227451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bhws"]
+bg_color = Color(0.639216, 0.439216, 0.227451, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.639216, 0.439216, 0.227451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6llfj"]
+load_path = "res://.godot/imported/button_brown_close.png-399221c1537a3145dc70ad1f7823d609.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_62atk"]
+texture = SubResource("CompressedTexture2D_6llfj")
+modulate_color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i7in8"]
+load_path = "res://.godot/imported/button_brown_close.png-399221c1537a3145dc70ad1f7823d609.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gkmcc"]
+texture = SubResource("CompressedTexture2D_i7in8")
+modulate_color = Color(0.728822, 0.728822, 0.728822, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0bhws"]
+texture = ExtResource("25_6llfj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6llfj"]
+texture = ExtResource("24_37hlw")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="Theme" id="Theme_0bhws"]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_6llfj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7in8"]
+texture = ExtResource("8_hxu8e")
+texture_margin_left = 10.0
+texture_margin_top = 20.0
+texture_margin_right = 10.0
+texture_margin_bottom = 30.0
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_a8run")
 
@@ -306,6 +400,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HomeMenu" type="Control" parent="GUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -899,7 +994,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_t4dyf")
 text = "Retour"
 
 [node name="Classes" type="Control" parent="GUI"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -907,6 +1001,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("21_s17dp")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="GUI/Classes"]
 
 [node name="Panel" type="Panel" parent="GUI/Classes"]
 custom_minimum_size = Vector2(320, 0)
@@ -1009,7 +1105,7 @@ layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 
-[node name="join" type="Button" parent="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2"]
+[node name="Create" type="Button" parent="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2"]
 clip_contents = true
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
@@ -1021,7 +1117,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_yphbi")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1h1n5")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_88xk7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
-text = "Rejoindre"
+text = "Créer"
 
 [node name="retour" type="Button" parent="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2"]
 clip_contents = true
@@ -1038,6 +1134,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
 text = "Retour"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Classes"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.95
@@ -1095,6 +1192,348 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_dtnac")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_85w2q")
 theme_override_styles/normal = SubResource("StyleBoxTexture_uk084")
 
+[node name="PlayersPickerMargin" type="MarginContainer" parent="GUI/Classes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Classes/PlayersPickerMargin"]
+layout_mode = 2
+
+[node name="Title" type="HBoxContainer" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/Title"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_hxu8e")
+
+[node name="Label" type="Label" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/Title/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -17.0
+offset_right = 94.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 20
+text = "Choix du personnage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PlayerPickers" type="HBoxContainer" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer/PlayerPickers"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Perso 1
+(mettre une image)"
+
+[node name="CreateButton" type="HBoxContainer" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Create" type="Button" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer/CreateButton" groups=["create_button"]]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_colors/font_hover_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_colors/font_focus_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_s17dp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_37hlw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6llfj")
+text = "+"
+
+[node name="Choice" type="HBoxContainer" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Retour" type="Button" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Retour"
+
+[node name="Choisir" type="Button" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Choisir"
+
+[node name="Supprimer" type="Button" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Supprimer"
+
+[node name="NewPlayer" type="TextureRect" parent="GUI/Classes"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -128.0
+offset_right = 192.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24_37hlw")
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Classes/NewPlayer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = -32.0
+offset_right = 128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+texture = ExtResource("8_hxu8e")
+
+[node name="Label" type="Label" parent="GUI/Classes/NewPlayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -15.0
+offset_right = 83.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+text = "Nouveau personnage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Classes/NewPlayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Classes/NewPlayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CharacterNameInput" type="LineEdit" parent="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(296, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_colors/font_placeholder_color = Color(1, 0.945098, 0.823529, 0.580392)
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_62atk")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_i7in8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bhws")
+placeholder_text = "Nom du personnage"
+
+[node name="Next" type="Button" parent="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Suivant"
+
+[node name="Close" type="Button" parent="GUI/Classes/NewPlayer"]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -12.0
+offset_right = 24.0
+offset_bottom = 12.0
+grow_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxTexture_62atk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gkmcc")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0bhws")
+
+[node name="ConfirmationPopup" type="Control" parent="GUI/Classes"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationPopupContainer" type="PanelContainer" parent="GUI/Classes/ConfirmationPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -333.0
+offset_top = -94.5
+offset_right = 333.0
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0bhws")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Message" type="Label" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+text = "Êtes vous sûr ?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Non"
+
+[node name="Confirm" type="Button" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Oui"
+
+[node name="TitleContainer" type="PanelContainer" parent="GUI/Classes/ConfirmationPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -136.74
+offset_right = 110.0
+offset_bottom = -61.74
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i7in8")
+
+[node name="Title" type="Label" parent="GUI/Classes/ConfirmationPopup/TitleContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 20
+text = "Confirmation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Authentication" parent="GUI" instance=ExtResource("24_s17dp")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="GUI/HomeMenu/Panel/MenuBG/VBoxContainer/VBoxContainer/jouer" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="GUI/HomeMenu/Panel/MenuBG/VBoxContainer/VBoxContainer2/options" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="GUI/HomeMenu/Panel/MenuBG/VBoxContainer/VBoxContainer2/credits" to="." method="_on_credits_pressed"]
@@ -1109,9 +1548,17 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_uk084")
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Music" to="GUI/Settings" method="_on_music_value_changed"]
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Sound" to="GUI/Settings" method="_on_sound_fx_value_changed"]
 [connection signal="pressed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3/quitter" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/join" to="GUI/Classes" method="_on_join_pressed"]
+[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/Create" to="GUI/Classes" method="_on_create_character_pressed"]
 [connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/retour" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/Chevalier" to="GUI/Classes" method="_on_knight_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/VBoxContainer/Barbare" to="GUI/Classes" method="_on_barbarian_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer/Mage" to="GUI/Classes" method="_on_mage_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer/Voleur" to="GUI/Classes" method="_on_rogue_pressed"]
+[connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer/CreateButton/Create" to="GUI/Classes" method="_on_create_pressed"]
+[connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Retour" to="." method="_on_back_to_main_pressed"]
+[connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Choisir" to="GUI/Classes" method="_on_choisir_pressed"]
+[connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Supprimer" to="GUI/Classes" method="show_popup"]
+[connection signal="pressed" from="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer/Next" to="GUI/Classes" method="_on_next_pressed"]
+[connection signal="pressed" from="GUI/Classes/NewPlayer/Close" to="GUI/Classes" method="_on_close_pressed"]
+[connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="GUI/Classes" method="_on_cancel_pressed"]
+[connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="GUI/Classes" method="_on_confirm_pressed"]
