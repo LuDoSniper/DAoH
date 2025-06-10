@@ -119,9 +119,12 @@ class CharacterController extends AbstractController
             return new JsonResponse(['message' => 'An error occurred while getting user informations'], Response::HTTP_UNAUTHORIZED);
         }
 
-        $data = [];
+        $data = [
+            "owner_id" => $user->getId(),
+            "characters" => []
+        ];
         foreach ($user->getCharacters() as $character) {
-            $data[] = [
+            $data["characters"][] = [
                 'id' => $character->getId(),
                 'name' => $character->getName(),
                 'saved_data' => $character->getSavedData(),
