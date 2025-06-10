@@ -570,5 +570,13 @@ func set_username(var_username: String) -> void:
 	username = var_username
 
 func label_logic():
-	username_label.look_at(camera.global_transform.origin, Vector3.UP)
-	username_label.rotation.y += deg_to_rad(180)
+	var local_position = camera.global_transform.origin
+	var distance = global_transform.origin.distance_to(local_position)
+	if distance > 8:
+		username_label.hide()
+	else:
+		username_label.show()
+		var cam_basis = camera.global_transform.basis
+		var look_position = username_label.global_transform.origin + (-cam_basis.z)
+		username_label.look_at(look_position, Vector3.UP)
+		username_label.rotate_y(deg_to_rad(180))

@@ -60,9 +60,11 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_back_pressed() -> void:
-	#hide_menu()
-	#home_menu.show()
-	#home_camera.current = true
+	hide_menu()
+	home_menu.show()
+	home_camera.current = true
+
+func _on_back_class_pressed() -> void:
 	classes.create_back_pressed()
 
 func _on_class_selected(classes_name) -> void:

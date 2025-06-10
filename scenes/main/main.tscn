@@ -979,7 +979,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_srxgy")
 [node name="VBoxContainer3" type="VBoxContainer" parent="GUI/Settings/Panel/MenuBG/VBoxContainer"]
 layout_mode = 2
 
-[node name="quitter" type="Button" parent="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3"]
+[node name="retour" type="Button" parent="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3"]
 clip_contents = true
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
@@ -1547,9 +1547,9 @@ layout_mode = 1
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Master" to="GUI/Settings" method="_on_master_value_changed"]
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Music" to="GUI/Settings" method="_on_music_value_changed"]
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Sound" to="GUI/Settings" method="_on_sound_fx_value_changed"]
-[connection signal="pressed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3/quitter" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3/retour" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/Create" to="GUI/Classes" method="_on_create_character_pressed"]
-[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/retour" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/retour" to="." method="_on_back_class_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/Chevalier" to="GUI/Classes" method="_on_knight_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/VBoxContainer/Barbare" to="GUI/Classes" method="_on_barbarian_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer/Mage" to="GUI/Classes" method="_on_mage_pressed"]
