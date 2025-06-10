@@ -237,8 +237,6 @@ func reset_http_signal():
 		if http.is_connected("request_completed", callback):
 			http.disconnect("request_completed", callback)
 
-
-
 func _on_login_pressed() -> void:
 	if state != "login":
 		state = "login"

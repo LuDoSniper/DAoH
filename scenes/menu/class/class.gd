@@ -12,6 +12,8 @@ extends Control
 @onready var voleur_button: Button = $HBoxContainer/VBoxContainer/Voleur
 @onready var mage_button: Button = $HBoxContainer/VBoxContainer/Mage
 
+@onready var confirmation_popup: Control = $ConfirmationPopup
+
 @onready var players_picker_margin: MarginContainer = $PlayersPickerMargin
 @onready var class_desc: Panel = $Panel
 @onready var class_picker: HBoxContainer = $HBoxContainer
@@ -44,6 +46,8 @@ var description = {
 func _ready() -> void:
 	# Skin par défaut : Knight
 	_on_knight_pressed()
+	
+	confirmation_popup.hide()
 	
 	###> Gestion des personnages ###
 	players_picker_margin.show()
@@ -156,11 +160,13 @@ func _on_characters_receive(_result, response_code, _headers, body) -> void:
 			# Configuration du remplissage horizontal et vertical
 			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			button.size_flags_vertical = Control.SIZE_EXPAND_FILL
+			button.set_meta("id", character["id"])
+			button.pressed.connect(func(): _on_character_pressed(character["id"]))
 			
 			character_container.add_child(button)
 			
 			MULTIPLAYER.characters.append({
-				"id": MULTIPLAYER.get_unique_character_id(),
+				"id": character["id"],
 				"name": character["name"],
 				"saved_data": character["saved_data"]
 			})
@@ -251,31 +257,38 @@ func _on_create_character_receive(_result, response_code, _headers, _body) -> vo
 	#else:
 		#print("Erreur inconnue: ", response_code)
 
-#func _on_remove_pressed() -> void:
-	#reset_http_signal()
-	#http.connect("request_completed", Callable(self, "_on_remove_received"))
-	#
-	#var err = http.request(
-		#"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/api/character/remove/" + str(MULTIPLAYER.current_character),
-		#[
-			#"Content-Type: application/json",
-			#"Authorization: Bearer " + MULTIPLAYER.token
-		#],
-		#HTTPClient.METHOD_POST,
-	#)
-	#
-	#if err != OK:
-		#print("Erreur lors de l'envoi de la requête :", err)
+func _on_remove_pressed() -> void:
+	reset_http_signal()
+	http.connect("request_completed", Callable(self, "_on_remove_received"))
+	
+	print("https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/api/character/remove/" + str(MULTIPLAYER.current_character))
+	var err = http.request(
+		"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/api/character/remove/" + str(MULTIPLAYER.current_character),
+		[
+			"Content-Type: application/json",
+			"Authorization: Bearer " + MULTIPLAYER.token
+		],
+		HTTPClient.METHOD_POST,
+	)
+	
+	if err != OK:
+		print("Erreur lors de l'envoi de la requête :", err)
 
-#func _on_remove_received(_result, response_code, _headers, _body) -> void:
-	#if response_code == 200:
-		#get_characters()
-	#elif response_code == 401:
-		## JWT token expired
-		#_relogin_callback = Callable(self, "_on_remove_pressed")
-		#relogin()
-	#else:
-		#print("Erreur inconnue: ", response_code)
+func _on_remove_received(_result, response_code, _headers, _body) -> void:
+	if response_code == 200:
+		get_characters()
+	elif response_code == 401:
+		# JWT token expired
+		_relogin_callback = Callable(self, "_on_remove_pressed")
+		relogin()
+	else:
+		print("Erreur inconnue: ", response_code)
+
+func _on_character_pressed(id: int) -> void:
+	MULTIPLAYER.current_character = id
+	for character in character_container.get_children():
+		if character.has_meta("id") and character.get_meta("id") == id:
+			character.grab_focus()
 
 func relogin() -> void:
 	reset_http_signal()
@@ -315,7 +328,7 @@ func reset_http_signal():
 		Callable(self, "_on_relogin_receive"),
 		Callable(self, "_on_create_character_receive"),
 		#Callable(self, "_on_edit_received"),
-		#Callable(self, "_on_remove_received"),
+		Callable(self, "_on_remove_received"),
 	]:
 		if http.is_connected("request_completed", callback):
 			http.disconnect("request_completed", callback)
@@ -325,8 +338,17 @@ func _on_close_pressed():
 	players_picker_margin.visible = true
 	new_character_panel_container.visible = false
 
-
 func _on_choisir_pressed() -> void:
 	class_desc.visible = true
 	class_picker.visible = true
 	players_picker_margin.visible = false
+
+func show_popup() -> void:
+	confirmation_popup.show()
+
+func _on_confirm_pressed() -> void:
+	confirmation_popup.hide()
+	_on_remove_pressed()
+
+func _on_cancel_pressed() -> void:
+	confirmation_popup.hide()

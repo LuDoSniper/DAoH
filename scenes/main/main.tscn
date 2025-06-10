@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://cklxpfboxkd2c"]
+[gd_scene load_steps=104 format=3 uid="uid://cklxpfboxkd2c"]
 
 [ext_resource type="PackedScene" uid="uid://b03jyr0by50pr" path="res://objects/player/skin/knight/knight.tscn" id="1_6q06x"]
 [ext_resource type="Script" uid="uid://b6fjswd7w63m0" path="res://scenes/main/main.gd" id="1_a8run"]
@@ -323,6 +323,23 @@ modulate_color = Color(0.728822, 0.728822, 0.728822, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0bhws"]
 texture = ExtResource("25_6llfj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6llfj"]
+texture = ExtResource("24_37hlw")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="Theme" id="Theme_0bhws"]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_6llfj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7in8"]
+texture = ExtResource("8_hxu8e")
+texture_margin_left = 10.0
+texture_margin_top = 20.0
+texture_margin_right = 10.0
+texture_margin_bottom = 30.0
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_a8run")
@@ -1286,6 +1303,21 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
 theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
 text = "Choisir"
 
+[node name="Supprimer" type="Button" parent="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Supprimer"
+
 [node name="NewPlayer" type="TextureRect" parent="GUI/Classes"]
 visible = false
 layout_mode = 1
@@ -1392,6 +1424,113 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_62atk")
 theme_override_styles/hover = SubResource("StyleBoxTexture_gkmcc")
 theme_override_styles/normal = SubResource("StyleBoxTexture_0bhws")
 
+[node name="ConfirmationPopup" type="Control" parent="GUI/Classes"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationPopupContainer" type="PanelContainer" parent="GUI/Classes/ConfirmationPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -333.0
+offset_top = -94.5
+offset_right = 333.0
+offset_bottom = 94.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0bhws")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Message" type="Label" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+text = "Êtes vous sûr ?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Non"
+
+[node name="Confirm" type="Button" parent="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Oui"
+
+[node name="TitleContainer" type="PanelContainer" parent="GUI/Classes/ConfirmationPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -136.74
+offset_right = 110.0
+offset_bottom = -61.74
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i7in8")
+
+[node name="Title" type="Label" parent="GUI/Classes/ConfirmationPopup/TitleContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_ou6is")
+theme_override_font_sizes/font_size = 20
+text = "Confirmation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Authentication" parent="GUI" instance=ExtResource("24_s17dp")]
 visible = false
 layout_mode = 1
@@ -1419,5 +1558,8 @@ layout_mode = 1
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer/CreateButton/Create" to="GUI/Classes" method="_on_create_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Retour" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Choisir" to="GUI/Classes" method="_on_choisir_pressed"]
+[connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Supprimer" to="GUI/Classes" method="show_popup"]
 [connection signal="pressed" from="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer/Create" to="GUI/Classes" method="_on_create_character_pressed"]
 [connection signal="pressed" from="GUI/Classes/NewPlayer/Close" to="GUI/Classes" method="_on_close_pressed"]
+[connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="GUI/Classes" method="_on_cancel_pressed"]
+[connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="GUI/Classes" method="_on_confirm_pressed"]
