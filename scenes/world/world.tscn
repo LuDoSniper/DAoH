@@ -489,6 +489,8 @@ environment = SubResource("Environment_bt7bg")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
+[node name="Camera3D" type="Camera3D" parent="Map"]
+
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/retour" to="." method="_on_retour_pressed"]
