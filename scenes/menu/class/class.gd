@@ -22,6 +22,12 @@ extends Control
 @onready var character_container: HBoxContainer = $PlayersPickerMargin/VBoxContainer/HBoxContainer/PlayerPickers
 @onready var character_name_input: LineEdit = $NewPlayer/MarginContainer/VBoxContainer/CharacterNameInput
 
+@onready var update_character_name_input: LineEdit = $CharacterSelectionPanelContainer/SelectedCharacterPanelContainer/VBoxContainer/HBoxContainer/CharacterNameInput
+@onready var edit_toggle: Button = $CharacterSelectionPanelContainer/SelectedCharacterPanelContainer/VBoxContainer/HBoxContainer/EditToggle
+@onready var edit_button: Button = $CharacterSelectionPanelContainer/SelectedCharacterPanelContainer/VBoxContainer/Edit
+@onready var character_name_title: Label = $CharacterSelectionPanelContainer/SelectedCharacterPanelContainer/VBoxContainer/CharacterNameTitle
+@onready var error_label: Label = $CharacterSelectionPanelContainer/SelectedCharacterPanelContainer/VBoxContainer/ErrorLabel
+
 var _relogin_callback: Callable = Callable()
 ###< Gestion des personnages ###
 
@@ -48,6 +54,7 @@ func _ready() -> void:
 	###> Gestion des personnages ###
 	players_picker_margin.show()
 	new_character_panel_container.hide()
+	edit_button.hide()
 	###< Gestion des personnages ###
 
 func _on_knight_pressed() -> void:
@@ -204,6 +211,71 @@ func _on_create_character_receive(_result, response_code, _headers, _body) -> vo
 	else:
 		print("Erreur inconnue: ", response_code)
 
+func _on_edit_toggle_pressed() -> void:
+	edit_button.visible = edit_toggle.button_pressed
+
+func _on_edit_pressed() -> void:
+	reset_http_signal()
+	http.connect("request_completed", Callable(self, "_on_edit_received"))
+	
+	var err = http.request(
+		"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/api/character/update/" + str(MULTIPLAYER.current_character),
+		[
+			"Content-Type: application/json",
+			"Authorization: Bearer " + MULTIPLAYER.token
+		],
+		HTTPClient.METHOD_POST,
+		JSON.stringify({
+			"name": update_character_name_input.text,
+			"saved_data": {
+				"class": selected_skin
+			}
+		})
+	)
+	
+	if err != OK:
+		print("Erreur lors de l'envoi de la requête :", err)
+
+func _on_edit_received(_result, response_code, _headers, _body) -> void:
+	if response_code == 200:
+		_on_edit_toggle_pressed()
+		get_characters()
+	elif response_code == 400:
+		# Bad request (peut etre provoqué par une dupplication du name)
+		error_label.text = "Nom du personnage invalide"
+	elif response_code == 401:
+		# JWT token expired
+		_relogin_callback = Callable(self, "_on_edit_pressed")
+		relogin()
+	else:
+		print("Erreur inconnue: ", response_code)
+
+func _on_remove_pressed() -> void:
+	reset_http_signal()
+	http.connect("request_completed", Callable(self, "_on_remove_received"))
+	
+	var err = http.request(
+		"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/api/character/remove/" + str(MULTIPLAYER.current_character),
+		[
+			"Content-Type: application/json",
+			"Authorization: Bearer " + MULTIPLAYER.token
+		],
+		HTTPClient.METHOD_POST,
+	)
+	
+	if err != OK:
+		print("Erreur lors de l'envoi de la requête :", err)
+
+func _on_remove_received(_result, response_code, _headers, _body) -> void:
+	if response_code == 200:
+		get_characters()
+	elif response_code == 401:
+		# JWT token expired
+		_relogin_callback = Callable(self, "_on_remove_pressed")
+		relogin()
+	else:
+		print("Erreur inconnue: ", response_code)
+
 func relogin() -> void:
 	reset_http_signal()
 	http.connect("request_completed", Callable(self, "_on_relogin_receive"))
@@ -241,6 +313,8 @@ func reset_http_signal():
 		Callable(self, "_on_characters_receive"),
 		Callable(self, "_on_relogin_receive"),
 		Callable(self, "_on_create_character_receive"),
+		Callable(self, "_on_edit_received"),
+		Callable(self, "_on_remove_received"),
 	]:
 		if http.is_connected("request_completed", callback):
 			http.disconnect("request_completed", callback)

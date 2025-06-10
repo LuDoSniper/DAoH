@@ -8,10 +8,12 @@ const DEFAULT_ADDRESS := "localhost"
 var LISTEN_PORT := 3642
 var MAX_CHARACTER_COUNT := 4
 var token := ""
-var current_server := 0
 var servers: Array = []
+var current_server := 0
 var username := ""
 var password := ""
+var characters: Array = []
+var current_character := 0
 
 var peer := WebSocketMultiplayerPeer.new()
 
@@ -29,5 +31,12 @@ func get_server_by_id(id: int) -> Dictionary:
 	for server in servers:
 		if server["id"] == id:
 			return server
+	
+	return {}
+
+func get_character_by_id(id: int) -> Dictionary:
+	for character in characters:
+		if character["id"] == id:
+			return character
 	
 	return {}
