@@ -271,7 +271,13 @@ func _update_button_styles() -> void:
 		login_type_button.add_theme_stylebox_override("hover", default_stylebox)
 		register_type_button.add_theme_stylebox_override("hover", selected_stylebox)
 
-
 func _on_continuer_pressed() -> void:
-	server_panel.visible = false
-	login_panel.visible = true
+	server_panel.hide()
+	login_panel.show()
+
+func _on_back_button_pressed() -> void:
+	get_tree().root.get_node("Main").authentication_back_pressed()
+
+func reset_view() -> void:
+	server_panel.show()
+	login_panel.hide()

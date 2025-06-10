@@ -87,6 +87,11 @@ func _on_authentication_successfull() -> void:
 	classes.get_characters()
 
 func _on_back_to_main_pressed() -> void:
+	authentication_back_pressed()
+
+func authentication_back_pressed() -> void:
 	hide_menu()
+	authentication.reset_view()
+	authentication.hide()
 	home_menu.show()
 	home_camera.current = true

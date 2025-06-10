@@ -124,11 +124,11 @@ func update_theme(button, texture):
 	button.add_theme_stylebox_override("pressed", texture)
 	button.add_theme_stylebox_override("focus", texture)
 
-func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")
-
-func _on_button_pressed() -> void:
-	print("Test")
+#func _on_back_pressed() -> void:
+	#get_tree().change_scene_to_file("res://scenes/menu/home/home_menu.tscn")
+#
+#func _on_button_pressed() -> void:
+	#print("Test")
 
 ###> Gestion des personnages ###
 func get_characters() -> void:

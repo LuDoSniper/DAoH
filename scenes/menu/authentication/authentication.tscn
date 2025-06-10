@@ -637,7 +637,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_xnijr")
 text = "Continuer"
 
 [node name="LoginContainer" type="VBoxContainer" parent="Panel/MenuBG"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -758,6 +757,18 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_wkfhk")
 theme_override_styles/normal = SubResource("StyleBoxTexture_buxcc")
 text = "S'inscrire"
 
+[node name="BackButton" type="Button" parent="Panel/MenuBG/LoginContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = SubResource("FontFile_utrsn")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_ttvku")
+theme_override_styles/hover = SubResource("StyleBoxTexture_i4otn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wkfhk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_buxcc")
+text = "Retour"
+
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [connection signal="pressed" from="Panel/MenuBG/ServerContainer/VBoxContainer3/continuer" to="." method="_on_continuer_pressed"]
@@ -765,3 +776,4 @@ text = "S'inscrire"
 [connection signal="pressed" from="Panel/MenuBG/LoginContainer/VBoxContainer2/TypeMenu/Register" to="." method="_on_register_pressed"]
 [connection signal="pressed" from="Panel/MenuBG/LoginContainer/VBoxContainer3/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="Panel/MenuBG/LoginContainer/VBoxContainer3/RegisterButton" to="." method="_on_register_button_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/LoginContainer/VBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]
