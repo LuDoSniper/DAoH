@@ -420,11 +420,12 @@ func _on_menu_pressed() -> void:
 func _on_quitter_pressed() -> void:
 	#get_tree().quit()
 	UTILS.print_local(self, "I WANT TO LEAVE")
-	rpc_id(1, "_request_disconnect", name.to_int())
+	rpc_id(1, "_request_disconnect", name.to_int(), MULTIPLAYER.owner_id)
 
 @rpc("any_peer")
-func _request_disconnect(id: int) -> void:
+func _request_disconnect(id: int, owner_id: int) -> void:
 	if multiplayer.is_server() and name.to_int() == id:
+		MULTIPLAYER.owners_id.pop_at(MULTIPLAYER.owners_id.find(owner_id))
 		UTILS.print_local(self, "AUTHORIZING " + str(id) + " TO LEAVE")
 		get_tree().root.get_node("World").send_message("[" + str(id) + "] hast left the game", id, false)
 		rpc_id(id, "_remote_can_disconnect", id)

@@ -12,8 +12,11 @@ var servers: Array = []
 var current_server := 0
 var username := ""
 var password := ""
+var owners_id: Array[int] = []
+var owner_id: int
 var characters: Array = []
 var current_character := 0
+var last_connection := "none"
 
 var peer := WebSocketMultiplayerPeer.new()
 

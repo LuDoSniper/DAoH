@@ -115,12 +115,33 @@ func init(peer_id: int) -> void:
 	Cette fonction n'existe que chez le serveur. Elle s'active à chaque connexion entrante.
 	Elle indique au nouveau client d'initialiser la procédure de d'initialisation du monde.
 	'''
-	rpc_id(peer_id, "_remote_init_player", peer_id)
-	send_message("[" + str(peer_id) + "] has joined the game", peer_id, false)
+	rpc_id(peer_id, "_authenticate")
+
+@rpc("any_peer")
+func _authenticate() -> void:
+	if not multiplayer.is_server():
+		rpc_id(1, "_authentication_attempt", multiplayer.get_unique_id(), MULTIPLAYER.owner_id)
+
+@rpc("any_peer")
+func _authentication_attempt(peer_id: int, owner_id: int) -> void:
+	if multiplayer.is_server():
+		if owner_id not in MULTIPLAYER.owners_id:
+			MULTIPLAYER.owners_id.append(owner_id)
+			rpc_id(peer_id, "_remote_init_player", peer_id)
+			send_message("[" + str(peer_id) + "] has joined the game", peer_id, false)
+		else:
+			rpc_id(peer_id, "_authentication_failed")
+
+@rpc("any_peer")
+func _authentication_failed() -> void:
+	MULTIPLAYER.peer.close()
+	MULTIPLAYER.last_connection = "failure"
+	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 
 @rpc("any_peer")
 func _remote_init_player(id: int) -> void:
 	if not multiplayer.is_server():
+		MULTIPLAYER.last_connection = "success"
 		UTILS.print_local(self, "Sending \"add_player\" request")
 		rpc("_request_add_player", id, get_meta("selected_skin"), get_meta("username"), get_meta("saved_data"))
 
