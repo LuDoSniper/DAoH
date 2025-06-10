@@ -584,7 +584,7 @@ func save_data() -> void:
 		],
 		HTTPClient.METHOD_POST,
 		JSON.stringify({
-			"name": username,
+			#"name": username, # Peut causer un 400 (le name est immuable)
 			"saved_data": {
 				"class": MULTIPLAYER.get_character_by_id(MULTIPLAYER.current_character)["saved_data"]["class"],
 				"pos": global_position,

@@ -1,6 +1,6 @@
 extends Node
 
-const DEFAULT_ADDRESS := "localhost"
+const DEFAULT_ADDRESS := "daoh.donnarieix.fr"
 
 # Par défaut il est à 3642 pour le debug local
 # Attention, cela veux donc dire qu'en local on ne peux se connecter qu'à Europe.
@@ -21,7 +21,7 @@ var last_connection := "none"
 var peer := WebSocketMultiplayerPeer.new()
 
 func create_server(peer_connected: Callable) -> void:
-	peer.create_server(LISTEN_PORT)
+	peer.create_server(LISTEN_PORT, "0.0.0.0")
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(peer_connected)
 	#peer_connected.call()
