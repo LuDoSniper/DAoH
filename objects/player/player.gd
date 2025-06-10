@@ -220,6 +220,7 @@ func _physics_process(delta: float) -> void:
 	pause_logic()
 	#focus_logic(delta)
 	attack_logic()
+	label_logic()
 
 func move_logic(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -567,3 +568,7 @@ func _on_enemy_killed():
 
 func set_username(var_username: String) -> void:
 	username = var_username
+
+func label_logic():
+	username_label.look_at(camera.global_transform.origin, Vector3.UP)
+	username_label.rotation.y += deg_to_rad(180)

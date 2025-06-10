@@ -35,3 +35,6 @@ func _on_body_exited(body):
 		label.visible = false
 		body.set_current_npc(null)
 		player_camera = null
+
+func get_dialogue_lines():
+	return dialogue_lines
