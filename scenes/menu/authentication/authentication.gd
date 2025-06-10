@@ -8,6 +8,9 @@ signal authentication_successfull
 @onready var server_name_login = $Panel/MenuBG/LoginContainer/VBoxContainer/Options
 @onready var server_name: Label = $Panel/MenuBG/ServerContainer/VBoxContainer/Serveur
 
+@onready var main_server_container: VBoxContainer = $Panel/MenuBG/ServerContainer
+@onready var main_login_container: VBoxContainer = $Panel/MenuBG/LoginContainer
+
 @onready var username_input = $Panel/MenuBG/LoginContainer/VBoxContainer4/UsernameInput
 @onready var password_input = $Panel/MenuBG/LoginContainer/VBoxContainer4/PasswordInput
 
@@ -28,6 +31,9 @@ var panel = preload("res://addons/menu/panel_brown_damaged_dark.png")
 var font = preload("res://addons/menu/AveriaGruesaLibre-Regular.ttf")
 
 func _ready() -> void:
+	main_server_container.show()
+	main_login_container.hide()
+	
 	_update_button_styles()
 	# Virer tout les serveurs de test
 	for child in server_container.get_children():

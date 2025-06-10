@@ -34,6 +34,14 @@ func get_server_by_id(id: int) -> Dictionary:
 	
 	return {}
 
+func get_unique_character_id() -> int:
+	var id = 0
+	# Itérer sur tout les charactères car un dict n'est pas ordonné
+	for character in characters:
+		if character["id"] == id:
+			id += 1
+	return id
+
 func get_character_by_id(id: int) -> Dictionary:
 	for character in characters:
 		if character["id"] == id:
