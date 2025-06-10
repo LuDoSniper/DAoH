@@ -58,6 +58,7 @@ data = PackedVector3Array(0.0011, 0, -0.0022, 0.0018, 0, -0.0015, 0.0017, 0.0032
 
 [node name="Environment_PalmTree_2" type="MeshInstance3D" parent="RootNode/StaticBody3D"]
 transform = Transform3D(100, 0, 0, 0, 100, -4.37114e-06, 0, 4.37114e-06, 100, 0, 0, 0)
+layers = 64
 mesh = SubResource("ArrayMesh_gpm22")
 skeleton = NodePath("")
 

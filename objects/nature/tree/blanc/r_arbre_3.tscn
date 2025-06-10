@@ -82,6 +82,7 @@ albedo_texture = ExtResource("3_tmxq2")
 [node name="arbre_bis_3" type="Node3D"]
 
 [node name="CommonTree_3" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_sv0cv")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_skk4q")

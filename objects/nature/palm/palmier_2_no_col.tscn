@@ -51,5 +51,6 @@ shadow_mesh = SubResource("ArrayMesh_wlsca")
 
 [node name="Environment_PalmTree_1" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, -4.37114e-06, 0, 4.37114e-06, 100, 0, 0, 0)
+layers = 64
 mesh = SubResource("ArrayMesh_edrgf")
 skeleton = NodePath("")

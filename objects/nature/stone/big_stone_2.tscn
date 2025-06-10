@@ -55,6 +55,7 @@ data = PackedVector3Array(0.0045, -0.0097, 0.0118, 0.0074, -0.0107, 0.0035, 0.00
 
 [node name="Rock_Medium_2" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(100, 0, 0, 0, -2.38419e-05, 100, 0, -100, -2.38419e-05, 0, 0, 0)
+layers = 64
 mesh = SubResource("ArrayMesh_ry3a4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_d5k3u")

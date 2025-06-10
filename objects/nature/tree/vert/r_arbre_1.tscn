@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://ct53ftth7sbm5"]
 
-[ext_resource type="Texture2D" uid="uid://bmeuoh2pmprhy" path="res://assets/models/arbre_1_Image.png" id="1_xkwvs"]
+[ext_resource type="Texture2D" uid="uid://c171rylpasdp5" path="res://assets/models/arbre_1_Image.png" id="1_xkwvs"]
 [ext_resource type="Texture2D" uid="uid://oa8jarhcggm4" path="res://assets/textures/Nature/Bark_DeadTree.png" id="2_s3cp7"]
 [ext_resource type="Texture2D" uid="uid://dx06h8veffb25" path="res://assets/textures/Nature/Leaves_GiantPine_C.png" id="3_xkwvs"]
 
@@ -122,12 +122,14 @@ data = PackedVector3Array(0.371736, -0.201474, -1.16917, 0.190066, 0.130715, -1.
 [node name="arbre_1" type="Node3D"]
 
 [node name="TwistedTree_1" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_epy2n")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_g6rtt")
 surface_material_override/1 = SubResource("StandardMaterial3D_ibmer")
 
 [node name="TwistedTree_1-col" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_bevlk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_t3x7j")

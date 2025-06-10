@@ -50,6 +50,7 @@ data = PackedVector3Array(0.133945, 0.0865076, 0.0902398, 0.170442, 0.0737637, 0
 visible = false
 
 [node name="Pebble_Round_3" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_5yc8m")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_8wrbq")

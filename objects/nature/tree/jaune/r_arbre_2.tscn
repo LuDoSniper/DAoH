@@ -123,12 +123,14 @@ data = PackedVector3Array(1.05469, -0.201475, -4.61018e-08, 0.968646, 0.216354, 
 [node name="arbre_2" type="Node3D"]
 
 [node name="TwistedTree_2" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_smghj")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_gp1pc")
 surface_material_override/1 = SubResource("StandardMaterial3D_qnl61")
 
 [node name="TwistedTree_2-col" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_8x1nc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_gmmdg")

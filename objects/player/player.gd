@@ -45,7 +45,6 @@ signal unpause
 @onready var hud: CanvasLayer = $Hud/Hud
 @onready var camera_compass: Camera3D = $Hud/SubViewport/CameraCompass
 
-
 var weapon_meshes: Dictionary = {}
 
 # Setup in ready
@@ -157,55 +156,11 @@ func _ready() -> void:
 	add_to_group("players")
 	if is_multiplayer_authority():
 		camera.current = true
-	var root = get_tree().root
-	var world_node = root.get_node("World")
-	var terrain = world_node.find_child("Terrain3D", true, false)
-	terrain.set_camera(camera)
 	
 	hud.update_health(max_health, health)
 	hud.update_xp(xp_to_next_level, current_xp)
 	hud.update_money(gold)
 
-func _assign_camera():
-		await get_tree().process_frame
-		print("✅ [READY] Je suis l'autorité réseau locale (client)")
-
-		var camera_controller = $CameraController
-		if camera_controller:
-			print("✅ [CAMERA] CameraController trouvé :", camera_controller.name)
-		else:
-			print("❌ [CAMERA] CameraController introuvable")
-
-		var camera = camera_controller.get_node("Camera3D")
-		if camera:
-			print("✅ [CAMERA] Camera3D trouvée :", camera.name)
-			camera.current = true
-			print("✅ [CAMERA] Camera3D activée (current = true)")
-		else:
-			print("❌ [CAMERA] Camera3D introuvable dans CameraController")
-
-		# Essai de récupération de la scène World
-		var root = get_tree().root
-		print("🔍 [ROOT] Contenu du root :", root.get_children())
-
-		var world_node = root.get_node("World")
-		if world_node:
-			print("✅ [WORLD] Noeud World trouvé :", world_node.name)
-		else:
-			print("❌ [WORLD] Noeud World introuvable dans root")
-
-		# Essai de récupération du Terrain3D
-		var terrain = world_node.find_child("Terrain3D", true, false)
-		if terrain:
-			print("✅ [TERRAIN] Terrain3D trouvé :", terrain.name)
-			terrain.set_camera(camera)
-			print("✅ [TERRAIN] Caméra assignée au Terrain3D")
-			print("✅ [TERRAIN] Type du noeud terrain :", terrain)
-			print("✅ [TERRAIN] Script attaché :", terrain.get_script())
-			print("✅ [TERRAIN] Matériau assigné :", terrain.material)
-
-		else:
-			print("❌ [TERRAIN] ALERT LA PTN DE TA MERE !!!!! Terrain3D introuvable")
 
 #@rpc("any_peer")
 #func _request_initialize_class(id: int) -> void:

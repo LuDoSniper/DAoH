@@ -337,6 +337,7 @@ data = PackedVector3Array(0.0061, 0.0003, 0.0043, 0.0061, 0.0096, 0.0043, 0.011,
 
 [node name="Port_SecondAge_Level2" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
+layers = 64
 mesh = SubResource("ArrayMesh_1adg6")
 skeleton = NodePath("")
 

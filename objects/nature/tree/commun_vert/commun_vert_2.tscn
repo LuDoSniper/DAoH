@@ -122,12 +122,14 @@ data = PackedVector3Array(0.543749, -0.242772, -2.3768e-08, 0.51359, -0.032039, 
 [node name="commun_arbre_2" type="Node3D"]
 
 [node name="CommonTree_2" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_3ftmp")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ahiea")
 surface_material_override/1 = SubResource("StandardMaterial3D_1v0wk")
 
 [node name="CommonTree_2-col" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_edwny")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_1ocxi")

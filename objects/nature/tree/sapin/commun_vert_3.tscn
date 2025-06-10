@@ -47,6 +47,7 @@ albedo_texture = ExtResource("1_okujf")
 [node name="death_tree_3" type="Node3D"]
 
 [node name="DeadTree_3" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_ba2ba")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wy8da")

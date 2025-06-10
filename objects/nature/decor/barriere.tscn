@@ -125,6 +125,7 @@ points = PackedVector3Array(-0.00326508, -0.000973981, -0.0148428, 0.0131666, 0.
 
 [node name="WoodenFence" type="MeshInstance3D" parent="RootNode/StaticBody3D"]
 transform = Transform3D(-6.4373e-06, -2.25306e-05, 54, -46.7654, -27, -1.68401e-05, 27, -46.7654, -1.62934e-05, 0, 0.748857, 0)
+layers = 64
 mesh = SubResource("ArrayMesh_0se08")
 skeleton = NodePath("")
 

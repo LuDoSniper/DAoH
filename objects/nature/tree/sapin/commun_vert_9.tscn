@@ -84,6 +84,7 @@ albedo_texture = ExtResource("7_6gdef")
 [node name="sapin_no_col_3" type="Node3D"]
 
 [node name="Pine_3" type="MeshInstance3D" parent="."]
+layers = 64
 mesh = SubResource("ArrayMesh_dpjf4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_2nnvn")
