@@ -703,6 +703,8 @@ texture = SubResource("ViewportTexture_28utn")
 layout_mode = 2
 texture = ExtResource("21_yyeqs")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Reprendre" to="." method="_on_reprendre_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Menu" to="." method="_on_menu_pressed"]

@@ -22,6 +22,8 @@ signal pause
 @warning_ignore("unused_signal")
 signal unpause
 
+@onready var http: HTTPRequest = $HTTPRequest
+
 @onready var video_type_button: Button = $PauseMenu/MenuBG/Options/TypeMenu/Video
 @onready var audio_type_button: Button = $PauseMenu/MenuBG/Options/TypeMenu/Audio
 @onready var video: HBoxContainer = $PauseMenu/MenuBG/Options/Video
@@ -46,6 +48,7 @@ signal unpause
 @onready var camera_compass: Camera3D = $Hud/SubViewport/CameraCompass
 @onready var username_label: Label3D = $UsernameLabel
 
+var _relogin_callback: Callable = Callable()
 var weapon_meshes: Dictionary = {}
 
 # Setup in ready
@@ -441,7 +444,7 @@ func _remote_can_disconnect(id: int) -> void:
 		UTILS.print_local(self, "I'M LEAVING'")
 		multiplayer.multiplayer_peer.close()
 		multiplayer.multiplayer_peer = null
-		get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+		save_data()
 
 @rpc("any_peer")
 func _remote_player_disconnected(id: int) -> void:
@@ -567,3 +570,83 @@ func _on_enemy_killed():
 
 func set_username(var_username: String) -> void:
 	username = var_username
+
+func save_data() -> void:
+	reset_http_signal()
+	http.connect("request_completed", Callable(self, "_on_save_data_receive"))
+	
+	var err = http.request(
+		"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/api/character/update/" + str(MULTIPLAYER.current_character),
+		[
+			"Content-Type: application/json",
+			"Authorization: Bearer " + MULTIPLAYER.token
+		],
+		HTTPClient.METHOD_POST,
+		JSON.stringify({
+			"name": username,
+			"saved_data": {
+				"class": MULTIPLAYER.get_character_by_id(MULTIPLAYER.current_character)["saved_data"]["class"],
+				"pos": global_position,
+				"rot": skin.rotation.y,
+				"camera_rot": camera_controller.rotation,
+				"health": health,
+				"xp": current_xp,
+				"gold": gold
+			}
+		})
+	)
+	
+	if err != OK:
+		print("Erreur lors de l'envoi de la requête :", err)
+
+func _on_save_data_receive(_result, response_code, _headers, _body) -> void:
+	if response_code == 200:
+		MULTIPLAYER.characters = []
+		MULTIPLAYER.servers = []
+		get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+	elif response_code == 401:
+		# JWT expired, get new token
+		_relogin_callback = Callable(self, "save_data")
+		relogin()
+	else:
+		print("Erreur inconnue: ", response_code)
+
+func relogin() -> void:
+	reset_http_signal()
+	http.connect("request_completed", Callable(self, "_on_relogin_receive"))
+	
+	var err = http.request(
+		"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/login",
+		[
+			"Content-Type: application/json",
+		],
+		HTTPClient.METHOD_POST,
+		JSON.stringify({
+			"username": MULTIPLAYER.username,
+			"password": MULTIPLAYER.password
+		})
+	)
+	
+	if err != OK:
+		print("Erreur lors de l'envoi de la requête :", err)
+
+func _on_relogin_receive(_result, response_code, _headers, body) -> void:
+	if response_code == 200:
+		var data = JSON.parse_string(body.get_string_from_utf8())
+		MULTIPLAYER.token = data["token"]
+		
+		if _relogin_callback.is_valid():
+			_relogin_callback.call()
+			_relogin_callback = Callable()
+	elif response_code == 401:
+		print("Mauvais identifiants")
+	else:
+		print("Erreur inconnue: ", response_code)
+
+func reset_http_signal():
+	for callback in [
+		Callable(self, "_on_save_data_receive"),
+		Callable(self, "_on_relogin_receive"),
+	]:
+		if http.is_connected("request_completed", callback):
+			http.disconnect("request_completed", callback)

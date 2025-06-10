@@ -113,6 +113,7 @@ func _on_join_pressed() -> void:
 	world.set_meta("server", false)
 	world.set_meta("selected_skin", selected_skin)
 	world.set_meta("username", MULTIPLAYER.get_character_by_id(MULTIPLAYER.current_character)["name"])
+	world.set_meta("saved_data", MULTIPLAYER.get_character_by_id(MULTIPLAYER.current_character)["saved_data"])
 	
 	get_tree().root.add_child(world)
 	get_tree().set_current_scene(world)
