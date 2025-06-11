@@ -173,6 +173,8 @@ func _ready() -> void:
 	hud.update_money(gold)
 
 
+
+
 #@rpc("any_peer")
 #func _request_initialize_class(id: int) -> void:
 	#if multiplayer.is_server() and name.to_int() == id:
@@ -574,7 +576,6 @@ func set_username(var_username: String) -> void:
 	username = var_username
 
 func save_data() -> void:
-	print("loggiiiiiiiiiiiiiiiiiiiin")
 	reset_http_signal()
 	http.connect("request_completed", Callable(self, "_on_save_data_receive"))
 	

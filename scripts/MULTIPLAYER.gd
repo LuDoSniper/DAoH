@@ -51,25 +51,57 @@ func get_character_name_by_id(id: int) -> String:
 			return character["name"]
 	return "None"
 
+func get_characters():
+	print(characters)
+
+
+
 
 
 var peer_to_character_id := {}
+
+func _ready():
+	if multiplayer.is_server():
+		multiplayer.peer_connected.connect(_on_peer_connected)
+
+func _on_peer_connected(new_peer_id: int) -> void:
+	for peer_id in peer_to_character_id.keys():
+		var character_data = peer_to_character_id[peer_id]
+		# On envoie à CE nouveau peer les données des anciens joueurs
+		rpc_id(new_peer_id, "_update_peer_character", peer_id, character_data)
+
+
+
+
 @rpc("any_peer")
 func _register_character(peer_id: int, character_id: int) -> void:
-	peer_to_character_id[peer_id] = character_id
-	#print("peers:")
-	#print(peer_to_character_id)
+	var character_data = get_character_by_id(character_id)
+	peer_to_character_id[peer_id] = character_data
+
+
+	# Broadcast aux clients (appelera _update_peer_character sur CHAQUE instance)
+	rpc("_update_peer_character", peer_id, character_data)
+
+@rpc("any_peer")
+func _update_peer_character(peer_id: int, character_data: Dictionary) -> void:
+
+	# Chaque client (et le serveur) tient à jour son propre peer_to_character_id
+	peer_to_character_id[peer_id] = character_data
+
+
 
 
 func get_character_id_by_peer_id(peer_id: int) -> int:
 	if peer_id in peer_to_character_id:
-		return peer_to_character_id[peer_id]
+		return int(peer_to_character_id[peer_id].get("id", -1))
 	return -1
 
 
 func get_character_name_by_peer_id(peer_id: int) -> String:
-	var character_id = get_character_id_by_peer_id(peer_id)
-	#print(character_id)
-	if character_id == -1:
+	var char_data = peer_to_character_id.get(peer_id, null)
+	if char_data == null:
+		print("Erreur: Aucun personnage associé à ce peer_id:", peer_id)
 		return "None"
-	return get_character_name_by_id(character_id)
+		
+	var char_name = char_data.get("name", "None")
+	return char_name
