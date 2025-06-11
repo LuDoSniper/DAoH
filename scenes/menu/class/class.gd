@@ -155,7 +155,7 @@ func _on_characters_receive(_result, response_code, _headers, body) -> void:
 				child.queue_free()
 		
 		var data = JSON.parse_string(body.get_string_from_utf8())
-		for character in data:
+		for character in data["characters"]:
 			var button = Button.new()
 			button.text = character["name"]
 			

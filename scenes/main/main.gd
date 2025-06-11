@@ -10,6 +10,8 @@ extends Node3D
 @onready var classes_camera: Camera3D = $"3D/Cameras/Classes"
 @onready var options_camera: Camera3D = $"3D/Cameras/Options"
 @onready var credits_camera: Camera3D = $"3D/Cameras/Credits"
+@onready var new_personnage_camera: Camera3D = $"3D/Cameras/NewPersonnage"
+@onready var player_pickers_camera: Camera3D = $"3D/Cameras/PlayerPickers"
 
 @onready var knight: Node3D = $"3D/Skins/Knight"
 @onready var barbarian: Node3D = $"3D/Skins/Barbarian"
@@ -37,6 +39,8 @@ func hide_menu():
 	classes_camera.current = false
 	options_camera.current = false
 	credits_camera.current = false
+	new_personnage_camera.current = false
+	player_pickers_camera.current = false
 
 func _on_start_pressed() -> void:
 	#hide_menu()
@@ -66,6 +70,8 @@ func _on_back_pressed() -> void:
 
 func _on_back_class_pressed() -> void:
 	classes.create_back_pressed()
+	classes_camera.current = false
+	player_pickers_camera.current = true
 
 func _on_class_selected(classes_name) -> void:
 	knight.hide()
@@ -85,7 +91,7 @@ func _on_class_selected(classes_name) -> void:
 func _on_authentication_successfull() -> void:
 	hide_menu()
 	classes.show()
-	classes_camera.current = true
+	player_pickers_camera.current = true
 	classes.get_characters()
 
 func _on_back_to_main_pressed() -> void:
@@ -97,3 +103,23 @@ func authentication_back_pressed() -> void:
 	authentication.hide()
 	home_menu.show()
 	home_camera.current = true
+
+
+func _on_create_pressed() -> void:
+	player_pickers_camera.current = false
+	new_personnage_camera.current = true
+
+
+func _on_close_pressed() -> void:
+	new_personnage_camera.current = false
+	player_pickers_camera.current = true
+
+
+func _on_next_pressed() -> void:
+	new_personnage_camera.current = false
+	classes_camera.current = true
+
+
+func _on_create_character_pressed() -> void:
+	classes_camera.current = false
+	player_pickers_camera.current = true
