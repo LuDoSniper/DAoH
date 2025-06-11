@@ -179,6 +179,7 @@ func get_port() -> void:
 func _on_port_received(_result, response_code, _headers, body) -> void:
 	if response_code == 200:
 		var data = JSON.parse_string(body.get_string_from_utf8())
+		MULTIPLAYER.REGION = data["region"]
 		MULTIPLAYER.LISTEN_PORT = data["port"]
 		MULTIPLAYER.MAX_CHARACTER_COUNT = data["max_character_count"]
 		
