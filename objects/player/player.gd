@@ -108,7 +108,8 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
 func _ready() -> void:
-	UTILS.print_local(self, "Je viens d'apparraitre sout le nom de " + str(name.to_int()))
+	var character_name = MULTIPLAYER.get_character_name_by_peer_id(name.to_int())
+	UTILS.print_local(self, "Je viens d'apparraitre sout le nom de " + character_name)
 	# Initialize classes
 	var knight_class = ClassData.new("Knight")
 	knight_class.add_attack("base")
@@ -430,7 +431,10 @@ func _request_disconnect(id: int, owner_id: int) -> void:
 	if multiplayer.is_server() and name.to_int() == id:
 		MULTIPLAYER.owners_id.pop_at(MULTIPLAYER.owners_id.find(owner_id))
 		UTILS.print_local(self, "AUTHORIZING " + str(id) + " TO LEAVE")
-		get_tree().root.get_node("World").send_message("[" + str(id) + "] hast left the game", id, false)
+
+		var character_name = MULTIPLAYER.get_character_name_by_peer_id(name.to_int())
+		
+		get_tree().root.get_node("World").send_message("[" + character_name + "] hast left the game", id, false)
 		rpc_id(id, "_remote_can_disconnect", id)
 		rpc("_remote_player_disconnected", id)
 		

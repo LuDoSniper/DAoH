@@ -128,7 +128,7 @@ func _authentication_attempt(peer_id: int, owner_id: int) -> void:
 		if owner_id not in MULTIPLAYER.owners_id:
 			MULTIPLAYER.owners_id.append(owner_id)
 			rpc_id(peer_id, "_remote_init_player", peer_id)
-			send_message("[" + str(peer_id) + "] has joined the game", peer_id, false)
+			send_message("[" + MULTIPLAYER.get_character_name_by_peer_id(peer_id) + "] has joined the game", peer_id, false)
 		else:
 			rpc_id(peer_id, "_authentication_failed")
 
