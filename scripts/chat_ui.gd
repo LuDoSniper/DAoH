@@ -52,7 +52,9 @@ func _remote_recieve_message(id: int, message: String, prompt: bool = true) -> v
 	if not multiplayer.is_server():
 		UTILS.print_local(self, "I AM RECEIVING A MESSAGE : " + message)
 		
-		var prompt_str = "[" + str(id) + "]: " if prompt else ""
+		#var prompt_str = "[" + str(id) + "]: " if prompt else ""
+		var prompt_str = "[" + MULTIPLAYER.get_character_name_by_peer_id(id) + "]: " if prompt else ""
+
 		message = prompt_str + message.strip_edges()
 		
 		var label = Label.new()

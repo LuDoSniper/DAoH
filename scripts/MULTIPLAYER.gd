@@ -43,5 +43,33 @@ func get_character_by_id(id: int) -> Dictionary:
 	for character in characters:
 		if character["id"] == id:
 			return character
-	
 	return {}
+
+func get_character_name_by_id(id: int) -> String:
+	for character in characters:
+		if character["id"] == id:
+			return character["name"]
+	return "None"
+
+
+
+var peer_to_character_id := {}
+@rpc("any_peer")
+func _register_character(peer_id: int, character_id: int) -> void:
+	peer_to_character_id[peer_id] = character_id
+	#print("peers:")
+	#print(peer_to_character_id)
+
+
+func get_character_id_by_peer_id(peer_id: int) -> int:
+	if peer_id in peer_to_character_id:
+		return peer_to_character_id[peer_id]
+	return -1
+
+
+func get_character_name_by_peer_id(peer_id: int) -> String:
+	var character_id = get_character_id_by_peer_id(peer_id)
+	#print(character_id)
+	if character_id == -1:
+		return "None"
+	return get_character_name_by_id(character_id)

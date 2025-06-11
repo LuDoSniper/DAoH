@@ -144,6 +144,7 @@ func _remote_init_player(id: int) -> void:
 		MULTIPLAYER.last_connection = "success"
 		UTILS.print_local(self, "Sending \"add_player\" request")
 		rpc("_request_add_player", id, get_meta("selected_skin"), get_meta("username"), get_meta("saved_data"))
+		MULTIPLAYER._register_character(multiplayer.get_unique_id(), MULTIPLAYER.current_character)
 
 func get_enemies() -> Array:
 	var enemies = []
