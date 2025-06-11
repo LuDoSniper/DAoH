@@ -172,4 +172,4 @@ shape = SubResource("ConvexPolygonShape3D_3nsgm")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2186, 0.00655818)
-text = "TEST"
+text = "Plage"

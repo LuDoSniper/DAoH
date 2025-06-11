@@ -363,6 +363,21 @@ visible = false
 [node name="Rogue" parent="3D/Skins" instance=ExtResource("4_yyfjg")]
 visible = false
 
+[node name="PlayersPickers" type="Node3D" parent="3D"]
+transform = Transform3D(0.895051, 0, 0.445964, 0, 1, 0, -0.445964, 0, 0.895051, -55.6573, 0.795857, 4.94104)
+
+[node name="Knight" parent="3D/PlayersPickers" instance=ExtResource("1_6q06x")]
+transform = Transform3D(1, -4.36557e-11, -1.49012e-08, 1.16415e-10, 1, -5.82077e-11, -1.49012e-08, 0, 1, 0, 0, 0)
+
+[node name="Barbarian" parent="3D/PlayersPickers" instance=ExtResource("2_ow5a4")]
+visible = false
+
+[node name="Mage" parent="3D/PlayersPickers" instance=ExtResource("3_hujxm")]
+visible = false
+
+[node name="Rogue" parent="3D/PlayersPickers" instance=ExtResource("4_yyfjg")]
+visible = false
+
 [node name="Cameras" type="Node3D" parent="3D"]
 
 [node name="Home" type="Camera3D" parent="3D/Cameras"]
@@ -379,6 +394,12 @@ visible = false
 [node name="Credits" type="Camera3D" parent="3D/Cameras"]
 transform = Transform3D(0.605262, -0.282882, 0.744067, -0.00623604, 0.933013, 0.359789, -0.796002, -0.222407, 0.562953, 33.2771, 14.6456, 38.8446)
 visible = false
+
+[node name="NewPersonnage" type="Camera3D" parent="3D/Cameras"]
+transform = Transform3D(0.668845, 0, 0.743402, 0, 1, 0, -0.743402, 0, 0.668845, 18.3226, 4.3343, 20.6167)
+
+[node name="PlayerPickers" type="Camera3D" parent="3D/Cameras"]
+transform = Transform3D(0.988993, 0, 0.147965, 0, 1, 0, -0.147965, 0, 0.988993, -53.2641, 2.564, 8.41285)
 
 [node name="Map" type="Node3D" parent="3D"]
 
@@ -979,7 +1000,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_srxgy")
 [node name="VBoxContainer3" type="VBoxContainer" parent="GUI/Settings/Panel/MenuBG/VBoxContainer"]
 layout_mode = 2
 
-[node name="quitter" type="Button" parent="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3"]
+[node name="retour" type="Button" parent="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3"]
 clip_contents = true
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
@@ -1640,18 +1661,22 @@ vertical_alignment = 1
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Master" to="GUI/Settings" method="_on_master_value_changed"]
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Music" to="GUI/Settings" method="_on_music_value_changed"]
 [connection signal="value_changed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Sound" to="GUI/Settings" method="_on_sound_fx_value_changed"]
-[connection signal="pressed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3/quitter" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3/retour" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/Create" to="." method="_on_create_character_pressed"]
 [connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/Create" to="GUI/Classes" method="_on_create_character_pressed"]
-[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/retour" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GUI/Classes/Panel/MenuBG/VBoxContainer/VBoxContainer2/retour" to="." method="_on_back_class_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/Chevalier" to="GUI/Classes" method="_on_knight_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer2/VBoxContainer/Barbare" to="GUI/Classes" method="_on_barbarian_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer/Mage" to="GUI/Classes" method="_on_mage_pressed"]
 [connection signal="pressed" from="GUI/Classes/HBoxContainer/VBoxContainer/Voleur" to="GUI/Classes" method="_on_rogue_pressed"]
+[connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer/CreateButton/Create" to="." method="_on_create_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer/CreateButton/Create" to="GUI/Classes" method="_on_create_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Retour" to="." method="_on_back_to_main_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Choisir" to="GUI/Classes" method="_on_choisir_pressed"]
 [connection signal="pressed" from="GUI/Classes/PlayersPickerMargin/VBoxContainer/Choice/Supprimer" to="GUI/Classes" method="show_popup"]
+[connection signal="pressed" from="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="GUI/Classes/NewPlayer/MarginContainer/VBoxContainer/Next" to="GUI/Classes" method="_on_next_pressed"]
+[connection signal="pressed" from="GUI/Classes/NewPlayer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="GUI/Classes/NewPlayer/Close" to="GUI/Classes" method="_on_close_pressed"]
 [connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="GUI/Classes" method="_on_cancel_pressed"]
 [connection signal="pressed" from="GUI/Classes/ConfirmationPopup/ConfirmationPopupContainer/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="GUI/Classes" method="_on_confirm_pressed"]
