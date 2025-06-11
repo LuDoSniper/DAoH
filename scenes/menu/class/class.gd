@@ -150,6 +150,7 @@ func get_characters() -> void:
 
 func _on_characters_receive(_result, response_code, _headers, body) -> void:
 	if response_code == 200:
+		MULTIPLAYER.characters = []
 		# Supprimer les boutons de test
 		for child in character_container.get_children():
 			if not child.is_in_group("create_button"):
@@ -176,6 +177,10 @@ func _on_characters_receive(_result, response_code, _headers, body) -> void:
 			})
 		if MULTIPLAYER.characters != []:
 			MULTIPLAYER.current_character = MULTIPLAYER.characters[0]["id"]
+			
+		var main_node = get_parent().get_parent()
+		if main_node.has_method("show_player_picker"):
+			main_node.show_player_picker(MULTIPLAYER.characters.size() == 0)
 	elif response_code == 401:
 		# JWT expiré, récupération d'un nouveau token
 		_relogin_callback = Callable(self, "get_characters")
