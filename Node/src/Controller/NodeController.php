@@ -17,6 +17,7 @@ class NodeController extends AbstractController
     public function get(): JsonResponse
     {
         $data = [
+            'region' => $this->params->get('region'),
             'port' => $this->params->get('node_port'),
             'max_character_count' => $this->params->get('max_character_count')
         ];
