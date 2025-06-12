@@ -65,6 +65,31 @@ func send_message(message: String, origin: int = multiplayer.get_unique_id(), pr
 				
 				chat_panel.show()
 				auto_hide_timer.start()
+			else:
+				message = "[color=#d63d1e]Joueur Introuvable[/color]"
+				
+				var label = RichTextLabel.new()
+				label.bbcode_enabled = true
+				label.text = ""  # évite de mélanger avec `text`, utilise .append_text() ou .bbcode_text
+				label.bbcode_text = message
+				label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				label.fit_content = true  # utile pour éviter des tailles fixes
+				label.scroll_active = false  # pas besoin de scroll dans le label lui-même
+
+
+
+				message_container.add_child(label)
+				message_input.text = ""
+				message_input.hide()
+
+				await get_tree().process_frame
+				_scroll_to_bottom()
+				GameState.chat_active = false
+				
+				chat_panel.show()
+				auto_hide_timer.start()
+
 		else:
 			UTILS.print_local(self, "Usage: /msg <id>")
 		return
