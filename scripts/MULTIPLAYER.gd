@@ -105,3 +105,10 @@ func get_character_name_by_peer_id(peer_id: int) -> String:
 		
 	var char_name = char_data.get("name", "None")
 	return char_name
+
+func get_peer_id_by_character_name(char_name: String) -> int:
+	for peer_id in peer_to_character_id.keys():
+		var char_data = peer_to_character_id[peer_id]
+		if char_data.get("name", "") == char_name:
+			return peer_id
+	return -1
