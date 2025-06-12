@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx44ua85w3bxx"]
+[gd_scene load_steps=8 format=3 uid="uid://bx44ua85w3bxx"]
 
 [ext_resource type="Script" uid="uid://cxnkbrkdn7erv" path="res://objects/menu/class/button_picker.gd" id="1_dtt40"]
+[ext_resource type="PackedScene" uid="uid://burftttobx7rt" path="res://objects/menu/class/skins/barbarian.tscn" id="1_h4qwn"]
+[ext_resource type="PackedScene" uid="uid://cidjto34losb5" path="res://objects/menu/class/skins/mage.tscn" id="2_dtt40"]
+[ext_resource type="PackedScene" uid="uid://dm3ob664uekpe" path="res://objects/menu/class/skins/knight.tscn" id="3_y6a3q"]
+[ext_resource type="PackedScene" uid="uid://efh1tbncp5g4" path="res://objects/menu/class/skins/rogue_hooded.tscn" id="4_sbfud"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtt40"]
 bg_color = Color(0.823286, 6.73831e-06, 0.53765, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_f6im0"]
+viewport_path = NodePath("SubViewport")
 
 [node name="ButtonPicker" type="Button"]
 custom_minimum_size = Vector2(512, 0)
@@ -43,3 +48,32 @@ theme_override_font_sizes/font_size = 32
 text = "Nom du joueur"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="Barbarian" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1001.43, -3.153)
+
+[node name="Mage" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 1001.43, -3.153)
+
+[node name="Rogue" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21, 1001.43, -3.153)
+
+[node name="Knight" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9, 1001.43, -3.153)
+
+[node name="Skins" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1000, 0)
+
+[node name="Barbarian" parent="Skins" instance=ExtResource("1_h4qwn")]
+
+[node name="Mage" parent="Skins" instance=ExtResource("2_dtt40")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -8.74228e-07)
+
+[node name="Knight" parent="Skins" instance=ExtResource("3_y6a3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 7.86805e-07)
+
+[node name="Rogue" parent="Skins" instance=ExtResource("4_sbfud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -1.83588e-06)

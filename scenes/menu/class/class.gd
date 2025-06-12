@@ -25,8 +25,6 @@ extends Control
 @onready var character_name_input: LineEdit = $NewPlayer/MarginContainer/VBoxContainer/CharacterNameInput
 
 @onready var ButtonPickerScene = preload("res://objects/menu/class/button_picker.tscn")
-@onready var SubViewPort_Picker = preload("res://objects/menu/class/subviewport_player.tscn")
-@onready var players_character: Node3D = $PlayersCharacter
 
 var _relogin_callback: Callable = Callable()
 ###< Gestion des personnages ###
@@ -57,7 +55,6 @@ func _ready() -> void:
 	###> Gestion des personnages ###
 	players_picker_margin.show()
 	new_character_panel_container.hide()
-	players_character.hide()
 	#edit_button.hide()
 	###< Gestion des personnages ###
 
@@ -165,21 +162,14 @@ func _on_characters_receive(_result, response_code, _headers, body) -> void:
 		MULTIPLAYER.owner_id = data["owner_id"]
 		for character in data["characters"]:
 			var button = ButtonPickerScene.instantiate()
-			var skin_preview = SubViewPort_Picker.instantiate()
 			
 			button.set_meta("id", character["id"])
 			button.pressed.connect(func(): _on_character_pressed(character["id"]))
 			
 			character_container.add_child(button)
-			players_character.add_child(skin_preview)
-			
-			await get_tree().process_frame
-			print("Nom : ", character["name"], "Class : ", character["saved_data"]["class"])
-			skin_preview.set_player_skin(character["saved_data"]["class"])
-			var texture = skin_preview.get_viewport_texture()
 			
 			button.set_player_name(character["name"])
-			button.set_viewport_texture(texture)
+			button.set_player_skin(character["saved_data"]["class"])
 			
 			MULTIPLAYER.characters.append({
 				"id": character["id"],
