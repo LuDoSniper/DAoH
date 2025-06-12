@@ -14,6 +14,7 @@ func _input(event):
 	if event.is_action_pressed("open_chat") and (!chat_panel.visible or !GameState.chat_active):
 		chat_panel.show()
 		if chat_panel.visible:
+			GameState.ignore_pause = true
 			GameState.chat_active = true
 			message_input.show()
 			get_viewport().set_input_as_handled()
@@ -21,6 +22,7 @@ func _input(event):
 			auto_hide_timer.stop()
 		else:
 			GameState.chat_active = false
+			GameState.ignore_pause = false
 			auto_hide_timer.stop()
 	if event.is_action_pressed("pause") and chat_panel.visible:
 		GameState.ignore_pause = true
@@ -39,9 +41,9 @@ func send_message(message: String, origin: int = multiplayer.get_unique_id(), pr
 		if parts.size() >= 2:
 			var target_id = MULTIPLAYER.get_peer_id_by_character_name(parts[1])
 			if target_id != -1:
-				UTILS.print_local(self, "Sending ping to " + str(target_id))
+				UTILS.print_local(self, "Sending pm to " + str(target_id))
 				rpc_id(target_id, "_test456", origin, parts[2])
-				
+
 				# @todo bleu + click
 				message = "[color=#44a2eb]à " + MULTIPLAYER.get_character_name_by_peer_id(target_id) + ": " + parts[2].strip_edges() + "[/color]"
 				

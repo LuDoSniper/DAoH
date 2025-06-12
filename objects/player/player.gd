@@ -433,7 +433,7 @@ func _request_disconnect(id: int, owner_id: int) -> void:
 		UTILS.print_local(self, "AUTHORIZING " + str(id) + " TO LEAVE")
 
 		var character_name = MULTIPLAYER.get_character_name_by_peer_id(name.to_int())
-		
+
 		get_tree().root.get_node("World").send_message("[" + character_name + "] hast left the game", id, false)
 		rpc_id(id, "_remote_can_disconnect", id)
 		rpc("_remote_player_disconnected", id)
