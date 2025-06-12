@@ -1,6 +1,6 @@
 extends Button
 
-@onready var label: Label = $PanelContainer/VBoxContainer/Label
+@onready var label: Label = $PanelContainer/MarginContainer/VBoxContainer/Label
 @onready var skins: Node3D = $Skins
 @onready var cameras: SubViewport = $SubViewport
 
