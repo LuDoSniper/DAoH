@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx44ua85w3bxx"]
+[gd_scene load_steps=9 format=3 uid="uid://bx44ua85w3bxx"]
 
 [ext_resource type="Script" uid="uid://cxnkbrkdn7erv" path="res://objects/menu/class/button_picker.gd" id="1_dtt40"]
 [ext_resource type="PackedScene" uid="uid://burftttobx7rt" path="res://objects/menu/class/skins/barbarian.tscn" id="1_h4qwn"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtt40"]
 bg_color = Color(0.823286, 6.73831e-06, 0.53765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6a3q"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_f6im0"]
 viewport_path = NodePath("SubViewport")
@@ -29,6 +32,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y6a3q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
