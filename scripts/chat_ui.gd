@@ -34,13 +34,14 @@ func _on_message_input_text_submitted(new_text: String) -> void:
 func send_message(message: String, origin: int = multiplayer.get_unique_id(), prompt: bool = true) -> void:
 	
 	if message.begins_with("/msg"):
-		# Extraire l'ID destinataire et envoyer un ping
+
 		var parts = message.split(" ", false, 2) # sépare en 3 parties max : /msg, id, reste
 		if parts.size() >= 2:
 			var target_id = MULTIPLAYER.get_peer_id_by_character_name(parts[1])
 			if target_id != -1:
 				UTILS.print_local(self, "Sending ping to " + str(target_id))
 				rpc_id(target_id, "_test456", origin, parts[2])
+				
 				# @todo bleu + click
 				message = "[color=#44a2eb]à " + MULTIPLAYER.get_character_name_by_peer_id(target_id) + ": " + parts[2].strip_edges() + "[/color]"
 				
@@ -106,12 +107,6 @@ func send_message(message: String, origin: int = multiplayer.get_unique_id(), pr
 
 @rpc("any_peer") 
 func _test456(sender_id: int, message: String) -> void: #receive mp
-	"""
-	print("bien recu depuis: ")
-	print(MULTIPLAYER.get_character_name_by_peer_id( multiplayer.get_unique_id()))
-	print(message)
-	"""
-
 	UTILS.print_local(self, "I AM RECEIVING A MESSAGE : " + message)
 	#@todo mettre en bleu et cliquable
 
@@ -173,10 +168,15 @@ func _remote_recieve_message(id: int, message: String, prompt: bool = true) -> v
 		auto_hide_timer.start()
 
 func _scroll_to_bottom():
+	await get_tree().process_frame
+	await get_tree().process_frame
+
 	var scroll = $ChatPanel/VBoxContainer/Container/ScrollContainer
-	var content_height = message_container.get_combined_minimum_size().y
+	var content_height = message_container.get_minimum_size().y
 	var viewport_height = scroll.get_size().y
-	scroll.scroll_vertical = content_height - viewport_height
+
+	scroll.scroll_vertical = max(content_height - viewport_height, 0)
+
 
 func _on_fermeture_automatique_timeout() -> void:
 	chat_panel.hide()
