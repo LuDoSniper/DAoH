@@ -13,6 +13,7 @@ extends Node3D
 @onready var credits_camera: Camera3D = $"3D/Cameras/Credits"
 @onready var new_personnage_camera: Camera3D = $"3D/Cameras/NewPersonnage"
 @onready var player_pickers_camera: Camera3D = $"3D/Cameras/PlayerPickers"
+@onready var player_pickers_empty_camera: Camera3D = $"3D/Cameras/PlayerPickersEmpty"
 
 @onready var knight: Node3D = $"3D/Skins/Knight"
 @onready var barbarian: Node3D = $"3D/Skins/Barbarian"
@@ -46,6 +47,7 @@ func hide_menu():
 	options_camera.current = false
 	credits_camera.current = false
 	new_personnage_camera.current = false
+	player_pickers_empty_camera.current = false
 	player_pickers_camera.current = false
 
 func _on_start_pressed() -> void:
@@ -77,7 +79,7 @@ func _on_back_pressed() -> void:
 func _on_back_class_pressed() -> void:
 	classes.create_back_pressed()
 	classes_camera.current = false
-	player_pickers_camera.current = true
+	show_player_picker()
 
 func _on_class_selected(classes_name) -> void:
 	knight.hide()
@@ -97,7 +99,6 @@ func _on_class_selected(classes_name) -> void:
 func _on_authentication_successfull() -> void:
 	hide_menu()
 	classes.show()
-	player_pickers_camera.current = true
 	classes.get_characters()
 
 func _on_back_to_main_pressed() -> void:
@@ -115,13 +116,14 @@ func _on_ok_pressed() -> void:
 
 
 func _on_create_pressed() -> void:
+	player_pickers_empty_camera.current = false
 	player_pickers_camera.current = false
 	new_personnage_camera.current = true
 
 
 func _on_close_pressed() -> void:
 	new_personnage_camera.current = false
-	player_pickers_camera.current = true
+	show_player_picker()
 
 
 func _on_next_pressed() -> void:
@@ -131,4 +133,15 @@ func _on_next_pressed() -> void:
 
 func _on_create_character_pressed() -> void:
 	classes_camera.current = false
-	player_pickers_camera.current = true
+	show_player_picker()
+
+
+func show_player_picker(empty = null) -> void:
+	if empty == null : 
+		print(MULTIPLAYER.characters)
+		print(len(MULTIPLAYER.characters))
+		empty = len(MULTIPLAYER.characters) == 0
+	if empty:
+		player_pickers_empty_camera.current = true
+	else:
+		player_pickers_camera.current = true

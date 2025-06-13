@@ -10,8 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://bsqfqfo72uj0f" path="res://addons/menu/login.png" id="8_g30en"]
 [ext_resource type="Texture2D" uid="uid://didvrraj4rg1w" path="res://addons/menu/register.png" id="9_8nl15"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hpmwg"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g30en"]
 texture = ExtResource("2_4ukub")
+texture_margin_left = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iddtc"]
 texture = ExtResource("3_07a2n")
@@ -491,7 +494,7 @@ anchor_bottom = 1.0
 offset_right = 320.0
 grow_vertical = 2
 
-[node name="MenuBG" type="Panel" parent="Panel"]
+[node name="MenuBG" type="PanelContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -504,21 +507,21 @@ offset_right = 211.5
 offset_bottom = 240.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_hpmwg")
+theme_override_styles/panel = SubResource("StyleBoxTexture_g30en")
 
-[node name="Bandeau" type="Panel" parent="Panel/MenuBG"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -127.0
-offset_top = -27.805
-offset_right = 127.0
-offset_bottom = 36.195
-grow_horizontal = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG"]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="Bandeau" type="Panel" parent="Panel/MenuBG/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_iddtc")
 
-[node name="Label" type="Label" parent="Panel/MenuBG/Bandeau"]
+[node name="Label" type="Label" parent="Panel/MenuBG/VBoxContainer/Bandeau"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -538,25 +541,18 @@ text = "DAoH"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ServerContainer" type="VBoxContainer" parent="Panel/MenuBG"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -159.0
-offset_top = -174.0
-offset_right = 159.0
-offset_bottom = 174.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG/ServerContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer"]
 layout_mode = 2
 
-[node name="Serveur" type="Label" parent="Panel/MenuBG/ServerContainer/VBoxContainer"]
+[node name="ServerContainer" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer"]
+layout_mode = 2
+
+[node name="Serveur" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_fonts/font = ExtResource("5_8nl15")
@@ -565,64 +561,64 @@ text = "Serveur"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Coupure" type="Panel" parent="Panel/MenuBG/ServerContainer"]
+[node name="Coupure" type="Panel" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(318, 4)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_utrsn")
 
-[node name="ServerSelectionMarginContainer" type="MarginContainer" parent="Panel/MenuBG/ServerContainer"]
+[node name="ServerSelectionMarginContainer" type="MarginContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MenuBG/ServerContainer/ServerSelectionMarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/ServerSelectionMarginContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG/ServerContainer/ServerSelectionMarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/ServerSelectionMarginContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Panel/MenuBG/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_g30en")
 text = "Europe"
 
-[node name="Label2" type="Label" parent="Panel/MenuBG/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_8nl15")
 text = "North-America"
 
-[node name="Label3" type="Label" parent="Panel/MenuBG/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_n583h")
 text = "South-America"
 
-[node name="Label4" type="Label" parent="Panel/MenuBG/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_43q5r")
 text = "Asia"
 
-[node name="Coupure3" type="Panel" parent="Panel/MenuBG/ServerContainer"]
+[node name="Coupure3" type="Panel" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(318, 4)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_utrsn")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/MenuBG/ServerContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer"]
 layout_mode = 2
 
-[node name="continuer" type="Button" parent="Panel/MenuBG/ServerContainer/VBoxContainer3"]
+[node name="continuer" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/VBoxContainer3"]
 clip_contents = true
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
@@ -636,7 +632,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_e0tnn")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xnijr")
 text = "Continuer"
 
-[node name="BackButton" type="Button" parent="Panel/MenuBG/ServerContainer/VBoxContainer3"]
+[node name="BackButton" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
@@ -648,25 +644,14 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_wkfhk")
 theme_override_styles/normal = SubResource("StyleBoxTexture_buxcc")
 text = "Retour"
 
-[node name="LoginContainer" type="VBoxContainer" parent="Panel/MenuBG"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -159.0
-offset_top = -174.0
-offset_right = 159.0
-offset_bottom = 174.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="LoginContainer" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG/LoginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer"]
 layout_mode = 2
 
-[node name="Options" type="Label" parent="Panel/MenuBG/LoginContainer/VBoxContainer"]
+[node name="Options" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.639216, 0.439216, 0.227451, 1)
 theme_override_fonts/font = ExtResource("5_8nl15")
@@ -675,14 +660,14 @@ text = "Se connecter"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MenuBG/LoginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TypeMenu" type="HBoxContainer" parent="Panel/MenuBG/LoginContainer/VBoxContainer2"]
+[node name="TypeMenu" type="HBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="Login" type="Button" parent="Panel/MenuBG/LoginContainer/VBoxContainer2/TypeMenu"]
+[node name="Login" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer2/TypeMenu"]
 clip_contents = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -693,7 +678,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_43q5r")
 icon = ExtResource("8_g30en")
 expand_icon = true
 
-[node name="Register" type="Button" parent="Panel/MenuBG/LoginContainer/VBoxContainer2/TypeMenu"]
+[node name="Register" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer2/TypeMenu"]
 custom_minimum_size = Vector2(58, 58)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -703,31 +688,31 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_n583h")
 icon = ExtResource("9_8nl15")
 expand_icon = true
 
-[node name="Coupure2" type="Panel" parent="Panel/MenuBG/LoginContainer"]
+[node name="Coupure2" type="Panel" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(318, 4)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ubr0j")
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/MenuBG/LoginContainer"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ErrorLabel" type="Label" parent="Panel/MenuBG/LoginContainer/VBoxContainer4"]
+[node name="ErrorLabel" type="Label" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer4"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.427451, 0.294118, 0.152941, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 
-[node name="UsernameInput" type="LineEdit" parent="Panel/MenuBG/LoginContainer/VBoxContainer4"]
+[node name="UsernameInput" type="LineEdit" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer4"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_8nl15")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_hpmwg")
 placeholder_text = "Nom d'utilisateur"
 
-[node name="PasswordInput" type="LineEdit" parent="Panel/MenuBG/LoginContainer/VBoxContainer4"]
+[node name="PasswordInput" type="LineEdit" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer4"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_8nl15")
 theme_override_font_sizes/font_size = 24
@@ -735,16 +720,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_iddtc")
 placeholder_text = "Mot de passe"
 secret = true
 
-[node name="Coupure3" type="Panel" parent="Panel/MenuBG/LoginContainer"]
+[node name="Coupure3" type="Panel" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(318, 4)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ubr0j")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/MenuBG/LoginContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer"]
 layout_mode = 2
 
-[node name="ConnectButton" type="Button" parent="Panel/MenuBG/LoginContainer/VBoxContainer3"]
+[node name="ConnectButton" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
@@ -756,7 +741,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_wkfhk")
 theme_override_styles/normal = SubResource("StyleBoxTexture_buxcc")
 text = "Se connecter"
 
-[node name="RegisterButton" type="Button" parent="Panel/MenuBG/LoginContainer/VBoxContainer3"]
+[node name="RegisterButton" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer3"]
 visible = false
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
@@ -769,7 +754,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_wkfhk")
 theme_override_styles/normal = SubResource("StyleBoxTexture_buxcc")
 text = "S'inscrire"
 
-[node name="BackButton" type="Button" parent="Panel/MenuBG/LoginContainer/VBoxContainer3"]
+[node name="BackButton" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(296, 64)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
@@ -783,10 +768,10 @@ text = "Retour"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[connection signal="pressed" from="Panel/MenuBG/ServerContainer/VBoxContainer3/continuer" to="." method="_on_continuer_pressed"]
-[connection signal="pressed" from="Panel/MenuBG/ServerContainer/VBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="Panel/MenuBG/LoginContainer/VBoxContainer2/TypeMenu/Login" to="." method="_on_login_pressed"]
-[connection signal="pressed" from="Panel/MenuBG/LoginContainer/VBoxContainer2/TypeMenu/Register" to="." method="_on_register_pressed"]
-[connection signal="pressed" from="Panel/MenuBG/LoginContainer/VBoxContainer3/ConnectButton" to="." method="_on_connect_button_pressed"]
-[connection signal="pressed" from="Panel/MenuBG/LoginContainer/VBoxContainer3/RegisterButton" to="." method="_on_register_button_pressed"]
-[connection signal="pressed" from="Panel/MenuBG/LoginContainer/VBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/VBoxContainer3/continuer" to="." method="_on_continuer_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/VBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer2/TypeMenu/Login" to="." method="_on_login_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer2/TypeMenu/Register" to="." method="_on_register_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer3/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer3/RegisterButton" to="." method="_on_register_button_pressed"]
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]

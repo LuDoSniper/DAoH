@@ -21,8 +21,10 @@ extends Control
 ###> Gestion des personnages ###
 @onready var http: HTTPRequest = $HTTPRequest
 @onready var new_character_panel_container: TextureRect = $NewPlayer
-@onready var character_container: HBoxContainer = $PlayersPickerMargin/VBoxContainer/HBoxContainer/PlayerPickers
+@onready var character_container: HBoxContainer = $PlayersPickerMargin/VBoxContainer/HBoxContainer/PlayerPickers/ScrollContainer/MarginContainer/PlayerPickers
 @onready var character_name_input: LineEdit = $NewPlayer/MarginContainer/VBoxContainer/CharacterNameInput
+
+@onready var ButtonPickerScene = preload("res://objects/menu/class/button_picker.tscn")
 
 var _relogin_callback: Callable = Callable()
 ###< Gestion des personnages ###
@@ -150,6 +152,7 @@ func get_characters() -> void:
 
 func _on_characters_receive(_result, response_code, _headers, body) -> void:
 	if response_code == 200:
+		MULTIPLAYER.characters = []
 		# Supprimer les boutons de test
 		for child in character_container.get_children():
 			if not child.is_in_group("create_button"):
@@ -158,16 +161,15 @@ func _on_characters_receive(_result, response_code, _headers, body) -> void:
 		var data = JSON.parse_string(body.get_string_from_utf8())
 		MULTIPLAYER.owner_id = data["owner_id"]
 		for character in data["characters"]:
-			var button = Button.new()
-			button.text = character["name"]
+			var button = ButtonPickerScene.instantiate()
 			
-			# Configuration du remplissage horizontal et vertical
-			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			button.size_flags_vertical = Control.SIZE_EXPAND_FILL
 			button.set_meta("id", character["id"])
 			button.pressed.connect(func(): _on_character_pressed(character["id"]))
 			
 			character_container.add_child(button)
+			
+			button.set_player_name(character["name"])
+			button.set_player_skin(character["saved_data"]["class"])
 			
 			MULTIPLAYER.characters.append({
 				"id": character["id"],
@@ -176,6 +178,10 @@ func _on_characters_receive(_result, response_code, _headers, body) -> void:
 			})
 		if MULTIPLAYER.characters != []:
 			MULTIPLAYER.current_character = MULTIPLAYER.characters[0]["id"]
+			
+		var main_node = get_parent().get_parent()
+		if main_node.has_method("show_player_picker"):
+			main_node.show_player_picker(MULTIPLAYER.characters.size() == 0)
 	elif response_code == 401:
 		# JWT expiré, récupération d'un nouveau token
 		_relogin_callback = Callable(self, "get_characters")

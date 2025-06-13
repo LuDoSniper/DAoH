@@ -4,26 +4,26 @@ signal authentication_successfull
 
 @onready var http: HTTPRequest = $HTTPRequest
 
-@onready var server_container = $Panel/MenuBG/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer
-@onready var server_name_login = $Panel/MenuBG/LoginContainer/VBoxContainer/Options
-@onready var server_name: Label = $Panel/MenuBG/ServerContainer/VBoxContainer/Serveur
+@onready var server_container = $Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/ServerSelectionMarginContainer/ScrollContainer/VBoxContainer
+@onready var server_name_login = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer/Options
+@onready var server_name: Label = $Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer/VBoxContainer/Serveur
 
-@onready var main_server_container: VBoxContainer = $Panel/MenuBG/ServerContainer
-@onready var main_login_container: VBoxContainer = $Panel/MenuBG/LoginContainer
+@onready var main_server_container: VBoxContainer = $Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer
+@onready var main_login_container: VBoxContainer = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer
 
-@onready var username_input = $Panel/MenuBG/LoginContainer/VBoxContainer4/UsernameInput
-@onready var password_input = $Panel/MenuBG/LoginContainer/VBoxContainer4/PasswordInput
+@onready var username_input = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer4/UsernameInput
+@onready var password_input = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer4/PasswordInput
 
-@onready var error_label = $Panel/MenuBG/LoginContainer/VBoxContainer4/ErrorLabel
+@onready var error_label = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer4/ErrorLabel
 
-@onready var server_panel: VBoxContainer = $Panel/MenuBG/ServerContainer
-@onready var login_panel: VBoxContainer = $Panel/MenuBG/LoginContainer
+@onready var server_panel: VBoxContainer = $Panel/MenuBG/VBoxContainer/VBoxContainer2/ServerContainer
+@onready var login_panel: VBoxContainer = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer
 
-@onready var login_type_button: Button = $Panel/MenuBG/LoginContainer/VBoxContainer2/TypeMenu/Login
-@onready var register_type_button: Button = $Panel/MenuBG/LoginContainer/VBoxContainer2/TypeMenu/Register
+@onready var login_type_button: Button = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer2/TypeMenu/Login
+@onready var register_type_button: Button = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer2/TypeMenu/Register
 
-@onready var connect_button: Button = $Panel/MenuBG/LoginContainer/VBoxContainer3/ConnectButton
-@onready var register_button: Button = $Panel/MenuBG/LoginContainer/VBoxContainer3/RegisterButton
+@onready var connect_button: Button = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer3/ConnectButton
+@onready var register_button: Button = $Panel/MenuBG/VBoxContainer/VBoxContainer2/LoginContainer/VBoxContainer3/RegisterButton
 
 var state = "login"
 var panel_selected = preload("res://addons/menu/panel_brown_arrows_dark_detail.png")
