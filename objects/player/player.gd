@@ -51,6 +51,8 @@ signal unpause
 var _relogin_callback: Callable = Callable()
 var weapon_meshes: Dictionary = {}
 
+var active_quests = []
+
 # Setup in ready
 var classes: Array[ClassData]
 var selected_class: ClassData
@@ -383,15 +385,17 @@ func _input(event: InputEvent) -> void:
 var current_npc: Node = null
 var current_line = 0
 var dialogue_active = false
-var dialogue_lines: Array[String] = []
+var dialogue = {}
 
 func _unhandled_input(event):
 	if current_npc and event.is_action_pressed("interact") and is_multiplayer_authority():
 		if not player_is_lock:
 			player_is_lock = true
 		if not dialogue_active:
-			dialogue_lines = current_npc.get_dialogue_lines()
-			DIALOGUEUI.show_dialogue(current_npc.npc_name, dialogue_lines)
+			dialogue = current_npc.get_dialogue_lines()
+			if dialogue["is_quester"]:
+				add_quest(dialogue["quest"])
+			DIALOGUEUI.show_dialogue(current_npc.npc_name, dialogue["lines"])
 			dialogue_active = true
 			current_line = 1
 		else:
@@ -399,7 +403,7 @@ func _unhandled_input(event):
 			show_next_dialogue()
 
 func show_next_dialogue():
-	if current_line < dialogue_lines.size():
+	if current_line < dialogue["lines"].size():
 		current_line += 1
 	else:
 		dialogue_active = false
@@ -670,3 +674,20 @@ func label_logic():
 		var look_position = username_label.global_transform.origin + (-cam_basis.z)
 		username_label.look_at(look_position, Vector3.UP)
 		username_label.rotate_y(deg_to_rad(180))
+
+func add_quest(quest: Quest):
+	if not has_quest(quest.id):
+		active_quests.append(quest)
+
+func has_quest(quest_id: String) -> bool:
+	for q in active_quests:
+		if q.id == quest_id:
+			return true
+	return false
+
+func update_():
+	for quest in active_quests:
+		if quest.state == Quest.QuestState.IN_PROGRESS:
+			quest.current_amount += 1
+			if quest.current_amount >= quest.required_amount:
+				quest.state = Quest.QuestState.COMPLETED

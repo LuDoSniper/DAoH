@@ -5,11 +5,14 @@ extends CharacterBody3D
 @export var npc_name: String = "CACA"
 var player_camera: Camera3D = null
 
-var dialogue_lines: Array[String] = [
+@export var dialogue_lines: Array[String] = [
 	"Salut, aventurier !",
 	"Bienvenue dans le monde de Godoria.",
 	"Bonne chance pour ta quête !"
 ]
+
+@export var is_quester: bool = false
+@export var quest_to_give: Quest = null
 
 func _ready():
 	label.text = npc_name
@@ -37,4 +40,8 @@ func _on_body_exited(body):
 		player_camera = null
 
 func get_dialogue_lines():
-	return dialogue_lines
+	return {
+		"lines": dialogue_lines,
+		"is_quester": is_quester,
+		"quest": quest_to_give
+	}
