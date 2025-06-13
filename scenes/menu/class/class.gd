@@ -217,6 +217,9 @@ func _on_create_character_receive(_result, response_code, _headers, _body) -> vo
 		new_character_panel_container.hide()
 		class_desc.hide()
 		class_picker.hide()
+	elif response_code == 400:
+		#error_label.text = "Nom du personnage invalide"
+		pass
 	elif response_code == 401:
 		# JWT expired, get new token
 		_relogin_callback = Callable(self, "get_characters")

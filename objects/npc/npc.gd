@@ -17,7 +17,7 @@ func _ready():
 	area.body_exited.connect(_on_body_exited)
 	label.visible = false
 
-func _process(delta):
+func _process(_delta):
 	if player_camera and label.visible:
 		label.look_at(player_camera.global_transform.origin, Vector3.UP)
 		label.rotation.y += deg_to_rad(180)

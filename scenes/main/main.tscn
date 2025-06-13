@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://cklxpfboxkd2c"]
+[gd_scene load_steps=115 format=3 uid="uid://cklxpfboxkd2c"]
 
 [ext_resource type="PackedScene" uid="uid://b03jyr0by50pr" path="res://objects/player/skin/knight/knight.tscn" id="1_6q06x"]
 [ext_resource type="Script" uid="uid://b6fjswd7w63m0" path="res://scenes/main/main.gd" id="1_a8run"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://dtvxs0m8whqka" path="res://addons/menu/panel.png" id="24_37hlw"]
 [ext_resource type="PackedScene" uid="uid://dh21volx761c1" path="res://scenes/menu/authentication/authentication.tscn" id="24_s17dp"]
 [ext_resource type="Texture2D" uid="uid://hjgjb0igicrj" path="res://addons/menu/button_brown_close.png" id="25_6llfj"]
+[ext_resource type="PackedScene" uid="uid://bljoaj81kr158" path="res://objects/cinematic_character/cinematic_character.tscn" id="28_62atk"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_37hlw"]
 panorama = ExtResource("7_s17dp")
@@ -41,6 +42,51 @@ ambient_light_sky_contribution = 0.5
 reflected_light_source = 1
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_62atk"]
+vertices = PackedVector3Array(8.18639, 2.79677, -8.92373, 7.93639, 2.79677, -9.67373, 5.18639, 2.79677, -11.6737, 1.93639, 2.79677, -12.9237, -14.5636, 2.79677, -2.67373, -14.5636, 2.79677, 2.32627, -13.8136, 2.79677, 3.57627, -5.06361, 2.79677, -12.9237, -8.31361, 2.79677, -11.6737, -11.0636, 2.79677, -9.67373, -13.3136, 2.79677, -6.42373, -12.0636, 3.54677, 4.57627, -11.5636, 3.54677, 6.07627, -10.8136, 3.54677, 6.32627, 9.18639, 3.54677, -4.92373, 7.93639, 3.54677, -6.67373, 11.4364, 2.79677, -2.67373, 10.6864, 2.79677, -3.92373, 8.43639, 2.79677, -2.17373, 9.93639, 2.79677, 6.57627, 11.4364, 2.79677, 2.32627, -11.3136, 2.79677, 8.57627, -11.0636, 2.79677, 9.32627, -8.31361, 2.79677, 11.3263, -5.06361, 2.79677, 12.5763, 1.93639, 2.79677, 12.5763, 5.18639, 2.79677, 11.3263, 7.93639, 2.79677, 9.32627)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(9, 8, 7), PackedInt32Array(7, 3, 9), PackedInt32Array(9, 3, 0), PackedInt32Array(9, 0, 4), PackedInt32Array(4, 0, 6), PackedInt32Array(4, 10, 9), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 15), PackedInt32Array(13, 15, 14), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 20), PackedInt32Array(18, 20, 19), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(26, 25, 19), PackedInt32Array(19, 25, 24), PackedInt32Array(19, 24, 21), PackedInt32Array(19, 21, 18), PackedInt32Array(19, 27, 26)]
+agent_radius = 1.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_i7in8"]
+resource_local_to_scene = true
+vertices = PackedVector3Array(2.5, 2.81395, 1, 1, 2.81395, -2.5, -2.5, 2.81395, -1, -2.5, 2.81395, 1, -1, 2.81395, 2.5, 1, 2.81395, 2.5, -1, 2.81395, -2.5, 2.5, 2.81395, -1)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1), PackedInt32Array(2, 6, 1), PackedInt32Array(1, 7, 0)]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_gkmcc"]
+resource_local_to_scene = true
+vertices = PackedVector3Array(2.5, 2.81395, 1, 1, 2.81395, -2.5, -2.5, 2.81395, -1, -2.5, 2.81395, 1, -1, 2.81395, 2.5, 1, 2.81395, 2.5, -1, 2.81395, -2.5, 2.5, 2.81395, -1)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1), PackedInt32Array(2, 6, 1), PackedInt32Array(1, 7, 0)]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_7nlll"]
+resource_local_to_scene = true
+vertices = PackedVector3Array(2.5, 2.81395, 1, 1, 2.81395, -2.5, -2.5, 2.81395, -1, -2.5, 2.81395, 1, -1, 2.81395, 2.5, 1, 2.81395, 2.5, -1, 2.81395, -2.5, 2.5, 2.81395, -1)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1), PackedInt32Array(2, 6, 1), PackedInt32Array(1, 7, 0)]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ii537"]
+resource_local_to_scene = true
+vertices = PackedVector3Array(2.5, 2.81395, 1, 1, 2.81395, -2.5, -2.5, 2.81395, -1, -2.5, 2.81395, 1, -1, 2.81395, 2.5, 1, 2.81395, 2.5, -1, 2.81395, -2.5, 2.5, 2.81395, -1)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1), PackedInt32Array(2, 6, 1), PackedInt32Array(1, 7, 0)]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rofvo"]
+resource_local_to_scene = true
+vertices = PackedVector3Array(2.5, 2.81395, 1, 1, 2.81395, -2.5, -2.5, 2.81395, -1, -2.5, 2.81395, 1, -1, 2.81395, 2.5, 1, 2.81395, 2.5, -1, 2.81395, -2.5, 2.5, 2.81395, -1)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1), PackedInt32Array(2, 6, 1), PackedInt32Array(1, 7, 0)]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_tbnf8"]
+resource_local_to_scene = true
+vertices = PackedVector3Array(2.5, 2.81395, 1, 1, 2.81395, -2.5, -2.5, 2.81395, -1, -2.5, 2.81395, 1, -1, 2.81395, 2.5, 1, 2.81395, 2.5, -1, 2.81395, -2.5, 2.5, 2.81395, -1)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1), PackedInt32Array(2, 6, 1), PackedInt32Array(1, 7, 0)]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_r1bmu"]
+resource_local_to_scene = true
+vertices = PackedVector3Array(2.5, 2.81395, 1, 1, 2.81395, -2.5, -2.5, 2.81395, -1, -2.5, 2.81395, 1, -1, 2.81395, 2.5, 1, 2.81395, 2.5, -1, 2.81395, -2.5, 2.5, 2.81395, -1)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1), PackedInt32Array(2, 6, 1), PackedInt32Array(1, 7, 0)]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_6w6mm"]
+resource_local_to_scene = true
+vertices = PackedVector3Array(2.5, 2.81395, 1, 1, 2.81395, -2.5, -2.5, 2.81395, -1, -2.5, 2.81395, 1, -1, 2.81395, 2.5, 1, 2.81395, 2.5, -1, 2.81395, -2.5, 2.5, 2.81395, -1)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(0, 2, 1), PackedInt32Array(2, 6, 1), PackedInt32Array(1, 7, 0)]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vstcn"]
 texture = ExtResource("7_raeie")
@@ -350,6 +396,7 @@ script = ExtResource("1_a8run")
 
 [node name="Skins" type="Node3D" parent="3D"]
 transform = Transform3D(-0.614285, 0, -0.789084, 0, 1, 0, 0.789084, 0, -0.614285, 2.3432, 2.25572, -9.86827)
+visible = false
 
 [node name="Knight" parent="3D/Skins" instance=ExtResource("1_6q06x")]
 transform = Transform3D(1, -4.36557e-11, -1.49012e-08, 1.16415e-10, 1, -5.82077e-11, -1.49012e-08, 0, 1, 0, 0, 0)
@@ -401,6 +448,13 @@ transform = Transform3D(0.668845, 0, 0.743402, 0, 1, 0, -0.743402, 0, 0.668845, 
 [node name="PlayerPickers" type="Camera3D" parent="3D/Cameras"]
 transform = Transform3D(0.988993, 0, 0.147965, 0, 1, 0, -0.147965, 0, 0.988993, -53.2641, 2.564, 8.41285)
 
+[node name="CinematicClassSelection" type="SpringArm3D" parent="3D/Cameras"]
+transform = Transform3D(1, 0, 0, 0, 0.928654, 0.370946, 0, -0.370946, 0.928654, 0, 7.70877, 0)
+collision_mask = 0
+spring_length = 12.0
+
+[node name="Camera3D" type="Camera3D" parent="3D/Cameras/CinematicClassSelection"]
+
 [node name="Map" type="Node3D" parent="3D"]
 
 [node name="Map" parent="3D/Map" instance=ExtResource("6_p8abn")]
@@ -411,6 +465,175 @@ environment = SubResource("Environment_6llfj")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D/Map"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="3D/Map"]
+visible = false
+navigation_mesh = SubResource("NavigationMesh_62atk")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3D/Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56361, 1.29677, -0.173734)
+layers = 0
+use_collision = true
+collision_mask = 0
+radius = 14.0
+sides = 64
+smooth_faces = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="3D/Map/NavigationRegion3D"]
+transform = Transform3D(0.87224, 0, 0.489078, 0, 1, 0, -0.489078, 0, 0.87224, -1.53024, 2.7038, -0.135199)
+layers = 0
+use_collision = true
+size = Vector3(25, 1, 3.53442)
+
+[node name="CinematicCharacters" type="Node3D" parent="3D/Map/NavigationRegion3D"]
+
+[node name="Knight" parent="3D/Map/NavigationRegion3D/CinematicCharacters" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25271, 2.2676, 5.50185)
+
+[node name="Mage" parent="3D/Map/NavigationRegion3D/CinematicCharacters" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776214, 2.2676, -9.57895)
+variant = 1
+
+[node name="Barbarian" parent="3D/Map/NavigationRegion3D/CinematicCharacters" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6952, 2.2676, -4.69201)
+variant = 2
+
+[node name="Rogue" parent="3D/Map/NavigationRegion3D/CinematicCharacters" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.03943, 2.2676, 7.78525)
+variant = 3
+
+[node name="Knight2" parent="3D/Map/NavigationRegion3D/CinematicCharacters" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.57236, 2.2676, -8.42822)
+
+[node name="Mage2" parent="3D/Map/NavigationRegion3D/CinematicCharacters" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.615268, 2.2676, 8.02636)
+variant = 1
+
+[node name="Barbarian2" parent="3D/Map/NavigationRegion3D/CinematicCharacters" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3287, 2.2676, 0.608888)
+variant = 2
+
+[node name="Rogue2" parent="3D/Map/NavigationRegion3D/CinematicCharacters" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7625, 2.2676, -0.112663)
+variant = 3
+
+[node name="NavigationRegion3D2" type="NavigationRegion3D" parent="3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.824505, 0, -9.43029)
+navigation_mesh = SubResource("NavigationMesh_i7in8")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3D/Map/NavigationRegion3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31395, 0)
+layers = 0
+use_collision = true
+radius = 3.0
+sides = 16
+
+[node name="Mage" parent="3D/Map/NavigationRegion3D2" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0482905, 2.2676, -0.148662)
+variant = 1
+
+[node name="NavigationRegion3D3" type="NavigationRegion3D" parent="3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34469, 0, -4.48325)
+navigation_mesh = SubResource("NavigationMesh_gkmcc")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3D/Map/NavigationRegion3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31395, 0)
+layers = 0
+use_collision = true
+radius = 3.0
+sides = 16
+
+[node name="Barbarian" parent="3D/Map/NavigationRegion3D3" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149246, 2.2676, 0.0231333)
+variant = 2
+
+[node name="NavigationRegion3D4" type="NavigationRegion3D" parent="3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24133, 0, 5.50277)
+navigation_mesh = SubResource("NavigationMesh_7nlll")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3D/Map/NavigationRegion3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31395, 0)
+layers = 0
+use_collision = true
+radius = 3.0
+sides = 16
+
+[node name="Knight" parent="3D/Map/NavigationRegion3D4" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0113835, 2.2676, -0.000917912)
+
+[node name="NavigationRegion3D5" type="NavigationRegion3D" parent="3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.06267, 0, 7.88645)
+navigation_mesh = SubResource("NavigationMesh_ii537")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3D/Map/NavigationRegion3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31395, 0)
+layers = 0
+use_collision = true
+radius = 3.0
+sides = 16
+
+[node name="Rogue" parent="3D/Map/NavigationRegion3D5" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0232391, 2.2676, -0.1012)
+variant = 3
+
+[node name="NavigationRegion3D6" type="NavigationRegion3D" parent="3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.22284, 0, -6.41564)
+navigation_mesh = SubResource("NavigationMesh_rofvo")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3D/Map/NavigationRegion3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31395, 0)
+layers = 0
+use_collision = true
+radius = 3.0
+sides = 16
+
+[node name="Mage1" parent="3D/Map/NavigationRegion3D6" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0132389, 2.2676, -0.0434999)
+variant = 1
+
+[node name="NavigationRegion3D7" type="NavigationRegion3D" parent="3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.53833, 0, -1.15752)
+navigation_mesh = SubResource("NavigationMesh_tbnf8")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3D/Map/NavigationRegion3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31395, 0)
+layers = 0
+use_collision = true
+radius = 3.0
+sides = 16
+
+[node name="Knight1" parent="3D/Map/NavigationRegion3D7" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09378, 2.2676, -0.0710263)
+
+[node name="NavigationRegion3D8" type="NavigationRegion3D" parent="3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.81538, 0, -1.82355)
+navigation_mesh = SubResource("NavigationMesh_r1bmu")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3D/Map/NavigationRegion3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31395, 0)
+layers = 0
+use_collision = true
+radius = 3.0
+sides = 16
+
+[node name="Barbarian1" parent="3D/Map/NavigationRegion3D8" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0467548, 2.2676, -0.007514)
+variant = 2
+
+[node name="NavigationRegion3D9" type="NavigationRegion3D" parent="3D/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24369, 0, 5.18728)
+navigation_mesh = SubResource("NavigationMesh_6w6mm")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3D/Map/NavigationRegion3D9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31395, 0)
+layers = 0
+use_collision = true
+radius = 3.0
+sides = 16
+
+[node name="Rogue1" parent="3D/Map/NavigationRegion3D9" instance=ExtResource("28_62atk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0232391, 2.2676, -0.0661459)
+variant = 3
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3

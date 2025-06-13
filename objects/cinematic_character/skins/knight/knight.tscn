@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://7cqcuxhth562"]
+
+[ext_resource type="PackedScene" uid="uid://d20krfiralvcg" path="res://addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb" id="1_5wa0r"]
+[ext_resource type="Texture2D" uid="uid://b8rqr7pcgc0pi" path="res://addons/kaykit_character_pack_adventures/Characters/gltf/Knight_knight_texture.png" id="2_6luo3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgos2"]
+albedo_texture = ExtResource("2_6luo3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6luo3"]
+albedo_texture = ExtResource("2_6luo3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j70uy"]
+albedo_texture = ExtResource("2_6luo3")
+
+[node name="Knight" instance=ExtResource("1_5wa0r")]
+
+[node name="1H_Sword_Offhand" parent="Rig/Skeleton3D" index="0"]
+transform = Transform3D(-0.999999, -1.32199e-07, -3.75094e-08, -1.35449e-07, -5.30967e-07, 0.999999, -2.10433e-07, 0.999999, 6.23449e-07, 0.883132, 1.04926, 0.0170111)
+
+[node name="1H_Sword_Offhand" parent="Rig/Skeleton3D/1H_Sword_Offhand" index="0"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Badge_Shield" parent="Rig/Skeleton3D" index="1"]
+transform = Transform3D(-0.999999, 2.40298e-06, -7.04971e-07, -8.02913e-07, -7.37598e-07, 0.999999, 2.32475e-06, 0.999999, 8.30081e-07, 0.883132, 1.20515, 0.0170112)
+
+[node name="Badge_Shield" parent="Rig/Skeleton3D/Badge_Shield" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Rectangle_Shield" parent="Rig/Skeleton3D" index="2"]
+transform = Transform3D(-0.999999, 2.40298e-06, -7.04971e-07, -8.02913e-07, -7.37598e-07, 0.999999, 2.32475e-06, 0.999999, 8.30081e-07, 0.883132, 1.20515, 0.0170112)
+
+[node name="Rectangle_Shield" parent="Rig/Skeleton3D/Rectangle_Shield" index="0"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Round_Shield" parent="Rig/Skeleton3D" index="3"]
+transform = Transform3D(-0.999999, 2.40298e-06, -7.04971e-07, -8.02913e-07, -7.37598e-07, 0.999999, 2.32475e-06, 0.999999, 8.30081e-07, 0.883132, 1.20515, 0.0170112)
+
+[node name="Round_Shield" parent="Rig/Skeleton3D/Round_Shield" index="0"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Spike_Shield" parent="Rig/Skeleton3D" index="4"]
+transform = Transform3D(-0.999999, 2.40298e-06, -7.04971e-07, -8.02913e-07, -7.37598e-07, 0.999999, 2.32475e-06, 0.999999, 8.30081e-07, 0.883132, 1.20515, 0.0170112)
+
+[node name="Spike_Shield" parent="Rig/Skeleton3D/Spike_Shield" index="0"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="1H_Sword" parent="Rig/Skeleton3D" index="5"]
+transform = Transform3D(0.999999, 2.0298e-07, -4.52757e-07, -3.93247e-07, -7.95385e-07, -0.999999, -1.32203e-07, 0.999999, -7.42514e-07, -0.883132, 1.04926, 0.0333086)
+
+[node name="1H_Sword" parent="Rig/Skeleton3D/1H_Sword" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="2H_Sword" parent="Rig/Skeleton3D" index="6"]
+transform = Transform3D(0.999999, 1.88247e-07, -4.39071e-07, -3.79561e-07, -7.95385e-07, -0.999999, -1.1747e-07, 0.999999, -7.42514e-07, -0.883132, 1.04926, 0.0333086)
+
+[node name="2H_Sword" parent="Rig/Skeleton3D/2H_Sword" index="0"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Knight_Helmet" parent="Rig/Skeleton3D" index="7"]
+transform = Transform3D(1, -2.20965e-22, 1.69407e-21, 2.20965e-22, 1, 0, -1.69407e-21, 3.58732e-43, 1, 4.76837e-07, 1.21589, -1.08542e-07)
+
+[node name="Knight_Helmet" parent="Rig/Skeleton3D/Knight_Helmet" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Knight_Cape" parent="Rig/Skeleton3D" index="8"]
+transform = Transform3D(1, 1.25214e-21, 0, -1.25214e-21, 1, 0, 0, 0, 1, 0, 1.21589, -1.4066e-07)
+
+[node name="Knight_Cape" parent="Rig/Skeleton3D/Knight_Cape" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Knight_ArmLeft" parent="Rig/Skeleton3D" index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Knight_ArmRight" parent="Rig/Skeleton3D" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Knight_Body" parent="Rig/Skeleton3D" index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Knight_Head" parent="Rig/Skeleton3D" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sgos2")
+
+[node name="Knight_LegLeft" parent="Rig/Skeleton3D" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6luo3")
+
+[node name="Knight_LegRight" parent="Rig/Skeleton3D" index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_j70uy")

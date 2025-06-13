@@ -1,0 +1,125 @@
+[gd_scene load_steps=16 format=3 uid="uid://bljoaj81kr158"]
+
+[ext_resource type="Script" uid="uid://dp76gtm7xgf8m" path="res://objects/cinematic_character/cinematic_character.gd" id="1_ljfux"]
+[ext_resource type="PackedScene" uid="uid://c6hchysf20fts" path="res://objects/cinematic_character/skins/barbarian/barbarian.tscn" id="1_p2pja"]
+[ext_resource type="PackedScene" uid="uid://7cqcuxhth562" path="res://objects/cinematic_character/skins/knight/knight.tscn" id="2_3vqm0"]
+[ext_resource type="PackedScene" uid="uid://ds1avwtqhlhak" path="res://objects/cinematic_character/skins/mage/mage.tscn" id="3_tqhky"]
+[ext_resource type="PackedScene" uid="uid://dgqty07b1sc23" path="res://objects/cinematic_character/skins/rogue/rogue.tscn" id="4_3iyaq"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tqhky"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3vqm0"]
+animation = &"Walking_C"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3iyaq"]
+xfade_time = 0.2
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tqhky"]
+xfade_time = 0.2
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pwksh"]
+xfade_time = 0.2
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wipnc"]
+xfade_time = 0.2
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pwksh"]
+states/End/position = Vector2(663, 136)
+states/Idle/node = SubResource("AnimationNodeAnimation_tqhky")
+states/Idle/position = Vector2(537, 71)
+states/Start/position = Vector2(403, 136)
+states/Walk/node = SubResource("AnimationNodeAnimation_3vqm0")
+states/Walk/position = Vector2(537, 202)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3iyaq"), "Start", "Walk", SubResource("AnimationNodeStateMachineTransition_tqhky"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_pwksh"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_wipnc")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ljfux"]
+nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_pwksh")
+nodes/MoveStateMachine/position = Vector2(-80, 140)
+node_connections = [&"output", 0, &"MoveStateMachine"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p2pja"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3vqm0"]
+radius = 2.0
+
+[node name="CinematicCharacter" type="CharacterBody3D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_ljfux")
+
+[node name="Skins" type="Node3D" parent="."]
+
+[node name="Knight" parent="Skins" instance=ExtResource("2_3vqm0")]
+
+[node name="Mage" parent="Skins" instance=ExtResource("3_tqhky")]
+visible = false
+
+[node name="Barbarian" parent="Skins" instance=ExtResource("1_p2pja")]
+visible = false
+
+[node name="Rogue" parent="Skins" instance=ExtResource("4_3iyaq")]
+visible = false
+
+[node name="Knife_Offhand" parent="Skins/Rogue/Rig/Skeleton3D" index="0"]
+transform = Transform3D(-0.999999, -1.17465e-07, 2.60635e-08, -7.18757e-08, -5.30967e-07, 0.999999, -1.957e-07, 0.999999, 6.23449e-07, 0.883132, 1.04926, -1.63329e-05)
+
+[node name="1H_Crossbow" parent="Skins/Rogue/Rig/Skeleton3D" index="1"]
+transform = Transform3D(-4.5731e-07, 4.00596e-08, -0.999999, -0.999999, -4.96539e-07, 3.978e-07, -4.43668e-07, 0.999999, -3.07174e-08, -0.778504, 1.04926, -0.0103745)
+
+[node name="2H_Crossbow" parent="Skins/Rogue/Rig/Skeleton3D" index="2"]
+transform = Transform3D(-4.5731e-07, 4.00596e-08, -0.999999, -0.999999, -4.96539e-07, 3.978e-07, -4.43668e-07, 0.999999, -3.07174e-08, -0.778504, 1.04926, -0.0103745)
+
+[node name="Knife" parent="Skins/Rogue/Rig/Skeleton3D" index="3"]
+transform = Transform3D(0.999999, 1.88247e-07, -4.39071e-07, -3.79561e-07, -7.95385e-07, -0.999999, -1.1747e-07, 0.999999, -7.42514e-07, -0.883132, 1.04926, -1.60515e-05)
+
+[node name="Throwable" parent="Skins/Rogue/Rig/Skeleton3D" index="4"]
+transform = Transform3D(0.999999, 2.0298e-07, -4.52757e-07, -3.93247e-07, -6.76176e-07, -0.999999, -1.32203e-07, 0.999999, -6.23305e-07, -0.883132, 1.04926, 0.18023)
+
+[node name="Rogue_Cape" parent="Skins/Rogue/Rig/Skeleton3D" index="5"]
+transform = Transform3D(1, 1.25214e-21, 0, -1.25214e-21, 1, 0, 0, 0, 1, 0, 1.21587, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="Skins"]
+root_node = NodePath("../Rogue")
+tree_root = SubResource("AnimationNodeBlendTree_ljfux")
+anim_player = NodePath("../Rogue/AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_p2pja")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
+avoidance_enabled = true
+use_3d_avoidance = true
+debug_enabled = true
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+height = 2.0
+vertices = PackedVector3Array(-0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5)
+affect_navigation_mesh = true
+use_3d_avoidance = true
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="WaitTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_3vqm0")
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="timeout" from="Timers/WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+
+[editable path="Skins/Rogue"]

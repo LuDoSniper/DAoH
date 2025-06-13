@@ -13,12 +13,22 @@ extends Node3D
 @onready var credits_camera: Camera3D = $"3D/Cameras/Credits"
 @onready var new_personnage_camera: Camera3D = $"3D/Cameras/NewPersonnage"
 @onready var player_pickers_camera: Camera3D = $"3D/Cameras/PlayerPickers"
+@onready var cinematic_class_selection_camera: Camera3D = $"3D/Cameras/CinematicClassSelection/Camera3D"
+@onready var cinematic_class_selection: SpringArm3D = $"3D/Cameras/CinematicClassSelection"
 
 @onready var knight: Node3D = $"3D/Skins/Knight"
 @onready var barbarian: Node3D = $"3D/Skins/Barbarian"
 @onready var mage: Node3D = $"3D/Skins/Mage"
 @onready var rogue: Node3D = $"3D/Skins/Rogue"
 @onready var class_selector: Control = $GUI/Classes
+
+@onready var cinematic_knight: CharacterBody3D = $"3D/Map/NavigationRegion3D4/Knight"
+@onready var cinematic_mage: CharacterBody3D = $"3D/Map/NavigationRegion3D2/Mage"
+@onready var cinematic_barbarian: CharacterBody3D = $"3D/Map/NavigationRegion3D3/Barbarian"
+@onready var cinematic_rogue: CharacterBody3D = $"3D/Map/NavigationRegion3D5/Rogue"
+
+var rotation_speed := 0.025
+var cinematic_camera_target: CharacterBody3D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,6 +44,17 @@ func _ready() -> void:
 	home_menu.show()
 	home_camera.current = true
 
+func _physics_process(delta: float) -> void:
+	cinematic_class_selection.rotation.y += rotation_speed * delta
+	if cinematic_camera_target != null:
+		var tween = cinematic_class_selection.create_tween()
+		var target_position = Vector3(
+			cinematic_camera_target.global_position.x,
+			cinematic_camera_target.global_position.y + 2.0,
+			cinematic_camera_target.global_position.z
+		)
+		tween.tween_method(move_toward_cinematic, cinematic_class_selection.global_position, target_position, 0.5)
+
 func hide_menu():
 	home_menu.hide()
 	credits.hide()
@@ -47,6 +68,7 @@ func hide_menu():
 	credits_camera.current = false
 	new_personnage_camera.current = false
 	player_pickers_camera.current = false
+	cinematic_class_selection_camera.current = false
 
 func _on_start_pressed() -> void:
 	#hide_menu()
@@ -86,13 +108,31 @@ func _on_class_selected(classes_name) -> void:
 	rogue.hide()
 	match classes_name:
 		"Knight":
-			knight.show()
+			#knight.show()
+			cinematic_camera_target = cinematic_knight
+			var tween = cinematic_class_selection.create_tween()
+			tween.tween_method(udate_spring_distance_cinematic, cinematic_class_selection.spring_length, 3.0, 0.5)
 		"Barbarian":
-			barbarian.show()
+			#barbarian.show()
+			cinematic_camera_target = cinematic_barbarian
+			var tween = cinematic_class_selection.create_tween()
+			tween.tween_method(udate_spring_distance_cinematic, cinematic_class_selection.spring_length, 3.0, 0.5)
 		"Mage":
-			mage.show()
+			#mage.show()
+			cinematic_camera_target = cinematic_mage
+			var tween = cinematic_class_selection.create_tween()
+			tween.tween_method(udate_spring_distance_cinematic, cinematic_class_selection.spring_length, 3.0, 0.5)
 		"Rogue":
-			rogue.show()
+			#rogue.show()
+			cinematic_camera_target = cinematic_rogue
+			var tween = cinematic_class_selection.create_tween()
+			tween.tween_method(udate_spring_distance_cinematic, cinematic_class_selection.spring_length, 3.0, 0.5)
+
+func move_toward_cinematic(target: Vector3) -> void:
+	cinematic_class_selection.global_position = target
+
+func udate_spring_distance_cinematic(value: float) -> void:
+	cinematic_class_selection.spring_length = value
 
 func _on_authentication_successfull() -> void:
 	hide_menu()
@@ -113,21 +153,18 @@ func authentication_back_pressed() -> void:
 func _on_ok_pressed() -> void:
 	join_attempt_fail.hide()
 
-
 func _on_create_pressed() -> void:
 	player_pickers_camera.current = false
 	new_personnage_camera.current = true
-
 
 func _on_close_pressed() -> void:
 	new_personnage_camera.current = false
 	player_pickers_camera.current = true
 
-
 func _on_next_pressed() -> void:
 	new_personnage_camera.current = false
-	classes_camera.current = true
-
+	#classes_camera.current = true
+	cinematic_class_selection_camera.current = true
 
 func _on_create_character_pressed() -> void:
 	classes_camera.current = false
