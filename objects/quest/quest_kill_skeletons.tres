@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://bpl2cel4p6fa6"]
+
+[ext_resource type="Script" uid="uid://bslm4xnrg3qkg" path="res://objects/quest/quest.gd" id="1_7o6o7"]
+
+[resource]
+script = ExtResource("1_7o6o7")
+id = "kill_skeletons"
+title = "Tuer 5 squelettes"
+description = "Élimine 5 squelettes dans la forêt des ombres."
+required_amount = 5
+current_amount = 0
+state = 0
+reward_xp = 100
+reward_gold = 10
+metadata/_custom_type_script = "uid://bslm4xnrg3qkg"

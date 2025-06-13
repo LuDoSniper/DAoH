@@ -385,22 +385,28 @@ func _input(event: InputEvent) -> void:
 var current_npc: Node = null
 var current_line = 0
 var dialogue_active = false
-var dialogue = {}
+var dialogue = null
 
 func _unhandled_input(event):
 	if current_npc and event.is_action_pressed("interact") and is_multiplayer_authority():
 		if not player_is_lock:
 			player_is_lock = true
 		if not dialogue_active:
-			dialogue = current_npc.get_dialogue_lines()
-			if dialogue["is_quester"]:
+			var quest = current_npc.quest_to_give
+			var active_quest = quest if quest == null else get_quest_by_id(quest.id)
+			dialogue = current_npc.get_dialogue_lines(active_quest)
+
+			if dialogue != null and dialogue.has("is_quester") and dialogue["is_quester"]:
 				add_quest(dialogue["quest"])
-			DIALOGUEUI.show_dialogue(current_npc.npc_name, dialogue["lines"])
-			dialogue_active = true
-			current_line = 1
+
+			if dialogue != null:
+				DIALOGUEUI.show_dialogue(current_npc.npc_name, dialogue["lines"])
+				dialogue_active = true
+				current_line = 1
 		else:
 			DIALOGUEUI._show_next_line()
 			show_next_dialogue()
+
 
 func show_next_dialogue():
 	if current_line < dialogue["lines"].size():
@@ -675,9 +681,19 @@ func label_logic():
 		username_label.look_at(look_position, Vector3.UP)
 		username_label.rotate_y(deg_to_rad(180))
 
-func add_quest(quest: Quest):
-	if not has_quest(quest.id):
+#Player.gd
+
+func add_quest(quest):
+	if quest == null:
+		return
+	
+	# Vérifie si la quête est déjà dans la liste (évite les doublons)
+	if get_quest_by_id(quest.id) == null:
+		# ⚠️ IMPORTANT : changer l'état ici
+		quest.state = Quest.QuestState.IN_PROGRESS
 		active_quests.append(quest)
+		print("✅ Quête ajoutée :", quest.id, "- État : IN_PROGRESS")
+
 
 func has_quest(quest_id: String) -> bool:
 	for q in active_quests:
@@ -691,3 +707,9 @@ func update_():
 			quest.current_amount += 1
 			if quest.current_amount >= quest.required_amount:
 				quest.state = Quest.QuestState.COMPLETED
+
+func get_quest_by_id(quest_id: String) -> Quest:
+	for q in active_quests:
+		if q.id == quest_id:
+			return q
+	return null

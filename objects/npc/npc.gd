@@ -1,3 +1,4 @@
+#npc.gd
 extends CharacterBody3D
 
 @onready var area: Area3D = $Area3D
@@ -39,9 +40,29 @@ func _on_body_exited(body):
 		body.set_current_npc(null)
 		player_camera = null
 
-func get_dialogue_lines():
-	return {
-		"lines": dialogue_lines,
-		"is_quester": is_quester,
-		"quest": quest_to_give
-	}
+func get_dialogue_lines(quest):
+	if quest == null:
+		return {
+			"lines": dialogue_lines,
+			"is_quester": is_quester,
+			"quest": quest_to_give
+		}
+
+	print("State de la quête reçue :", quest.state)
+
+	if quest.state == Quest.QuestState.IN_PROGRESS:
+		return {
+			"lines": ["Tu n'as pas encore fini la quête."],
+			"is_quester": false,
+			"quest": quest
+		}
+	elif quest.state == Quest.QuestState.COMPLETED:
+		return {
+			"lines": ["Merci d'avoir terminé la quête !", "Voici une récompense : 10 COINS"],
+			"is_quester": false,
+			"quest": quest
+		}
+	else:
+		print("❌ Etat inattendu de la quête :", quest.state)
+		print("❌ Type exact :", typeof(quest.state))
+		return null

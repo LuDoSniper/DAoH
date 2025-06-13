@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dsdkk3ck5o2nj"]
+[gd_scene load_steps=44 format=3 uid="uid://dsdkk3ck5o2nj"]
 
 [ext_resource type="Script" uid="uid://bu0ajfske4uuh" path="res://scenes/world/world.gd" id="1_dphjl"]
 [ext_resource type="PackedScene" uid="uid://b2vjrseu1cmso" path="res://objects/player/player.tscn" id="2_sl2e5"]
@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="7_mxkvs"]
 [ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="8_m114p"]
 [ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="9_71ii3"]
+[ext_resource type="Resource" uid="uid://bpl2cel4p6fa6" path="res://objects/quest/quest_kill_skeletons.tres" id="11_m114p"]
 [ext_resource type="Script" uid="uid://bam7cn7fox0sl" path="res://scripts/chat_ui.gd" id="12_dlabj"]
 [ext_resource type="PackedScene" uid="uid://cf0ugeybvhml7" path="res://objects/spawner/spawner.tscn" id="12_srmg5"]
 [ext_resource type="PackedScene" uid="uid://d1wsknh043pmt" path="res://objects/map/map.tscn" id="14_mxkvs"]
@@ -393,6 +394,10 @@ shape = SubResource("BoxShape3D_sl2e5")
 
 [node name="Npc" parent="Entities" instance=ExtResource("4_6m72w")]
 transform = Transform3D(-0.964373, 0, -0.264546, 0, 1, 0, 0.264546, 0, -0.964373, 0, 2.35371, 8.75823)
+npc_name = "Maire"
+dialogue_lines = Array[String](["Salut, aventurier !", "Bienvenue dans le monde DAoH.", "Ta première tâche est de tuer 5 squelettes dans la foret des ombres", "Bonne chance garçon !"])
+is_quester = true
+quest_to_give = ExtResource("11_m114p")
 
 [node name="Enemy" parent="Entities" instance=ExtResource("3_1fp7r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -172.619, 0.56148, -159.843)
