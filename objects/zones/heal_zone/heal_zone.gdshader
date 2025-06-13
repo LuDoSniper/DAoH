@@ -10,7 +10,7 @@ uniform float time = 0.0;
 
 void fragment() {
     vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    
+
     float dist = distance(world_pos.xz, center.xz);
     if (dist > radius) {
         discard;
