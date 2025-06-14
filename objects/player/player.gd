@@ -400,7 +400,8 @@ func _unhandled_input(event):
 				add_quest(dialogue["quest"])
 
 			if dialogue != null:
-				DIALOGUEUI.show_dialogue(current_npc.npc_name, dialogue["lines"])
+				var dialogue_line = dialogue["lines"]
+				DIALOGUEUI.show_dialogue(current_npc.npc_name, dialogue_line)
 				dialogue_active = true
 				current_line = 1
 		else:

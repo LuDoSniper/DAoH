@@ -12,6 +12,15 @@ var player_camera: Camera3D = null
 	"Bonne chance pour ta quête !"
 ]
 
+@export var quest_not_finish: Array[String] = [
+	"Tu n'as pas encore fini la quête !",
+]
+
+@export var quest_finish: Array[String] = [
+	"Merci d'avoir terminé la quête !", 
+	"Voici une récompense : 10 COINS"
+]
+
 @export var is_quester: bool = false
 @export var quest_to_give: Quest = null
 
@@ -52,13 +61,13 @@ func get_dialogue_lines(quest):
 
 	if quest.state == Quest.QuestState.IN_PROGRESS:
 		return {
-			"lines": ["Tu n'as pas encore fini la quête."],
+			"lines": quest_not_finish,
 			"is_quester": false,
 			"quest": quest
 		}
 	elif quest.state == Quest.QuestState.COMPLETED:
 		return {
-			"lines": ["Merci d'avoir terminé la quête !", "Voici une récompense : 10 COINS"],
+			"lines": quest_finish,
 			"is_quester": false,
 			"quest": quest
 		}
