@@ -441,6 +441,7 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="ChatLabel" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ContainerTitle"]
+visible = false
 layout_mode = 2
 text = "Tchat général"
 

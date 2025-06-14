@@ -34,7 +34,6 @@ func _on_message_input_text_submitted(new_text: String) -> void:
 	send_message(new_text)
 
 func send_message(message: String, origin: int = multiplayer.get_unique_id(), prompt: bool = true) -> void:
-	
 	if message.begins_with("/msg"):
 
 		var parts = message.split(" ", false, 2) # sépare en 3 parties max : /msg, id, reste
