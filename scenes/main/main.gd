@@ -38,13 +38,15 @@ func _ready() -> void:
 	home_menu.show()
 	home_camera.current = true
 	
-	
 	if GameState.sound_master_value != null:
 		$GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Master.value = GameState.sound_master_value
 	if GameState.sound_music_value != null:
 		$GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Music.value = GameState.sound_music_value
 	if GameState.sound_sfx_value != null:
 		$GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders/Sound.value = GameState.sound_sfx_value
+	var retour_button = $GUI/Settings/Panel/MenuBG/VBoxContainer/VBoxContainer3/retour
+	retour_button.pressed.connect(GameState.save_audio_settings)
+
 
 func hide_menu():
 	home_menu.hide()
