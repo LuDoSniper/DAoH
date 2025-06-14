@@ -52,7 +52,8 @@ func get_character_name_by_id(id: int) -> String:
 	return "None"
 
 func get_characters():
-	print(characters)
+	pass
+	#print(characters)
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b2vjrseu1cmso"]
+[gd_scene load_steps=56 format=3 uid="uid://b2vjrseu1cmso"]
 
 [ext_resource type="Script" uid="uid://cbp4jm85jed4y" path="res://objects/player/player.gd" id="1_cqmt1"]
 [ext_resource type="PackedScene" uid="uid://djb4h3inwodxm" path="res://objects/projectiles/fireball/fireball.tscn" id="2_dthqj"]
@@ -23,6 +23,9 @@
 [ext_resource type="Shader" path="res://objects/player/mask.gdshader" id="21_u8bnf"]
 [ext_resource type="Texture2D" uid="uid://bx40q7hikw3b8" path="res://assets/hud/minimap_ring_brown_detail.png" id="21_yyeqs"]
 [ext_resource type="Texture2D" uid="uid://ck0arvnl361xp" path="res://assets/hud/mask_compass.png" id="22_lc6id"]
+[ext_resource type="AudioStream" uid="uid://cgrxk458a8s23" path="res://assets/sounds/fireball-whoosh-1.mp3" id="24_tmow5"]
+[ext_resource type="AudioStream" uid="uid://duda1mdmlw50q" path="res://assets/sounds/walking-on-gravel.mp3" id="25_r5k7d"]
+[ext_resource type="AudioStream" uid="uid://dtj5sut7qd8sb" path="res://assets/sounds/heyv2.mp3" id="26_y35q5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5lq1w"]
 
@@ -704,6 +707,21 @@ layout_mode = 2
 texture = ExtResource("21_yyeqs")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="audio_fireball" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("24_tmow5")
+volume_db = -2.0
+bus = &"SoundFX"
+
+[node name="audio_walking" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("25_r5k7d")
+volume_db = -10.0
+bus = &"SoundFX"
+
+[node name="audio_hey" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_y35q5")
+volume_db = 2.0
+bus = &"SoundFX"
 
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Reprendre" to="." method="_on_reprendre_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Options" to="." method="_on_options_pressed"]

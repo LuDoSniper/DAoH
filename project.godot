@@ -23,6 +23,7 @@ DIALOGUEUI="*res://objects/npc/dialogue/dialogue_ui.tscn"
 EXISTING_ITEMS="*res://scripts/EXISTING_ITEMS.gd"
 UTILS="*res://scripts/UTILS.gd"
 GameState="*res://scripts/GameState.gd"
+SoundManager="*res://scripts/SoundManager.gd"
 
 [display]
 

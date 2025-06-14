@@ -10,6 +10,8 @@ extends Node3D
 
 func _ready():
 	print("I'M READY !")
+	$AudioStreamPlayer3D.play()
+	$AudioStreamPlayer3D.stream.loop = true
 	if has_meta("server") and get_meta("server"):
 		MULTIPLAYER.create_server(init, client_disconnected)
 		UTILS.print_local(self, "I'M THE SERVER")
