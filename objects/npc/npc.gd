@@ -21,6 +21,10 @@ var player_camera: Camera3D = null
 	"Voici une récompense : 10 COINS"
 ]
 
+@export var thanks_msg: Array[String] = [
+	"Merci pour ton aide soldat !", 
+]
+
 @export var is_quester: bool = false
 @export var quest_to_give: Quest = null
 
@@ -57,8 +61,6 @@ func get_dialogue_lines(quest):
 			"quest": quest_to_give
 		}
 
-	print("State de la quête reçue :", quest.state)
-
 	if quest.state == Quest.QuestState.IN_PROGRESS:
 		return {
 			"lines": quest_not_finish,
@@ -66,12 +68,17 @@ func get_dialogue_lines(quest):
 			"quest": quest
 		}
 	elif quest.state == Quest.QuestState.COMPLETED:
+		quest.state = Quest.QuestState.CANT_TALK
 		return {
 			"lines": quest_finish,
 			"is_quester": false,
 			"quest": quest
 		}
+	elif quest.state == Quest.QuestState.CANT_TALK:
+		return {
+			"lines": thanks_msg,
+			"is_quester": false,
+			"quest": quest
+		}
 	else:
-		print("❌ Etat inattendu de la quête :", quest.state)
-		print("❌ Type exact :", typeof(quest.state))
 		return null

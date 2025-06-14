@@ -1,7 +1,7 @@
 extends Resource
 class_name Quest
 
-enum QuestState { NOT_STARTED, IN_PROGRESS, COMPLETED }
+enum QuestState { NOT_STARTED, IN_PROGRESS, COMPLETED, CANT_TALK }
 
 @export var id: String = ""
 @export var title: String = ""

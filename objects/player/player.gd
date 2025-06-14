@@ -688,12 +688,9 @@ func add_quest(quest):
 	if quest == null:
 		return
 	
-	# Vérifie si la quête est déjà dans la liste (évite les doublons)
 	if get_quest_by_id(quest.id) == null:
-		# ⚠️ IMPORTANT : changer l'état ici
 		quest.state = Quest.QuestState.IN_PROGRESS
 		active_quests.append(quest)
-		print("✅ Quête ajoutée :", quest.id, "- État : IN_PROGRESS")
 
 
 func has_quest(quest_id: String) -> bool:
@@ -702,10 +699,10 @@ func has_quest(quest_id: String) -> bool:
 			return true
 	return false
 
-func update_():
+func update_quest(quest_id, quest_amount):
 	for quest in active_quests:
-		if quest.state == Quest.QuestState.IN_PROGRESS:
-			quest.current_amount += 1
+		if quest.state == Quest.QuestState.IN_PROGRESS and quest.id == quest_id:
+			quest.current_amount += quest_amount
 			if quest.current_amount >= quest.required_amount:
 				quest.state = Quest.QuestState.COMPLETED
 
