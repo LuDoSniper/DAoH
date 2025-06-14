@@ -2,6 +2,7 @@ extends Node
 
 func _ready() -> void:
 	var args = OS.get_cmdline_args()
+	GameState.load_audio_settings()
 	
 	if "--server" in args:
 		var world_scene = preload("res://scenes/world/world.tscn")
