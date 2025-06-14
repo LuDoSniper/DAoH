@@ -35,65 +35,91 @@ func _on_message_input_text_submitted(new_text: String) -> void:
 
 func send_message(message: String, origin: int = multiplayer.get_unique_id(), prompt: bool = true) -> void:
 	if message.begins_with("/msg"):
-
-		var parts = message.split(" ", false, 2) # sépare en 3 parties max : /msg, id, reste
-		if parts.size() >= 2:
-			var target_id = MULTIPLAYER.get_peer_id_by_character_name(parts[1])
-			if target_id != -1:
-				UTILS.print_local(self, "Sending pm to " + str(target_id))
-				rpc_id(target_id, "_test456", origin, parts[2])
-
-				# @todo bleu + click
-				message = "[color=#44a2eb]à " + MULTIPLAYER.get_character_name_by_peer_id(target_id) + ": " + parts[2].strip_edges() + "[/color]"
+		var content = message.substr(5).strip_edges()
+		var colon_index = content.find(":")
+		
+		if colon_index == -1:
+			message = "[color=#d63d1e]/msg pseudo: message[/color]"
 				
-				var label = RichTextLabel.new()
-				label.bbcode_enabled = true
-				label.text = ""  # évite de mélanger avec `text`, utilise .append_text() ou .bbcode_text
-				label.bbcode_text = message
-				label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-				label.fit_content = true  # utile pour éviter des tailles fixes
-				label.scroll_active = false  # pas besoin de scroll dans le label lui-même
+			var label = RichTextLabel.new()
+			label.bbcode_enabled = true
+			label.text = ""  # évite de mélanger avec `text`, utilise .append_text() ou .bbcode_text
+			label.bbcode_text = message
+			label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			label.fit_content = true  # utile pour éviter des tailles fixes
+			label.scroll_active = false  # pas besoin de scroll dans le label lui-même
 
 
 
-				message_container.add_child(label)
-				message_input.text = ""
-				message_input.hide()
+			message_container.add_child(label)
+			message_input.text = ""
+			message_input.hide()
 
-				await get_tree().process_frame
-				_scroll_to_bottom()
-				GameState.chat_active = false
+			await get_tree().process_frame
+			_scroll_to_bottom()
+			GameState.chat_active = false
+			
+			chat_panel.show()
+			auto_hide_timer.start()
 				
-				chat_panel.show()
-				auto_hide_timer.start()
-			else:
-				message = "[color=#d63d1e]Joueur Introuvable[/color]"
-				
-				var label = RichTextLabel.new()
-				label.bbcode_enabled = true
-				label.text = ""  # évite de mélanger avec `text`, utilise .append_text() ou .bbcode_text
-				label.bbcode_text = message
-				label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-				label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-				label.fit_content = true  # utile pour éviter des tailles fixes
-				label.scroll_active = false  # pas besoin de scroll dans le label lui-même
+			return
+		var pseudo = content.substr(0, colon_index).strip_edges()
+		var message_text = content.substr(colon_index + 1).strip_edges()
+		
+		var target_id = MULTIPLAYER.get_peer_id_by_character_name(pseudo)
+		if target_id != -1:
+			UTILS.print_local(self, "Sending pm to " + str(target_id))
+			rpc_id(target_id, "_test456", origin, message_text)
+
+			# @todo bleu + click
+			message = "[color=#44a2eb]à " + MULTIPLAYER.get_character_name_by_peer_id(target_id) + ": " + message_text.strip_edges() + "[/color]"
+			
+			var label = RichTextLabel.new()
+			label.bbcode_enabled = true
+			label.text = ""  # évite de mélanger avec `text`, utilise .append_text() ou .bbcode_text
+			label.bbcode_text = message
+			label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			label.fit_content = true  # utile pour éviter des tailles fixes
+			label.scroll_active = false  # pas besoin de scroll dans le label lui-même
 
 
 
-				message_container.add_child(label)
-				message_input.text = ""
-				message_input.hide()
+			message_container.add_child(label)
+			message_input.text = ""
+			message_input.hide()
 
-				await get_tree().process_frame
-				_scroll_to_bottom()
-				GameState.chat_active = false
-				
-				chat_panel.show()
-				auto_hide_timer.start()
-
+			await get_tree().process_frame
+			_scroll_to_bottom()
+			GameState.chat_active = false
+			
+			chat_panel.show()
+			auto_hide_timer.start()
 		else:
-			UTILS.print_local(self, "Usage: /msg <id>")
+			message = "[color=#d63d1e]Joueur Introuvable[/color]"
+			
+			var label = RichTextLabel.new()
+			label.bbcode_enabled = true
+			label.text = ""  # évite de mélanger avec `text`, utilise .append_text() ou .bbcode_text
+			label.bbcode_text = message
+			label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			label.fit_content = true  # utile pour éviter des tailles fixes
+			label.scroll_active = false  # pas besoin de scroll dans le label lui-même
+
+
+
+			message_container.add_child(label)
+			message_input.text = ""
+			message_input.hide()
+
+			await get_tree().process_frame
+			_scroll_to_bottom()
+			GameState.chat_active = false
+			
+			chat_panel.show()
+			auto_hide_timer.start()
 		return
 	
 	if not multiplayer.is_server():
