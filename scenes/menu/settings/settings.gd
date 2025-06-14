@@ -65,16 +65,18 @@ func _on_v_sync_toggled(toggled_on: bool) -> void:
 	)
 	
 func _on_master_value_changed(value: float) -> void:
+	GameState.sound_master_value = value
 	volume(0, value)
 
 func _on_music_value_changed(value: float) -> void:
+	GameState.sound_music_value = value
 	volume(1, value)
 
 func _on_sound_fx_value_changed(value: float) -> void:
+	GameState.sound_sfx_value = value
 	volume(2, value)
 
 func volume(bus_index, value):
-	#print(value)
 	if value <= -3.9:
 		AudioServer.set_bus_volume_db(bus_index, -80)  # Silence complet
 	else:
