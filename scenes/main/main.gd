@@ -23,9 +23,8 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if not multiplayer.is_server():
-		$AudioStreamPlayer3D.play()
-		$AudioStreamPlayer3D.stream.loop = true
+	$AudioStreamPlayer3D.play()
+	$AudioStreamPlayer3D.stream.loop = true
 	play_click_on_all_buttons(self)
 	if MULTIPLAYER.last_connection == "failure":
 		join_attempt_fail.show()
