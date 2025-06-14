@@ -295,6 +295,9 @@ size_flags_vertical = 7
 theme_override_icons/grabber = ExtResource("14_7xv20")
 theme_override_icons/grabber_highlight = ExtResource("14_7xv20")
 theme_override_icons/grabber_disabled = ExtResource("14_7xv20")
+min_value = -20.0
+max_value = 20.0
+value = 20.0
 
 [node name="Music" type="HSlider" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders"]
 layout_mode = 2
@@ -302,6 +305,8 @@ size_flags_vertical = 7
 theme_override_icons/grabber = ExtResource("14_7xv20")
 theme_override_icons/grabber_highlight = ExtResource("14_7xv20")
 theme_override_icons/grabber_disabled = ExtResource("14_7xv20")
+min_value = -20.0
+max_value = 20.0
 
 [node name="Sound" type="HSlider" parent="Panel/MenuBG/VBoxContainer/VBoxContainer4/Audio/Sliders"]
 layout_mode = 2
@@ -309,6 +314,8 @@ size_flags_vertical = 7
 theme_override_icons/grabber = ExtResource("14_7xv20")
 theme_override_icons/grabber_highlight = ExtResource("14_7xv20")
 theme_override_icons/grabber_disabled = ExtResource("14_7xv20")
+min_value = -20.0
+max_value = 20.0
 
 [node name="Coupure3" type="Panel" parent="Panel/MenuBG/VBoxContainer"]
 clip_contents = true

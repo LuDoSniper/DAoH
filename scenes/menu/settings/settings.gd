@@ -74,4 +74,8 @@ func _on_sound_fx_value_changed(value: float) -> void:
 	volume(2, value)
 
 func volume(bus_index, value):
-	AudioServer.set_bus_volume_db(bus_index, value)
+	#print(value)
+	if value <= -3.9:
+		AudioServer.set_bus_volume_db(bus_index, -80)  # Silence complet
+	else:
+		AudioServer.set_bus_volume_db(bus_index, value)
