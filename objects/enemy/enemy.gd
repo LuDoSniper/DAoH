@@ -140,6 +140,7 @@ var blocking := false:
 func _ready() -> void:
 	minion_skin.hide()
 	warrior_skin.hide()
+	warrior_skin.deactivate()
 	mage_skin.hide()
 	rogue_skin.hide()
 	if variant == variants.Minion:
@@ -150,6 +151,7 @@ func _ready() -> void:
 	elif variant == variants.Warrior:
 		warrior_skin.parent = self
 		warrior_skin.show()
+		warrior_skin.activate()
 		animation_tree = warrior_tree
 		attack_radius = minion_attack_radius
 	elif variant == variants.Mage:
@@ -392,6 +394,7 @@ func hit(damage: float) -> void:
 			if health <= 0:
 				minion_skin.hide()
 				warrior_skin.hide()
+				warrior_skin.deactivate()
 				mage_skin.hide()
 				rogue_skin.hide()
 				death_particles.emitting = true
@@ -416,6 +419,7 @@ func _remote_hit(id: int, new_health: float, animation: String) -> void:
 		if health <= 0:
 			minion_skin.hide()
 			warrior_skin.hide()
+			warrior_skin.deactivate()
 			mage_skin.hide()
 			rogue_skin.hide()
 			death_particles.emitting = true

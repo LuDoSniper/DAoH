@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ck60jc8fi1irl" path="res://addons/menu/scrollbar_brown_small.png" id="16_u8bnf"]
 [ext_resource type="PackedScene" uid="uid://bq8537ipdg2dt" path="res://objects/zones/heal_zone/heal_zone.tscn" id="18_xlkbi"]
 [ext_resource type="PackedScene" uid="uid://8u41jd12rde2" path="res://objects/player/hud/hud.tscn" id="20_28utn"]
-[ext_resource type="Shader" uid="uid://cn6hgldmcywns" path="res://objects/player/mask.gdshader" id="21_u8bnf"]
+[ext_resource type="Shader" path="res://objects/player/mask.gdshader" id="21_u8bnf"]
 [ext_resource type="Texture2D" uid="uid://bx40q7hikw3b8" path="res://assets/hud/minimap_ring_brown_detail.png" id="21_yyeqs"]
 [ext_resource type="Texture2D" uid="uid://ck0arvnl361xp" path="res://assets/hud/mask_compass.png" id="22_lc6id"]
 [ext_resource type="AudioStream" uid="uid://cgrxk458a8s23" path="res://assets/sounds/fireball-whoosh-1.mp3" id="24_tmow5"]

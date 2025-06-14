@@ -206,16 +206,16 @@ func initialize_inventory() -> void:
 	for weapon_name in weapon_meshes:
 		weapon_meshes[weapon_name].hide()
 		if weapon_meshes[weapon_name].is_in_group("shield"):
-			weapon_meshes[weapon_name].get_node("StaticBody3D").get_node("CollisionShape3D").disabled = true
+			weapon_meshes[weapon_name].deactivate()
 	
 	if inventory.right_hand is WeaponData:
 		weapon_meshes[inventory.right_hand.name].show()
 		if weapon_meshes[inventory.right_hand.name].is_in_group("shield"):
-			weapon_meshes[inventory.right_hand.name].get_node("StaticBody3D").get_node("CollisionShape3D").disabled = false
+			weapon_meshes[inventory.right_hand.name].activate()
 	if inventory.left_hand is WeaponData:
 		weapon_meshes[inventory.left_hand.name].show()
 		if weapon_meshes[inventory.left_hand.name].is_in_group("shield"):
-			weapon_meshes[inventory.left_hand.name].get_node("StaticBody3D").get_node("CollisionShape3D").disabled = false
+			weapon_meshes[inventory.left_hand.name].activate()
 
 func _physics_process(delta: float) -> void:
 	# si en gestion de tchat -> on desactive les mouvements joueur
@@ -420,7 +420,6 @@ func _unhandled_input(event):
 		else:
 			DIALOGUEUI._show_next_line()
 			show_next_dialogue()
-
 
 func show_next_dialogue():
 	if current_line < dialogue["lines"].size():
