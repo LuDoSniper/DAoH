@@ -223,8 +223,8 @@ func select_target() -> void:
 			targeted_player = null
 			
 			var target = Vector3.ZERO
-			target.x = randf_range(-5.0, 5.0)
-			target.z = randf_range(-5.0, 5.0)
+			target.x = randf_range(global_position.x + -5.0, global_position.x + 5.0)
+			target.z = randf_range(global_position.z + -5.0, global_position.z + 5.0)
 			navigation_agent.set_target_position(target)
 			
 			rpc("remote_get_target", target)
