@@ -30,6 +30,7 @@ func create_server(peer_connected: Callable) -> void:
 	
 func join_server() -> void:
 	peer.create_client("ws://" + DEFAULT_ADDRESS_BEGIN + REGION + DEFAULT_ADDRESS_END + ":" + str(LISTEN_PORT))
+	#peer.create_client("ws://" + "localhost + ":" + str(LISTEN_PORT))
 	multiplayer.multiplayer_peer = peer
 
 func get_server_by_id(id: int) -> Dictionary:
