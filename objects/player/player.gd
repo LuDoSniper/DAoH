@@ -110,6 +110,8 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
 func _ready() -> void:
+	play_click_on_all_buttons(self)
+	
 	var character_name = MULTIPLAYER.get_character_name_by_peer_id(name.to_int())
 	UTILS.print_local(self, "Je viens d'apparraitre sout le nom de " + character_name)
 	# Initialize classes
@@ -299,6 +301,7 @@ func sync_animation_movement(id: int, animation: String) -> void:
 func pause_logic() -> void:
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("pause"):
+			SoundManager.play_click()
 			paused = not paused
 			pause_menu.visible = not pause_menu.visible
 
@@ -721,3 +724,11 @@ func get_quest_by_id(quest_id: String) -> Quest:
 		if q.id == quest_id:
 			return q
 	return null
+
+
+func play_click_on_all_buttons(node):
+	for child in node.get_children():
+		if child is Button:
+			child.pressed.connect(SoundManager.play_click)
+		elif child.has_method("get_children"):
+			play_click_on_all_buttons(child)

@@ -25,6 +25,7 @@ extends Node3D
 func _ready() -> void:
 	$AudioStreamPlayer3D.play()
 	$AudioStreamPlayer3D.stream.loop = true
+	play_click_on_all_buttons(self)
 	if MULTIPLAYER.last_connection == "failure":
 		join_attempt_fail.show()
 	else:
@@ -147,3 +148,11 @@ func show_player_picker(empty = null) -> void:
 		player_pickers_empty_camera.current = true
 	else:
 		player_pickers_camera.current = true
+		
+		
+func play_click_on_all_buttons(node):
+	for child in node.get_children():
+		if child is Button:
+			child.pressed.connect(SoundManager.play_click)
+		elif child.has_method("get_children"):
+			play_click_on_all_buttons(child)

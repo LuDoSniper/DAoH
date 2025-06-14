@@ -30,6 +30,8 @@ var panel_selected = preload("res://addons/menu/panel_brown_arrows_dark_detail.p
 var panel = preload("res://addons/menu/panel_brown_damaged_dark.png")
 var font = preload("res://addons/menu/AveriaGruesaLibre-Regular.ttf")
 
+
+
 func _ready() -> void:
 	main_server_container.show()
 	main_login_container.hide()
@@ -111,6 +113,10 @@ func _on_server_received(_result, response_code, _headers, body) -> void:
 		print("Erreur inconnue :", response_code)
 
 func _on_server_pressed(id: int) -> void:
+	if not GameState.first_server_sound:
+		SoundManager.play_click()
+	else:
+		GameState.first_server_sound = false
 	var server = MULTIPLAYER.get_server_by_id(id)
 	if server == {}:
 		print("Erreur lors de la récupération du serveur")
@@ -282,3 +288,4 @@ func _on_back_button_pressed() -> void:
 func reset_view() -> void:
 	server_panel.show()
 	login_panel.hide()
+			
