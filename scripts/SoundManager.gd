@@ -8,6 +8,6 @@ func _ready():
 
 func play_click():
 	audio_player.stream = click_sound
-	audio_player.bus = "SFX"
+	audio_player.bus = "SoundFX"
 	audio_player.volume_db = -4.0
 	audio_player.play()

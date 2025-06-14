@@ -506,7 +506,7 @@ shadow_enabled = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_71ii3")
-volume_db = -10.0
+volume_db = -5.0
 bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/MenuBG/Box/host" to="." method="_on_host_pressed"]
