@@ -1,9 +1,5 @@
 extends Node
 
-
-# Par défaut il est à 3642 pour le debug local
-# Attention, cela veux donc dire qu'en local on ne peux se connecter qu'à Europe.
-# Le problème sera réglé lorsque tout les serveur dédiés seront déployés
 var DEFAULT_ADDRESS_BEGIN := "daoh-"
 var DEFAULT_ADDRESS_END := ".donnarieix.fr"
 var REGION := "eu"

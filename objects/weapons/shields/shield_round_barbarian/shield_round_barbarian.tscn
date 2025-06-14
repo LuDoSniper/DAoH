@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfad7vgwr3avc"]
+[gd_scene load_steps=4 format=3 uid="uid://cfad7vgwr3avc"]
 
 [ext_resource type="PackedScene" uid="uid://vy820wc1253i" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/shield_round_barbarian.gltf" id="1_75i3q"]
+[ext_resource type="Script" uid="uid://c25qjnrf8135h" path="res://objects/weapons/shields/shield_round_barbarian/shield_round_barbarian.gd" id="2_xhigd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_75i3q"]
 size = Vector3(1.68591, 1.2717, 0.248657)
 
 [node name="ShieldRoundBarbarian" groups=["shield"] instance=ExtResource("1_75i3q")]
+script = ExtResource("2_xhigd")
 
 [node name="shield_round_barbarian" parent="." index="0"]
 layers = 32

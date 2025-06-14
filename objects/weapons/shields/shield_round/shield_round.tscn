@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://7utocdcypkke"]
+[gd_scene load_steps=4 format=3 uid="uid://7utocdcypkke"]
 
 [ext_resource type="PackedScene" uid="uid://cgs4la58s4h8t" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/shield_round.gltf" id="1_v7ekj"]
+[ext_resource type="Script" uid="uid://cla1osw7767mj" path="res://objects/weapons/shields/shield_round/shield_round.gd" id="2_f8xv2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v7ekj"]
 size = Vector3(1.68591, 1.2717, 0.248657)
 
 [node name="ShieldRound" groups=["shield"] instance=ExtResource("1_v7ekj")]
+script = ExtResource("2_f8xv2")
 
 [node name="shield_round" parent="." index="0"]
 layers = 32
