@@ -401,6 +401,7 @@ func _unhandled_input(event):
 		if not player_is_lock:
 			player_is_lock = true
 		if not dialogue_active:
+			$audio_hey.play()
 			var quest = current_npc.quest_to_give
 			var active_quest = quest if quest == null else get_quest_by_id(quest.id)
 			dialogue = current_npc.get_dialogue_lines(active_quest)
