@@ -237,6 +237,10 @@ func move_logic(delta: float) -> void:
 		
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction and not paused and not player_is_lock:
+			if not GameState.player_moving:
+				$audio_walking.play()
+				$audio_walking.stream.loop = true
+				GameState.player_moving = true
 			# Rotate slowly to the desired vector (direction)
 			var target_angle = -input_dir.angle() + PI/2
 			skin.rotation.y = rotate_toward(skin.rotation.y, target_angle, 10.0 * delta)
@@ -251,6 +255,10 @@ func move_logic(delta: float) -> void:
 			skin.set_move_state('Run' if not is_running else "Sprint")
 			rpc("sync_animation_movement", name.to_int(), 'Run' if not is_running else "Sprint")
 		else:
+			if GameState.player_moving:
+				$audio_walking.stop()
+				# pb: dès que l'audio est finit, il ne redémarre pas
+				GameState.player_moving = false
 			# Stop slowly
 			velocity.x = move_toward(velocity.x, 0, base_speed)
 			velocity.z = move_toward(velocity.z, 0, base_speed)
