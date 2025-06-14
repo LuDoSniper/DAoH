@@ -11,7 +11,7 @@ extends Node3D
 func _ready():
 	print("I'M READY !")
 	if has_meta("server") and get_meta("server"):
-		MULTIPLAYER.create_server(init)
+		MULTIPLAYER.create_server(init, client_disconnected)
 		UTILS.print_local(self, "I'M THE SERVER")
 	else:
 		MULTIPLAYER.join_server()
@@ -145,6 +145,11 @@ func _remote_init_player(id: int) -> void:
 		UTILS.print_local(self, "Sending \"add_player\" request")
 		rpc("_request_add_player", id, get_meta("selected_skin"), get_meta("username"), get_meta("saved_data"))
 		MULTIPLAYER._register_character(multiplayer.get_unique_id(), MULTIPLAYER.current_character)
+
+func client_disconnected(peer_id: int) -> void:
+	for player in get_players():
+		if player.name.to_int() == peer_id:
+			player._request_disconnect(peer_id, MULTIPLAYER.owner_id, true)
 
 func get_enemies() -> Array:
 	var enemies = []

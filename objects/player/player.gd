@@ -438,15 +438,17 @@ func _on_quitter_pressed() -> void:
 	rpc_id(1, "_request_disconnect", name.to_int(), MULTIPLAYER.owner_id)
 
 @rpc("any_peer")
-func _request_disconnect(id: int, owner_id: int) -> void:
+func _request_disconnect(id: int, owner_id: int, due_to_error: bool = false) -> void:
 	if multiplayer.is_server() and name.to_int() == id:
 		MULTIPLAYER.owners_id.pop_at(MULTIPLAYER.owners_id.find(owner_id))
 		UTILS.print_local(self, "AUTHORIZING " + str(id) + " TO LEAVE")
 
 		var character_name = MULTIPLAYER.get_character_name_by_peer_id(name.to_int())
 
-		get_tree().root.get_node("World").send_message("[" + character_name + "] hast left the game", id, false)
-		rpc_id(id, "_remote_can_disconnect", id)
+		var message = "lost connection" if due_to_error else "hast left the game"
+		get_tree().root.get_node("World").send_message("[" + character_name + "] " + message, id, false)
+		if not due_to_error:
+			rpc_id(id, "_remote_can_disconnect", id)
 		rpc("_remote_player_disconnected", id)
 		
 		for enemy in get_tree().root.get_node("World").get_enemies():
