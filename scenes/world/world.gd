@@ -1,10 +1,12 @@
 extends Node3D
 
 @export var player_scene: PackedScene
+@export var enemy_scene: PackedScene
 
 @onready var canvas_layer = $CanvasLayer
 @onready var entities_container = $Entities
 @onready var spawners: Node3D = $Spawners
+@onready var enemy_spawners: Node3D = $EnemySpawners
 
 #var players: Array
 
@@ -18,6 +20,10 @@ func _ready():
 		UTILS.print_local(self, "I'VE JUST JOINED")
 		$AudioStreamPlayer3D.play()
 		$AudioStreamPlayer3D.stream.loop = true
+
+func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		enemy_spawn()
 
 func strip_custom(string: String, to_remove: Array[String]) -> String:
 	var striped := ""
@@ -186,3 +192,43 @@ func _on_retour_pressed() -> void:
 
 func _on_quitter_pressed() -> void:
 	get_tree().quit()
+
+func get_random_free_enemy_spawner() -> Variant:
+	var usable_spawners = []
+	for spawner in enemy_spawners.get_children():
+		if not spawner.is_busy():
+			usable_spawners.append(spawner)
+	
+	if usable_spawners != []:
+		return usable_spawners[randi_range(0, len(usable_spawners) - 1)]
+	
+	return null
+
+func enemy_spawn() -> void:
+	if multiplayer.is_server():
+		var spawner = get_random_free_enemy_spawner()
+		if spawner != null:
+			var enemy = enemy_scene.instantiate()
+			enemy.variant = enemy.variants.values()[randi_range(0, enemy.variants.size() - 1)]
+			entities_container.add_child(enemy)
+			enemy.global_position = spawner.get_global_pos()
+			spawner.emitt()
+			print("j'envois")
+			rpc("_remote_spawn_enemy", enemy.global_position, enemy.variant, spawner.name)
+			print("j'ai envoyé")
+
+@rpc("any_peer")
+func _remote_spawn_enemy(pos: Vector3, variant: int, spawner_name: String = "") -> void:
+	if not multiplayer.is_server():
+		print("j'ai reçu")
+		var enemy = enemy_scene.instantiate()
+		enemy.variant = variant
+		print("Avant le désastre ?")
+		entities_container.add_child(enemy)
+		print("Apres le désastre ?")
+		enemy.global_position = pos
+		if spawner_name != "":
+			for spawner in enemy_spawners.get_children():
+				if spawner.name == spawner_name:
+					spawner.emitt()
+		print("Maintenant peut etre ?")
