@@ -351,6 +351,7 @@ func _remote_shoot_fireball(pos: Vector3, fireball_rotation: float) -> void:
 		fireball.rotation.y = fireball_rotation
 
 func shoot_fireball() -> void:
+	$audio_fireball.play()
 	rpc_id(1, "_request_shoot_fireball", fireball_spawn.global_position, skin.rotation.y)
 
 @rpc("any_peer")
