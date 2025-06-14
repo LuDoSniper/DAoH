@@ -710,10 +710,12 @@ texture = ExtResource("21_yyeqs")
 [node name="audio_fireball" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("24_tmow5")
 volume_db = -2.0
+bus = &"SoundFX"
 
 [node name="audio_walking" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("25_r5k7d")
 volume_db = -10.0
+bus = &"SoundFX"
 
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Reprendre" to="." method="_on_reprendre_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuBG/Pause/Options" to="." method="_on_options_pressed"]
