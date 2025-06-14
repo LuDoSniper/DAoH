@@ -448,26 +448,32 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
 layout_mode = 2
 text = "test"
 
 [node name="Label2" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
 layout_mode = 2
 text = "test"
 
 [node name="Label3" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
 layout_mode = 2
 text = "test"
 
 [node name="Label4" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
 layout_mode = 2
 text = "test"
 
 [node name="Label5" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
 layout_mode = 2
 text = "test"
 
 [node name="Label6" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
 layout_mode = 2
 text = "test"
 
