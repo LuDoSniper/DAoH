@@ -105,6 +105,12 @@ var healing := false:
 			healzone.despawn()
 		
 		healing = value
+var invincibility := false:
+	set(value):
+		if value and not invincibility:
+			invincibility_timer.start()
+		
+		invincibility = value
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -173,8 +179,8 @@ func _ready() -> void:
 		camera.current = true
 		username_label.hide()
 	
-	hud.update_health(max_health, health)
-	hud.update_xp(xp_to_next_level, current_xp)
+	hud.update_health(health)
+	hud.update_xp(current_xp)
 	hud.update_money(gold)
 
 	if GameState.sound_master_value != null:
@@ -222,6 +228,9 @@ func initialize_inventory() -> void:
 		weapon_meshes[inventory.left_hand.name].show()
 		if weapon_meshes[inventory.left_hand.name].is_in_group("shield"):
 			weapon_meshes[inventory.left_hand.name].activate()
+
+func _process(delta: float) -> void:
+	print(health)
 
 func _physics_process(delta: float) -> void:
 	# si en gestion de tchat -> on desactive les mouvements joueur
@@ -277,7 +286,7 @@ func move_logic(delta: float) -> void:
 		camera_compass.global_transform.origin.z = self.global_transform.origin.z
 		move_and_slide()
 		rpc("sync_movement", name.to_int(), global_position, skin.rotation.y)
-			
+
 @rpc("any_peer")
 func sync_movement(id: int, var_global_position: Vector3, skin_rotation: float) -> void:
 	if name.to_int() == id:
@@ -567,34 +576,32 @@ func _update_button_styles() -> void:
 func hit(damage: float) -> void:
 	if multiplayer.is_server():
 		skin.hit()
-		if invincibility_timer.is_stopped():
+		if not invincibility:
+			print("[DEBUG]: HIT : ", health," - ", damage, " = ", max(0, health - damage))
 			health = max(0, health - damage)
-			hud.update_health(max_health, health)
-			invincibility_timer.start()
+			hud.update_health(health)
+			invincibility = true
 			if health == 0:
 				_die()
 		
 		rpc("_remote_hit", name.to_int(), damage)
 
 @rpc("any_peer")
-func _remote_hit(id: int, damage: float) -> void:
+func _remote_hit(id: int, new_health: float) -> void:
 	if not multiplayer.is_server() and name.to_int() == id:
 		skin.hit()
-		if invincibility_timer.is_stopped():
-			health = max(0, health - damage)
-			hud.update_health(max_health, health)
-			if health == 0:
-				_die()
+		health = new_health
+		hud.update_health(health)
 
 func _on_invincibility_timer_timeout() -> void:
-	pass # Replace with function body.
+	invincibility = false
 
 func _on_heal_zone_timer_timeout() -> void:
 	healing = false
 
 func heal(amount: int) -> void:
 	health = min(max_health, health + amount)
-	hud.update_health(max_health, health)
+	hud.update_health(health)
 
 func _die() -> void:
 	print("💀 Le joueur est mort")
@@ -618,7 +625,7 @@ func _on_level_up() -> void:
 	xp_to_next_level = int(xp_to_next_level * 1.25)
 	max_health += 10
 	health = max_health
-	hud.update_xp(xp_to_next_level,current_xp)
+	hud.update_xp(current_xp)
 
 func _on_enemy_killed():
 	add_xp(20)

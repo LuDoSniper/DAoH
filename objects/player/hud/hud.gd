@@ -4,11 +4,11 @@ extends CanvasLayer
 @onready var xp_bar = $MarginContainer/VBoxContainer/XPBar
 @onready var money_label = $MarginContainer/VBoxContainer/TextureRect/HBoxContainer/Gold
 
-func update_health(max_amount, amount):
-	health_bar.value = (amount / max_amount) * 100
+func update_health(value: float):
+	health_bar.value = value
 
-func update_xp(max_amount, amount):
-	xp_bar.value = (amount / max_amount) * 100
+func update_xp(value: float):
+	xp_bar.value = value
 
 func update_money(amount):
 	money_label.text = "%d" % amount

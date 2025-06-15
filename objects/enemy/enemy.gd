@@ -183,7 +183,7 @@ func _physics_process(delta: float) -> void:
 	attack_logic()
 	if multiplayer.is_server():
 		rpc("sync_movement", name.to_int(), global_position, skin.rotation.y)
-	print(get_node("Raycasts").global_rotation)
+	#print(get_node("Raycasts").global_rotation)
 
 func select_target() -> void:
 	if multiplayer.is_server():
@@ -197,9 +197,9 @@ func select_target() -> void:
 			for player in spoted_players:
 				vision.target_position = vision.to_local(player.global_position)
 				#vision.look_at(player.global_position)
-				print("vision : ", vision.global_rotation)
-				print("enemy : ", global_rotation)
-				print("player : ", player.global_position, " - target : ", vision.target_position)
+				#print("vision : ", vision.global_rotation)
+				#print("enemy : ", global_rotation)
+				#print("player : ", player.global_position, " - target : ", vision.target_position)
 				var collider = vision.get_collider()
 				if collider:
 					#print("raycast : ", vision.target_position, " player : ", player.global_position)
