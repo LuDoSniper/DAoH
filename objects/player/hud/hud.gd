@@ -7,10 +7,20 @@ extends CanvasLayer
 @onready var respawn: Button = $DeathScreen/respawn
 @onready var timer: Timer = $DeathScreen/Timer
 @onready var animation_player: AnimationPlayer = $DeathScreen/AnimationPlayer
+@onready var emote_container: VBoxContainer = $EmoteWheel/ScrollContainer/EmoteContainer
+@onready var emote_wheel: Control = $EmoteWheel
+
+var emotes = [
+	"Cheer",
+	"Interact",
+	"Use_Item"
+]
 
 func _ready() -> void:
 	hide_death()
 	respawn.hide()
+	emote_wheel.hide()
+	update_emote_wheel()
 
 func update_health(value: float):
 	var tween = create_tween()
@@ -44,3 +54,22 @@ func _on_respawn_pressed() -> void:
 
 func _on_timer_timeout() -> void:
 	respawn.show()
+
+func toggle_emote_wheel() -> void:
+	emote_wheel.visible = not emote_wheel.visible
+	if emote_wheel.visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func update_emote_wheel() -> void:
+	for child in emote_container.get_children():
+		child.queue_free()
+	
+	for emote in emotes:
+		var button = Button.new()
+		emote_container.add_child(button)
+		button.text = emote
+		button.pressed.connect(func(): _on_emote_button_pressed(emote))
+
+func _on_emote_button_pressed(emote: String) -> void:
+	emote_wheel.hide()
+	get_parent().get_parent().play_emote(emote)
