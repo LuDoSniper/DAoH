@@ -112,25 +112,32 @@ var healing := false:
 var healzone_audio_player: AudioStreamPlayer3D = null
 
 func play_healzone_sound():
-	if healzone_audio_player:
-		return  # Ne pas créer plusieurs sons en même temps
+	#if healzone_audio_player:
+		#return  # Ne pas créer plusieurs sons en même temps
+#
+	#healzone_audio_player = AudioStreamPlayer3D.new()
+	#healzone_audio_player.stream = preload("res://assets/sounds/healzone.mp3")
+	#healzone_audio_player.max_distance = 30
+	#healzone_audio_player.attenuation_model = AudioStreamPlayer3D.ATTENUATION_INVERSE_DISTANCE
+	#healzone_audio_player.position = Vector3.ZERO
+	#healzone_audio_player.bus = "SoundFX"
+	#add_child(healzone_audio_player)
+#
+	#healzone_audio_player.connect("finished", Callable(self, "_on_healzone_sound_finished"))
+	#healzone_audio_player.play()
+	
+	var audio_healzone: AudioStreamPlayer3D = $audio_healzone
+	audio_healzone.playing = true
 
-	healzone_audio_player = AudioStreamPlayer3D.new()
-	healzone_audio_player.stream = preload("res://assets/sounds/healzone.mp3")
-	healzone_audio_player.max_distance = 30
-	healzone_audio_player.attenuation_model = AudioStreamPlayer3D.ATTENUATION_INVERSE_DISTANCE
-	healzone_audio_player.position = Vector3.ZERO
-	healzone_audio_player.bus = "SoundFX"
-	add_child(healzone_audio_player)
-
-	healzone_audio_player.connect("finished", Callable(self, "_on_healzone_sound_finished"))
-	healzone_audio_player.play()
 
 func stop_healzone_sound():
-	if healzone_audio_player:
-		healzone_audio_player.stop()
-		healzone_audio_player.queue_free()
-		healzone_audio_player = null
+	#if healzone_audio_player:
+		#healzone_audio_player.stop()
+		#healzone_audio_player.queue_free()
+		#healzone_audio_player = null
+	
+	var audio_healzone: AudioStreamPlayer3D = $audio_healzone
+	audio_healzone.playing = false
 
 func _on_healzone_sound_finished():
 	if healzone_audio_player:
@@ -243,7 +250,12 @@ func _ready() -> void:
 @rpc("any_peer")
 func _request_healing(id: int, value: bool) -> void:
 	if multiplayer.is_server() and name.to_int() == id:
+		healing = value
+		rpc("_remote_healing", id, value)
 
+@rpc("any_peer")
+func _remote_healing(id: int, value: bool) -> void:
+	if not multiplayer.is_server() and name.to_int() == id and not healing:
 		healing = value
 
 func initialize_class(var_class_name: String) -> void:
