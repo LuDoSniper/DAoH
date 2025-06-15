@@ -26,6 +26,7 @@ func _ready() -> void:
 	$AudioStreamPlayer3D.play()
 	$AudioStreamPlayer3D.stream.loop = true
 	play_click_on_all_buttons(self)
+
 	if MULTIPLAYER.last_connection == "failure":
 		join_attempt_fail.show()
 	else:
@@ -158,7 +159,8 @@ func show_player_picker(empty = null) -> void:
 		player_pickers_empty_camera.current = true
 	else:
 		player_pickers_camera.current = true
-		
+	var target_node = get_node("GUI/Classes/PlayersPickerMargin/VBoxContainer/HBoxContainer/PlayerPickers/ScrollContainer/MarginContainer/PlayerPickers")
+	play_click_on_all_buttons(target_node)
 		
 func play_click_on_all_buttons(node):
 	for child in node.get_children():
