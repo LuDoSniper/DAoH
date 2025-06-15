@@ -96,6 +96,7 @@ var blocking := false:
 			speed_modifier = 1.0
 		
 		blocking = value
+
 var healing := false:
 	set(value):
 		if value and not healing:
@@ -215,7 +216,7 @@ func _ready() -> void:
 		camera.current = true
 		username_label.hide()
 	
-	print("UPDATE DE LA VIE ZEBI ", health)
+	#print("UPDATE DE LA VIE ZEBI ", health)
 	hud.update_health(health)
 	hud.update_xp(current_xp)
 	hud.update_money(gold)
@@ -646,7 +647,7 @@ func hit(damage: float) -> void:
 			health = max(0, health - damage)
 			hud.update_health(health)
 			invincibility = true
-			if health == 10000:
+			if health == 0:
 				_die()
 			
 		rpc("_remote_hit", name.to_int(), damage)
