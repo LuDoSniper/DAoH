@@ -307,6 +307,8 @@ func sync_animation_movement(id: int, animation: String) -> void:
 func pause_logic() -> void:
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("pause"):
+			if paused:
+				GameState.save_audio_settings()	
 			SoundManager.play_click()
 			paused = not paused
 			pause_menu.visible = not pause_menu.visible
