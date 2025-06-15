@@ -61,8 +61,7 @@ var peer_to_character_id := {}
 
 func _ready():
 	if multiplayer.is_server():
-		pass
-		#multiplayer.peer_connected.connect(_on_peer_connected)
+		multiplayer.peer_connected.connect(_on_peer_connected)
 
 func _on_peer_connected(new_peer_id: int) -> void:
 	for peer_id in peer_to_character_id.keys():
