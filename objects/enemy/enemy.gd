@@ -426,6 +426,19 @@ func hit(damage: float) -> void:
 				mage_skin.hide()
 				rogue_skin.hide()
 				death_particles.emitting = true
+				
+				var players = get_tree().root.get_node("World").get_players()
+				if players != []:
+					var min_dist = global_position.distance_to(players[0].global_position)
+					var min_player = players[0]
+					for player in players:
+						if global_position.distance_to(player.global_position) < min_dist:
+							min_dist = global_position.distance_to(player.global_position)
+							min_player = player
+					
+					#min_player.add_xp(10.0)
+					min_player._on_enemy_killed()
+					rpc("_remote_add_xp", min_player.name.to_int(), 10.0)
 			
 			var animations = [
 				"Hit_A",
@@ -438,6 +451,16 @@ func hit(damage: float) -> void:
 			invincibility_timer.start()
 			
 			rpc("_remote_hit", name.to_int(), health, animation)
+
+@rpc("any_peer")
+func _remote_add_xp(id: int, value: float) -> void:
+	if not multiplayer.is_server():
+		var players = get_tree().root.get_node("World").get_players()
+		for player in players:
+			if player.name.to_int() == id:
+				#player.add_xp(value)
+				player._on_enemy_killed()
+				return
 
 @rpc("any_peer")
 func _remote_hit(id: int, new_health: float, animation: String) -> void:

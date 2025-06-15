@@ -25,15 +25,17 @@ func _ready() -> void:
 func update_health(value: float):
 	var tween = create_tween()
 	tween.tween_method(tween_health, health_bar.value, value, 0.25)
+	print("new_value : ", value)
 
 func tween_health(value: float) -> void:
 	health_bar.value = value
 
 func update_xp(value: float):
 	var tween = create_tween()
-	tween.tween_method(tween_health, xp_bar.value, value, 0.25)
+	tween.tween_method(tween_xp, xp_bar.value, value, 0.25)
+	print("new_value : ", value)
 
-func xp_health(value: float) -> void:
+func tween_xp(value: float) -> void:
 	xp_bar.value = value
 
 func update_money(amount):
