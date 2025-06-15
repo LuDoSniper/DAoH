@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var lock_angle_threshold := 0.5
 
 @export var max_health: int = 100
-@export var health: int = 100
+@export var health: int = max_health
 @export var gold: int = 0
 @export var level: int = 1
 @export var current_xp: int = 0

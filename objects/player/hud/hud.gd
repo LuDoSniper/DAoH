@@ -40,11 +40,13 @@ func update_money(amount):
 	money_label.text = "%d" % amount
 
 func show_death() -> void:
+	death_screen.show()
 	animation_player.play("show_death")
 	timer.wait_time = 3.0
 	timer.start()
 
 func hide_death() -> void:
+	death_screen.hide()
 	death_screen.modulate.a = 0
 	respawn.hide()
 
