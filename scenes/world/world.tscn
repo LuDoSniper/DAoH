@@ -447,7 +447,7 @@ thanks_msg = Array[String]([])
 skin = 5
 
 [node name="Tangouille la fripouille" parent="Entities" instance=ExtResource("4_6m72w")]
-transform = Transform3D(0.596169, 0, 0.802859, 0, 1, 0, -0.802859, 0, 0.596169, -13.5967, 1.96591, -55.2298)
+transform = Transform3D(-0.911145, 0, -0.412087, 0, 1, 0, 0.412087, 0, -0.911145, -7.6404, 1.93709, -52.0047)
 npc_name = "Tangouille la fripouille"
 dialogue_lines = Array[String]([" La forêt murmure à ceux qui savent écouter... mais rares sont ceux qui comprennent ses secrets.", "Chaque plante a un esprit, chaque pierre une mémoire. Respecte-les, et ils te guideront."])
 quest_not_finish = Array[String]([])
@@ -601,7 +601,6 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_71ii3")
