@@ -163,6 +163,7 @@ func show_player_picker(empty = null) -> void:
 func play_click_on_all_buttons(node):
 	for child in node.get_children():
 		if child is Button:
-			child.pressed.connect(SoundManager.play_click)
-		elif child.has_method("get_children"):
+			if not child.pressed.is_connected(SoundManager.play_click):
+				child.pressed.connect(SoundManager.play_click)
+		if child.has_method("get_children"):
 			play_click_on_all_buttons(child)

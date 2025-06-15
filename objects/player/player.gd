@@ -325,17 +325,19 @@ func attack_logic() -> void:
 		attacking = skin.attacking
 		
 		if not attacking:
-			if not blocking:
+			if not blocking and not paused:
 				if Input.is_action_just_pressed("attack"):
 					# Selection arbitraire pour le moment
 					var attack_name = "base"
 					if selected_class.name in ["Knight", "Barbarian"]:
 						if array_has(inventory.right_hand.hands, [WeaponData.hands_variants.Left, WeaponData.hands_variants.Right]):
+							$audio_swoosh.play()
 							attack_name = "base"
 						elif array_has(inventory.right_hand.hands, [WeaponData.hands_variants.Both]):
 							attack_name = "base_2H"
 					if selected_class.name == "Rogue":
 						if inventory.right_hand is WeaponData and inventory.right_hand.name == "Dagger":
+							$audio_swoosh.play()
 							attack_name = "base"
 						else:
 							attack_name = "shoot"
@@ -392,6 +394,7 @@ func _remote_shoot_arrow(pos: Vector3, arrow_rotation: float) -> void:
 		arrow.rotation.y = arrow_rotation
 
 func shoot_arrow() -> void:
+	$audio_arrow.play()
 	rpc_id(1, "_request_shoot_arrow", arrow_spawn.global_position, skin.rotation.y)
 
 func _input(event: InputEvent) -> void:
@@ -575,6 +578,7 @@ func hit(damage: float) -> void:
 			invincibility_timer.start()
 			if health == 0:
 				_die()
+			$audio_hit.play()
 		
 		rpc("_remote_hit", name.to_int(), damage)
 
