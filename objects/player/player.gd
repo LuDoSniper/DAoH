@@ -610,12 +610,17 @@ func hit(damage: float) -> void:
 				_die()
 			$audio_hit.play()
 		
-		rpc("_remote_hit", name.to_int(), damage)
+		print("Remote hit")
+		rpc("_remote_hit", name.to_int(), health)
 
 @rpc("any_peer")
 func _remote_hit(id: int, new_health: float) -> void:
 	if not multiplayer.is_server() and name.to_int() == id:
+		print("SALAM")
 		skin.hit()
+		print(health)
+		print(new_health)
+		print("------------")
 		health = new_health
 		hud.update_health(health)
 
@@ -654,6 +659,8 @@ func _remote_die(id: int) -> void:
 func respawn() -> void:
 	paused = false
 	health = max_health
+	invincibility = false
+	hud.update_health(health)
 	skin.abort_death()
 	global_position = get_tree().root.get_node("World").get_first_spawner_pos_available(self)
 

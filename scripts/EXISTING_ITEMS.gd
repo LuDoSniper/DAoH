@@ -7,7 +7,7 @@ var sword_1h = WeaponData.new(
 		WeaponData.hands_variants.Left,
 		WeaponData.hands_variants.Right
 	],
-	1.0
+	10.0
 )
 var sword_2h = WeaponData.new(
 	"Sword_2H",
@@ -15,7 +15,7 @@ var sword_2h = WeaponData.new(
 	[
 		WeaponData.hands_variants.Both
 	],
-	2.0
+	20.0
 )
 var sword_2h_colored = WeaponData.new(
 	"Sword_2H_colored",
@@ -23,7 +23,7 @@ var sword_2h_colored = WeaponData.new(
 	[
 		WeaponData.hands_variants.Both
 	],
-	2.0
+	20.0
 )
 var axe_1h = WeaponData.new(
 	"Axe_1H",
@@ -32,7 +32,7 @@ var axe_1h = WeaponData.new(
 		WeaponData.hands_variants.Left,
 		WeaponData.hands_variants.Right
 	],
-	1.5
+	10.5
 )
 var axe_2h = WeaponData.new(
 	"Axe_2H",
@@ -40,7 +40,7 @@ var axe_2h = WeaponData.new(
 	[
 		WeaponData.hands_variants.Both
 	],
-	2.5
+	20.5
 )
 var crossbow = WeaponData.new(
 	"Crossbow",
@@ -49,7 +49,7 @@ var crossbow = WeaponData.new(
 		WeaponData.hands_variants.Left,
 		WeaponData.hands_variants.Right
 	],
-	0.75
+	07.5
 )
 var dagger = WeaponData.new(
 	"Dagger",
@@ -58,7 +58,7 @@ var dagger = WeaponData.new(
 		WeaponData.hands_variants.Left,
 		WeaponData.hands_variants.Right
 	],
-	1.0
+	10.0
 )
 var mug = WeaponData.new(
 	"Mug",
@@ -179,7 +179,7 @@ var skeleton_axe = WeaponData.new(
 	[
 		WeaponData.hands_variants.Right
 	],
-	1.5
+	15.0
 )
 var skeleton_shield = WeaponData.new(
 	"Skeleton_Shield",
@@ -195,7 +195,7 @@ var skeleton_blade = WeaponData.new(
 	[
 		WeaponData.hands_variants.Right
 	],
-	1.0
+	10.0
 )
 
 var items = [

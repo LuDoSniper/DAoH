@@ -94,7 +94,7 @@ var security_distance := 5.0
 var rogue_shoot_distance := 6.0
 var rogue_attack_distance := 2.0
 
-var max_health := 2.0
+var max_health := 20.0
 var health := max_health
 
 #var players
