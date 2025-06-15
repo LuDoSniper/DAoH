@@ -66,32 +66,32 @@ albedo_texture = ExtResource("3_yskf0")
 script = ExtResource("2_pgefg")
 
 [node name="Skeleton3D" parent="Rig" index="0"]
-bones/1/position = Vector3(0, 0.384753, 0)
+bones/1/position = Vector3(0, 0.375933, 0)
 bones/1/rotation = Quaternion(-1.11123e-10, 0.0431578, 2.57241e-09, 0.999068)
 bones/2/rotation = Quaternion(-6.93889e-18, 7.10543e-15, 4.93038e-32, 1)
 bones/3/rotation = Quaternion(8.27181e-25, 3.72529e-09, -2.75506e-40, 1)
 bones/4/position = Vector3(0.212007, 0.134132, 7.92996e-08)
-bones/4/rotation = Quaternion(-0.557482, -0.0590695, -0.640703, 0.524619)
-bones/5/rotation = Quaternion(-1.36653e-09, -5.38321e-08, -0.504131, 0.863627)
-bones/7/rotation = Quaternion(-0.321559, -0.329915, 0.148284, 0.875082)
+bones/4/rotation = Quaternion(-0.551348, -0.061621, -0.654303, 0.513912)
+bones/5/rotation = Quaternion(3.16187e-08, -6.13018e-08, -0.482713, 0.875778)
+bones/7/rotation = Quaternion(-0.317165, -0.33162, 0.136395, 0.87797)
 bones/8/position = Vector3(8.34843e-10, 0.0961252, -0.0575)
-bones/8/rotation = Quaternion(0.00024055, 0.00024053, -0.706223, 0.707989)
+bones/8/rotation = Quaternion(0.00162135, 0.00162135, -0.701129, 0.713031)
 bones/14/position = Vector3(-0.212007, 0.134132, 8.6814e-08)
-bones/14/rotation = Quaternion(-0.61583, 0.0791325, 0.615393, 0.485575)
-bones/15/rotation = Quaternion(3.33507e-08, 5.58751e-08, 0.527009, 0.84986)
-bones/17/rotation = Quaternion(-0.320063, 0.305566, -0.230129, 0.866735)
+bones/14/rotation = Quaternion(-0.610762, 0.0818266, 0.627595, 0.475814)
+bones/15/rotation = Quaternion(1.53707e-09, 4.28282e-08, 0.506481, 0.862251)
+bones/17/rotation = Quaternion(-0.315886, 0.306049, -0.218165, 0.87118)
 bones/18/position = Vector3(-1.5736e-08, 0.0961251, -0.0575)
-bones/18/rotation = Quaternion(0.00078079, 0.000919653, 0.706297, 0.707915)
+bones/18/rotation = Quaternion(0.00437604, 0.00515433, 0.702541, 0.711612)
 bones/21/rotation = Quaternion(-5.80608e-11, -0.0313417, -1.88012e-09, 0.999509)
 bones/24/position = Vector3(0.170945, 0.113587, 1.59941e-08)
-bones/24/rotation = Quaternion(0.992762, 0.0831527, 0.0757275, 0.0421222)
-bones/25/rotation = Quaternion(0.276817, 6.50193e-08, -1.9382e-07, 0.960923)
-bones/26/rotation = Quaternion(-0.559788, -0.206746, 0.0563379, 0.80045)
+bones/24/rotation = Quaternion(0.991049, 0.0832832, 0.0776069, 0.0697281)
+bones/25/rotation = Quaternion(0.34925, 6.47796e-08, -2.50836e-07, 0.93703)
+bones/26/rotation = Quaternion(-0.597514, -0.203444, 0.0685114, 0.772589)
 bones/27/rotation = Quaternion(-9.74065e-09, 0.920355, -0.391084, 7.8309e-08)
 bones/28/position = Vector3(-0.170945, 0.113587, 1.55755e-08)
-bones/28/rotation = Quaternion(0.995552, -0.0308217, 0.03089, 0.0834996)
-bones/29/rotation = Quaternion(0.336862, -6.23629e-08, 2.33585e-07, 0.941554)
-bones/30/rotation = Quaternion(-0.592499, 0.113994, -0.0139598, 0.797343)
+bones/28/rotation = Quaternion(0.993239, -0.0322997, 0.0302426, 0.107321)
+bones/29/rotation = Quaternion(0.398493, -6.02338e-08, 2.78435e-07, 0.917171)
+bones/30/rotation = Quaternion(-0.625526, 0.11319, -0.0195055, 0.771702)
 bones/31/rotation = Quaternion(3.03591e-08, 0.920355, -0.391084, -6.95338e-08)
 bones/32/rotation = Quaternion(0.707107, -2.29302e-07, -4.60552e-08, 0.707107)
 bones/33/position = Vector3(0.202182, 0.0259903, 0.205181)
@@ -109,14 +109,14 @@ bones/42/rotation = Quaternion(-1.05796e-07, 0.391084, 0.920355, -2.58643e-08)
 bones/43/position = Vector3(-6.31128e-09, 0.16565, 2.70695e-09)
 bones/44/rotation = Quaternion(1, 3.76526e-09, 1.94879e-07, 7.45058e-09)
 bones/46/rotation = Quaternion(-0.707107, -7.27951e-08, -7.27951e-08, 0.707107)
-bones/47/position = Vector3(0.520841, 0.7849, -0.0576374)
+bones/47/position = Vector3(0.520841, 0.767827, -0.0576374)
 bones/47/rotation = Quaternion(0.794627, -1.11759e-07, 0.607098, -5.96046e-08)
 bones/48/rotation = Quaternion(-0.707107, -7.27951e-08, -7.27951e-08, 0.707107)
-bones/49/position = Vector3(-0.510844, 0.7849, 0.0597369)
+bones/49/position = Vector3(-0.510844, 0.767827, 0.0597369)
 bones/49/rotation = Quaternion(-0.758253, -1.52737e-07, 0.651961, -1.11759e-08)
 
 [node name="1H_Sword_Offhand" parent="Rig/Skeleton3D" index="0"]
-transform = Transform3D(2.3406e-08, 0.262863, 0.964832, 0.999996, -0.00249651, 0.000680465, 0.00258788, 0.964829, -0.262863, 0.512119, 0.633417, -0.00153251)
+transform = Transform3D(5.228e-05, 0.262841, 0.964838, 0.999846, -0.0169144, 0.00455384, 0.0175169, 0.96469, -0.262802, 0.511791, 0.614722, -0.00313203)
 
 [node name="1H_Sword_Offhand" parent="Rig/Skeleton3D/1H_Sword_Offhand" index="0"]
 visible = false
@@ -124,7 +124,7 @@ layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_3j2an")
 
 [node name="Badge_Shield" parent="Rig/Skeleton3D" index="1"]
-transform = Transform3D(4.58223e-08, 0.262863, 0.964833, 0.999996, -0.00249904, 0.000681132, 0.0025905, 0.964829, -0.262862, 0.662522, 0.633523, -0.0425089)
+transform = Transform3D(5.23023e-05, 0.262841, 0.964838, 0.999846, -0.0169169, 0.0045545, 0.0175195, 0.96469, -0.262801, 0.662195, 0.615432, -0.044099)
 
 [node name="Badge_Shield" parent="Rig/Skeleton3D/Badge_Shield" index="0"]
 visible = false
@@ -134,23 +134,31 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fh6bo")
 [node name="ShieldBadge" parent="Rig/Skeleton3D/Badge_Shield" index="1" instance=ExtResource("4_3j2an")]
 
 [node name="ShieldBadgeColored" parent="Rig/Skeleton3D/Badge_Shield" index="2" instance=ExtResource("5_q1av6")]
+visible = false
 
 [node name="ShieldRound" parent="Rig/Skeleton3D/Badge_Shield" index="3" instance=ExtResource("6_cvg6e")]
+visible = false
 
 [node name="ShieldRoundColored" parent="Rig/Skeleton3D/Badge_Shield" index="4" instance=ExtResource("7_6xq7n")]
+visible = false
 
 [node name="ShieldRoundBarbarian" parent="Rig/Skeleton3D/Badge_Shield" index="5" instance=ExtResource("8_55s7d")]
+visible = false
 
 [node name="ShieldSpikes" parent="Rig/Skeleton3D/Badge_Shield" index="6" instance=ExtResource("9_e77ob")]
+visible = false
 
 [node name="ShieldSpikesColored" parent="Rig/Skeleton3D/Badge_Shield" index="7" instance=ExtResource("10_pf4jo")]
+visible = false
 
 [node name="ShieldSquare" parent="Rig/Skeleton3D/Badge_Shield" index="8" instance=ExtResource("11_b8mbk")]
+visible = false
 
 [node name="ShieldSquareColored" parent="Rig/Skeleton3D/Badge_Shield" index="9" instance=ExtResource("12_23h5y")]
+visible = false
 
 [node name="Rectangle_Shield" parent="Rig/Skeleton3D" index="2"]
-transform = Transform3D(4.58223e-08, 0.262863, 0.964833, 0.999996, -0.00249904, 0.000681132, 0.0025905, 0.964829, -0.262862, 0.662522, 0.633523, -0.0425089)
+transform = Transform3D(5.23023e-05, 0.262841, 0.964838, 0.999846, -0.0169169, 0.0045545, 0.0175195, 0.96469, -0.262801, 0.662195, 0.615432, -0.044099)
 
 [node name="Rectangle_Shield" parent="Rig/Skeleton3D/Rectangle_Shield" index="0"]
 visible = false
@@ -158,7 +166,7 @@ layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_0r1gd")
 
 [node name="Round_Shield" parent="Rig/Skeleton3D" index="3"]
-transform = Transform3D(4.58223e-08, 0.262863, 0.964833, 0.999996, -0.00249904, 0.000681132, 0.0025905, 0.964829, -0.262862, 0.662522, 0.633523, -0.0425089)
+transform = Transform3D(5.23023e-05, 0.262841, 0.964838, 0.999846, -0.0169169, 0.0045545, 0.0175195, 0.96469, -0.262801, 0.662195, 0.615432, -0.044099)
 
 [node name="Round_Shield" parent="Rig/Skeleton3D/Round_Shield" index="0"]
 visible = false
@@ -166,7 +174,7 @@ layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_62g3h")
 
 [node name="Spike_Shield" parent="Rig/Skeleton3D" index="4"]
-transform = Transform3D(4.58223e-08, 0.262863, 0.964833, 0.999996, -0.00249904, 0.000681132, 0.0025905, 0.964829, -0.262862, 0.662522, 0.633523, -0.0425089)
+transform = Transform3D(5.23023e-05, 0.262841, 0.964838, 0.999846, -0.0169169, 0.0045545, 0.0175195, 0.96469, -0.262801, 0.662195, 0.615432, -0.044099)
 
 [node name="Spike_Shield" parent="Rig/Skeleton3D/Spike_Shield" index="0"]
 visible = false
@@ -174,7 +182,7 @@ layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_ebaot")
 
 [node name="1H_Sword" parent="Rig/Skeleton3D" index="5"]
-transform = Transform3D(-0.000552797, -0.152239, 0.988343, 0.999997, -0.00226096, 0.000210779, 0.00220293, 0.98834, 0.15224, -0.49587, 0.637828, 0.140103)
+transform = Transform3D(-0.00309492, -0.163188, 0.986589, 0.999916, -0.0128334, 0.00101364, 0.0124962, 0.986511, 0.163214, -0.496216, 0.618741, 0.138467)
 
 [node name="1H_Sword" parent="Rig/Skeleton3D/1H_Sword" index="0"]
 visible = false
@@ -184,7 +192,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_uflfd")
 [node name="Sword_1H" parent="Rig/Skeleton3D/1H_Sword" index="1" instance=ExtResource("3_6qlty")]
 
 [node name="2H_Sword" parent="Rig/Skeleton3D" index="6"]
-transform = Transform3D(-0.000552813, -0.152239, 0.988343, 0.999997, -0.00226097, 0.000210792, 0.00220295, 0.98834, 0.15224, -0.49587, 0.637828, 0.140103)
+transform = Transform3D(-0.00309494, -0.163188, 0.986589, 0.999916, -0.0128334, 0.00101365, 0.0124962, 0.986511, 0.163214, -0.496216, 0.618741, 0.138467)
 
 [node name="2H_Sword" parent="Rig/Skeleton3D/2H_Sword" index="0"]
 visible = false
@@ -198,14 +206,14 @@ transform = Transform3D(1, 1.45519e-08, -1.36788e-08, -1.46683e-08, 1, 0, 1.3649
 transform = Transform3D(1, 1.45519e-08, -1.36788e-08, -1.46683e-08, 1, 0, 1.36497e-08, 1.49012e-08, 1, 0, 0, 0)
 
 [node name="Knight_Helmet" parent="Rig/Skeleton3D" index="7"]
-transform = Transform3D(0.99972, -1.40143e-09, 0.0236466, 1.39341e-09, 1, 3.55686e-10, -0.0236466, -3.22637e-10, 0.99972, 4.69869e-07, 1.19498, -1.19779e-07)
+transform = Transform3D(0.99972, -1.40143e-09, 0.0236466, 1.39341e-09, 1, 3.55686e-10, -0.0236466, -3.22637e-10, 0.99972, 4.69869e-07, 1.18616, -1.19779e-07)
 
 [node name="Knight_Helmet" parent="Rig/Skeleton3D/Knight_Helmet" index="0"]
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_kkg8k")
 
 [node name="Knight_Cape" parent="Rig/Skeleton3D" index="8"]
-transform = Transform3D(0.996275, -5.14962e-09, 0.0862353, 5.13043e-09, 1, 4.44077e-10, -0.0862353, 1.88007e-15, 0.996275, -1.63023e-08, 1.19498, -1.40136e-07)
+transform = Transform3D(0.996275, -5.14962e-09, 0.0862353, 5.13043e-09, 1, 4.44077e-10, -0.0862353, 1.88007e-15, 0.996275, -1.63023e-08, 1.18616, -1.40136e-07)
 
 [node name="Knight_Cape" parent="Rig/Skeleton3D/Knight_Cape" index="0"]
 layers = 2
