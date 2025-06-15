@@ -403,12 +403,57 @@ sides = 32
 
 [node name="Entities" type="Node3D" parent="."]
 
-[node name="Npc" parent="Entities" instance=ExtResource("4_6m72w")]
-transform = Transform3D(-0.964373, 0, -0.264546, 0, 1, 0, 0.264546, 0, -0.964373, 0, 2.35371, 8.75823)
+[node name="Maire" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(-0.792098, 0, 0.610394, 0, 1, 0, -0.610394, 0, -0.792098, 56.0232, 19.9199, 56.409)
 npc_name = "Maire"
 dialogue_lines = Array[String](["Salut, aventurier !", "Bienvenue dans le monde DAoH.", "Ta première tâche est de tuer 5 squelettes dans la foret des ombres", "Bonne chance garçon !"])
 is_quester = true
 quest_to_give = ExtResource("11_m114p")
+
+[node name="L’Herboriste" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(0.401916, 0, 0.915676, 0, 1, 0, -0.915676, 0, 0.401916, -61.2148, 0.768626, -119.121)
+npc_name = "L’Herboriste"
+dialogue_lines = Array[String](["Un brin de menthe, un souffle de lavande… et un soupçon de venin si besoin."])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 1
+
+[node name="Le Capitaine de la Garde" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(0.0223031, 0, -0.999751, 0, 1, 0, 0.999751, 0, 0.0223031, 7.80323, 1.98578, -13.1098)
+npc_name = "Le Capitaine de la Garde"
+dialogue_lines = Array[String](["Halte !", "Tu es attendu.", "Le maire a donné l’ordre de te conduire à la grande tour, celle qui veille sur le village.", "Ne le fais pas attendre."])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 2
+
+[node name="Le Forgeron" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(-0.964373, 0, -0.264546, 0, 1, 0, 0.264546, 0, -0.964373, -38.6642, 1.30518, 33.5352)
+npc_name = "Le Forgeron"
+dialogue_lines = Array[String](["Mon marteau forge plus que des armes : il façonne des légendes.", "Ton épée te trahit. Elle a besoin d’un vrai maître."])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 3
+
+[node name="Étranger silencieux" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(-0.964373, 0, -0.264546, 0, 1, 0, 0.264546, 0, -0.964373, 102.588, 23.1109, -0.449835)
+npc_name = "Étranger silencieux"
+dialogue_lines = Array[String](["… (Il te regarde sans un mot, mais ses yeux en disent long.)"])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 5
+
+[node name="Tangouille la fripouille" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(0.596169, 0, 0.802859, 0, 1, 0, -0.802859, 0, 0.596169, -13.5967, 1.96591, -55.2298)
+npc_name = "Tangouille la fripouille"
+dialogue_lines = Array[String]([" La forêt murmure à ceux qui savent écouter... mais rares sont ceux qui comprennent ses secrets.", "Chaque plante a un esprit, chaque pierre une mémoire. Respecte-les, et ils te guideront."])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 4
 
 [node name="Spawners" type="Node3D" parent="."]
 

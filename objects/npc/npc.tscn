@@ -1,7 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://drseardeob18k"]
+[gd_scene load_steps=11 format=3 uid="uid://drseardeob18k"]
 
 [ext_resource type="Script" uid="uid://ndjohqicf6b2" path="res://objects/npc/npc.gd" id="1_nxjfv"]
-[ext_resource type="PackedScene" uid="uid://cypcetb0sod1q" path="res://objects/npc/skin/skin.tscn" id="2_15dke"]
+[ext_resource type="PackedScene" uid="uid://w4m4xgeyldgy" path="res://objects/npc/skin/skins/druid.tscn" id="3_qs0fi"]
+[ext_resource type="PackedScene" uid="uid://cn313pya61fjt" path="res://objects/npc/skin/skins/engineer.tscn" id="4_1ynp0"]
+[ext_resource type="PackedScene" uid="uid://co6g4k08gpm28" path="res://objects/npc/skin/skins/knight.tscn" id="5_y4kq8"]
+[ext_resource type="PackedScene" uid="uid://rnruituhmkf" path="res://objects/npc/skin/skins/mage.tscn" id="6_veyd6"]
+[ext_resource type="PackedScene" uid="uid://lh4klm4kleur" path="res://objects/npc/skin/skins/rogue.tscn" id="7_8ccfx"]
+[ext_resource type="PackedScene" uid="uid://crhv5fk4h1c8a" path="res://objects/npc/skin/skins/rogue_hooded.tscn" id="8_gfbje"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ha4nv"]
 
@@ -17,7 +22,19 @@ script = ExtResource("1_nxjfv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ha4nv")
 
-[node name="Skin" parent="." instance=ExtResource("2_15dke")]
+[node name="Skins" type="Node3D" parent="."]
+
+[node name="Druid" parent="Skins" instance=ExtResource("3_qs0fi")]
+
+[node name="Engineer" parent="Skins" instance=ExtResource("4_1ynp0")]
+
+[node name="Knight" parent="Skins" instance=ExtResource("5_y4kq8")]
+
+[node name="Mage" parent="Skins" instance=ExtResource("6_veyd6")]
+
+[node name="Rogue" parent="Skins" instance=ExtResource("7_8ccfx")]
+
+[node name="RogueHooded" parent="Skins" instance=ExtResource("8_gfbje")]
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.43595, 0)

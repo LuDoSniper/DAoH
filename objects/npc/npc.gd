@@ -28,11 +28,58 @@ var player_camera: Camera3D = null
 @export var is_quester: bool = false
 @export var quest_to_give: Quest = null
 
+# Skins
+@onready var skins_lst: Node3D = $Skins
+@onready var rogue_skin: Node3D = $Skins/Rogue
+@onready var druid_skin: Node3D = $Skins/Druid
+@onready var engineer_skin: Node3D = $Skins/Engineer
+@onready var knight_skin: Node3D = $Skins/Knight
+@onready var mage_skin: Node3D = $Skins/Mage
+@onready var rogue_hooded_skin: Node3D = $Skins/RogueHooded
+
+var animation_tree
+var move_state_machine
+
+enum skins {
+	Rogue,
+	Mage,
+	Knight,
+	Engineer,
+	Druid,
+	Rogue_hooded
+}
+@export var skin := skins.Rogue
+
 func _ready():
 	label.text = npc_name
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
 	label.visible = false
+	
+	hide_skin()
+	
+	match skin:
+		0:
+			rogue_skin.show()
+			animation_tree = rogue_skin.get_node("AnimationTree")
+		1:
+			mage_skin.show()
+			animation_tree = mage_skin.get_node("AnimationTree")
+		2:
+			knight_skin.show()
+			animation_tree = knight_skin.get_node("AnimationTree")
+		3:
+			engineer_skin.show()
+			animation_tree = engineer_skin.get_node("AnimationTree")
+		4:
+			druid_skin.show()
+			animation_tree = druid_skin.get_node("AnimationTree")
+		5:
+			rogue_hooded_skin.show()
+			animation_tree = rogue_hooded_skin.get_node("AnimationTree")
+
+	move_state_machine = animation_tree.get("parameters/StateMachine/playback")
+	get_move_state_current_node()
 
 func _process(delta):
 	if player_camera and label.visible:
@@ -82,3 +129,14 @@ func get_dialogue_lines(quest):
 		}
 	else:
 		return null
+
+
+func set_move_state(state: String) -> void:
+	move_state_machine.travel(state)
+
+func get_move_state_current_node() -> StringName:
+	return move_state_machine.get_current_node()
+
+func hide_skin():
+	for skin in skins_lst.get_children():
+		skin.hide()
