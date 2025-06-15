@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhdnji60mgrmb"]
+[gd_scene load_steps=13 format=3 uid="uid://dhdnji60mgrmb"]
 
 [ext_resource type="Script" uid="uid://cfsqm3xdpr45e" path="res://objects/enemy/enemy.gd" id="1_c38me"]
 [ext_resource type="PackedScene" uid="uid://c4i7cfvcn2k1p" path="res://objects/enemy/variant/mage/mage.tscn" id="1_esv4w"]
@@ -10,14 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c7u2we0l3wfof" path="res://vfx/death_particles/death_particles.tscn" id="6_gnbxk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ghy8"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_esv4w"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [sub_resource type="Curve" id="Curve_lejcx"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -62,16 +54,16 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_2ghy8")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_esv4w")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
 
-[node name="Raycasts" type="Node" parent="."]
+[node name="Raycasts" type="Node3D" parent="."]
 
 [node name="Vision" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
 
 [node name="Timers" type="Node" parent="."]
 

@@ -137,6 +137,8 @@ var blocking := false:
 		
 		blocking = value
 
+var skin
+
 func _ready() -> void:
 	minion_skin.hide()
 	warrior_skin.hide()
@@ -148,21 +150,25 @@ func _ready() -> void:
 		minion_skin.show()
 		animation_tree = minion_tree
 		attack_radius = minion_attack_radius
+		skin = minion_skin
 	elif variant == variants.Warrior:
 		warrior_skin.parent = self
 		warrior_skin.show()
 		warrior_skin.activate()
 		animation_tree = warrior_tree
 		attack_radius = minion_attack_radius
+		skin = warrior_skin
 	elif variant == variants.Mage:
 		mage_skin.show()
 		animation_tree = mage_tree
 		attack_radius = mage_attack_radius
+		skin = mage_skin
 	elif variant == variants.Rogue:
 		rogue_skin.parent = self
 		rogue_skin.show()
 		animation_tree = rogue_tree
 		attack_radius = rogue_shoot_distance
+		skin = rogue_skin
 	
 	move_state_machine = animation_tree.get("parameters/MoveStateMachine/playback")
 	hit_state_machine = animation_tree.get("parameters/HitStateMachine/playback")
@@ -175,6 +181,9 @@ func _physics_process(delta: float) -> void:
 	select_target()
 	move_logic(delta)
 	attack_logic()
+	if multiplayer.is_server():
+		rpc("sync_movement", name.to_int(), global_position, skin.rotation.y)
+	print(get_node("Raycasts").global_rotation)
 
 func select_target() -> void:
 	if multiplayer.is_server():
@@ -186,19 +195,30 @@ func select_target() -> void:
 		# Verifying that spoted players are reachable by 'vision' (checking if the enemy can see the players)
 		if spoted_players != []:
 			for player in spoted_players:
-				vision.target_position = player.global_position
+				vision.target_position = vision.to_local(player.global_position)
+				#vision.look_at(player.global_position)
+				print("vision : ", vision.global_rotation)
+				print("enemy : ", global_rotation)
+				print("player : ", player.global_position, " - target : ", vision.target_position)
 				var collider = vision.get_collider()
 				if collider:
+					#print("raycast : ", vision.target_position, " player : ", player.global_position)
+					#print("collider : ", collider.name.to_int(), " - ", collider.name, " --- ", "player : ", player.name.to_int(), " - ", player.name)
 					if collider.name.to_int() != player.name.to_int():
 						spoted_players.pop_at(spoted_players.find(player))
 		
 		# Selection
 		if spoted_players != []:
-			# Select a random player and go toward
+			# Select nearest player and go toward
 			is_combat = true
 			
 			# Keep the targeted player until he's unreachable
-			targeted_player = spoted_players[randi_range(0, len(spoted_players) - 1)] if targeted_player == null else targeted_player
+			var distances = []
+			var players_distances = []
+			for player in spoted_players:
+				distances.append(global_position.distance_to(player.global_position))
+				players_distances.append(player)
+			targeted_player = players_distances[distances.find(UTILS.custom_min(distances))] if targeted_player == null else targeted_player
 			
 			# Mages will maintain security distance while others no
 			var target: Vector3
@@ -257,7 +277,7 @@ func move_logic(delta: float) -> void:
 		if direction and rounded_current_position != rounded_final_position and not can_attack:
 			# Rotate slowly to the desired vector (direction)
 			var target_angle = -Vector2(direction.x, direction.z).angle() + PI/2
-			rotation.y = rotate_toward(rotation.y, target_angle, 6.0 * delta)
+			skin.rotation.y = rotate_toward(skin.rotation.y, target_angle, 6.0 * delta)
 			
 			# Apply correct speed (run or sprint)
 			var speed = run_speed if is_combat else base_speed
@@ -272,7 +292,7 @@ func move_logic(delta: float) -> void:
 			if is_combat:
 				direction = (targeted_player.global_position - global_position).normalized()
 				var target_angle = -Vector2(direction.x, direction.z).angle() + PI/2
-				rotation.y = rotate_toward(rotation.y, target_angle, 6.0 * delta)
+				skin.rotation.y = rotate_toward(skin.rotation.y, target_angle, 6.0 * delta)
 			
 			# Stop slowly
 			velocity.x = move_toward(velocity.x, 0, base_speed)
@@ -287,10 +307,16 @@ func sync_animation_movement(id: int, animation: String) -> void:
 	if name.to_int() == id:
 		move_state_machine.travel(animation)
 
+@rpc("any_peer")
+func sync_movement(id: int, var_global_position: Vector3, var_rotation: float) -> void:
+	if name.to_int() == id:
+		global_position = var_global_position
+		skin.rotation.y = var_rotation
+
 func attack_logic() -> void:
 	if multiplayer.is_server():
 		if can_attack:
-			if attack_timer.is_stopped():
+			if attack_timer.is_stopped() and typeof(targeted_player) != TYPE_NIL and targeted_player != null:
 				var animation_name = ""
 				var rogue_instruction = "nothing"
 				
@@ -359,33 +385,35 @@ func shoot_fireball() -> void:
 		get_parent().add_child(fireball)
 		fireball.global_position = projectiles_spawn.global_position
 		fireball.scale = Vector3.ONE * 0.5
-		fireball.rotation.y = rotation.y
+		fireball.rotation.y = skin.rotation.y
 		
-		rpc("_remote_shoot_fireball", projectiles_spawn.global_position, rotation.y)
+		rpc("_remote_shoot_fireball", projectiles_spawn.global_position, skin.rotation.y)
 
 @rpc("any_peer")
 func _remote_shoot_fireball(pos: Vector3, fireball_rotation: float) -> void:
-	var fireball = fireball_scene.instantiate()
-	get_parent().add_child(fireball)
-	fireball.global_position = pos
-	fireball.scale = Vector3.ONE * 0.5
-	fireball.rotation.y = fireball_rotation
+	if not multiplayer.is_server():
+		var fireball = fireball_scene.instantiate()
+		get_parent().add_child(fireball)
+		fireball.global_position = pos
+		fireball.scale = Vector3.ONE * 0.5
+		fireball.rotation.y = fireball_rotation
 
 func shoot_arrow() -> void:
 	if multiplayer.is_server():
 		var arrow = arrow_scene.instantiate()
 		get_parent().add_child(arrow)
 		arrow.global_position = arrow_spawn.global_position
-		arrow.rotation.y = rotation.y
+		arrow.rotation.y = skin.rotation.y
 	
-	rpc("_remote_shoot_arrow", arrow_spawn.global_position, rotation.y)
+	rpc("_remote_shoot_arrow", arrow_spawn.global_position, skin.rotation.y)
 
 @rpc("any_peer")
 func _remote_shoot_arrow(pos: Vector3, arrow_rotation: float) -> void:
-	var arrow = arrow_scene.instantiate()
-	get_parent().add_child(arrow)
-	arrow.global_position = pos
-	arrow.rotation.y = arrow_rotation
+	if not multiplayer.is_server():
+		var arrow = arrow_scene.instantiate()
+		get_parent().add_child(arrow)
+		arrow.global_position = pos
+		arrow.rotation.y = arrow_rotation
 
 func hit(damage: float) -> void:
 	if multiplayer.is_server():

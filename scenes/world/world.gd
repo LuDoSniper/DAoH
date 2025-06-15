@@ -23,7 +23,12 @@ func _ready():
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
-		enemy_spawn()
+		if multiplayer.is_server():
+			enemy_spawn()
+		else:
+			pass
+			# N'activer que pour du debug
+			#rpc_id(1, "_request_spawn_enemy_debug")
 
 func strip_custom(string: String, to_remove: Array[String]) -> String:
 	var striped := ""
@@ -150,7 +155,8 @@ func _remote_init_player(id: int) -> void:
 	if not multiplayer.is_server():
 		MULTIPLAYER.last_connection = "success"
 		UTILS.print_local(self, "Sending \"add_player\" request")
-		rpc("_request_add_player", id, get_meta("selected_skin"), get_meta("username"), get_meta("saved_data"))
+		rpc_id(1, "_request_add_player", id, get_meta("selected_skin"), get_meta("username"), get_meta("saved_data"))
+		rpc_id(1, "_request_spawn_enemies", multiplayer.get_unique_id())
 		MULTIPLAYER._register_character(multiplayer.get_unique_id(), MULTIPLAYER.current_character)
 		send_message("[" + MULTIPLAYER.get_character_name_by_peer_id(id) + "] has joined the game", id, false)
 
@@ -210,20 +216,23 @@ func enemy_spawn() -> void:
 		if spawner != null:
 			var enemy = enemy_scene.instantiate()
 			enemy.variant = enemy.variants.values()[randi_range(0, enemy.variants.size() - 1)]
+			var enemy_name = get_enemy_unique_id()
+			enemy.name = enemy_name
 			entities_container.add_child(enemy)
 			enemy.global_position = spawner.get_global_pos()
 			spawner.emitt()
-			print("j'envois")
-			rpc("_remote_spawn_enemy", enemy.global_position, enemy.variant, spawner.name)
+			print("j'envois avec le nom : ", enemy.name)
+			rpc("_remote_spawn_enemy", enemy_name, enemy.global_position, enemy.variant, spawner.name)
 			print("j'ai envoyé")
 
 @rpc("any_peer")
-func _remote_spawn_enemy(pos: Vector3, variant: int, spawner_name: String = "") -> void:
+func _remote_spawn_enemy(enemy_name: String, pos: Vector3, variant: int, spawner_name: String = "") -> void:
 	if not multiplayer.is_server():
-		print("j'ai reçu")
+		print("j'ai reçu avec le nom : ", enemy_name)
 		var enemy = enemy_scene.instantiate()
 		enemy.variant = variant
 		print("Avant le désastre ?")
+		enemy.name = enemy_name
 		entities_container.add_child(enemy)
 		print("Apres le désastre ?")
 		enemy.global_position = pos
@@ -231,4 +240,27 @@ func _remote_spawn_enemy(pos: Vector3, variant: int, spawner_name: String = "") 
 			for spawner in enemy_spawners.get_children():
 				if spawner.name == spawner_name:
 					spawner.emitt()
-		print("Maintenant peut etre ?")
+		print("Maintenant peut etre ? Le nom est : ", enemy.name)
+
+@rpc("any_peer")
+func _request_spawn_enemies(peer_id: int) -> void:
+	if multiplayer.is_server():
+		for enemy in get_enemies():
+			rpc_id(peer_id, "_remote_spawn_enemy", enemy.name, enemy.global_position, enemy.variant)
+
+@rpc("any_peer")
+func _request_spawn_enemy_debug() -> void:
+	if multiplayer.is_server():
+		enemy_spawn()
+
+func get_enemy_unique_id():
+	if multiplayer.is_server():
+		var ids = []
+		for enemy in get_enemies():
+			ids.append(int(enemy.name.split('_')[1]))
+		
+		var id = 0
+		while id in ids:
+			id += 1
+		
+		return "Enemy_" + str(id)
