@@ -117,6 +117,9 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	play_click_on_all_buttons(self)
+	hud.hide()
+	if is_multiplayer_authority():
+		hud.show()
 	
 	var character_name = MULTIPLAYER.get_character_name_by_peer_id(name.to_int())
 	UTILS.print_local(self, "Je viens d'apparraitre sout le nom de " + character_name)
@@ -179,6 +182,7 @@ func _ready() -> void:
 		camera.current = true
 		username_label.hide()
 	
+	print("UPDATE DE LA VIE ZEBI ", health)
 	hud.update_health(health)
 	hud.update_xp(current_xp)
 	hud.update_money(gold)
@@ -202,6 +206,11 @@ func _ready() -> void:
 	#if not multiplayer.is_server() and name.to_int() == id:
 		#initialize_class(var_class_name)
 		#initialize_inventory()
+
+@rpc("any_peer")
+func _request_healing(id: int, value: bool) -> void:
+	if multiplayer.is_server() and name.to_int() == id:
+		healing = value
 
 func initialize_class(var_class_name: String) -> void:
 	for custom_class in classes:
@@ -228,9 +237,6 @@ func initialize_inventory() -> void:
 		weapon_meshes[inventory.left_hand.name].show()
 		if weapon_meshes[inventory.left_hand.name].is_in_group("shield"):
 			weapon_meshes[inventory.left_hand.name].activate()
-
-func _process(delta: float) -> void:
-	print(health)
 
 func _physics_process(delta: float) -> void:
 	# si en gestion de tchat -> on desactive les mouvements joueur
@@ -355,6 +361,7 @@ func attack_logic() -> void:
 				blocking = Input.is_action_pressed("special") and inventory.left_hand is WeaponData and inventory.left_hand.name.split('_')[0] == "Shield"
 			elif selected_class.name == "Mage" and not healing:
 				healing = Input.is_action_just_pressed("special") and inventory.right_hand is WeaponData and inventory.right_hand.name == "Staff"
+				rpc_id(1, "_request_healing", name.to_int(), healing)
 
 @rpc("any_peer")
 func _request_shoot_fireball(pos: Vector3, fireball_rotation: float) -> void:
@@ -599,9 +606,17 @@ func _on_invincibility_timer_timeout() -> void:
 func _on_heal_zone_timer_timeout() -> void:
 	healing = false
 
-func heal(amount: int) -> void:
-	health = min(max_health, health + amount)
-	hud.update_health(health)
+func heal(amount: float) -> void:
+	if multiplayer.is_server():
+		health = min(max_health, health + amount)
+		hud.update_health(health)
+		rpc("_remote_heal", name.to_int(), health)
+
+@rpc("any_peer")
+func _remote_heal(id: int, new_health: float) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		health = new_health
+		hud.update_health(health)
 
 func _die() -> void:
 	print("💀 Le joueur est mort")
@@ -616,6 +631,7 @@ func remove_gold(amount: int) -> void:
 
 func add_xp(amount: int) -> void:
 	current_xp += amount
+	hud.update_xp(current_xp)
 	while current_xp >= xp_to_next_level:
 		current_xp -= xp_to_next_level
 		level += 1
@@ -625,7 +641,7 @@ func _on_level_up() -> void:
 	xp_to_next_level = int(xp_to_next_level * 1.25)
 	max_health += 10
 	health = max_health
-	hud.update_xp(current_xp)
+	hud.update_xp(0)
 
 func _on_enemy_killed():
 	add_xp(20)
@@ -755,7 +771,6 @@ func get_quest_by_id(quest_id: String) -> Quest:
 		if q.id == quest_id:
 			return q
 	return null
-
 
 func play_click_on_all_buttons(node):
 	for child in node.get_children():
