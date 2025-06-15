@@ -25,10 +25,36 @@ func _physics_process(_delta: float) -> void:
 	if multiplayer.is_server():
 		while len(get_enemies()) < 10:
 			enemy_spawn()
-	else:
-		pass
-		# N'activer que pour du debug
-		#rpc_id(1, "_request_spawn_enemy_debug")
+
+	if not multiplayer.has_multiplayer_peer():
+		return
+
+	var local_player_id = multiplayer.get_unique_id()
+	var local_player = entities_container.get_node_or_null(str(local_player_id))
+	if local_player == null:
+		return
+
+	var local_camera = local_player.get_node_or_null("CameraController/Camera3D") # Adapte le chemin si nécessaire
+	if local_camera == null:
+		return
+
+	for other_player in get_players():
+		if other_player == local_player:
+			other_player.username_label.visible = false
+			continue
+
+		var distance = local_player.global_position.distance_to(other_player.global_position)
+		
+		if distance <= 20.0:
+			other_player.username_label.visible = true
+
+			var look_pos = local_camera.global_position
+			look_pos.y = other_player.username_label.global_position.y  # On garde l’axe Y du label pour éviter un tilt
+			other_player.username_label.look_at(look_pos, Vector3.UP)
+			other_player.username_label.rotate_y(deg_to_rad(180))
+		else:
+			other_player.username_label.visible = false
+
 
 func strip_custom(string: String, to_remove: Array[String]) -> String:
 	var striped := ""

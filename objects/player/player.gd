@@ -236,7 +236,6 @@ func _physics_process(delta: float) -> void:
 	pause_logic()
 	#focus_logic(delta)
 	attack_logic()
-	label_logic()
 
 func move_logic(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -713,18 +712,6 @@ func reset_http_signal():
 	]:
 		if http.is_connected("request_completed", callback):
 			http.disconnect("request_completed", callback)
-
-func label_logic():
-	var local_position = camera.global_transform.origin
-	var distance = global_transform.origin.distance_to(local_position)
-	if distance > 8:
-		username_label.hide()
-	else:
-		username_label.show()
-		var cam_basis = camera.global_transform.basis
-		var look_position = username_label.global_transform.origin + (-cam_basis.z)
-		username_label.look_at(look_position, Vector3.UP)
-		username_label.rotate_y(deg_to_rad(180))
 
 #Player.gd
 
