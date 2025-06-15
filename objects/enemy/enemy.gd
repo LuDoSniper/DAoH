@@ -175,6 +175,8 @@ func _physics_process(delta: float) -> void:
 	select_target()
 	move_logic(delta)
 	attack_logic()
+	if multiplayer.is_server():
+		rpc("sync_movement", name.to_int(), global_position, rotation.y)
 
 func select_target() -> void:
 	if multiplayer.is_server():
@@ -286,6 +288,12 @@ func move_logic(delta: float) -> void:
 func sync_animation_movement(id: int, animation: String) -> void:
 	if name.to_int() == id:
 		move_state_machine.travel(animation)
+
+@rpc("any_peer")
+func sync_movement(id: int, var_global_position: Vector3, var_rotation: float) -> void:
+	if name.to_int() == id:
+		global_position = var_global_position
+		rotation.y = var_rotation
 
 func attack_logic() -> void:
 	if multiplayer.is_server():
