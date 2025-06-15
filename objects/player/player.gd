@@ -248,10 +248,16 @@ func _physics_process(delta: float) -> void:
 
 	move_logic(delta)
 	jump_logic(delta)
+	if not GameState.player_jumping and GameState.player_moving and not GameState.audio_walking_playing:
+		$audio_walking.play()
+		$audio_walking.stream.loop = true
+		GameState.audio_walking_playing = true
+		
 	pause_logic()
 	#focus_logic(delta)
 	attack_logic()
 	emote_wheel_logic()
+
 
 func move_logic(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -261,8 +267,9 @@ func move_logic(delta: float) -> void:
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction and not paused and not player_is_lock:
 			if not GameState.player_moving:
-				$audio_walking.play()
-				$audio_walking.stream.loop = true
+				
+				#$audio_walking.play()
+				#$audio_walking.stream.loop = true
 				GameState.player_moving = true
 			# Rotate slowly to the desired vector (direction)
 			var target_angle = -input_dir.angle() + PI/2
@@ -280,6 +287,7 @@ func move_logic(delta: float) -> void:
 		else:
 			if GameState.player_moving:
 				$audio_walking.stop()
+				GameState.audio_walking_playing = false
 				# pb: dès que l'audio est finit, il ne redémarre pas
 				GameState.player_moving = false
 			# Stop slowly
@@ -303,7 +311,12 @@ func jump_logic(delta: float) -> void:
 	if is_multiplayer_authority():
 		# Add the gravity.
 		if not is_on_floor():
+			$audio_walking.stop()
+			GameState.audio_walking_playing = false
+			GameState.player_jumping = true
 			velocity += get_gravity() * delta
+		else:
+			GameState.player_jumping = false
 
 		# Handle jump.
 		if Input.is_action_just_pressed("jump") and is_on_floor() and not paused:
@@ -346,11 +359,13 @@ func attack_logic() -> void:
 					var attack_name = "base"
 					if selected_class.name in ["Knight", "Barbarian"]:
 						if array_has(inventory.right_hand.hands, [WeaponData.hands_variants.Left, WeaponData.hands_variants.Right]):
+							$audio_swoosh.play()
 							attack_name = "base"
 						elif array_has(inventory.right_hand.hands, [WeaponData.hands_variants.Both]):
 							attack_name = "base_2H"
 					if selected_class.name == "Rogue":
 						if inventory.right_hand is WeaponData and inventory.right_hand.name == "Dagger":
+							$audio_swoosh.play()
 							attack_name = "base"
 						else:
 							attack_name = "shoot"
@@ -408,6 +423,7 @@ func _remote_shoot_arrow(pos: Vector3, arrow_rotation: float) -> void:
 		arrow.rotation.y = arrow_rotation
 
 func shoot_arrow() -> void:
+	$audio_arrow.play()
 	rpc_id(1, "_request_shoot_arrow", arrow_spawn.global_position, skin.rotation.y)
 
 func _input(event: InputEvent) -> void:
@@ -592,6 +608,7 @@ func hit(damage: float) -> void:
 			invincibility = true
 			if health == 0:
 				_die()
+			$audio_hit.play()
 		
 		rpc("_remote_hit", name.to_int(), damage)
 
