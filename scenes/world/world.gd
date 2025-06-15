@@ -80,6 +80,20 @@ func _request_add_player(peer_id: int, selected_skin: String, username: String, 
 			player.gold = saved_data["gold"]
 		if saved_data.has("camera_rot"):
 			player.camera_controller.rotation = parse_vector3_from_string(saved_data["camera_rot"])
+		if saved_data.has("active_quests"):
+			var quests = []
+			for quest_dict in saved_data["active_quests"]:
+				var q = Quest.new()
+				q.id = quest_dict.get("id", "")
+				q.title = quest_dict.get("title", "")
+				q.description = quest_dict.get("description", "")
+				q.required_amount = quest_dict.get("required_amount", 0)
+				q.current_amount = quest_dict.get("current_amount", 0)
+				q.state = quest_dict.get("state", Quest.QuestState.NOT_STARTED)
+				q.reward_xp = quest_dict.get("reward_xp", 0)
+				q.reward_gold = quest_dict.get("reward_gold", 0)
+				quests.append(q)
+			player.active_quests = quests
 		player.initialize_inventory()
 
 		# Update list of players for the entities who depends on it
@@ -120,6 +134,20 @@ func _remote_add_player(id: int, selected_skin: String, pos: Vector3, username: 
 			player.gold = saved_data["gold"]
 		if saved_data.has("camera_rot"):
 			player.camera_controller.rotation = parse_vector3_from_string(saved_data["camera_rot"])
+		if saved_data.has("active_quests"):
+			var quests = []
+			for quest_dict in saved_data["active_quests"]:
+				var q = Quest.new()
+				q.id = quest_dict.get("id", "")
+				q.title = quest_dict.get("title", "")
+				q.description = quest_dict.get("description", "")
+				q.required_amount = quest_dict.get("required_amount", 0)
+				q.current_amount = quest_dict.get("current_amount", 0)
+				q.state = quest_dict.get("state", Quest.QuestState.NOT_STARTED)
+				q.reward_xp = quest_dict.get("reward_xp", 0)
+				q.reward_gold = quest_dict.get("reward_gold", 0)
+				quests.append(q)
+			player.active_quests = quests
 		player.initialize_inventory()
 # <<< ADD PLAYER
 

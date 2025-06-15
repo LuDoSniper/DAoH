@@ -30,8 +30,6 @@ var panel_selected = preload("res://addons/menu/panel_brown_arrows_dark_detail.p
 var panel = preload("res://addons/menu/panel_brown_damaged_dark.png")
 var font = preload("res://addons/menu/AveriaGruesaLibre-Regular.ttf")
 
-
-
 func _ready() -> void:
 	main_server_container.show()
 	main_login_container.hide()

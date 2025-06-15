@@ -632,7 +632,10 @@ func set_username(var_username: String) -> void:
 func save_data() -> void:
 	reset_http_signal()
 	http.connect("request_completed", Callable(self, "_on_save_data_receive"))
-	
+	var quests_as_dicts = []
+	for quest in active_quests:
+		quests_as_dicts.append(quest.to_dict())
+
 	var err = http.request(
 		"https://" + MULTIPLAYER.get_server_by_id(MULTIPLAYER.current_server)["address"] + "/api/character/update/" + str(MULTIPLAYER.current_character),
 		[
@@ -640,6 +643,7 @@ func save_data() -> void:
 			"Authorization: Bearer " + MULTIPLAYER.token
 		],
 		HTTPClient.METHOD_POST,
+		
 		JSON.stringify({
 			#"name": username, # Peut causer un 400 (le name est immuable)
 			"saved_data": {
@@ -649,7 +653,8 @@ func save_data() -> void:
 				"camera_rot": camera_controller.rotation,
 				"health": health,
 				"xp": current_xp,
-				"gold": gold
+				"gold": gold,
+				"active_quests": quests_as_dicts,
 			}
 		})
 	)
