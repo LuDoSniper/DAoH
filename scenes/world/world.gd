@@ -100,6 +100,7 @@ func _request_add_player(peer_id: int, selected_skin: String, username: String, 
 			player.skin.rotation.y = saved_data["rot"]
 		if saved_data.has("health"):
 			player.health = saved_data["health"]
+			print("PLAYER HEALTH SERVER ", player.health)
 		if saved_data.has("xp"):
 			player.current_xp = saved_data["xp"]
 		if saved_data.has("gold"):
@@ -154,8 +155,10 @@ func _remote_add_player(id: int, selected_skin: String, pos: Vector3, username: 
 			player.skin.rotation.y = saved_data["rot"]
 		if saved_data.has("health"):
 			player.health = saved_data["health"]
+			player.hud.update_health(player.health)
 		if saved_data.has("xp"):
 			player.current_xp = saved_data["xp"]
+			player.hud.update_xp(player.health)
 		if saved_data.has("gold"):
 			player.gold = saved_data["gold"]
 		if saved_data.has("camera_rot"):
