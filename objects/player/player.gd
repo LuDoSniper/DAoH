@@ -182,7 +182,6 @@ func _ready() -> void:
 		camera.current = true
 		username_label.hide()
 	
-	print("UPDATE DE LA VIE ZEBI ", health)
 	hud.update_health(health)
 	hud.update_xp(current_xp)
 	hud.update_money(gold)
@@ -610,17 +609,12 @@ func hit(damage: float) -> void:
 				_die()
 			$audio_hit.play()
 		
-		print("Remote hit")
 		rpc("_remote_hit", name.to_int(), health)
 
 @rpc("any_peer")
 func _remote_hit(id: int, new_health: float) -> void:
 	if not multiplayer.is_server() and name.to_int() == id:
-		print("SALAM")
 		skin.hit()
-		print(health)
-		print(new_health)
-		print("------------")
 		health = new_health
 		hud.update_health(health)
 
