@@ -27,6 +27,21 @@ modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hg5ky"]
 texture = ExtResource("11_rmaf7")
 
+[sub_resource type="Animation" id="Animation_boxpq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_rmaf7"]
 resource_name = "show_death"
 length = 3.0
@@ -41,21 +56,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_boxpq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1fpa4"]
@@ -189,6 +189,39 @@ one_shot = true
 libraries = {
 &"": SubResource("AnimationLibrary_1fpa4")
 }
+
+[node name="EmoteWheel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="EmoteWheel"]
+custom_minimum_size = Vector2(100, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EmoteContainer" type="VBoxContainer" parent="EmoteWheel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Button" type="Button" parent="EmoteWheel/ScrollContainer/EmoteContainer"]
+layout_mode = 2
+text = "Caca"
 
 [connection signal="pressed" from="DeathScreen/respawn" to="." method="_on_respawn_pressed"]
 [connection signal="timeout" from="DeathScreen/Timer" to="." method="_on_timer_timeout"]

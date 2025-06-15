@@ -251,6 +251,7 @@ func _physics_process(delta: float) -> void:
 	pause_logic()
 	#focus_logic(delta)
 	attack_logic()
+	emote_wheel_logic()
 
 func move_logic(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -340,7 +341,7 @@ func attack_logic() -> void:
 		
 		if not attacking:
 			if not blocking:
-				if Input.is_action_just_pressed("attack"):
+				if Input.is_action_just_pressed("attack") and hud.emote_wheel.visible == false:
 					# Selection arbitraire pour le moment
 					var attack_name = "base"
 					if selected_class.name in ["Knight", "Barbarian"]:
@@ -789,3 +790,11 @@ func play_click_on_all_buttons(node):
 			child.pressed.connect(SoundManager.play_click)
 		elif child.has_method("get_children"):
 			play_click_on_all_buttons(child)
+
+func emote_wheel_logic() -> void:
+	if is_multiplayer_authority():
+		if Input.is_action_just_pressed("toggle_emote_wheel"):
+			hud.toggle_emote_wheel()
+
+func play_emote(emote: String) -> void:
+	skin.play_emote(emote)
