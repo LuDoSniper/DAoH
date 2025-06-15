@@ -22,13 +22,13 @@ func _ready():
 		$AudioStreamPlayer3D.stream.loop = true
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		if multiplayer.is_server():
+	if multiplayer.is_server():
+		while len(get_enemies()) < 10:
 			enemy_spawn()
-		else:
-			pass
-			# N'activer que pour du debug
-			#rpc_id(1, "_request_spawn_enemy_debug")
+	else:
+		pass
+		# N'activer que pour du debug
+		#rpc_id(1, "_request_spawn_enemy_debug")
 
 func strip_custom(string: String, to_remove: Array[String]) -> String:
 	var striped := ""
