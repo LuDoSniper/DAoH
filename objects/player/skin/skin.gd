@@ -16,6 +16,7 @@ var animation_tree
 var move_state_machine
 var attack_state_machine
 var hit_state_machine
+var death_state_machine
 
 enum skins {
 	Knight,
@@ -64,6 +65,7 @@ func select_class(var_class: ClassData) -> void:
 	move_state_machine = animation_tree.get("parameters/MoveStateMachine/playback")
 	attack_state_machine = animation_tree.get("parameters/AttackStateMachine/playback")
 	hit_state_machine = animation_tree.get("parameters/HitStateMachine/playback")
+	death_state_machine = animation_tree.get("parameters/DeathStateMachine/playback")
 	#! A supprimé si prouvé inutile
 	get_move_state_current_node()
 
@@ -157,3 +159,39 @@ func shoot_fireball() -> void:
 
 func get_inventory() -> InventoryData:
 	return get_parent().inventory
+
+func death() -> void:
+	if multiplayer.is_server():
+		var animations = [
+			"Death_A",
+			"Death_B"
+		]
+		var animation = animations[randi_range(0, len(animations) - 1)]
+		
+		death_state_machine.travel(animation)
+		animation_tree.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		rpc("_remote_death", name.to_int(), animation)
+
+func abort_death() -> void:
+	if multiplayer.is_server():
+		animation_tree.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+		rpc("_remote_abort_death", name.to_int())
+	else:
+		rpc_id(1, "_request_abort_death", name.to_int())
+
+@rpc("any_peer")
+func _request_abort_death(id: int) -> void:
+	if multiplayer.is_server() and name.to_int() == id:
+		animation_tree.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+		rpc("_remote_abort_death", name.to_int())
+
+@rpc("any_peer")
+func _remote_abort_death(id: int) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		animation_tree.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+
+@rpc("any_peer")
+func _remote_death(id: int, animation: String) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		death_state_machine.travel(animation)
+		animation_tree.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
