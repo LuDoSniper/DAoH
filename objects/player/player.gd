@@ -552,22 +552,33 @@ func _update_button_styles() -> void:
 		audio_type_button.add_theme_stylebox_override("hover", selected_stylebox)
 		video_type_button.add_theme_stylebox_override("hover", default_stylebox)
 
-func hit(_damage: float) -> void:
-	skin.hit()
+func hit(damage: float) -> void:
+	if multiplayer.is_server():
+		skin.hit()
+		if invincibility_timer.is_stopped():
+			health = max(0, health - damage)
+			hud.update_health(max_health, health)
+			invincibility_timer.start()
+			if health == 0:
+				_die()
+		
+		rpc("_remote_hit", name.to_int(), damage)
+
+@rpc("any_peer")
+func _remote_hit(id: int, damage: float) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		skin.hit()
+		if invincibility_timer.is_stopped():
+			health = max(0, health - damage)
+			hud.update_health(max_health, health)
+			if health == 0:
+				_die()
 
 func _on_invincibility_timer_timeout() -> void:
 	pass # Replace with function body.
 
 func _on_heal_zone_timer_timeout() -> void:
 	healing = false
-
-
-func take_damage(amount: int) -> void:
-	if invincibility_timer.is_stopped():
-		health = max(0, health - amount)
-		hud.update_health(max_health, health)
-		if health == 0:
-			_die()
 
 func heal(amount: int) -> void:
 	health = min(max_health, health + amount)

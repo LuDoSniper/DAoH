@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dsdkk3ck5o2nj"]
+[gd_scene load_steps=39 format=3 uid="uid://dsdkk3ck5o2nj"]
 
 [ext_resource type="Script" uid="uid://bu0ajfske4uuh" path="res://scenes/world/world.gd" id="1_dphjl"]
 [ext_resource type="PackedScene" uid="uid://b2vjrseu1cmso" path="res://objects/player/player.tscn" id="2_sl2e5"]
@@ -81,27 +81,6 @@ modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fymcc"]
 texture = ExtResource("8_m114p")
 modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_4rhad"]
-size = Vector3(30, 0.5, 30)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_4rhad"]
-size = Vector3(30, 0.5, 30)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_sl2e5"]
-top_radius = 5.0
-bottom_radius = 5.0
-height = 3.0
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_sl2e5"]
-height = 3.0
-radius = 5.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_sl2e5"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_sl2e5"]
-size = Vector3(2, 2, 2)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1fp7r"]
 vertices = PackedVector3Array(-2.92519, 0.547769, -16.5506, -3.42519, 0.547769, -17.3006, -5.17519, 0.547769, -18.0506, -0.675186, 0.547769, 18.4494, 0.0748138, 0.547769, 19.4494, 1.82481, 0.547769, 20.1994, 5.57481, 0.547769, 19.9494, 7.57481, 0.547769, 18.1994, 8.32481, 0.547769, 15.1994, 17.3248, 0.547769, -1.80064, 17.3248, 0.547769, -3.30064, 16.5748, 0.547769, -5.05064, 17.3248, 0.547769, 7.44936, 18.8248, 0.547769, 6.19936, 19.5748, 0.547769, 4.69936, 19.5748, 0.547769, 0.949356, 18.5748, 0.547769, -0.800644, -11.6752, 0.547769, -11.3006, -13.4252, 0.547769, -9.55064, -14.9252, 0.547769, -5.80064, -13.9252, 0.547769, 15.6994, -12.1752, 0.547769, 16.9494, -10.4252, 0.547769, 17.1994, -13.9252, 0.547769, 9.44936, -14.9252, 0.547769, 11.1994, -14.9252, 0.547769, 13.1994, 9.07481, 0.547769, 14.4494, 12.0748, 0.547769, 14.4494, 15.0748, 0.547769, 11.6994, -15.4252, 0.547769, 4.19936, -14.9252, 0.547769, 6.69936, -13.9252, 0.547769, 7.94936, 14.8248, 0.547769, 12.6994, -8.92519, 0.547769, 19.1994, -6.67519, 0.547769, 20.1994, -2.92519, 0.547769, 19.6994, -1.67519, 0.547769, 18.4494, -17.1752, 0.547769, -3.80064, -17.9252, 0.547769, -2.05064, -17.6752, 0.547769, 1.69936, 16.8248, 0.547769, 9.69936, -8.17519, 0.547769, -18.0506, -9.92519, 0.547769, -17.3006, -11.6752, 0.547769, -14.3006, 16.0748, 0.547769, -11.3006, 13.8248, 0.547769, -12.8006, 11.3248, 0.547769, -13.0506, 17.0748, 0.547769, -8.55064, 7.57481, 0.547769, -15.5506, 4.32481, 0.547769, -16.5506)
@@ -357,43 +336,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67303, 0, 0)
-
-[node name="Floor" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -178.18, -0.0145845, -158.601)
-visible = false
-collision_mask = 0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor"]
-mesh = SubResource("BoxMesh_4rhad")
-skeleton = NodePath("../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor"]
-shape = SubResource("BoxShape3D_4rhad")
-disabled = true
-
-[node name="Obstacle1" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -181.18, -0.0145845, -161.601)
-visible = false
-collision_mask = 0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Obstacle1"]
-mesh = SubResource("CylinderMesh_sl2e5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Obstacle1"]
-shape = SubResource("CylinderShape3D_sl2e5")
-disabled = true
-
-[node name="Obstacle2" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -172.18, 0.985416, -151.601)
-visible = false
-collision_mask = 0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Obstacle2"]
-mesh = SubResource("BoxMesh_sl2e5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Obstacle2"]
-shape = SubResource("BoxShape3D_sl2e5")
-disabled = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -178.18, -0.0145845, -158.601)
