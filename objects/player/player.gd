@@ -465,7 +465,7 @@ func _request_disconnect(id: int, owner_id: int, due_to_error: bool = false) -> 
 
 		var character_name = MULTIPLAYER.get_character_name_by_peer_id(name.to_int())
 
-		var message = "lost connection" if due_to_error else "hast left the game"
+		var message = "lost connection" if due_to_error else "has left the game"
 		get_tree().root.get_node("World").send_message("[" + character_name + "] " + message, id, false)
 		if not due_to_error:
 			rpc_id(id, "_remote_can_disconnect", id)
