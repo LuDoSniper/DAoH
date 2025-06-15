@@ -100,11 +100,44 @@ var healing := false:
 	set(value):
 		if value and not healing:
 			healzone.spawn()
+			play_healzone_sound()
 			healzone_timer.start()
 		elif not value and healing:
+			stop_healzone_sound()
 			healzone.despawn()
 		
 		healing = value
+
+
+var healzone_audio_player: AudioStreamPlayer3D = null
+
+func play_healzone_sound():
+	if healzone_audio_player:
+		return  # Ne pas créer plusieurs sons en même temps
+
+	healzone_audio_player = AudioStreamPlayer3D.new()
+	healzone_audio_player.stream = preload("res://assets/sounds/healzone.mp3")
+	healzone_audio_player.max_distance = 30
+	healzone_audio_player.attenuation_model = AudioStreamPlayer3D.ATTENUATION_INVERSE_DISTANCE
+	healzone_audio_player.position = Vector3.ZERO
+	healzone_audio_player.bus = "SoundFX"
+	add_child(healzone_audio_player)
+
+	healzone_audio_player.connect("finished", Callable(self, "_on_healzone_sound_finished"))
+	healzone_audio_player.play()
+
+func stop_healzone_sound():
+	if healzone_audio_player:
+		healzone_audio_player.stop()
+		healzone_audio_player.queue_free()
+		healzone_audio_player = null
+
+func _on_healzone_sound_finished():
+	if healzone_audio_player:
+		healzone_audio_player.queue_free()
+		healzone_audio_player = null
+
+
 var invincibility := false:
 	set(value):
 		if value and not invincibility:
@@ -210,6 +243,7 @@ func _ready() -> void:
 @rpc("any_peer")
 func _request_healing(id: int, value: bool) -> void:
 	if multiplayer.is_server() and name.to_int() == id:
+
 		healing = value
 
 func initialize_class(var_class_name: String) -> void:
@@ -244,7 +278,11 @@ func _physics_process(delta: float) -> void:
 		return
 	if GameState.ignore_pause:
 		GameState.ignore_pause = false 
-		return  
+		return
+	
+	
+	#UTILS.print_local(self, str(blocking))
+
 
 	move_logic(delta)
 	jump_logic(delta)
@@ -353,7 +391,7 @@ func attack_logic() -> void:
 		attacking = skin.attacking
 		
 		if not attacking:
-			if not blocking:
+			if not blocking and not paused:
 				if Input.is_action_just_pressed("attack") and hud.emote_wheel.visible == false:
 					# Selection arbitraire pour le moment
 					var attack_name = "base"
@@ -378,6 +416,7 @@ func attack_logic() -> void:
 				blocking = Input.is_action_pressed("special") and inventory.left_hand is WeaponData and inventory.left_hand.name.split('_')[0] == "Shield"
 			elif selected_class.name == "Mage" and not healing:
 				healing = Input.is_action_just_pressed("special") and inventory.right_hand is WeaponData and inventory.right_hand.name == "Staff"
+				
 				rpc_id(1, "_request_healing", name.to_int(), healing)
 
 @rpc("any_peer")
@@ -603,13 +642,13 @@ func hit(damage: float) -> void:
 		skin.hit()
 		if not invincibility:
 			print("[DEBUG]: HIT : ", health," - ", damage, " = ", max(0, health - damage))
+			$audio_hit.play()
 			health = max(0, health - damage)
 			hud.update_health(health)
 			invincibility = true
-			if health == 0:
+			if health == 10000:
 				_die()
-			$audio_hit.play()
-		
+			
 		rpc("_remote_hit", name.to_int(), damage)
 
 @rpc("any_peer")

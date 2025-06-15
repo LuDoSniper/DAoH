@@ -425,6 +425,7 @@ func hit(damage: float) -> void:
 				warrior_skin.deactivate()
 				mage_skin.hide()
 				rogue_skin.hide()
+				
 				death_particles.emitting = true
 			
 			var animations = [
@@ -443,13 +444,13 @@ func hit(damage: float) -> void:
 func _remote_hit(id: int, new_health: float, animation: String) -> void:
 	if name.to_int() == id:
 		health = new_health
-		
 		if health <= 0:
 			minion_skin.hide()
 			warrior_skin.hide()
 			warrior_skin.deactivate()
 			mage_skin.hide()
 			rogue_skin.hide()
+			
 			death_particles.emitting = true
 		
 		hit_state_machine.travel(animation)
