@@ -233,10 +233,17 @@ func _physics_process(delta: float) -> void:
 
 	move_logic(delta)
 	jump_logic(delta)
+	if not GameState.player_jumping and GameState.player_moving and not GameState.audio_walking_playing:
+		$audio_walking.play()
+		$audio_walking.stream.loop = true
+		GameState.audio_walking_playing = true
+		
 	pause_logic()
 	#focus_logic(delta)
 	attack_logic()
 	label_logic()
+	
+
 
 func move_logic(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -246,8 +253,9 @@ func move_logic(delta: float) -> void:
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction and not paused and not player_is_lock:
 			if not GameState.player_moving:
-				$audio_walking.play()
-				$audio_walking.stream.loop = true
+				
+				#$audio_walking.play()
+				#$audio_walking.stream.loop = true
 				GameState.player_moving = true
 			# Rotate slowly to the desired vector (direction)
 			var target_angle = -input_dir.angle() + PI/2
@@ -265,6 +273,7 @@ func move_logic(delta: float) -> void:
 		else:
 			if GameState.player_moving:
 				$audio_walking.stop()
+				GameState.audio_walking_playing = false
 				# pb: dès que l'audio est finit, il ne redémarre pas
 				GameState.player_moving = false
 			# Stop slowly
@@ -288,7 +297,12 @@ func jump_logic(delta: float) -> void:
 	if is_multiplayer_authority():
 		# Add the gravity.
 		if not is_on_floor():
+			$audio_walking.stop()
+			GameState.audio_walking_playing = false
+			GameState.player_jumping = true
 			velocity += get_gravity() * delta
+		else:
+			GameState.player_jumping = false
 
 		# Handle jump.
 		if Input.is_action_just_pressed("jump") and is_on_floor() and not paused:
