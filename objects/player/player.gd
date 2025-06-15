@@ -582,7 +582,7 @@ func _update_button_styles() -> void:
 		video_type_button.add_theme_stylebox_override("hover", default_stylebox)
 
 func hit(damage: float) -> void:
-	if multiplayer.is_server():
+	if multiplayer.is_server() and health > 0:
 		skin.hit()
 		if not invincibility:
 			print("[DEBUG]: HIT : ", health," - ", damage, " = ", max(0, health - damage))
@@ -620,7 +620,24 @@ func _remote_heal(id: int, new_health: float) -> void:
 		hud.update_health(health)
 
 func _die() -> void:
-	print("💀 Le joueur est mort")
+	if multiplayer.is_server():
+		paused = true
+		hud.show_death()
+		skin.death()
+		rpc("_remote_die", name.to_int())
+
+@rpc("any_peer")
+func _remote_die(id: int) -> void:
+	if not multiplayer.is_server() and name.to_int() == id:
+		paused = true
+		hud.show_death()
+		skin.death()
+
+func respawn() -> void:
+	paused = false
+	health = max_health
+	skin.abort_death()
+	global_position = get_tree().root.get_node("World").get_first_spawner_pos_available(self)
 
 func add_gold(amount: int) -> void:
 	gold += amount
