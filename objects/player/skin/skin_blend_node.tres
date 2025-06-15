@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=54 format=3 uid="uid://cp7rkeprui6t2"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=65 format=3 uid="uid://cp7rkeprui6t2"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_s8pv6"]
 filter_enabled = true
@@ -118,6 +118,58 @@ states/End/position = Vector2(630, 110)
 states/Start/position = Vector2(374, 110)
 transitions = ["Start", "Death_A", SubResource("AnimationNodeStateMachineTransition_7g2v5"), "Start", "Death_B", SubResource("AnimationNodeStateMachineTransition_vrnps"), "Death_A", "End", SubResource("AnimationNodeStateMachineTransition_ovgc5"), "Death_B", "End", SubResource("AnimationNodeStateMachineTransition_3ohfr")]
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_gqhsl"]
+fadein_time = 0.2
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_47ydi"]
+animation = &"Cheer"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_joutw"]
+animation = &"Interact"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tovev"]
+animation = &"Use_Item"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nyj7p"]
+xfade_time = 0.2
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uiad8"]
+xfade_time = 0.2
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hlk3q"]
+xfade_time = 0.2
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vcnh2"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dg1t2"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_meidf"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3d2ec"]
+states/Cheer/node = SubResource("AnimationNodeAnimation_47ydi")
+states/Cheer/position = Vector2(567, 33)
+states/End/position = Vector2(764, 131)
+states/Interact/node = SubResource("AnimationNodeAnimation_joutw")
+states/Interact/position = Vector2(567, 131)
+states/Start/position = Vector2(365, 131)
+states/Use_Item/node = SubResource("AnimationNodeAnimation_tovev")
+states/Use_Item/position = Vector2(567, 235)
+transitions = ["Start", "Cheer", SubResource("AnimationNodeStateMachineTransition_nyj7p"), "Start", "Interact", SubResource("AnimationNodeStateMachineTransition_uiad8"), "Start", "Use_Item", SubResource("AnimationNodeStateMachineTransition_hlk3q"), "Cheer", "End", SubResource("AnimationNodeStateMachineTransition_vcnh2"), "Interact", "End", SubResource("AnimationNodeStateMachineTransition_dg1t2"), "Use_Item", "End", SubResource("AnimationNodeStateMachineTransition_meidf")]
+graph_offset = Vector2(-11, -46)
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_i668i"]
 fadein_time = 0.2
 fadeout_time = 0.2
@@ -224,7 +276,7 @@ filter_enabled = true
 filters = ["", ".", "Rig/Skeleton3D:chest", "Rig/Skeleton3D:hand.l", "Rig/Skeleton3D:hand.r", "Rig/Skeleton3D:handslot.l", "Rig/Skeleton3D:handslot.r", "Rig/Skeleton3D:head", "Rig/Skeleton3D:lowerarm.l", "Rig/Skeleton3D:lowerarm.r", "Rig/Skeleton3D:spine", "Rig/Skeleton3D:upperarm.l", "Rig/Skeleton3D:upperarm.r"]
 
 [resource]
-graph_offset = Vector2(483, 12)
+graph_offset = Vector2(-277.38, -39.3333)
 nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_s8pv6")
 nodes/AttackOneShot/position = Vector2(200, 140)
 nodes/AttackStateMachine/node = SubResource("AnimationNodeStateMachine_4wqj0")
@@ -232,16 +284,20 @@ nodes/AttackStateMachine/position = Vector2(-100, 340)
 nodes/BlockAnimation/node = SubResource("AnimationNodeAnimation_tlsgn")
 nodes/BlockAnimation/position = Vector2(420, 277.994)
 nodes/DeathOneShot/node = SubResource("AnimationNodeOneShot_tlsgn")
-nodes/DeathOneShot/position = Vector2(1500, 140)
+nodes/DeathOneShot/position = Vector2(2080, 140)
 nodes/DeathStateMachine/node = SubResource("AnimationNodeStateMachine_nyj7p")
-nodes/DeathStateMachine/position = Vector2(1240, 260)
+nodes/DeathStateMachine/position = Vector2(1820, 260)
+nodes/EmoteOneShot/node = SubResource("AnimationNodeOneShot_gqhsl")
+nodes/EmoteOneShot/position = Vector2(1160, 140)
+nodes/EmoteStateMachine/node = SubResource("AnimationNodeStateMachine_3d2ec")
+nodes/EmoteStateMachine/position = Vector2(860, 280)
 nodes/HitOneShot/node = SubResource("AnimationNodeOneShot_i668i")
-nodes/HitOneShot/position = Vector2(1040, 140)
+nodes/HitOneShot/position = Vector2(1620, 140)
 nodes/HitStateMachine/node = SubResource("AnimationNodeStateMachine_tovev")
-nodes/HitStateMachine/position = Vector2(800, 260)
+nodes/HitStateMachine/position = Vector2(1380, 260)
 nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_2ljhi")
 nodes/MoveStateMachine/position = Vector2(-100, 140)
 nodes/SpecialBlockBlend2/node = SubResource("AnimationNodeBlend2_gqhsl")
 nodes/SpecialBlockBlend2/position = Vector2(600, 137.994)
-nodes/output/position = Vector2(1720, 140)
-node_connections = [&"AttackOneShot", 0, &"MoveStateMachine", &"AttackOneShot", 1, &"AttackStateMachine", &"DeathOneShot", 0, &"HitOneShot", &"DeathOneShot", 1, &"DeathStateMachine", &"HitOneShot", 0, &"SpecialBlockBlend2", &"HitOneShot", 1, &"HitStateMachine", &"SpecialBlockBlend2", 0, &"AttackOneShot", &"SpecialBlockBlend2", 1, &"BlockAnimation", &"output", 0, &"DeathOneShot"]
+nodes/output/position = Vector2(2300, 140)
+node_connections = [&"AttackOneShot", 0, &"MoveStateMachine", &"AttackOneShot", 1, &"AttackStateMachine", &"DeathOneShot", 0, &"HitOneShot", &"DeathOneShot", 1, &"DeathStateMachine", &"EmoteOneShot", 0, &"SpecialBlockBlend2", &"EmoteOneShot", 1, &"EmoteStateMachine", &"HitOneShot", 0, &"EmoteOneShot", &"HitOneShot", 1, &"HitStateMachine", &"SpecialBlockBlend2", 0, &"AttackOneShot", &"SpecialBlockBlend2", 1, &"BlockAnimation", &"output", 0, &"DeathOneShot"]
