@@ -96,6 +96,7 @@ var blocking := false:
 			speed_modifier = 1.0
 		
 		blocking = value
+
 var healing := false:
 	set(value):
 		if value and not healing:
@@ -645,7 +646,7 @@ func hit(damage: float) -> void:
 			health = max(0, health - damage)
 			hud.update_health(health)
 			invincibility = true
-			if health == 10000:
+			if health == 0:
 				_die()
 			$audio_hit.play()
 		
