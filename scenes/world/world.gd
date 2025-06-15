@@ -8,7 +8,11 @@ extends Node3D
 @onready var spawners: Node3D = $Spawners
 @onready var enemy_spawners: Node3D = $EnemySpawners
 
+@onready var main_camera: Camera3D = $Map/Camera3D
+
 #var players: Array
+
+var authority_player = null
 
 func _ready():
 	print("I'M READY !")
@@ -20,6 +24,8 @@ func _ready():
 		UTILS.print_local(self, "I'VE JUST JOINED")
 		$AudioStreamPlayer3D.play()
 		$AudioStreamPlayer3D.stream.loop = true
+	
+	select_authority_player()
 
 func _physics_process(_delta: float) -> void:
 	if multiplayer.is_server():
@@ -55,6 +61,18 @@ func _physics_process(_delta: float) -> void:
 		else:
 			other_player.username_label.visible = false
 
+	# move camera with player authority
+	if not multiplayer.is_server() and authority_player != null:
+		main_camera.global_position = authority_player.global_position
+
+func select_authority_player() -> void:
+	if not multiplayer.is_server():
+		var players = get_players()
+		if players != []:
+			authority_player = players[0]
+			for player in players:
+				if player.is_multiplayer_authority():
+					authority_player = player
 
 func strip_custom(string: String, to_remove: Array[String]) -> String:
 	var striped := ""
@@ -135,6 +153,8 @@ func _request_add_player(peer_id: int, selected_skin: String, username: String, 
 				rpc("_remote_add_player", var_player.name.to_int(), var_player.selected_class.name, var_player.global_position, var_player.username, saved_data)
 			else:
 				rpc_id(peer_id, "_remote_add_player", var_player.name.to_int(), var_player.selected_class.name, var_player.global_position, var_player.username, saved_data)
+		
+		select_authority_player()
 
 @rpc("any_peer")
 func _remote_add_player(id: int, selected_skin: String, pos: Vector3, username: String, saved_data: Dictionary) -> void:
@@ -178,6 +198,8 @@ func _remote_add_player(id: int, selected_skin: String, pos: Vector3, username: 
 				quests.append(q)
 			player.active_quests = quests
 		player.initialize_inventory()
+		
+		select_authority_player()
 # <<< ADD PLAYER
 
 func init(peer_id: int) -> void:
