@@ -178,7 +178,7 @@ func _remote_add_player(id: int, selected_skin: String, pos: Vector3, username: 
 		player.hud.update_health(player.health)
 		if saved_data.has("xp"):
 			player.current_xp = saved_data["xp"]
-		player.hud.update_xp(player.health)
+		player.hud.update_xp(player.xp)
 		if saved_data.has("gold"):
 			player.gold = saved_data["gold"]
 		if saved_data.has("camera_rot"):
