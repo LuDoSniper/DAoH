@@ -301,26 +301,26 @@ func enemy_spawn() -> void:
 			entities_container.add_child(enemy)
 			enemy.global_position = spawner.get_global_pos()
 			spawner.emitt()
-			print("j'envois avec le nom : ", enemy.name)
+			#print("j'envois avec le nom : ", enemy.name)
 			rpc("_remote_spawn_enemy", enemy_name, enemy.global_position, enemy.variant, spawner.name)
 			print("j'ai envoyé")
 
 @rpc("any_peer")
 func _remote_spawn_enemy(enemy_name: String, pos: Vector3, variant: int, spawner_name: String = "") -> void:
 	if not multiplayer.is_server():
-		print("j'ai reçu avec le nom : ", enemy_name)
+		#print("j'ai reçu avec le nom : ", enemy_name)
 		var enemy = enemy_scene.instantiate()
 		enemy.variant = variant
-		print("Avant le désastre ?")
+		#print("Avant le désastre ?")
 		enemy.name = enemy_name
 		entities_container.add_child(enemy)
-		print("Apres le désastre ?")
+		#print("Apres le désastre ?")
 		enemy.global_position = pos
 		if spawner_name != "":
 			for spawner in enemy_spawners.get_children():
 				if spawner.name == spawner_name:
 					spawner.emitt()
-		print("Maintenant peut etre ? Le nom est : ", enemy.name)
+		#print("Maintenant peut etre ? Le nom est : ", enemy.name)
 
 @rpc("any_peer")
 func _request_spawn_enemies(peer_id: int) -> void:
