@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://ose27of4xvue"]
+
+[ext_resource type="Script" uid="uid://jvyhuiocgyub" path="res://objects/npc/dialogue/dialogue_ui.gd" id="1_b8u5h"]
+[ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="2_eycut"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_241q4"]
+texture = ExtResource("2_eycut")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
+
+[node name="DialogueUi" type="CanvasLayer"]
+script = ExtResource("1_b8u5h")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -383.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_241q4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="LabelName" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.427451, 0.294118, 0.152941, 1)
+text = "Test"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/default_color = Color(0.705882, 0.482353, 0.254902, 1)
+text = "Test text"

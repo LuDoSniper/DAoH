@@ -1,0 +1,303 @@
+[gd_scene load_steps=36 format=3 uid="uid://db7t4xm8oi8sc"]
+
+[ext_resource type="Script" uid="uid://d1tehihwxp0bc" path="res://scenes/menu/class/class.gd" id="1_iaoii"]
+[ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="6_1g6ns"]
+[ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="6_1wl32"]
+[ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="6_5dd07"]
+[ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="6_21fyq"]
+[ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="7_ei0uf"]
+[ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="7_p0jyt"]
+[ext_resource type="Texture2D" uid="uid://b4agyflfkdbha" path="res://addons/menu/round_damaged_brown.png" id="10_p0jyt"]
+[ext_resource type="Texture2D" uid="uid://eba0l2e0kns0" path="res://addons/menu/round_damaged_brown_dark.png" id="11_alcrm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1taf5"]
+texture = ExtResource("6_1g6ns")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3rs6"]
+texture = ExtResource("6_1wl32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_akwdn"]
+texture = ExtResource("6_5dd07")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yphbi"]
+texture = ExtResource("7_ei0uf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1h1n5"]
+texture = ExtResource("7_ei0uf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_88xk7"]
+texture = ExtResource("7_ei0uf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aiqxf"]
+texture = ExtResource("7_ei0uf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_io27h"]
+texture = ExtResource("7_ei0uf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_us0gi"]
+texture = ExtResource("7_ei0uf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4yjk"]
+texture = ExtResource("7_ei0uf")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0jyt"]
+texture = ExtResource("10_p0jyt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_alcrm"]
+texture = ExtResource("10_p0jyt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yyk04"]
+texture = ExtResource("10_p0jyt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h6wp6"]
+texture = ExtResource("10_p0jyt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fccs7"]
+texture = ExtResource("11_alcrm")
+modulate_color = Color(0.374139, 0.374139, 0.374139, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xijhn"]
+texture = ExtResource("11_alcrm")
+modulate_color = Color(0.633757, 0.633757, 0.633757, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7oai"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mp6v7"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wl32"]
+texture = ExtResource("11_alcrm")
+modulate_color = Color(0.374139, 0.374139, 0.374139, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ie36"]
+texture = ExtResource("11_alcrm")
+modulate_color = Color(0.633757, 0.633757, 0.633757, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_15rqi"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1g6ns"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_424qy"]
+texture = ExtResource("11_alcrm")
+modulate_color = Color(0.374139, 0.374139, 0.374139, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dtnac"]
+texture = ExtResource("11_alcrm")
+modulate_color = Color(0.633757, 0.633757, 0.633757, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_85w2q"]
+texture = ExtResource("11_alcrm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uk084"]
+texture = ExtResource("11_alcrm")
+
+[node name="Class" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iaoii")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_right = 0.1
+anchor_bottom = 1.0
+offset_right = 320.0
+grow_vertical = 2
+
+[node name="MenuBG" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.5
+offset_top = -240.5
+offset_right = 211.5
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1taf5")
+
+[node name="Bandeau" type="Panel" parent="Panel/MenuBG"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = -27.805
+offset_right = 127.0
+offset_bottom = 36.195
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b3rs6")
+
+[node name="Label" type="Label" parent="Panel/MenuBG/Bandeau"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -55.5
+offset_right = 133.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_p0jyt")
+theme_override_font_sizes/font_size = 24
+text = "Chevalier"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.5
+offset_top = -183.5
+offset_right = 158.5
+offset_bottom = 185.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MenuBG/VBoxContainer/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Noble guerrier en armure lourde, le Chevalier incarne l'honneur et la défense. Il manie l’épée et le bouclier avec brio, protégeant ses alliés et tenant la ligne face à l’ennemi. Grâce à sa robustesse et ses compétences défensives, il est le pilier de toute escouade."
+
+[node name="Coupure" type="Panel" parent="Panel/MenuBG/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxTexture_akwdn")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MenuBG/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+
+[node name="host" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_21fyq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_yphbi")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1h1n5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_88xk7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Host"
+
+[node name="retour" type="Button" parent="Panel/MenuBG/VBoxContainer/VBoxContainer2"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_21fyq")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_io27h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_us0gi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e4yjk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aiqxf")
+text = "Retour"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95
+anchor_top = 0.5
+anchor_right = 0.95
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -134.0
+offset_bottom = 134.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Chevalier" type="Button" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_p0jyt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_alcrm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yyk04")
+theme_override_styles/normal = SubResource("StyleBoxTexture_h6wp6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Barbare" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_fccs7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xijhn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_i7oai")
+theme_override_styles/normal = SubResource("StyleBoxTexture_mp6v7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Mage" type="Button" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_1wl32")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7ie36")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_15rqi")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1g6ns")
+
+[node name="Voleur" type="Button" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_424qy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dtnac")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_85w2q")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uk084")
+
+[connection signal="pressed" from="Panel/MenuBG/VBoxContainer/VBoxContainer2/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/Chevalier" to="." method="_on_knight_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/VBoxContainer/Barbare" to="." method="_on_barbarian_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Mage" to="." method="_on_mage_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Voleur" to="." method="_on_rogue_pressed"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bip88er5nk44"]
+
+[ext_resource type="PackedScene" uid="uid://yl10rd2y2ppn" path="res://assets/models/ocean/gltf/chest.glb" id="1_li26v"]
+
+[node name="Chest" type="Node3D"]
+
+[node name="chest" parent="." instance=ExtResource("1_li26v")]

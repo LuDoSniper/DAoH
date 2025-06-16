@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhdnji60mgrmb"]
+
+[ext_resource type="Script" uid="uid://cfsqm3xdpr45e" path="res://objects/enemy/enemy.gd" id="1_c38me"]
+[ext_resource type="PackedScene" uid="uid://c4i7cfvcn2k1p" path="res://objects/enemy/variant/mage/mage.tscn" id="1_esv4w"]
+[ext_resource type="PackedScene" uid="uid://dmb3awgiqvw4i" path="res://objects/enemy/variant/minion/minion.tscn" id="2_c38me"]
+[ext_resource type="PackedScene" uid="uid://djb4h3inwodxm" path="res://objects/projectiles/fireball/fireball.tscn" id="2_ecd4o"]
+[ext_resource type="PackedScene" uid="uid://deqg624ilqcv2" path="res://objects/projectiles/arrow/arrow.tscn" id="3_2ghy8"]
+[ext_resource type="PackedScene" uid="uid://dwttsh124y31m" path="res://objects/enemy/variant/rogue/rogue.tscn" id="3_gnbxk"]
+[ext_resource type="PackedScene" uid="uid://bmphaovpa0rwt" path="res://objects/enemy/variant/warrior/warrior.tscn" id="4_ecd4o"]
+[ext_resource type="PackedScene" uid="uid://c7u2we0l3wfof" path="res://vfx/death_particles/death_particles.tscn" id="6_gnbxk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ghy8"]
+
+[sub_resource type="Curve" id="Curve_lejcx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cfvh0"]
+curve = SubResource("Curve_lejcx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gnbxk"]
+resource_local_to_scene = true
+emission_shape_offset = Vector3(0, 1, 0)
+emission_shape = 2
+emission_sphere_radius = 1.0
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.13
+scale_max = 0.25
+alpha_curve = SubResource("CurveTexture_cfvh0")
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 11
+script = ExtResource("1_c38me")
+variant = 2
+fireball_scene = ExtResource("2_ecd4o")
+arrow_scene = ExtResource("3_2ghy8")
+
+[node name="Mage" parent="." instance=ExtResource("1_esv4w")]
+
+[node name="Minion" parent="." instance=ExtResource("2_c38me")]
+visible = false
+
+[node name="Rogue" parent="." instance=ExtResource("3_gnbxk")]
+visible = false
+
+[node name="Warrior" parent="." instance=ExtResource("4_ecd4o")]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_2ghy8")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="Raycasts" type="Node3D" parent="."]
+
+[node name="Vision" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="RandomPathTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="InvincibilityTimer" type="Timer" parent="Timers"]
+wait_time = 1.5
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+wait_time = 2.5
+one_shot = true
+
+[node name="DeathParticles" parent="." instance=ExtResource("6_gnbxk")]
+emitting = false
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_gnbxk")
+
+[node name="Markers" type="Node3D" parent="."]
+
+[node name="ProjectilesSpawn" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.15219)
+
+[connection signal="timeout" from="Timers/RandomPathTimer" to="." method="_on_random_path_timer_timeout"]
+[connection signal="timeout" from="Timers/InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="finished" from="DeathParticles" to="." method="_on_death_particles_finished"]

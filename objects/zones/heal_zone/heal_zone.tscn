@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://bq8537ipdg2dt"]
+
+[ext_resource type="Script" uid="uid://c61y5micrievt" path="res://objects/zones/heal_zone/heal_zone.gd" id="1_mwp3b"]
+[ext_resource type="Texture2D" uid="uid://b107371v2yvvv" path="res://assets/textures/heal_zone.png" id="2_mwp3b"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_03oqe"]
+height = 7.5
+radius = 7.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_03oqe"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="Curve" id="Curve_mwp3b"]
+_data = [Vector2(0, 0), 0.0, -0.531014, 0, 0, Vector2(0.146667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.21349, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_77ai1"]
+curve = SubResource("Curve_mwp3b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mwp3b"]
+lifetime_randomness = 0.25
+emission_shape_scale = Vector3(7.5, 1, 7.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0.125, 0)
+scale_min = 0.25
+alpha_curve = SubResource("CurveTexture_77ai1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwp3b"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1, 0, 0.219608)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_77ai1"]
+material = SubResource("StandardMaterial3D_mwp3b")
+radius = 0.125
+height = 0.25
+
+[node name="HealZone" type="Node3D"]
+script = ExtResource("1_mwp3b")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, 0)
+shape = SubResource("CylinderShape3D_03oqe")
+
+[node name="Decal" type="Decal" parent="."]
+size = Vector3(15, 15, 15)
+texture_albedo = ExtResource("2_mwp3b")
+texture_emission = ExtResource("2_mwp3b")
+emission_energy = 0.25
+distance_fade_enabled = true
+distance_fade_begin = 0.0
+distance_fade_length = 50.0
+cull_mask = 1048449
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_03oqe")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+layers = 16
+amount = 32
+lifetime = 7.0
+process_material = SubResource("ParticleProcessMaterial_mwp3b")
+draw_pass_1 = SubResource("SphereMesh_77ai1")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

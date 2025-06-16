@@ -1,0 +1,138 @@
+[gd_scene load_steps=14 format=3 uid="uid://c4i7cfvcn2k1p"]
+
+[ext_resource type="PackedScene" uid="uid://c41mccwfqxpvv" path="res://addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Mage.glb" id="1_r48uj"]
+[ext_resource type="Shader" uid="uid://cupt7sdyrksju" path="res://objects/enemy/invincibility.gdshader" id="2_oltjo"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cf7bx6ai0isbq" path="res://objects/enemy/variant/variant_blend_node.tres" id="2_xy0u6"]
+[ext_resource type="Texture2D" uid="uid://b2np4x8h80j6w" path="res://addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Mage_skeleton_texture.png" id="3_h8vke"]
+[ext_resource type="PackedScene" uid="uid://2811ewu80oja" path="res://objects/weapons/1H/staff/skeleton_staff_2.tscn" id="4_h8vke"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1ud4"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_oltjo")
+shader_parameter/base_texture = ExtResource("3_h8vke")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oltjo"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_oltjo")
+shader_parameter/base_texture = ExtResource("3_h8vke")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8vke"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_oltjo")
+shader_parameter/base_texture = ExtResource("3_h8vke")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7s4xi"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_oltjo")
+shader_parameter/base_texture = ExtResource("3_h8vke")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ncjvc"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_oltjo")
+shader_parameter/base_texture = ExtResource("3_h8vke")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l48un"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_oltjo")
+shader_parameter/base_texture = ExtResource("3_h8vke")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eo6ij"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_oltjo")
+shader_parameter/base_texture = ExtResource("3_h8vke")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lhdo"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_oltjo")
+shader_parameter/base_texture = ExtResource("3_h8vke")
+shader_parameter/blink_speed = 20.0
+shader_parameter/blink_intensity = 0.8
+shader_parameter/invincible = false
+
+[node name="Mage" instance=ExtResource("1_r48uj")]
+
+[node name="Skeleton_Mage_Hat" parent="Rig/Skeleton3D" index="0"]
+transform = Transform3D(1, -2.20965e-22, 1.69407e-21, 2.20965e-22, 1, 0, -1.69407e-21, 3.58732e-43, 1, 0.000286102, 1.7841, -1.35973e-07)
+
+[node name="Skeleton_Mage_Hat" parent="Rig/Skeleton3D/Skeleton_Mage_Hat" index="0"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_y1ud4")
+
+[node name="Skeleton_Mage_ArmLeft" parent="Rig/Skeleton3D" index="1"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_oltjo")
+
+[node name="Skeleton_Mage_ArmRight" parent="Rig/Skeleton3D" index="2"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_h8vke")
+
+[node name="Skeleton_Mage_Body" parent="Rig/Skeleton3D" index="3"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_7s4xi")
+
+[node name="Skeleton_Mage_Eyes" parent="Rig/Skeleton3D" index="4"]
+layers = 4
+
+[node name="Skeleton_Mage_Jaw" parent="Rig/Skeleton3D" index="5"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_ncjvc")
+
+[node name="Skeleton_Mage_LegLeft" parent="Rig/Skeleton3D" index="6"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_l48un")
+
+[node name="Skeleton_Mage_LegRight" parent="Rig/Skeleton3D" index="7"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_eo6ij")
+
+[node name="Skeleton_Mage_Skull" parent="Rig/Skeleton3D" index="8"]
+layers = 4
+surface_material_override/0 = SubResource("ShaderMaterial_7lhdo")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Rig/Skeleton3D" index="9"]
+transform = Transform3D(-3.49184e-07, -0.999999, 4.52757e-07, 5.88753e-07, 3.93247e-07, 1, -1, 2.78407e-07, 5.35882e-07, -0.787007, 1.10676, -7.24379e-07)
+bone_name = "hand.r"
+bone_idx = 12
+
+[node name="Skeleton_Staff2" parent="Rig/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("4_h8vke")]
+transform = Transform3D(0.649527, -0.756538, 0.0759288, -0.756197, -0.653169, -0.039203, 0.0792528, -0.0319541, -0.996342, -0.0890971, 0.0268918, 0.00508741)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = ExtResource("2_xy0u6")
+anim_player = NodePath("../AnimationPlayer")
+parameters/AttackOneShot/active = false
+parameters/AttackOneShot/internal_active = false
+parameters/AttackOneShot/request = 0
+parameters/BlockBlend2/blend_amount = 0
+parameters/HitOneShot/active = false
+parameters/HitOneShot/internal_active = 0.0
+parameters/HitOneShot/request = 0.0

@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=3 uid="uid://drseardeob18k"]
+
+[ext_resource type="Script" uid="uid://ndjohqicf6b2" path="res://objects/npc/npc.gd" id="1_nxjfv"]
+[ext_resource type="PackedScene" uid="uid://w4m4xgeyldgy" path="res://objects/npc/skin/skins/druid.tscn" id="3_qs0fi"]
+[ext_resource type="PackedScene" uid="uid://cn313pya61fjt" path="res://objects/npc/skin/skins/engineer.tscn" id="4_1ynp0"]
+[ext_resource type="PackedScene" uid="uid://co6g4k08gpm28" path="res://objects/npc/skin/skins/knight.tscn" id="5_y4kq8"]
+[ext_resource type="PackedScene" uid="uid://rnruituhmkf" path="res://objects/npc/skin/skins/mage.tscn" id="6_veyd6"]
+[ext_resource type="PackedScene" uid="uid://lh4klm4kleur" path="res://objects/npc/skin/skins/rogue.tscn" id="7_8ccfx"]
+[ext_resource type="PackedScene" uid="uid://crhv5fk4h1c8a" path="res://objects/npc/skin/skins/rogue_hooded.tscn" id="8_gfbje"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ha4nv"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ha4nv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_15dke"]
+radius = 2.0
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_nxjfv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ha4nv")
+
+[node name="Skins" type="Node3D" parent="."]
+
+[node name="Druid" parent="Skins" instance=ExtResource("3_qs0fi")]
+
+[node name="Engineer" parent="Skins" instance=ExtResource("4_1ynp0")]
+
+[node name="Knight" parent="Skins" instance=ExtResource("5_y4kq8")]
+
+[node name="Mage" parent="Skins" instance=ExtResource("6_veyd6")]
+
+[node name="Rogue" parent="Skins" instance=ExtResource("7_8ccfx")]
+
+[node name="RogueHooded" parent="Skins" instance=ExtResource("8_gfbje")]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.43595, 0)
+layers = 64
+text = "Test"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../../..")
+replication_config = SubResource("SceneReplicationConfig_ha4nv")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_15dke")

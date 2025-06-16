@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwai72sk4pm4a"]
+
+[ext_resource type="PackedScene" uid="uid://b03jyr0by50pr" path="res://objects/player/skin/knight/knight.tscn" id="2_a7m4h"]
+[ext_resource type="Script" uid="uid://co686pdpknh7b" path="res://objects/player/skin/skin.gd" id="2_eurn5"]
+[ext_resource type="PackedScene" uid="uid://bg8odegocndgc" path="res://objects/player/skin/barbarian/barbarian.tscn" id="3_k7qxw"]
+[ext_resource type="PackedScene" uid="uid://c6sr0ggiv15rg" path="res://objects/player/skin/mage/mage.tscn" id="4_goud1"]
+[ext_resource type="PackedScene" uid="uid://t7k0glgrp2t8" path="res://objects/player/skin/rogue/rogue.tscn" id="5_2ljhi"]
+
+[node name="Skin" type="Node3D"]
+script = ExtResource("2_eurn5")
+
+[node name="Knight" parent="." instance=ExtResource("2_a7m4h")]
+visible = false
+
+[node name="Barbarian" parent="." instance=ExtResource("3_k7qxw")]
+visible = false
+
+[node name="Mage" parent="." instance=ExtResource("4_goud1")]
+
+[node name="Rogue" parent="." instance=ExtResource("5_2ljhi")]
+visible = false

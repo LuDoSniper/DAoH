@@ -1,0 +1,615 @@
+[gd_scene load_steps=39 format=3 uid="uid://dsdkk3ck5o2nj"]
+
+[ext_resource type="Script" uid="uid://bu0ajfske4uuh" path="res://scenes/world/world.gd" id="1_dphjl"]
+[ext_resource type="PackedScene" uid="uid://b2vjrseu1cmso" path="res://objects/player/player.tscn" id="2_sl2e5"]
+[ext_resource type="PackedScene" uid="uid://dhdnji60mgrmb" path="res://objects/enemy/enemy.tscn" id="3_1fp7r"]
+[ext_resource type="Texture2D" uid="uid://b0l250speial6" path="res://addons/menu/backgorund.png" id="3_5qq27"]
+[ext_resource type="PackedScene" uid="uid://drseardeob18k" path="res://objects/npc/npc.tscn" id="4_6m72w"]
+[ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="4_dlabj"]
+[ext_resource type="Texture2D" uid="uid://eardw2gpfua0" path="res://addons/menu/banner_classic_curtain.png" id="5_srmg5"]
+[ext_resource type="FontFile" uid="uid://cwmm4nox1semj" path="res://addons/menu/ArchitectsDaughter-Regular.ttf" id="6_umvgx"]
+[ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="7_mxkvs"]
+[ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="8_m114p"]
+[ext_resource type="Texture2D" uid="uid://ci2jec1qk52vq" path="res://addons/menu/coupure.png" id="9_71ii3"]
+[ext_resource type="Resource" uid="uid://bpl2cel4p6fa6" path="res://objects/quest/quest_kill_skeletons.tres" id="11_m114p"]
+[ext_resource type="Script" uid="uid://bam7cn7fox0sl" path="res://scripts/chat_ui.gd" id="12_dlabj"]
+[ext_resource type="PackedScene" uid="uid://cf0ugeybvhml7" path="res://objects/spawner/spawner.tscn" id="12_srmg5"]
+[ext_resource type="PackedScene" uid="uid://d1wsknh043pmt" path="res://objects/map/map.tscn" id="14_mxkvs"]
+[ext_resource type="Texture2D" uid="uid://ci70rvxgdqqu2" path="res://assets/hdri/sunflowers_puresky_4k.exr" id="15_m114p"]
+[ext_resource type="AudioStream" uid="uid://c67g0vb1yn6ut" path="res://assets/sounds/ambiance.mp3" id="17_71ii3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bt7bg"]
+texture = ExtResource("3_5qq27")
+modulate_color = Color(0.886262, 0.886262, 0.886261, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wbwoo"]
+texture = ExtResource("4_dlabj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tytul"]
+texture = ExtResource("5_srmg5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t634p"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6hctx"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.762403, 0.762404, 0.762403, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ues17"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xq18t"]
+texture = ExtResource("8_m114p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x0nq1"]
+texture = ExtResource("9_71ii3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rwifv"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ckok1"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2x71e"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wnndm"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26xou"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyr8v"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5o5dd"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0ajt"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fymcc"]
+texture = ExtResource("8_m114p")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_1fp7r"]
+vertices = PackedVector3Array(-2.92519, 0.547769, -16.5506, -3.42519, 0.547769, -17.3006, -5.17519, 0.547769, -18.0506, -0.675186, 0.547769, 18.4494, 0.0748138, 0.547769, 19.4494, 1.82481, 0.547769, 20.1994, 5.57481, 0.547769, 19.9494, 7.57481, 0.547769, 18.1994, 8.32481, 0.547769, 15.1994, 17.3248, 0.547769, -1.80064, 17.3248, 0.547769, -3.30064, 16.5748, 0.547769, -5.05064, 17.3248, 0.547769, 7.44936, 18.8248, 0.547769, 6.19936, 19.5748, 0.547769, 4.69936, 19.5748, 0.547769, 0.949356, 18.5748, 0.547769, -0.800644, -11.6752, 0.547769, -11.3006, -13.4252, 0.547769, -9.55064, -14.9252, 0.547769, -5.80064, -13.9252, 0.547769, 15.6994, -12.1752, 0.547769, 16.9494, -10.4252, 0.547769, 17.1994, -13.9252, 0.547769, 9.44936, -14.9252, 0.547769, 11.1994, -14.9252, 0.547769, 13.1994, 9.07481, 0.547769, 14.4494, 12.0748, 0.547769, 14.4494, 15.0748, 0.547769, 11.6994, -15.4252, 0.547769, 4.19936, -14.9252, 0.547769, 6.69936, -13.9252, 0.547769, 7.94936, 14.8248, 0.547769, 12.6994, -8.92519, 0.547769, 19.1994, -6.67519, 0.547769, 20.1994, -2.92519, 0.547769, 19.6994, -1.67519, 0.547769, 18.4494, -17.1752, 0.547769, -3.80064, -17.9252, 0.547769, -2.05064, -17.6752, 0.547769, 1.69936, 16.8248, 0.547769, 9.69936, -8.17519, 0.547769, -18.0506, -9.92519, 0.547769, -17.3006, -11.6752, 0.547769, -14.3006, 16.0748, 0.547769, -11.3006, 13.8248, 0.547769, -12.8006, 11.3248, 0.547769, -13.0506, 17.0748, 0.547769, -8.55064, 7.57481, 0.547769, -15.5506, 4.32481, 0.547769, -16.5506)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(7, 3, 8), PackedInt32Array(9, 11, 10), PackedInt32Array(16, 15, 9), PackedInt32Array(9, 15, 14), PackedInt32Array(9, 14, 13), PackedInt32Array(9, 13, 12), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 0), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 25), PackedInt32Array(22, 25, 24), PackedInt32Array(22, 24, 23), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 12), PackedInt32Array(12, 26, 9), PackedInt32Array(9, 26, 11), PackedInt32Array(30, 29, 31), PackedInt32Array(31, 29, 19), PackedInt32Array(28, 32, 27), PackedInt32Array(33, 22, 34), PackedInt32Array(34, 22, 35), PackedInt32Array(35, 22, 36), PackedInt32Array(37, 19, 38), PackedInt32Array(38, 19, 39), PackedInt32Array(39, 19, 29), PackedInt32Array(12, 40, 28), PackedInt32Array(41, 2, 42), PackedInt32Array(42, 2, 0), PackedInt32Array(42, 0, 43), PackedInt32Array(43, 0, 17), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 47), PackedInt32Array(46, 47, 11), PackedInt32Array(48, 46, 49), PackedInt32Array(49, 46, 0), PackedInt32Array(0, 46, 11), PackedInt32Array(3, 31, 26), PackedInt32Array(26, 31, 19), PackedInt32Array(26, 19, 0), PackedInt32Array(26, 0, 11), PackedInt32Array(36, 22, 3), PackedInt32Array(3, 22, 23), PackedInt32Array(3, 23, 31), PackedInt32Array(3, 26, 8)]
+agent_radius = 1.0
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_71ii3"]
+panorama = ExtResource("15_m114p")
+
+[sub_resource type="Sky" id="Sky_37hlw"]
+sky_material = SubResource("PanoramaSkyMaterial_71ii3")
+
+[sub_resource type="Environment" id="Environment_bt7bg"]
+background_mode = 2
+sky = SubResource("Sky_37hlw")
+ambient_light_sky_contribution = 0.5
+reflected_light_source = 1
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_dphjl")
+player_scene = ExtResource("2_sl2e5")
+enemy_scene = ExtResource("3_1fp7r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Game" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bt7bg")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -638.5
+offset_right = -297.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuBG" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -679.0
+offset_top = -240.5
+offset_right = -256.0
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wbwoo")
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Bandeau" type="Panel" parent="CanvasLayer/MenuBG"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_top = -21.5
+offset_right = 127.0
+offset_bottom = 42.5
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tytul")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/MenuBG/Bandeau"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -55.5
+offset_right = 133.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("6_umvgx")
+theme_override_font_sizes/font_size = 24
+text = "DAoH"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Box" type="Control" parent="CanvasLayer/MenuBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.5
+offset_top = -74.0
+offset_right = 120.5
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="host" type="Button" parent="CanvasLayer/MenuBG/Box"]
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -159.0
+offset_right = 159.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_mxkvs")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_t634p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6hctx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ues17")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xq18t")
+text = "Host"
+metadata/_edit_use_anchors_ = true
+
+[node name="Coupure" type="Panel" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -69.0
+offset_right = 159.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_x0nq1")
+metadata/_edit_use_anchors_ = true
+
+[node name="join" type="Button" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -40.0
+offset_right = 159.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_mxkvs")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_rwifv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ckok1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2x71e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xq18t")
+text = "Rejoindre"
+metadata/_edit_use_anchors_ = true
+
+[node name="retour" type="Button" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 41.0
+offset_right = 159.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_mxkvs")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_wnndm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_26xou")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jyr8v")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xq18t")
+text = "Retour"
+metadata/_edit_use_anchors_ = true
+
+[node name="Coupure2" type="Panel" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(318, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 124.0
+offset_right = 159.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_x0nq1")
+metadata/_edit_use_anchors_ = true
+
+[node name="quitter" type="Button" parent="CanvasLayer/MenuBG/Box"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 145.0
+offset_right = 159.0
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("7_mxkvs")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_5o5dd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_d0ajt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fymcc")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xq18t")
+text = "Quitter"
+metadata/_edit_use_anchors_ = true
+
+[node name="Environment" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67303, 0, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -178.18, -0.0145845, -158.601)
+navigation_mesh = SubResource("NavigationMesh_1fp7r")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.696716, -0.952231, 0)
+layers = 0
+radius = 17.7095
+sides = 32
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.88542, -0.952231, 12.2959)
+layers = 0
+radius = 5.90283
+sides = 32
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.54807, -0.952231, 15.191)
+layers = 0
+radius = 5.90283
+sides = 32
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2608, -0.952231, 15.2888)
+layers = 0
+radius = 5.90283
+sides = 32
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7257, -0.952231, 9.48772)
+layers = 0
+radius = 5.90283
+sides = 32
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2529, -0.952231, 7.30794)
+layers = 0
+radius = 5.90283
+sides = 32
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7691, -0.952231, 2.85345)
+layers = 0
+radius = 5.90283
+sides = 32
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.67784, -0.952231, -13.1478)
+layers = 0
+radius = 5.90283
+sides = 32
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0224, -0.952231, -0.640045)
+layers = 0
+radius = 5.90283
+sides = 32
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="Environment/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.979, -0.952231, -7.9966)
+layers = 0
+radius = 5.90283
+sides = 32
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Maire" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(-0.792098, 0, 0.610394, 0, 1, 0, -0.610394, 0, -0.792098, 56.0232, 19.9199, 56.409)
+npc_name = "Maire"
+dialogue_lines = Array[String](["Salut, aventurier !", "Bienvenue dans le monde DAoH.", "Ta première tâche est de tuer 5 squelettes dans la foret des ombres", "Bonne chance garçon !"])
+is_quester = true
+quest_to_give = ExtResource("11_m114p")
+
+[node name="L’Herboriste" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(0.401916, 0, 0.915676, 0, 1, 0, -0.915676, 0, 0.401916, -61.2148, 0.768626, -119.121)
+npc_name = "L’Herboriste"
+dialogue_lines = Array[String](["Un brin de menthe, un souffle de lavande… et un soupçon de venin si besoin."])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 1
+
+[node name="Le Capitaine de la Garde" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(0.0223031, 0, -0.999751, 0, 1, 0, 0.999751, 0, 0.0223031, 7.80323, 1.98578, -13.1098)
+npc_name = "Le Capitaine de la Garde"
+dialogue_lines = Array[String](["Halte !", "Tu es attendu.", "Le maire a donné l’ordre de te conduire à la grande tour, celle qui veille sur le village.", "Ne le fais pas attendre."])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 2
+
+[node name="Le Forgeron" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(-0.964373, 0, -0.264546, 0, 1, 0, 0.264546, 0, -0.964373, -38.6642, 1.30518, 33.5352)
+npc_name = "Le Forgeron"
+dialogue_lines = Array[String](["Mon marteau forge plus que des armes : il façonne des légendes.", "Ton épée te trahit. Elle a besoin d’un vrai maître."])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 3
+
+[node name="Étranger silencieux" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(-0.964373, 0, -0.264546, 0, 1, 0, 0.264546, 0, -0.964373, 102.588, 23.1109, -0.449835)
+npc_name = "Étranger silencieux"
+dialogue_lines = Array[String](["… (Il te regarde sans un mot, mais ses yeux en disent long.)"])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 5
+
+[node name="Tangouille la fripouille" parent="Entities" instance=ExtResource("4_6m72w")]
+transform = Transform3D(-0.911145, 0, -0.412087, 0, 1, 0, 0.412087, 0, -0.911145, -7.6404, 1.93709, -52.0047)
+npc_name = "Tangouille la fripouille"
+dialogue_lines = Array[String]([" La forêt murmure à ceux qui savent écouter... mais rares sont ceux qui comprennent ses secrets.", "Chaque plante a un esprit, chaque pierre une mémoire. Respecte-les, et ils te guideront."])
+quest_not_finish = Array[String]([])
+quest_finish = Array[String]([])
+thanks_msg = Array[String]([])
+skin = 4
+
+[node name="Spawners" type="Node3D" parent="."]
+
+[node name="Spawner1" parent="Spawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45309, 4.22264, -5.99381)
+
+[node name="Spawner2" parent="Spawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7488, 2.81635, 8.04773)
+
+[node name="EnemySpawners" type="Node3D" parent="."]
+
+[node name="Spawner" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -192.488, 0.30993, -171.34)
+
+[node name="Spawner2" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.24, 0.30993, -161.918)
+
+[node name="Spawner3" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -194.675, 0.30993, -153.319)
+
+[node name="Spawner4" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.381, 0.30993, -145.373)
+
+[node name="Spawner5" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -188.355, 0.309928, -140.869)
+
+[node name="Spawner6" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180.138, 0.30993, -141.031)
+
+[node name="Spawner7" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -172.07, 0.30993, -144.275)
+
+[node name="Spawner8" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.628, 0.30993, -148.527)
+
+[node name="Spawner9" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -165.881, 0.30993, -155.481)
+
+[node name="Spawner10" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.111, 0.30993, -167.72)
+
+[node name="Spawner11" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.132, 0.309928, -174.424)
+
+[node name="Spawner12" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.977, 0.309928, -168.347)
+
+[node name="Spawner13" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -187.006, 0.30993, -153.913)
+
+[node name="Spawner14" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -174.059, 0.309932, -151.739)
+
+[node name="Spawner15" parent="EnemySpawners" instance=ExtResource("12_srmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -176.008, 0.309934, -162.366)
+
+[node name="ChatUi" type="CanvasLayer" parent="."]
+script = ExtResource("12_dlabj")
+
+[node name="FermetureAutomatique" type="Timer" parent="ChatUi"]
+wait_time = 5.0
+one_shot = true
+
+[node name="ChatPanel" type="Panel" parent="ChatUi"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -185.0
+offset_right = 400.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChatUi/ChatPanel"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 185.0
+
+[node name="Container" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer"]
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContainerTitle" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer/Container"]
+layout_mode = 2
+
+[node name="ChatLabel" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ContainerTitle"]
+visible = false
+layout_mode = 2
+text = "Tchat général"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChatUi/ChatPanel/VBoxContainer/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MessageContainer" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
+layout_mode = 2
+text = "test"
+
+[node name="Label2" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
+layout_mode = 2
+text = "test"
+
+[node name="Label3" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
+layout_mode = 2
+text = "test"
+
+[node name="Label4" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
+layout_mode = 2
+text = "test"
+
+[node name="Label5" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
+layout_mode = 2
+text = "test"
+
+[node name="Label6" type="Label" parent="ChatUi/ChatPanel/VBoxContainer/Container/ScrollContainer/MessageContainer"]
+visible = false
+layout_mode = 2
+text = "test"
+
+[node name="ContainerInput" type="VBoxContainer" parent="ChatUi/ChatPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MessageInput" type="LineEdit" parent="ChatUi/ChatPanel/VBoxContainer/ContainerInput"]
+layout_mode = 2
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Map" parent="Map" instance=ExtResource("14_mxkvs")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
+environment = SubResource("Environment_bt7bg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="Map"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_71ii3")
+volume_db = -7.0
+bus = &"Music"
+
+[connection signal="pressed" from="CanvasLayer/MenuBG/Box/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuBG/Box/join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuBG/Box/retour" to="." method="_on_retour_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuBG/Box/quitter" to="." method="_on_quitter_pressed"]
+[connection signal="timeout" from="ChatUi/FermetureAutomatique" to="ChatUi" method="_on_fermeture_automatique_timeout"]
+[connection signal="text_submitted" from="ChatUi/ChatPanel/VBoxContainer/ContainerInput/MessageInput" to="ChatUi" method="_on_message_input_text_submitted"]

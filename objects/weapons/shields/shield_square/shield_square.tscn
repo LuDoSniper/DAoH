@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo5bpuexefa4o"]
+
+[ext_resource type="PackedScene" uid="uid://cmob6j1sodeia" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/shield_square.gltf" id="1_utue1"]
+[ext_resource type="Script" uid="uid://cje0anhnuabue" path="res://objects/weapons/shields/shield_square/shield_square.gd" id="2_d0jve"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_utue1"]
+size = Vector3(1.68591, 1.2717, 0.248657)
+
+[node name="ShieldSquare" groups=["shield"] instance=ExtResource("1_utue1")]
+script = ExtResource("2_d0jve")
+
+[node name="shield_square" parent="." index="0"]
+layers = 32
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0333862, -0.0141144, -0.0193481)
+shape = SubResource("BoxShape3D_utue1")

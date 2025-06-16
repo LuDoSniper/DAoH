@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://chikaocpe63ii"]
+
+[ext_resource type="PackedScene" uid="uid://b5jk7kg4pdtu5" path="res://addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_A.gltf" id="1_g36a6"]
+[ext_resource type="Script" uid="uid://bweb7wg6ajbms" path="res://objects/weapons/shields/skeleton_shield/skeleton_shield.gd" id="1_hrxtf"]
+[ext_resource type="PackedScene" uid="uid://na16q0e1pdbt" path="res://addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Large_B.gltf" id="2_hrxtf"]
+[ext_resource type="PackedScene" uid="uid://dyuxfbkyrmheq" path="res://addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Small_A.gltf" id="3_o6rrb"]
+[ext_resource type="PackedScene" uid="uid://c6c1tro4vdjag" path="res://addons/kaykit_character_pack_skeletons/Assets/gltf/Skeleton_Shield_Small_B.gltf" id="4_0c508"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g36a6"]
+size = Vector3(1.68591, 1.2717, 0.248657)
+
+[node name="Skeleton_Shield" type="Node3D"]
+script = ExtResource("1_hrxtf")
+
+[node name="Skeleton_Shield_Large_A2" parent="." instance=ExtResource("1_g36a6")]
+
+[node name="Skeleton_Shield_Large_A" parent="Skeleton_Shield_Large_A2" index="0"]
+layers = 32
+
+[node name="Skeleton_Shield_Large_B2" parent="." instance=ExtResource("2_hrxtf")]
+
+[node name="Skeleton_Shield_Large_B" parent="Skeleton_Shield_Large_B2" index="0"]
+layers = 32
+
+[node name="Skeleton_Shield_Small_A2" parent="." instance=ExtResource("3_o6rrb")]
+
+[node name="Skeleton_Shield_Small_A" parent="Skeleton_Shield_Small_A2" index="0"]
+layers = 32
+
+[node name="Skeleton_Shield_Small_B2" parent="." instance=ExtResource("4_0c508")]
+
+[node name="Skeleton_Shield_Small_B" parent="Skeleton_Shield_Small_B2" index="0"]
+layers = 32
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0333862, -0.0141144, -0.0193481)
+shape = SubResource("BoxShape3D_g36a6")
+
+[editable path="Skeleton_Shield_Large_A2"]
+[editable path="Skeleton_Shield_Large_B2"]
+[editable path="Skeleton_Shield_Small_A2"]
+[editable path="Skeleton_Shield_Small_B2"]

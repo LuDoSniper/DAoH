@@ -1,0 +1,236 @@
+[gd_scene load_steps=19 format=3 uid="uid://8u41jd12rde2"]
+
+[ext_resource type="Script" uid="uid://kjpnnbk0ho64" path="res://objects/player/hud/hud.gd" id="1_3sr8u"]
+[ext_resource type="Texture2D" uid="uid://qgqe51oa3k3h" path="res://assets/hud/under_hp.png" id="2_vqwai"]
+[ext_resource type="Texture2D" uid="uid://dmrmngnengy3b" path="res://assets/hud/over_hp.png" id="3_lcolw"]
+[ext_resource type="Texture2D" uid="uid://dqjgvrlv8vjht" path="res://assets/hud/progress_hp.png" id="4_aik3s"]
+[ext_resource type="Texture2D" uid="uid://qxugufgrf5go" path="res://assets/hud/under_xp.png" id="5_hi5tm"]
+[ext_resource type="Texture2D" uid="uid://dv741n26gfy24" path="res://assets/hud/over_xp.png" id="6_rmaf7"]
+[ext_resource type="Texture2D" uid="uid://bgn7bneffnyq3" path="res://assets/hud/progress_xp.png" id="7_boxpq"]
+[ext_resource type="Texture2D" uid="uid://dtmw5pxrip7l8" path="res://assets/hud/coin.png" id="8_lcolw"]
+[ext_resource type="Texture2D" uid="uid://br38blnherpor" path="res://assets/hud/icon.png" id="9_aik3s"]
+[ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="10_hi5tm"]
+[ext_resource type="Texture2D" uid="uid://b8bpd53ul5cgi" path="res://addons/menu/bouton.png" id="11_rmaf7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_boxpq"]
+texture = ExtResource("11_rmaf7")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1fpa4"]
+texture = ExtResource("11_rmaf7")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tv5pq"]
+texture = ExtResource("11_rmaf7")
+modulate_color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hg5ky"]
+texture = ExtResource("11_rmaf7")
+
+[sub_resource type="Animation" id="Animation_boxpq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rmaf7"]
+resource_name = "show_death"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1fpa4"]
+_data = {
+&"RESET": SubResource("Animation_boxpq"),
+&"show_death": SubResource("Animation_rmaf7")
+}
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_3sr8u")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+step = 0.5
+value = 100.0
+texture_under = ExtResource("2_vqwai")
+texture_over = ExtResource("3_lcolw")
+texture_progress = ExtResource("4_aik3s")
+
+[node name="XPBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+step = 0.5
+texture_under = ExtResource("5_hi5tm")
+texture_over = ExtResource("6_rmaf7")
+texture_progress = ExtResource("7_boxpq")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("8_lcolw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -13.0
+offset_right = 46.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("9_aik3s")
+expand_mode = 1
+
+[node name="Gold" type="Label" parent="MarginContainer/VBoxContainer/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "43"
+
+[node name="DeathScreen" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="respawn" type="Button" parent="DeathScreen"]
+clip_contents = true
+custom_minimum_size = Vector2(296, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.5
+offset_top = 140.0
+offset_right = 211.5
+offset_bottom = 204.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_fonts/font = ExtResource("10_hi5tm")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_boxpq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1fpa4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_tv5pq")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hg5ky")
+text = "Réapparaître"
+
+[node name="Label" type="Label" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.5
+offset_top = -38.5
+offset_right = 211.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.533249, 0.157064, 0.12887, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("10_hi5tm")
+theme_override_font_sizes/font_size = 64
+text = "Vous êtes mort"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="DeathScreen"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DeathScreen"]
+libraries = {
+&"": SubResource("AnimationLibrary_1fpa4")
+}
+
+[node name="EmoteWheel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="EmoteWheel"]
+custom_minimum_size = Vector2(100, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EmoteContainer" type="VBoxContainer" parent="EmoteWheel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Button" type="Button" parent="EmoteWheel/ScrollContainer/EmoteContainer"]
+layout_mode = 2
+text = "Caca"
+
+[connection signal="pressed" from="DeathScreen/respawn" to="." method="_on_respawn_pressed"]
+[connection signal="timeout" from="DeathScreen/Timer" to="." method="_on_timer_timeout"]

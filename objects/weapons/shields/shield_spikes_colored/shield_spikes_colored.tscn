@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw71utrcq0xa5"]
+
+[ext_resource type="PackedScene" uid="uid://drjqkxgipsw6j" path="res://addons/kaykit_character_pack_adventures/Assets/gltf/shield_spikes_color.gltf" id="1_3y5gd"]
+[ext_resource type="Script" uid="uid://bpho5nt6eepo" path="res://objects/weapons/shields/shield_spikes_colored/shield_spikes_colored.gd" id="2_11umf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3y5gd"]
+size = Vector3(1.68591, 1.2717, 0.248657)
+
+[node name="ShieldSpikesColored" groups=["shield"] instance=ExtResource("1_3y5gd")]
+script = ExtResource("2_11umf")
+
+[node name="shield_spikes_color" parent="." index="0"]
+layers = 32
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0333862, -0.0141144, -0.0193481)
+shape = SubResource("BoxShape3D_3y5gd")

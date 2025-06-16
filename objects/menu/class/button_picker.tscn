@@ -1,0 +1,120 @@
+[gd_scene load_steps=15 format=3 uid="uid://bx44ua85w3bxx"]
+
+[ext_resource type="Script" uid="uid://cxnkbrkdn7erv" path="res://objects/menu/class/button_picker.gd" id="1_dtt40"]
+[ext_resource type="PackedScene" uid="uid://burftttobx7rt" path="res://objects/menu/class/skins/barbarian.tscn" id="1_h4qwn"]
+[ext_resource type="PackedScene" uid="uid://cidjto34losb5" path="res://objects/menu/class/skins/mage.tscn" id="2_dtt40"]
+[ext_resource type="Texture2D" uid="uid://cu7e4oa8l550b" path="res://addons/menu/background_menu.png" id="2_sbfud"]
+[ext_resource type="FontFile" uid="uid://dtt47eqkbupus" path="res://addons/menu/AveriaGruesaLibre-Regular.ttf" id="3_sbfud"]
+[ext_resource type="PackedScene" uid="uid://dm3ob664uekpe" path="res://objects/menu/class/skins/knight.tscn" id="3_y6a3q"]
+[ext_resource type="PackedScene" uid="uid://efh1tbncp5g4" path="res://objects/menu/class/skins/rogue_hooded.tscn" id="4_sbfud"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y6a3q"]
+load_path = "res://.godot/imported/background_menu.png-ff6f98469fa2dae3dbe4f04cb9ad2c48.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sbfud"]
+texture = SubResource("CompressedTexture2D_y6a3q")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+modulate_color = Color(0.674815, 0.674815, 0.674815, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sbfud"]
+load_path = "res://.godot/imported/background_menu.png-ff6f98469fa2dae3dbe4f04cb9ad2c48.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8f7ih"]
+texture = SubResource("CompressedTexture2D_sbfud")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+modulate_color = Color(0.758192, 0.758192, 0.758192, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_booov"]
+texture = ExtResource("2_sbfud")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6a3q"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f6im0"]
+viewport_path = NodePath("SubViewport")
+
+[node name="ButtonPicker" type="Button"]
+custom_minimum_size = Vector2(512, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_sbfud")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8f7ih")
+theme_override_styles/normal = SubResource("StyleBoxTexture_booov")
+script = ExtResource("1_dtt40")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y6a3q")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = SubResource("ViewportTexture_f6im0")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.427451, 0.294118, 0.152941, 1)
+theme_override_fonts/font = ExtResource("3_sbfud")
+theme_override_font_sizes/font_size = 48
+text = "Nom du joueur"
+horizontal_alignment = 1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="Barbarian" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1001.43, -3.153)
+
+[node name="Mage" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 1001.43, -3.153)
+
+[node name="Rogue" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 21, 1001.43, -3.153)
+
+[node name="Knight" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9, 1001.43, -3.153)
+
+[node name="Skins" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1000, 0)
+
+[node name="Barbarian" parent="Skins" instance=ExtResource("1_h4qwn")]
+
+[node name="Mage" parent="Skins" instance=ExtResource("2_dtt40")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -8.74228e-07)
+
+[node name="Knight" parent="Skins" instance=ExtResource("3_y6a3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 7.86805e-07)
+
+[node name="Rogue" parent="Skins" instance=ExtResource("4_sbfud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -1.83588e-06)
