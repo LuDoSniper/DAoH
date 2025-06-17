@@ -10,9 +10,12 @@ extends Node3D
 
 @onready var main_camera: Camera3D = $Map/Camera3D
 
+@onready var enemy_spawn_timer: Timer = $Timers/EnemySpawnTimer
+
 #var players: Array
 
 var authority_player = null
+var players_in_enemy_zone := []
 
 func _ready():
 	print("I'M READY !")
@@ -28,9 +31,22 @@ func _ready():
 	select_authority_player()
 
 func _physics_process(_delta: float) -> void:
+	#if multiplayer.is_server():
+		#while len(get_enemies()) < 10:
+			#enemy_spawn()
+
+	# Spawn enemies when player's presence is detected
 	if multiplayer.is_server():
-		while len(get_enemies()) < 10:
-			enemy_spawn()
+		if players_in_enemy_zone != [] and enemy_spawn_timer.is_stopped():
+			var max_enemies = 6
+			var current_nb_enemies = len(get_enemies())
+			
+			if current_nb_enemies < max_enemies:
+				if current_nb_enemies > 0:
+					enemy_spawn_timer.wait_time = randf_range(3.0, 10.0)
+					enemy_spawn_timer.start()
+				else:
+					enemy_spawn()
 
 	if not multiplayer.has_multiplayer_peer():
 		return
@@ -233,7 +249,7 @@ func _remote_init_player(id: int) -> void:
 		MULTIPLAYER.last_connection_state = "success"
 		UTILS.print_local(self, "Sending \"add_player\" request")
 		rpc_id(1, "_request_add_player", id, get_meta("selected_skin"), get_meta("username"), get_meta("saved_data"))
-		#rpc_id(1, "_request_spawn_enemies", multiplayer.get_unique_id())
+		rpc_id(1, "_request_spawn_enemies", multiplayer.get_unique_id())
 		#MULTIPLAYER._register_character(multiplayer.get_unique_id(), MULTIPLAYER.current_character)
 		#send_message("[" + MULTIPLAYER.get_character_name_by_peer_id(id) + "] has joined the game", id, false)
 		send_message("[" + MULTIPLAYER.get_character_by_id(MULTIPLAYER.current_character)["name"] + "] has joined the game", id, false)
@@ -341,3 +357,19 @@ func get_enemy_unique_id():
 			id += 1
 		
 		return "Enemy_" + str(id)
+
+func _on_player_presence_detection_body_entered(body: Node3D) -> void:
+	if multiplayer.is_server():
+		if body.is_in_group("player"):
+			print("adding player in players presence")
+			players_in_enemy_zone.append(body)
+
+func _on_player_presence_detection_body_exited(body: Node3D) -> void:
+	if multiplayer.is_server():
+		if body.is_in_group("player") and body in players_in_enemy_zone:
+			print("removing player in players presence")
+			players_in_enemy_zone.pop_at(players_in_enemy_zone.find(body))
+
+func _on_enemy_spawn_timer_timeout() -> void:
+	print("Spawning enemy")
+	enemy_spawn()
