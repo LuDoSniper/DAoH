@@ -181,7 +181,7 @@ func _physics_process(delta: float) -> void:
 	select_target()
 	move_logic(delta)
 	attack_logic()
-	if multiplayer.is_server():
+	if multiplayer.is_server() and is_node_ready():
 		rpc("sync_movement", name.to_int(), global_position, skin.rotation.y)
 	#print(get_node("Raycasts").global_rotation)
 
