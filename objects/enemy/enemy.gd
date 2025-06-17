@@ -323,7 +323,7 @@ func attack_logic() -> void:
 				
 				#print(targeted_player.blocking) # -> 632904694:<CharacterBody3D#378376563390>
 				var raw = str(targeted_player)  # Ex: "632904694:<CharacterBody3D#378376563390>"
-				var id = int(raw.split(":")[0])
+				var _id = int(raw.split(":")[0])
 
 				
 				
@@ -464,7 +464,7 @@ func hit(damage: float) -> void:
 			rpc("_remote_hit", name.to_int(), health, animation)
 
 @rpc("any_peer")
-func _remote_add_xp(id: int, value: float) -> void:
+func _remote_add_xp(id: int, _value: float) -> void:
 	if not multiplayer.is_server():
 		var players = get_tree().root.get_node("World").get_players()
 		for player in players:

@@ -103,22 +103,19 @@ func _request_add_player(peer_id: int, selected_skin: String, username: String, 
 		var player = player_scene.instantiate()
 		player.name = str(peer_id)
 		player.set_multiplayer_authority(peer_id)
-		UTILS.print_local(self, "PEER_ID AUTHORITY : " + str(peer_id))
+		#UTILS.print_local(self, "PEER_ID AUTHORITY : " + str(peer_id))
 		
 		entities_container.add_child(player)
 		
 		player.global_position = get_first_spawner_pos_available(player)
 		player.initialize_class(selected_skin)
 		player.set_username(username)
-		print(saved_data)
-		print(saved_data.has("pos"))
 		if saved_data.has("pos"):
 			player.global_position = parse_vector3_from_string(saved_data["pos"])
 		if saved_data.has("rot"):
 			player.skin.rotation.y = saved_data["rot"]
 		if saved_data.has("health"):
 			player.health = saved_data["health"]
-			print("PLAYER HEALTH SERVER ", player.health)
 		if saved_data.has("xp"):
 			player.current_xp = saved_data["xp"]
 		if saved_data.has("gold"):
@@ -140,13 +137,6 @@ func _request_add_player(peer_id: int, selected_skin: String, username: String, 
 				quests.append(q)
 			player.active_quests = quests
 		player.initialize_inventory()
-
-		# Update list of players for the entities who depends on it
-		#if multiplayer.is_server():
-			#players.append(player)
-			#for entity in entities_container.get_children():
-				#if entity.is_in_group("enemy") and 'players' in entity:
-					#entity.players = players
 		
 		for var_player in get_players():
 			if var_player.name.to_int() == peer_id:
@@ -213,33 +203,40 @@ func init(peer_id: int) -> void:
 @rpc("any_peer")
 func _authenticate() -> void:
 	if not multiplayer.is_server():
-		rpc_id(1, "_authentication_attempt", multiplayer.get_unique_id(), MULTIPLAYER.owner_id)
+		rpc_id(1, "_authentication_attempt", multiplayer.get_unique_id(), ProjectSettings.get_setting("application/config/version"), MULTIPLAYER.owner_id)
 
 @rpc("any_peer")
-func _authentication_attempt(peer_id: int, owner_id: int) -> void:
+func _authentication_attempt(peer_id: int, version: String, owner_id: int) -> void:
 	if multiplayer.is_server():
-		if owner_id not in MULTIPLAYER.owners_id:
+		if version != ProjectSettings.get_setting("application/config/version"):
+			rpc_id(peer_id, "_authentication_failed", "version_control")
+		elif owner_id in MULTIPLAYER.owners_id:
+			rpc_id(peer_id, "_authentication_failed", "double_connection")
+		else:
+			print("Authentication successfull, authorizing ", peer_id)
 			MULTIPLAYER.owners_id.append(owner_id)
 			rpc_id(peer_id, "_remote_init_player", peer_id)
-		else:
-			rpc_id(peer_id, "_authentication_failed")
 
 @rpc("any_peer")
-func _authentication_failed() -> void:
+func _authentication_failed(reason: String = "none") -> void:
 	MULTIPLAYER.peer.close()
-	MULTIPLAYER.last_connection = "failure"
+	MULTIPLAYER.last_connection_state = "failure"
+	if reason == "double_connection":
+		MULTIPLAYER.last_connexion_message = "Echec de la connexion.\nPeut être causée par une double connexion"
+	elif reason == "version_control":
+		MULTIPLAYER.last_connexion_message = "Echec de la connexion.\nLe client et le serveur n'ont pas la même version"
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 
 @rpc("any_peer")
 func _remote_init_player(id: int) -> void:
 	if not multiplayer.is_server():
-		MULTIPLAYER.last_connection = "success"
+		MULTIPLAYER.last_connection_state = "success"
 		UTILS.print_local(self, "Sending \"add_player\" request")
 		rpc_id(1, "_request_add_player", id, get_meta("selected_skin"), get_meta("username"), get_meta("saved_data"))
-		rpc_id(1, "_request_spawn_enemies", multiplayer.get_unique_id())
-		MULTIPLAYER._register_character(multiplayer.get_unique_id(), MULTIPLAYER.current_character)
-		send_message("[" + MULTIPLAYER.get_character_name_by_peer_id(id) + "] has joined the game", id, false)
-
+		#rpc_id(1, "_request_spawn_enemies", multiplayer.get_unique_id())
+		#MULTIPLAYER._register_character(multiplayer.get_unique_id(), MULTIPLAYER.current_character)
+		#send_message("[" + MULTIPLAYER.get_character_name_by_peer_id(id) + "] has joined the game", id, false)
+		send_message("[" + MULTIPLAYER.get_character_by_id(MULTIPLAYER.current_character)["name"] + "] has joined the game", id, false)
 
 func client_disconnected(peer_id: int) -> void:
 	for player in get_players():

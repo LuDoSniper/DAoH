@@ -81,7 +81,7 @@ func _ready():
 	move_state_machine = animation_tree.get("parameters/StateMachine/playback")
 	get_move_state_current_node()
 
-func _process(delta):
+func _process(_delta):
 	if player_camera and label.visible:
 		label.look_at(player_camera.global_transform.origin, Vector3.UP)
 		label.rotation.y += deg_to_rad(180)
@@ -138,5 +138,5 @@ func get_move_state_current_node() -> StringName:
 	return move_state_machine.get_current_node()
 
 func hide_skin():
-	for skin in skins_lst.get_children():
-		skin.hide()
+	for var_skin in skins_lst.get_children():
+		var_skin.hide()
