@@ -14,20 +14,26 @@ var owners_id: Array[int] = []
 var owner_id: int
 var characters: Array = []
 var current_character := 0
-var last_connection := "none"
+var last_connection_state := "none"
+var last_connexion_message := "none"
+var debug := false
 
 var peer := WebSocketMultiplayerPeer.new()
 
 func create_server(peer_connected: Callable, peer_disconnecter: Callable) -> void:
-	#peer.create_server(LISTEN_PORT)
-	peer.create_server(LISTEN_PORT, "0.0.0.0")
+	if debug:
+		peer.create_server(LISTEN_PORT)
+	else:
+		peer.create_server(LISTEN_PORT, "0.0.0.0")
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(peer_connected)
 	multiplayer.peer_disconnected.connect(peer_disconnecter)
 
 func join_server() -> void:
-	#peer.create_client("ws://" + "localhost" + ":" + str(LISTEN_PORT))
-	peer.create_client("ws://" + DEFAULT_ADDRESS_BEGIN + REGION + DEFAULT_ADDRESS_END + ":" + str(LISTEN_PORT))
+	if debug:
+		peer.create_client("ws://" + "localhost" + ":" + str(LISTEN_PORT))
+	else:
+		peer.create_client("ws://" + DEFAULT_ADDRESS_BEGIN + REGION + DEFAULT_ADDRESS_END + ":" + str(LISTEN_PORT))
 	multiplayer.multiplayer_peer = peer
 
 func get_server_by_id(id: int) -> Dictionary:

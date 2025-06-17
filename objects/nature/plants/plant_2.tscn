@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://cq7c3x477x33i"]
 
 [ext_resource type="Texture2D" uid="uid://cpy4r7r8cy4bm" path="res://assets/textures/Nature/Leaves.png" id="2_amt11"]
-[ext_resource type="Texture2D" uid="uid://cruglmy8ne12w" path="res://assets/models/plant_2_Image.png" id="3_v6ved"]
+[ext_resource type="Texture2D" uid="uid://cou7o7wdhtir3" path="res://assets/models/plant_2_Image.png" id="3_v6ved"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfufd"]
 resource_name = "Leaves.002"
