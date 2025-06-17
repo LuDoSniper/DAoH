@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmd38khgcjdlo"
 path.s3tc="res://.godot/imported/Grass.png-6a4c582d2e8ee6c5dd1d3b93d47ccf01.s3tc.ctex"
+path.etc2="res://.godot/imported/Grass.png-6a4c582d2e8ee6c5dd1d3b93d47ccf01.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Nature/Grass.png"
-dest_files=["res://.godot/imported/Grass.png-6a4c582d2e8ee6c5dd1d3b93d47ccf01.s3tc.ctex"]
+dest_files=["res://.godot/imported/Grass.png-6a4c582d2e8ee6c5dd1d3b93d47ccf01.s3tc.ctex", "res://.godot/imported/Grass.png-6a4c582d2e8ee6c5dd1d3b93d47ccf01.etc2.ctex"]
 
 [params]
 

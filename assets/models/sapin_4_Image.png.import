@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqb4idjt53e5m"
 path.s3tc="res://.godot/imported/sapin_4_Image.png-4eb0a0ce39402c7fec18f25d956e0c48.s3tc.ctex"
+path.etc2="res://.godot/imported/sapin_4_Image.png-4eb0a0ce39402c7fec18f25d956e0c48.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/sapin_4_Image.png"
-dest_files=["res://.godot/imported/sapin_4_Image.png-4eb0a0ce39402c7fec18f25d956e0c48.s3tc.ctex"]
+dest_files=["res://.godot/imported/sapin_4_Image.png-4eb0a0ce39402c7fec18f25d956e0c48.s3tc.ctex", "res://.godot/imported/sapin_4_Image.png-4eb0a0ce39402c7fec18f25d956e0c48.etc2.ctex"]
 
 [params]
 

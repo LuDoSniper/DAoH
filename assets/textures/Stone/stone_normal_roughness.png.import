@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bv8emhn5d20n5"
 path.s3tc="res://.godot/imported/stone_normal_roughness.png-52791c8c33fa91391c2d4cb3fe0dfdfd.s3tc.ctex"
+path.etc2="res://.godot/imported/stone_normal_roughness.png-52791c8c33fa91391c2d4cb3fe0dfdfd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Stone/stone_normal_roughness.png"
-dest_files=["res://.godot/imported/stone_normal_roughness.png-52791c8c33fa91391c2d4cb3fe0dfdfd.s3tc.ctex"]
+dest_files=["res://.godot/imported/stone_normal_roughness.png-52791c8c33fa91391c2d4cb3fe0dfdfd.s3tc.ctex", "res://.godot/imported/stone_normal_roughness.png-52791c8c33fa91391c2d4cb3fe0dfdfd.etc2.ctex"]
 
 [params]
 

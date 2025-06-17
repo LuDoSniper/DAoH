@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://3btr3cxx8tjk"
 path.s3tc="res://.godot/imported/Necromancer_skeleton_texture_A.png-82166824ee3cad396ce3a413d0948cbb.s3tc.ctex"
+path.etc2="res://.godot/imported/Necromancer_skeleton_texture_A.png-82166824ee3cad396ce3a413d0948cbb.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/more/KayKit_Skeletons_1.0_SOURCE/characters/gltf/Necromancer_skeleton_texture_A.png"
-dest_files=["res://.godot/imported/Necromancer_skeleton_texture_A.png-82166824ee3cad396ce3a413d0948cbb.s3tc.ctex"]
+dest_files=["res://.godot/imported/Necromancer_skeleton_texture_A.png-82166824ee3cad396ce3a413d0948cbb.s3tc.ctex", "res://.godot/imported/Necromancer_skeleton_texture_A.png-82166824ee3cad396ce3a413d0948cbb.etc2.ctex"]
 
 [params]
 

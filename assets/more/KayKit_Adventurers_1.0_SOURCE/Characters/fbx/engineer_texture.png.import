@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://7mcp2n0wxwkj"
 path.s3tc="res://.godot/imported/engineer_texture.png-26481173b7372a2a12279f074ce026d7.s3tc.ctex"
+path.etc2="res://.godot/imported/engineer_texture.png-26481173b7372a2a12279f074ce026d7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/more/KayKit_Adventurers_1.0_SOURCE/Characters/fbx/engineer_texture.png"
-dest_files=["res://.godot/imported/engineer_texture.png-26481173b7372a2a12279f074ce026d7.s3tc.ctex"]
+dest_files=["res://.godot/imported/engineer_texture.png-26481173b7372a2a12279f074ce026d7.s3tc.ctex", "res://.godot/imported/engineer_texture.png-26481173b7372a2a12279f074ce026d7.etc2.ctex"]
 
 [params]
 

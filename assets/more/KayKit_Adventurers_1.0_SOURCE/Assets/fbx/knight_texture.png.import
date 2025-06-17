@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c16v8jukl608r"
 path.s3tc="res://.godot/imported/knight_texture.png-c0e86db6199fd68af10d0f281e847f11.s3tc.ctex"
+path.etc2="res://.godot/imported/knight_texture.png-c0e86db6199fd68af10d0f281e847f11.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/more/KayKit_Adventurers_1.0_SOURCE/Assets/fbx/knight_texture.png"
-dest_files=["res://.godot/imported/knight_texture.png-c0e86db6199fd68af10d0f281e847f11.s3tc.ctex"]
+dest_files=["res://.godot/imported/knight_texture.png-c0e86db6199fd68af10d0f281e847f11.s3tc.ctex", "res://.godot/imported/knight_texture.png-c0e86db6199fd68af10d0f281e847f11.etc2.ctex"]
 
 [params]
 

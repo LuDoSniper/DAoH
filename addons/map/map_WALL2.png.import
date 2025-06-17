@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b21tndfw20e0w"
 path.s3tc="res://.godot/imported/map_WALL2.png-053e51b79b7a3d8ddd1c89ab7e873372.s3tc.ctex"
+path.etc2="res://.godot/imported/map_WALL2.png-053e51b79b7a3d8ddd1c89ab7e873372.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://addons/map/map_WALL2.png"
-dest_files=["res://.godot/imported/map_WALL2.png-053e51b79b7a3d8ddd1c89ab7e873372.s3tc.ctex"]
+dest_files=["res://.godot/imported/map_WALL2.png-053e51b79b7a3d8ddd1c89ab7e873372.s3tc.ctex", "res://.godot/imported/map_WALL2.png-053e51b79b7a3d8ddd1c89ab7e873372.etc2.ctex"]
 
 [params]
 

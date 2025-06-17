@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpwv0qf6tb7we"
 path.s3tc="res://.godot/imported/normal_B.png-71113c30b404b0e7d9ee56823d51ff04.s3tc.ctex"
+path.etc2="res://.godot/imported/normal_B.png-71113c30b404b0e7d9ee56823d51ff04.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/ocean/normal_B.png"
-dest_files=["res://.godot/imported/normal_B.png-71113c30b404b0e7d9ee56823d51ff04.s3tc.ctex"]
+dest_files=["res://.godot/imported/normal_B.png-71113c30b404b0e7d9ee56823d51ff04.s3tc.ctex", "res://.godot/imported/normal_B.png-71113c30b404b0e7d9ee56823d51ff04.etc2.ctex"]
 
 [params]
 

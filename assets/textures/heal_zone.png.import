@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b107371v2yvvv"
 path.s3tc="res://.godot/imported/heal_zone.png-3ac2c51fb27da9c468f4a6815e9a9325.s3tc.ctex"
+path.etc2="res://.godot/imported/heal_zone.png-3ac2c51fb27da9c468f4a6815e9a9325.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/heal_zone.png"
-dest_files=["res://.godot/imported/heal_zone.png-3ac2c51fb27da9c468f4a6815e9a9325.s3tc.ctex"]
+dest_files=["res://.godot/imported/heal_zone.png-3ac2c51fb27da9c468f4a6815e9a9325.s3tc.ctex", "res://.godot/imported/heal_zone.png-3ac2c51fb27da9c468f4a6815e9a9325.etc2.ctex"]
 
 [params]
 

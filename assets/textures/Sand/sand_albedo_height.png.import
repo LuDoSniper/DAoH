@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://co26n8dbeggly"
 path.s3tc="res://.godot/imported/sand_albedo_height.png-fe82100859f3e3be8744e2b3d8e66947.s3tc.ctex"
+path.etc2="res://.godot/imported/sand_albedo_height.png-fe82100859f3e3be8744e2b3d8e66947.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Sand/sand_albedo_height.png"
-dest_files=["res://.godot/imported/sand_albedo_height.png-fe82100859f3e3be8744e2b3d8e66947.s3tc.ctex"]
+dest_files=["res://.godot/imported/sand_albedo_height.png-fe82100859f3e3be8744e2b3d8e66947.s3tc.ctex", "res://.godot/imported/sand_albedo_height.png-fe82100859f3e3be8744e2b3d8e66947.etc2.ctex"]
 
 [params]
 

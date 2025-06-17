@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtf84cl451lyp"
 path.s3tc="res://.godot/imported/chest_ocean_assets_texture.png-e2120306d91640a072e4dc74ef60b95f.s3tc.ctex"
+path.etc2="res://.godot/imported/chest_ocean_assets_texture.png-e2120306d91640a072e4dc74ef60b95f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/ocean/gltf/chest_ocean_assets_texture.png"
-dest_files=["res://.godot/imported/chest_ocean_assets_texture.png-e2120306d91640a072e4dc74ef60b95f.s3tc.ctex"]
+dest_files=["res://.godot/imported/chest_ocean_assets_texture.png-e2120306d91640a072e4dc74ef60b95f.s3tc.ctex", "res://.godot/imported/chest_ocean_assets_texture.png-e2120306d91640a072e4dc74ef60b95f.etc2.ctex"]
 
 [params]
 

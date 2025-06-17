@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="MajorB2"
+config/name="DAoH"
 run/main_scene="uid://dl256dq5ohbwo"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/image="uid://dlnbg6n6hx3d2"
 config/icon="res://icon.svg"
 run/size/viewport_width=648
 
@@ -141,3 +142,7 @@ toggle_emote_wheel={
 3d_physics/layer_2="Players"
 3d_physics/layer_3="Shields"
 3d_physics/layer_4="Enemies"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0i4rim8kokna"
 path.s3tc="res://.godot/imported/forest_albedo_height.png-f17a89416f5bff66467c6215ee6f5215.s3tc.ctex"
+path.etc2="res://.godot/imported/forest_albedo_height.png-f17a89416f5bff66467c6215ee6f5215.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Forest/forest_albedo_height.png"
-dest_files=["res://.godot/imported/forest_albedo_height.png-f17a89416f5bff66467c6215ee6f5215.s3tc.ctex"]
+dest_files=["res://.godot/imported/forest_albedo_height.png-f17a89416f5bff66467c6215ee6f5215.s3tc.ctex", "res://.godot/imported/forest_albedo_height.png-f17a89416f5bff66467c6215ee6f5215.etc2.ctex"]
 
 [params]
 

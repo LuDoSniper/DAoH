@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cijf16rcwllwj"
 path.bptc="res://.godot/imported/rosendal_park_sunset_puresky_4k.exr-dcee773674d5673a19a04a2b5d1a5e48.bptc.ctex"
+path.astc="res://.godot/imported/rosendal_park_sunset_puresky_4k.exr-dcee773674d5673a19a04a2b5d1a5e48.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/hdri/rosendal_park_sunset_puresky_4k.exr"
-dest_files=["res://.godot/imported/rosendal_park_sunset_puresky_4k.exr-dcee773674d5673a19a04a2b5d1a5e48.bptc.ctex"]
+dest_files=["res://.godot/imported/rosendal_park_sunset_puresky_4k.exr-dcee773674d5673a19a04a2b5d1a5e48.bptc.ctex", "res://.godot/imported/rosendal_park_sunset_puresky_4k.exr-dcee773674d5673a19a04a2b5d1a5e48.astc.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bymf12rlw762f"
 path.s3tc="res://.godot/imported/Arch_Diffuse_palette_2.jpg-239232bce24661af8a42cc471e28fd29.s3tc.ctex"
+path.etc2="res://.godot/imported/Arch_Diffuse_palette_2.jpg-239232bce24661af8a42cc471e28fd29.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/Arch_Diffuse_palette_2.jpg"
-dest_files=["res://.godot/imported/Arch_Diffuse_palette_2.jpg-239232bce24661af8a42cc471e28fd29.s3tc.ctex"]
+dest_files=["res://.godot/imported/Arch_Diffuse_palette_2.jpg-239232bce24661af8a42cc471e28fd29.s3tc.ctex", "res://.godot/imported/Arch_Diffuse_palette_2.jpg-239232bce24661af8a42cc471e28fd29.etc2.ctex"]
 
 [params]
 

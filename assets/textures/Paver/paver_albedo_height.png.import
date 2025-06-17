@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cikpydk60imcf"
 path.s3tc="res://.godot/imported/paver_albedo_height.png-213ef717b57edd804370f2f301b14771.s3tc.ctex"
+path.etc2="res://.godot/imported/paver_albedo_height.png-213ef717b57edd804370f2f301b14771.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Paver/paver_albedo_height.png"
-dest_files=["res://.godot/imported/paver_albedo_height.png-213ef717b57edd804370f2f301b14771.s3tc.ctex"]
+dest_files=["res://.godot/imported/paver_albedo_height.png-213ef717b57edd804370f2f301b14771.s3tc.ctex", "res://.godot/imported/paver_albedo_height.png-213ef717b57edd804370f2f301b14771.etc2.ctex"]
 
 [params]
 

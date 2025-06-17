@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://t175rg2fkwas"
 path.s3tc="res://.godot/imported/pirate_ship_ocean_assets_texture.png-fb11d0f80c49634c864fcb157876a88c.s3tc.ctex"
+path.etc2="res://.godot/imported/pirate_ship_ocean_assets_texture.png-fb11d0f80c49634c864fcb157876a88c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/ocean/gltf/pirate_ship_ocean_assets_texture.png"
-dest_files=["res://.godot/imported/pirate_ship_ocean_assets_texture.png-fb11d0f80c49634c864fcb157876a88c.s3tc.ctex"]
+dest_files=["res://.godot/imported/pirate_ship_ocean_assets_texture.png-fb11d0f80c49634c864fcb157876a88c.s3tc.ctex", "res://.godot/imported/pirate_ship_ocean_assets_texture.png-fb11d0f80c49634c864fcb157876a88c.etc2.ctex"]
 
 [params]
 

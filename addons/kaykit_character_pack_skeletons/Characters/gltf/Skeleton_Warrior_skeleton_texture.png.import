@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhn641morf0a1"
 path.s3tc="res://.godot/imported/Skeleton_Warrior_skeleton_texture.png-932e008ea443bfb3aa965cdbac23182b.s3tc.ctex"
+path.etc2="res://.godot/imported/Skeleton_Warrior_skeleton_texture.png-932e008ea443bfb3aa965cdbac23182b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://addons/kaykit_character_pack_skeletons/Characters/gltf/Skeleton_Warrior_skeleton_texture.png"
-dest_files=["res://.godot/imported/Skeleton_Warrior_skeleton_texture.png-932e008ea443bfb3aa965cdbac23182b.s3tc.ctex"]
+dest_files=["res://.godot/imported/Skeleton_Warrior_skeleton_texture.png-932e008ea443bfb3aa965cdbac23182b.s3tc.ctex", "res://.godot/imported/Skeleton_Warrior_skeleton_texture.png-932e008ea443bfb3aa965cdbac23182b.etc2.ctex"]
 
 [params]
 

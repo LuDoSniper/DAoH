@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://djs75q1l2qbqo"
 path.s3tc="res://.godot/imported/Skeleton_Golem_skeleton_texture_A.png-57d076b5af3218881bf5b76f343b55b3.s3tc.ctex"
+path.etc2="res://.godot/imported/Skeleton_Golem_skeleton_texture_A.png-57d076b5af3218881bf5b76f343b55b3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/more/KayKit_Skeletons_1.0_SOURCE/characters/gltf/Skeleton_Golem_skeleton_texture_A.png"
-dest_files=["res://.godot/imported/Skeleton_Golem_skeleton_texture_A.png-57d076b5af3218881bf5b76f343b55b3.s3tc.ctex"]
+dest_files=["res://.godot/imported/Skeleton_Golem_skeleton_texture_A.png-57d076b5af3218881bf5b76f343b55b3.s3tc.ctex", "res://.godot/imported/Skeleton_Golem_skeleton_texture_A.png-57d076b5af3218881bf5b76f343b55b3.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4cwcst00w8ou"
 path.s3tc="res://.godot/imported/crashed_ship_ocean_assets_texture.png-e924bd47c142143c10e1316547326992.s3tc.ctex"
+path.etc2="res://.godot/imported/crashed_ship_ocean_assets_texture.png-e924bd47c142143c10e1316547326992.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/ocean/gltf/crashed_ship_ocean_assets_texture.png"
-dest_files=["res://.godot/imported/crashed_ship_ocean_assets_texture.png-e924bd47c142143c10e1316547326992.s3tc.ctex"]
+dest_files=["res://.godot/imported/crashed_ship_ocean_assets_texture.png-e924bd47c142143c10e1316547326992.s3tc.ctex", "res://.godot/imported/crashed_ship_ocean_assets_texture.png-e924bd47c142143c10e1316547326992.etc2.ctex"]
 
 [params]
 

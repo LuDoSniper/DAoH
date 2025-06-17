@@ -352,7 +352,7 @@ func attack_logic() -> void:
 		attacking = skin.attacking
 		
 		if not attacking:
-			if not blocking:
+			if not blocking and not paused:
 				if Input.is_action_just_pressed("attack") and hud.emote_wheel.visible == false:
 					# Selection arbitraire pour le moment
 					var attack_name = "base"
@@ -683,6 +683,7 @@ func _on_level_up() -> void:
 func _on_enemy_killed():
 	add_xp(20)
 	add_gold(10)
+	update_quest("kill_skeletons", 1)
 
 func set_username(var_username: String) -> void:
 	username = var_username

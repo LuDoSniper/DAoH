@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpd53xh5n2frn"
 path.s3tc="res://.godot/imported/druid_texture_alt_B.png-e5eab1284af6017ccfddd8eb607f6a39.s3tc.ctex"
+path.etc2="res://.godot/imported/druid_texture_alt_B.png-e5eab1284af6017ccfddd8eb607f6a39.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/more/KayKit_Adventurers_1.0_SOURCE/Textures/druid_texture_alt_B.png"
-dest_files=["res://.godot/imported/druid_texture_alt_B.png-e5eab1284af6017ccfddd8eb607f6a39.s3tc.ctex"]
+dest_files=["res://.godot/imported/druid_texture_alt_B.png-e5eab1284af6017ccfddd8eb607f6a39.s3tc.ctex", "res://.godot/imported/druid_texture_alt_B.png-e5eab1284af6017ccfddd8eb607f6a39.etc2.ctex"]
 
 [params]
 

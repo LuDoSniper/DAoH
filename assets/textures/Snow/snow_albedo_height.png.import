@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ds6vtscsa5ufq"
 path.s3tc="res://.godot/imported/snow_albedo_height.png-9faf4db9490b60764d18d70806f6a438.s3tc.ctex"
+path.etc2="res://.godot/imported/snow_albedo_height.png-9faf4db9490b60764d18d70806f6a438.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Snow/snow_albedo_height.png"
-dest_files=["res://.godot/imported/snow_albedo_height.png-9faf4db9490b60764d18d70806f6a438.s3tc.ctex"]
+dest_files=["res://.godot/imported/snow_albedo_height.png-9faf4db9490b60764d18d70806f6a438.s3tc.ctex", "res://.godot/imported/snow_albedo_height.png-9faf4db9490b60764d18d70806f6a438.etc2.ctex"]
 
 [params]
 
