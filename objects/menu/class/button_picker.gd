@@ -9,8 +9,8 @@ func _ready():
 	hide_skin()
 	set_false_cam()
 
-func set_player_name(name: String) -> void:
-	label.text = name
+func set_player_name(var_name: String) -> void:
+	label.text = var_name
 
 func hide_skin() -> void:
 	for child in skins.get_children():

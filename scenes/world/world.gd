@@ -10,9 +10,12 @@ extends Node3D
 
 @onready var main_camera: Camera3D = $Map/Camera3D
 
+@onready var enemy_spawn_timer: Timer = $Timers/EnemySpawnTimer
+
 #var players: Array
 
 var authority_player = null
+var players_in_enemy_zone := []
 
 func _ready():
 	print("I'M READY !")
@@ -28,9 +31,22 @@ func _ready():
 	select_authority_player()
 
 func _physics_process(_delta: float) -> void:
+	#if multiplayer.is_server():
+		#while len(get_enemies()) < 10:
+			#enemy_spawn()
+
+	# Spawn enemies when player's presence is detected
 	if multiplayer.is_server():
-		while len(get_enemies()) < 10:
-			enemy_spawn()
+		if players_in_enemy_zone != [] and enemy_spawn_timer.is_stopped():
+			var max_enemies = 6
+			var current_nb_enemies = len(get_enemies())
+			
+			if current_nb_enemies < max_enemies:
+				if current_nb_enemies > 0:
+					enemy_spawn_timer.wait_time = randf_range(3.0, 10.0)
+					enemy_spawn_timer.start()
+				else:
+					enemy_spawn()
 
 	if not multiplayer.has_multiplayer_peer():
 		return
@@ -103,22 +119,19 @@ func _request_add_player(peer_id: int, selected_skin: String, username: String, 
 		var player = player_scene.instantiate()
 		player.name = str(peer_id)
 		player.set_multiplayer_authority(peer_id)
-		UTILS.print_local(self, "PEER_ID AUTHORITY : " + str(peer_id))
+		#UTILS.print_local(self, "PEER_ID AUTHORITY : " + str(peer_id))
 		
 		entities_container.add_child(player)
 		
 		player.global_position = get_first_spawner_pos_available(player)
 		player.initialize_class(selected_skin)
 		player.set_username(username)
-		print(saved_data)
-		print(saved_data.has("pos"))
 		if saved_data.has("pos"):
 			player.global_position = parse_vector3_from_string(saved_data["pos"])
 		if saved_data.has("rot"):
 			player.skin.rotation.y = saved_data["rot"]
 		if saved_data.has("health"):
 			player.health = saved_data["health"]
-			print("PLAYER HEALTH SERVER ", player.health)
 		if saved_data.has("xp"):
 			player.current_xp = saved_data["xp"]
 		if saved_data.has("gold"):
@@ -140,13 +153,6 @@ func _request_add_player(peer_id: int, selected_skin: String, username: String, 
 				quests.append(q)
 			player.active_quests = quests
 		player.initialize_inventory()
-
-		# Update list of players for the entities who depends on it
-		#if multiplayer.is_server():
-			#players.append(player)
-			#for entity in entities_container.get_children():
-				#if entity.is_in_group("enemy") and 'players' in entity:
-					#entity.players = players
 		
 		for var_player in get_players():
 			if var_player.name.to_int() == peer_id:
@@ -213,33 +219,40 @@ func init(peer_id: int) -> void:
 @rpc("any_peer")
 func _authenticate() -> void:
 	if not multiplayer.is_server():
-		rpc_id(1, "_authentication_attempt", multiplayer.get_unique_id(), MULTIPLAYER.owner_id)
+		rpc_id(1, "_authentication_attempt", multiplayer.get_unique_id(), ProjectSettings.get_setting("application/config/version"), MULTIPLAYER.owner_id)
 
 @rpc("any_peer")
-func _authentication_attempt(peer_id: int, owner_id: int) -> void:
+func _authentication_attempt(peer_id: int, version: String, owner_id: int) -> void:
 	if multiplayer.is_server():
-		if owner_id not in MULTIPLAYER.owners_id:
+		if version != ProjectSettings.get_setting("application/config/version"):
+			rpc_id(peer_id, "_authentication_failed", "version_control")
+		elif owner_id in MULTIPLAYER.owners_id:
+			rpc_id(peer_id, "_authentication_failed", "double_connection")
+		else:
+			print("Authentication successfull, authorizing ", peer_id)
 			MULTIPLAYER.owners_id.append(owner_id)
 			rpc_id(peer_id, "_remote_init_player", peer_id)
-		else:
-			rpc_id(peer_id, "_authentication_failed")
 
 @rpc("any_peer")
-func _authentication_failed() -> void:
+func _authentication_failed(reason: String = "none") -> void:
 	MULTIPLAYER.peer.close()
-	MULTIPLAYER.last_connection = "failure"
+	MULTIPLAYER.last_connection_state = "failure"
+	if reason == "double_connection":
+		MULTIPLAYER.last_connexion_message = "Echec de la connexion.\nPeut être causée par une double connexion"
+	elif reason == "version_control":
+		MULTIPLAYER.last_connexion_message = "Echec de la connexion.\nLe client et le serveur n'ont pas la même version"
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 
 @rpc("any_peer")
 func _remote_init_player(id: int) -> void:
 	if not multiplayer.is_server():
-		MULTIPLAYER.last_connection = "success"
+		MULTIPLAYER.last_connection_state = "success"
 		UTILS.print_local(self, "Sending \"add_player\" request")
 		rpc_id(1, "_request_add_player", id, get_meta("selected_skin"), get_meta("username"), get_meta("saved_data"))
 		rpc_id(1, "_request_spawn_enemies", multiplayer.get_unique_id())
-		MULTIPLAYER._register_character(multiplayer.get_unique_id(), MULTIPLAYER.current_character)
-		send_message("[" + MULTIPLAYER.get_character_name_by_peer_id(id) + "] has joined the game", id, false)
-
+		#MULTIPLAYER._register_character(multiplayer.get_unique_id(), MULTIPLAYER.current_character)
+		#send_message("[" + MULTIPLAYER.get_character_name_by_peer_id(id) + "] has joined the game", id, false)
+		send_message("[" + MULTIPLAYER.get_character_by_id(MULTIPLAYER.current_character)["name"] + "] has joined the game", id, false)
 
 func client_disconnected(peer_id: int) -> void:
 	for player in get_players():
@@ -301,26 +314,26 @@ func enemy_spawn() -> void:
 			entities_container.add_child(enemy)
 			enemy.global_position = spawner.get_global_pos()
 			spawner.emitt()
-			print("j'envois avec le nom : ", enemy.name)
+			#print("j'envois avec le nom : ", enemy.name)
 			rpc("_remote_spawn_enemy", enemy_name, enemy.global_position, enemy.variant, spawner.name)
 			print("j'ai envoyé")
 
 @rpc("any_peer")
 func _remote_spawn_enemy(enemy_name: String, pos: Vector3, variant: int, spawner_name: String = "") -> void:
 	if not multiplayer.is_server():
-		print("j'ai reçu avec le nom : ", enemy_name)
+		#print("j'ai reçu avec le nom : ", enemy_name)
 		var enemy = enemy_scene.instantiate()
 		enemy.variant = variant
-		print("Avant le désastre ?")
+		#print("Avant le désastre ?")
 		enemy.name = enemy_name
 		entities_container.add_child(enemy)
-		print("Apres le désastre ?")
+		#print("Apres le désastre ?")
 		enemy.global_position = pos
 		if spawner_name != "":
 			for spawner in enemy_spawners.get_children():
 				if spawner.name == spawner_name:
 					spawner.emitt()
-		print("Maintenant peut etre ? Le nom est : ", enemy.name)
+		#print("Maintenant peut etre ? Le nom est : ", enemy.name)
 
 @rpc("any_peer")
 func _request_spawn_enemies(peer_id: int) -> void:
@@ -344,3 +357,19 @@ func get_enemy_unique_id():
 			id += 1
 		
 		return "Enemy_" + str(id)
+
+func _on_player_presence_detection_body_entered(body: Node3D) -> void:
+	if multiplayer.is_server():
+		if body.is_in_group("player"):
+			print("adding player in players presence")
+			players_in_enemy_zone.append(body)
+
+func _on_player_presence_detection_body_exited(body: Node3D) -> void:
+	if multiplayer.is_server():
+		if body.is_in_group("player") and body in players_in_enemy_zone:
+			print("removing player in players presence")
+			players_in_enemy_zone.pop_at(players_in_enemy_zone.find(body))
+
+func _on_enemy_spawn_timer_timeout() -> void:
+	print("Spawning enemy")
+	enemy_spawn()

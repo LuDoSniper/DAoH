@@ -11,10 +11,12 @@ config_version=5
 [application]
 
 config/name="DAoH"
+config/version="0.2.0"
 run/main_scene="uid://dl256dq5ohbwo"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/image="uid://dlnbg6n6hx3d2"
-config/icon="res://icon.svg"
+config/icon="uid://dlnbg6n6hx3d2"
+config/windows_native_icon="res://assets/icons/daoh.ico"
 run/size/viewport_width=648
 
 [autoload]
