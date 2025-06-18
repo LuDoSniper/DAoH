@@ -161,6 +161,7 @@ func _ready() -> void:
 	hud.hide()
 	if is_multiplayer_authority():
 		hud.show()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	var character_name = MULTIPLAYER.get_character_name_by_peer_id(name.to_int())
 	UTILS.print_local(self, "Je viens d'apparraitre sout le nom de " + character_name)
@@ -478,11 +479,12 @@ func shoot_arrow() -> void:
 	rpc_id(1, "_request_shoot_arrow", arrow_spawn.global_position, skin.rotation.y)
 
 func _input(event: InputEvent) -> void:
-	if not paused and event.is_action_pressed("toggle_mouse"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if is_multiplayer_authority():
+		if not paused and event.is_action_pressed("toggle_mouse"):
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 #DIALOGUE - INTERACT
 var current_npc: Node = null
