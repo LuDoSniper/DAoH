@@ -73,7 +73,7 @@ func _on_server_received(_result, response_code, _headers, body) -> void:
 			})
 			
 			var button = Button.new()
-			var theme := Theme.new()
+			var var_theme := Theme.new()
 			var stylebox_normal := StyleBoxFlat.new()
 			var stylebox_hover = StyleBoxFlat.new()
 			var stylebox_pressed = StyleBoxFlat.new()
@@ -81,26 +81,26 @@ func _on_server_received(_result, response_code, _headers, body) -> void:
 			stylebox_normal.bg_color = Color('#6D4B27')
 			stylebox_normal.set_corner_radius_all(3)
 			stylebox_normal.set_content_margin_all(8)
-			theme.set_stylebox("normal", "Button", stylebox_normal)
-			theme.set_color("font_color", "Button", Color('#fff1d2'))
-			theme.set_font("font", "Button", font)
-			theme.set_color("font_color_hover", "Button", Color('#fff1d2'))
-			theme.set_color("font_color_pressed", "Button", Color('#fff1d2'))
+			var_theme.set_stylebox("normal", "Button", stylebox_normal)
+			var_theme.set_color("font_color", "Button", Color('#fff1d2'))
+			var_theme.set_font("font", "Button", font)
+			var_theme.set_color("font_color_hover", "Button", Color('#fff1d2'))
+			var_theme.set_color("font_color_pressed", "Button", Color('#fff1d2'))
 			
 
 			stylebox_hover.bg_color = Color('#614426')
 			stylebox_hover.set_corner_radius_all(3)
 			stylebox_hover.set_content_margin_all(8)
-			theme.set_stylebox("hover", "Button", stylebox_hover)
+			var_theme.set_stylebox("hover", "Button", stylebox_hover)
 
 			
 			stylebox_pressed.bg_color = Color('#5b4024')
 			stylebox_pressed.set_corner_radius_all(3)
 			stylebox_pressed.set_content_margin_all(8)
-			theme.set_stylebox("pressed", "Button", stylebox_pressed)
+			var_theme.set_stylebox("pressed", "Button", stylebox_pressed)
 
 			server_container.add_child(button)
-			button.theme = theme
+			button.theme = var_theme
 			button.text = server["name"]
 			button.set("theme_override_font_sizes/font_size", 24)
 			button.pressed.connect(func(): _on_server_pressed(server["id"]))
@@ -184,7 +184,8 @@ func _on_port_received(_result, response_code, _headers, body) -> void:
 	if response_code == 200:
 		var data = JSON.parse_string(body.get_string_from_utf8())
 		MULTIPLAYER.REGION = data["region"]
-		MULTIPLAYER.LISTEN_PORT = data["port"]
+		if MULTIPLAYER.DEBUG != "-debug":
+			MULTIPLAYER.LISTEN_PORT = data["port"]
 		MULTIPLAYER.MAX_CHARACTER_COUNT = data["max_character_count"]
 		
 		authentication_successfull.emit()

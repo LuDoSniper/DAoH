@@ -181,7 +181,7 @@ func _physics_process(delta: float) -> void:
 	select_target()
 	move_logic(delta)
 	attack_logic()
-	if multiplayer.is_server():
+	if multiplayer.is_server() and is_node_ready():
 		rpc("sync_movement", name.to_int(), global_position, skin.rotation.y)
 	#print(get_node("Raycasts").global_rotation)
 
@@ -320,11 +320,21 @@ func attack_logic() -> void:
 				var animation_name = ""
 				var rogue_instruction = "nothing"
 				
+				
+				#print(targeted_player.blocking) # -> 632904694:<CharacterBody3D#378376563390>
+				var raw = str(targeted_player)  # Ex: "632904694:<CharacterBody3D#378376563390>"
+				var _id = int(raw.split(":")[0])
+
+				
+				
+				
 				match variant:
 					variants.Minion:
 						animation_name = "Slice"
+						$audio_swoosh.play()
 					variants.Warrior:
 						animation_name = "Slice"
+						$audio_swoosh.play()
 					variants.Mage:
 						animation_name = "Shoot"
 						shoot_fireball()
@@ -382,6 +392,7 @@ func _sync_block(id: int, value: float) -> void:
 func shoot_fireball() -> void:
 	if multiplayer.is_server():
 		var fireball = fireball_scene.instantiate()
+		$audio_fireball.play()
 		get_parent().add_child(fireball)
 		fireball.global_position = projectiles_spawn.global_position
 		fireball.scale = Vector3.ONE * 0.5
@@ -401,10 +412,10 @@ func _remote_shoot_fireball(pos: Vector3, fireball_rotation: float) -> void:
 func shoot_arrow() -> void:
 	if multiplayer.is_server():
 		var arrow = arrow_scene.instantiate()
+		$audio_arrow.play()
 		get_parent().add_child(arrow)
 		arrow.global_position = arrow_spawn.global_position
 		arrow.rotation.y = skin.rotation.y
-	
 	rpc("_remote_shoot_arrow", arrow_spawn.global_position, skin.rotation.y)
 
 @rpc("any_peer")
@@ -418,6 +429,7 @@ func _remote_shoot_arrow(pos: Vector3, arrow_rotation: float) -> void:
 func hit(damage: float) -> void:
 	if multiplayer.is_server():
 		if not invincible:
+			#print("ce con a prit des degats")
 			health -= damage
 			if health <= 0:
 				minion_skin.hide()
@@ -449,11 +461,10 @@ func hit(damage: float) -> void:
 			animation_tree.set("parameters/HitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			invincible = true
 			invincibility_timer.start()
-			
 			rpc("_remote_hit", name.to_int(), health, animation)
 
 @rpc("any_peer")
-func _remote_add_xp(id: int, value: float) -> void:
+func _remote_add_xp(id: int, _value: float) -> void:
 	if not multiplayer.is_server():
 		var players = get_tree().root.get_node("World").get_players()
 		for player in players:
@@ -466,13 +477,13 @@ func _remote_add_xp(id: int, value: float) -> void:
 func _remote_hit(id: int, new_health: float, animation: String) -> void:
 	if name.to_int() == id:
 		health = new_health
-		
 		if health <= 0:
 			minion_skin.hide()
 			warrior_skin.hide()
 			warrior_skin.deactivate()
 			mage_skin.hide()
 			rogue_skin.hide()
+			
 			death_particles.emitting = true
 		
 		hit_state_machine.travel(animation)
@@ -491,3 +502,7 @@ func _on_death_particles_finished() -> void:
 
 func _on_attack_timer_timeout() -> void:
 	attack_timer.wait_time = randf_range(2.5, 3.5)
+
+
+func _remote_sound()->void:
+	pass

@@ -6,6 +6,9 @@ extends Node3D
 @onready var classes: Control = $GUI/Classes
 @onready var authentication: Control = $GUI/Authentication
 @onready var join_attempt_fail: Control = $GUI/JoinAttemptFail
+@onready var join_attempt_fail_message: Label = $GUI/JoinAttemptFail/ConfirmationPopupContainer/MarginContainer/VBoxContainer/Message
+
+@onready var version_label: Label = $GUI/HomeMenu/VersionMarginContainer/HBoxContainer/VersionLabel
 
 @onready var home_camera: Camera3D = $"3D/Cameras/Home"
 @onready var classes_camera: Camera3D = $"3D/Cameras/Classes"
@@ -26,8 +29,11 @@ func _ready() -> void:
 	$AudioStreamPlayer3D.play()
 	$AudioStreamPlayer3D.stream.loop = true
 	play_click_on_all_buttons(self)
-
-	if MULTIPLAYER.last_connection == "failure":
+	
+	version_label.text = ProjectSettings.get_setting("application/config/version")
+	
+	if MULTIPLAYER.last_connection_state == "failure":
+		join_attempt_fail_message.text = MULTIPLAYER.last_connexion_message
 		join_attempt_fail.show()
 	else:
 		join_attempt_fail.hide()

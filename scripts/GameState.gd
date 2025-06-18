@@ -9,6 +9,7 @@ var first_server_sound	= true
 var sound_master_value	= null
 var sound_music_value	= null
 var sound_sfx_value		= null
+var shield_blocking		= false
 
 const SAVE_PATH = "user://audio_settings.save"
 
