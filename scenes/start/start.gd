@@ -6,9 +6,13 @@ func _ready() -> void:
 	
 	print("Ready to start")
 	
-	if "--custom_debug" in args:
-		print("debug activated")
+	if "--local_debug" in args:
+		print("local debug activated")
 		MULTIPLAYER.debug = true
+	elif "--dedicated_debug" in args:
+		print("dedicated debug activated")
+		MULTIPLAYER.DEBUG = "-debug"
+		MULTIPLAYER.LISTEN_PORT = 3646
 	
 	if "--server" in args:
 		print("Starting as Server")

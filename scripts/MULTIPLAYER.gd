@@ -3,6 +3,7 @@ extends Node
 var DEFAULT_ADDRESS_BEGIN := "daoh-"
 var DEFAULT_ADDRESS_END := ".donnarieix.fr"
 var REGION := "eu"
+var DEBUG := ""
 var LISTEN_PORT := 3642
 var MAX_CHARACTER_COUNT := 4
 var token := ""
@@ -33,7 +34,8 @@ func join_server() -> void:
 	if debug:
 		peer.create_client("ws://" + "localhost" + ":" + str(LISTEN_PORT))
 	else:
-		peer.create_client("ws://" + DEFAULT_ADDRESS_BEGIN + REGION + DEFAULT_ADDRESS_END + ":" + str(LISTEN_PORT))
+		print("using address : ", "ws://" + DEFAULT_ADDRESS_BEGIN + REGION + DEBUG + DEFAULT_ADDRESS_END + ":" + str(LISTEN_PORT))
+		peer.create_client("ws://" + DEFAULT_ADDRESS_BEGIN + REGION + DEBUG + DEFAULT_ADDRESS_END + ":" + str(LISTEN_PORT))
 	multiplayer.multiplayer_peer = peer
 
 func get_server_by_id(id: int) -> Dictionary:
