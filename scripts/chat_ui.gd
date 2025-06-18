@@ -11,7 +11,7 @@ func _ready():
 	message_input.text = ""
 
 func _input(event):
-	if event.is_action_pressed("open_chat") and (!chat_panel.visible or !GameState.chat_active):
+	if event.is_action_pressed("open_chat") and (not chat_panel.visible or not GameState.chat_active):
 		chat_panel.show()
 		if chat_panel.visible:
 			GameState.ignore_pause = true
@@ -50,8 +50,6 @@ func send_message(message: String, origin: int = multiplayer.get_unique_id(), pr
 			label.fit_content = true  # utile pour éviter des tailles fixes
 			label.scroll_active = false  # pas besoin de scroll dans le label lui-même
 
-
-
 			message_container.add_child(label)
 			message_input.text = ""
 			message_input.hide()
@@ -83,8 +81,6 @@ func send_message(message: String, origin: int = multiplayer.get_unique_id(), pr
 			label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			label.fit_content = true  # utile pour éviter des tailles fixes
 			label.scroll_active = false  # pas besoin de scroll dans le label lui-même
-
-
 
 			message_container.add_child(label)
 			message_input.text = ""
